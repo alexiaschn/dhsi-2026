@@ -1,0 +1,28 @@
+project:
+  type: website
+  output-dir: docs
+  pre-render: 
+    - python generate_notebooks_index.py
+
+resources:
+  - notebooks/*_exercice.ipynb
+  - corpus/*
+# toc: true
+bibliography: dhsi2026.bib
+
+format:
+  html:
+    theme: spacelab
+
+website:
+  title: "DHSI 2026 - Décrypter l'IA"
+  navbar:
+    style: 'docked'
+    background: light
+    left:
+      - href: diapositives.md
+        text: "Diapositives"
+      - href: notebooks.md
+        text: "Notebooks"
+      - href: corpus.md
+        text: "Corpus"

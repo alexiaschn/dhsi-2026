@@ -1,0 +1,105 @@
+epigramme_id: 7.114
+book: 7
+fragment: 114
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.114
+author_fr: Diogène Laërce
+text_fr: Tu voulais, Héraclide, laisser aux hommes le bruit que tu avais été, une fois mort, changé aux yeux de tous en serpent. Mais tu fus trompé dans tes calculs sophistiques : la bête, en effet, appartenait bien au genre serpent ; toi, tu fus convaicu d'être bête, mais pas du genre sage.
+
+epigramme_id: 7.115
+book: 7
+fragment: 115
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.115
+author_fr: Diogène Laërce
+text_fr: « Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »
+
+epigramme_id: 7.116
+book: 7
+fragment: 116
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.116
+author_fr: Diogène Laërce
+text_fr: « Diogène, allons, dis-moi quel destin t'a ravi? - C'est la morsure féroce du Chien, qui m'a ravi chez Hadès. »
+
+epigramme_id: 7.120
+book: 7
+fragment: 120
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.120
+author_fr: Xénophane
+text_fr: On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut compassion et prononça ces paroles : « Arrête et ne frappe plus, car sûrement c'est l'âme d'un ami, que j'ai reconnue en l'entendant crier. »
+
+epigramme_id: 7.171
+book: 7
+fragment: 171
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.171
+author_fr: Mnasalcès
+text_fr: Ici aussi l'oiseau sacré reposera son aile rapide, en s' arrêtant sur ce platane plein d'attrait. Il est mort en effet, Poimandros de Mélien, et il ne viendra plus verser sa glu sur ses pipeaux de chasse.
+
+epigramme_id: 7.172
+book: 7
+fragment: 172
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.172
+author_fr: Antipatros de Sidon
+text_fr: Moi, Alcimènés, jadis j'écartais l'etourneau et la voleuse de semences, la grue de Bistonie au vol élevé, en tendant les bras agiles de ma fronde, et je repoussais au loin la nuée des oiseaux. Mais en me piquant près de la cheville, une vipère dipsas a versé dans ma chair le venin amer de ses mâchoires, me privant de la vue du soleil. Voilà comment en regardant ce qui ce passait en l'air, je n'ai pas vu le mal qui rampait à mes pieds.
+
+epigramme_id: 7.173
+book: 7
+fragment: 173
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.173
+author_fr: Diotimos d'Adramytte; Diotime d'Athènes; Léonidas de Tarente
+text_fr: D'elles-mêmes, le soir, les vaches sont revenues de la montagne à l'étable, couvertes d'une neige abondante et, hélas, au pied d'une chêne, Thérimachos dort du sommeil éternel : c'est le feu du ciel qui l'y a plongé.
+
+epigramme_id: 7.189
+book: 7
+fragment: 189
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.189
+author_fr: Aristodicos de Rhodes
+text_fr: Non, jamais plus, mélodieuse sauterelle, Hélios ne te verra chanter dans la demeure opulente d'Alkis. Déjà en effet tu as pris ton vol vers les prairies de Clyménos et les fleurs humides de rosée de la rayonnante Perséphone.
+
+epigramme_id: 7.190
+book: 7
+fragment: 190
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.190
+author_fr: Anytè; Léonidas de Tarente
+text_fr: A la sauterelle, rossignol des guérets, à la cigale, hôtesse des hêtres, Myro fit une tombe commune ; elle répandit, la jeune fille, une larme virginale : c'est que l'impitoyable Hadès s'en allait en emportant le double objet de ses jeux.
+
+epigramme_id: 7.191
+book: 7
+fragment: 191
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.191
+author_fr: Archias; Archias de Mytilène
+text_fr: Moi qui jadis, en renvoyant le sons, répondais souvent aux pâtres, aux bûcherons et aux pêcheurs, moi, la pie, qui souvent jetais mes cris répétés, comme un écho, accents trompeurs d'une voix apte à répondre aux chants, maintenant tombée à terre. Je gis sans langue et sans voix, déchue de mon besoin d'imitation.
+
+epigramme_id: 7.192
+book: 7
+fragment: 192
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.192
+author_fr: Mnasalcès
+text_fr: Jamais plus de tes ailes bruissantes tu ne chanteras, sauterelle, posée le long des sillons fertiles ; jamais plus, étendu à l'ombre des rameaux, je ne serai charmé du chant mélodieux rythmé par tes blondes ailes.
+
+epigramme_id: 7.195
+book: 7
+fragment: 195
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.195
+author_fr: Méléagre de Gadara
+text_fr: Sauterelle, toi qui trompes mes regrets et apaises mon sommeil, sauterelle, muse agreste au vol mélodieux, imitation naturelle de la lyre, dis-moi quelque chant aimé en frappant de tes pattes tes ailes sonores, afin de m'arracher au souci de mes peines qui m'enlèvent le sommeil, cigale, toi qui sais les chants qui trompent l'amour. A ton réveil je te donnerai comme récompense du poireau toujours vert et des plantes humides de rosée, que tu diviseras de tes lèvres.
+
+epigramme_id: 7.201
+book: 7
+fragment: 201
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.201
+author_fr: Pamphile d'Alexandrie
+text_fr: Tu ne jettes plus, posée sur les feuilles vertes, l'agréable chanson de ton cri perçant ; mais c'est quand tu chantais, stridente cigale, qu'un jeune garçon te tua de sa main tendue.
+
+epigramme_id: 7.214
+book: 7
+fragment: 214
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.214
+author_fr: Archias; Archias de Mytilène
+text_fr: Tu ne vas plus t'élancer à travers les profondeurs bouillonnantes de la mer, ô dauphin, et effrayer les troupeaux marins ni danser au chant de la flûte percée de trous, en faisant jaillir l'eau autour des barques ni, tout écumant, prendre sur ton dos comme autrefois les Néréides, pour les porter jusqu'aux bornes de l'empire de Téthys. Car une vague, pareille au promontoire Malée, s'est soulevée et t'a jeté sur les sables et les cailloux du rivage.
+
+epigramme_id: 7.216
+book: 7
+fragment: 216
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.216
+author_fr: Antipater de Thessalonique
+text_fr: Les flots et les vagues houleuses m'ont jeté sur le rivage, moi dauphin, et je fus pour les passants une étrange vision d'infortune. Mais sur la terre il y a place pour la pitié ; car ceux qui m'avaient vu m'ont aussitôt, dans leur piété, honoré d'un tombeau. C'est celle qui m'a enfanté, la mer, qui m'a fait périr. Quelle confiance avoir dans l'Océan, qui n'a même pas épargné son propre nourrisson ?
+
