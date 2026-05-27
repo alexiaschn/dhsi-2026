@@ -1,0 +1,15 @@
+[
+  {
+    "listing": "/diapositives.html",
+    "items": [
+      "/diapositives/jour1.html"
+    ]
+  },
+  {
+    "listing": "/notebooks.html",
+    "items": [
+      "/notebooks/jour1_demo_IASymboliqueConnexionniste_complet.html",
+      "/notebooks/jour1_demo_IASymboliqueConnexionniste.html"
+    ]
+  }
+]
