@@ -12,3 +12,4 @@
 
 À la racine du projet `quarto render` va construire le site. Prévisualiser en local avec `quarto preview`. 
 
+Contacter Alexia si qqch casse. 

@@ -1,6 +1,6 @@
 ---
 # layout: slide
-title: Intro 
+title: "Jour 1 : Introduction à l'IA, histoire et typologie" 
 date: 2026-06-08
 author: 
     - name: Alexia Schneider 
@@ -216,11 +216,11 @@ Actuellement : tendance à l'hybridation de ces modèles : Neuro-Symbolic Integr
 
 ## Petite mise en place
 
-1. Repo du cours : https://gitlab.huma-num.fr/ecrinum/dhsi-ia-2026
+1. Repo du cours : 
 
-Pour les personnes familières de Git : 
+Pour les personnes familières de Git : https://github.com/alexiaschn/dhsi-2026/
 
-```git clone git@gitlab.huma-num.fr:ecrinum/dhsi-ia-2026.git```
+```git clone https://github.com/alexiaschn/dhsi-2026.git```
 
 Pour les moins familiers : 
 
@@ -320,9 +320,9 @@ Possiblement : 3e étape Entraînement supervisé : apprentissage spécialisé
 
 ## Exercice/Démo
 
-Ouvrir le notebook : `jour1_demo_IASymboliqueConnexionniste.ipynb`
+Ouvrir le notebook : `jour1_IASymboliqueConnexionniste_exercice.ipynb`
 
-Une version déjà executée est disponible aussi: `jour1_demo_IASymboliqueConnexionniste_complet.ipynb`
+Une version déjà executée est disponible aussi: `jour1_ASymboliqueConnexionniste_complet.ipynb`
 
 Bonus pour les curieux.ses : [programme de démo tiré de "Debogue tes Humanités"](https://demo-atelier.streamlit.app/)
 
@@ -396,52 +396,3 @@ Parce que les LLMs sont lourds (plusieurs Gigas) et parce qu'il est coûteux en 
 
 
 ## Bibliographie
-
-<!-- 
-## Bibliographie
- 
-Ameisen, AUTHORS Emmanuel, Jack Lindsey, Adam Pearce, Wes Gurnee, Nicholas L. Turner, Brian Chen, Craig Citro, et al. 2025. “Circuit Tracing: Revealing Computational Graphs in Language Models.” Transformer Circuits. https://transformer-circuits.pub/2025/attribution-graphs/methods.html.
-
-Breit, Anna, Laura Waltersdorfer, Fajar J. Ekaputra, Marta Sabou, Andreas Ekelhart, Andreea Iana, Heiko Paulheim, et al. 2023. “Combining Machine Learning and Semantic Web: A Systematic Mapping Study.” ACM Computing Surveys 55 (14s): 313:1–41. https://doi.org/10.1145/3586163.
-
-Brown, Tom B., Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, et al. 2020. “Language Models Are Few-Shot Learners.” arXiv. https://doi.org/10.48550/arXiv.2005.14165.
-
-Campbell, Murray, A. Joseph Hoane, and Feng-hsiung Hsu. 2002. “Deep Blue.” Artificial Intelligence 134 (1): 57–83. https://doi.org/10.1016/S0004-3702(01)00129-1.
-Connelly, Daniel. n.d. “Eliza.py.” Eliza Emulation Python. https://dhconnelly.com/paip-python/docs/paip/eliza.html. Accessed August 20, 2025.
-
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. “BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding.” In Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers), edited by Jill Burstein, Christy Doran, and Thamar Solorio, 4171–86. Minneapolis, Minnesota: Association for Computational Linguistics. https://doi.org/10.18653/v1/N19-1423.
-
-Fujinaga, Ichiro. 2025. “On the virtues of lazy machines.” {Keynote}. Montréal.
-
-Haenlein, Michael, and Andreas Kaplan. 2019. “A Brief History of Artificial Intelligence: On the Past, Present, and Future of Artificial Intelligence.” California Management Review 61 (4): 5–14. https://doi.org/10.1177/0008125619864925.
-
-“How Do I Cite Generative AI in MLA Style?” 2023. MLA Style Center.
-
-Knuth, D. E. 1984. “Literate Programming.” The Computer Journal 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.
-
-Marcus, Gary. 2020. “The Next Decade in AI: Four Steps Towards Robust Artificial Intelligence.” arXiv. https://doi.org/10.48550/arXiv.2002.06177.
-
-Mikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. “Efficient Estimation of Word Representations in Vector Space.” arXiv. https://doi.org/10.48550/arXiv.1301.3781.
-
-Mulliken, Jasmine. 2025. “2025 AUPresses Week-in-Residence Report.”
-
-Naddaf, Miryam. 2025. “AI Is Transforming Peer Review — and Many Scientists Are Worried.” Nature 639 (8056): 852–54. https://doi.org/10.1038/d41586-025-00894-7.
-
-Pennington, Jeffrey, Richard Socher, and Christopher Manning. 2014. “GloVe: Global Vectors for Word Representation.” In Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP), edited by Alessandro Moschitti, Bo Pang, and Walter Daelemans, 1532–43. Doha, Qatar: Association for Computational Linguistics. https://doi.org/10.3115/v1/D14-1162.
-
-Turing, A. M. 1950. “Computing Machinery and Intelligence.” Mind LIX (236): 433–60. https://doi.org/10.1093/mind/LIX.236.433.
-
-Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, and Illia Polosukhin. 2017. “Attention Is All You Need.” arXiv. https://doi.org/10.48550/arXiv.1706.03762.
-
-Vitali-Rosati, Marcello. 2025. “Manifeste Pour Des Études Critiques de l’Intelligence Artificielle.” Culture Numérique. Pour Une Philosophie Du Numérique.
-
-Weizenbaum, Joseph. 1966. “ELIZA—a Computer Program for the Study of Natural Language Communication Between Man and Machine.” Communications of the ACM 9 (1): 36–45. https://doi.org/10.1145/365153.365168. -->
-
-<!-- Baliser les diapositives avec les shortcodes `{{< psectioni >}}` pour ouvrir et `{{< psectiono >}}` pour fermer. -->
-
-<!-- 
-
-{{< psectioni >}}
-
-{{< psectiono >}} -->
-

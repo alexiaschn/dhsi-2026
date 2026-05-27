@@ -2,7 +2,7 @@ project:
   type: website
   output-dir: docs
   pre-render: 
-    - python generate_notebooks_index.py
+    - python3 generate_notebooks_index.py
 
 resources:
   - notebooks/*_exercice.ipynb

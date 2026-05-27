@@ -4,15 +4,22 @@
     "items": []
   },
   {
-    "listing": "/diapositives.html",
+    "listing": "/notebooks.html",
     "items": [
-      "/diapositives/jour1.html"
+      "/notebooks/jour1_IASymboliqueConnexionniste_complet.html",
+      "/notebooks/jour2_regex_complet.html",
+      "/notebooks/jour4_steeringLLM_complet.html"
     ]
   },
   {
-    "listing": "/notebooks.html",
+    "listing": "/diapositives.html",
     "items": [
-      "/notebooks/jour1_IASymboliqueConnexionniste_complet.html"
+      "/diapositives/jour1.html",
+      "/diapositives/jour02AM.html",
+      "/diapositives/jour02PM.html",
+      "/diapositives/jour03.html",
+      "/diapositives/jour04AM.html",
+      "/diapositives/jour05.html"
     ]
   }
 ]
