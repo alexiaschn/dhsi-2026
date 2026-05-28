@@ -235,27 +235,217 @@ v_elephant = np.array([0.2, 0.9, 0.1, 0.8]) # "Éléphant" : Fort sur les dim 2 
 <h2>Comment obtenir un vecteur ?</h2>
 <p>On compte !</p>
 <h3 id="approche-sac-de-motsbag-of-words">Approche Sac-de-mots/<em>Bag of Words</em></h3>
-<p>Représentations vectorielles (20 minutes + 40 minutes d’exercice) <span class="citation" data-cites="alexia">(<a href="" role="doc-biblioref" onclick="return false;"><strong>alexia?</strong></a>)</span> - BOW - TF-IDF - Classification (15 minutes + 15 minutes de démonstration) - RandomForest - LR - etc.</p>
-<p>C’est</p>
-</section>
-<section id="bow" class="slide level2">
-<h2>BOW</h2>
+<p>Exemple :</p>
+<p>Épigramme 1 de notre corpus : “Tu voulais, Héraclide, laisser aux hommes le bruit que tu avais été, une fois mort, changé aux yeux de tous en serpent. Mais tu fus trompé dans tes calculs sophistiques : la bête, en effet, appartenait bien au genre serpent ; toi, tu fus convaicu d’être bête, mais pas du genre sage.”</p>
+<p>Épigramme 2 du corpus : “« Tu as vécu en chien, Antisthène. - C’est que j’étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu’un. - Eh quoi ! il fait bien qu’il y en ait pour servir de guide chez Hadès. »”</p>
+<p>Épigramme 3 : ““« Diogène, allons, dis-moi quel destin t’a ravi? - C’est la morsure féroce du Chien, qui m’a ravi chez Hadès. »”</p>
+<p>Jusqu’à présent on a vu cette logique :</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>token</th>
+<th>epigramme1</th>
+<th>epigramme2</th>
+<th>epigramme3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tu</td>
+<td>oui</td>
+<td>oui</td>
+<td>non</td>
+</tr>
+<tr class="even">
+<td>voulais</td>
+<td>oui</td>
+<td>non</td>
+<td>non</td>
+</tr>
+<tr class="odd">
+<td>,</td>
+<td>oui</td>
+<td>oui</td>
+<td>oui</td>
+</tr>
+<tr class="even">
+<td>Antisthène</td>
+<td>non</td>
+<td>oui</td>
+<td>non</td>
+</tr>
+<tr class="odd">
+<td>chien</td>
+<td>non</td>
+<td>oui</td>
+<td>oui</td>
+</tr>
+</tbody>
+</table>
+<p>On peut voir une nouvelle logique :</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>épigramme/token</th>
+<th>tu</th>
+<th>voulais</th>
+<th>,</th>
+<th>Antisthène</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>4</td>
+<td>1</td>
+<td>8</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="tf-idf" class="slide level2">
 <h2>TF-IDF</h2>
-<p>Term Frequency inverse Document Frequency</p>
+<p>Term Frequency inverse Document Frequency est une méthode de pondération pour calculer l’importance d’un terme par rapport à l’ensemble d’un corpus.</p>
+<p>Calculons le TF-iDF du mot “chien” pour chacun des épigrammes.</p>
+<p>On commence par calculer TF (term frequency) soit le nombre d’apparitions du token dans un document en particulier.</p>
+<p>Le mot chien apparait 3 fois dans notre mini corpus de 3 épigrammes et il y a en tout 130 mots (avec un split simple aux espaces) mais 0 fois pour le 1e épigramme, 2 fois pour le 2e et 1 fois dans le 3e.</p>
+<p>Donc pour “chien” le TF1 = 0/130, TF2 = 2/130, TF3 = 1/130</p>
+<p>Calcul de l’IDF : dans combien de document est-ce que “chien” apparait.</p>
+<p>“chien” apparait dans 2/3 des épigrammes : cette valeur restera la même quel que soit le document.</p>
+<p><span class="math display">\[
+log3/2
+\]</span></p>
+<p>Calcul final : multiplication de TF et IDF pour chacun des épigrammes :</p>
+<p><span class="math display">\[
+TFIDF1 = 0/130*log3/2 = 0
+\]</span></p>
+<p><span class="math display">\[
+TFIDF2 = 2/130*log3/2 = 0.00367016349785
+\]</span></p>
+<p><span class="math display">\[
+TFIDF3 = 1/130*log3/2 = 0.00183508174892
+\]</span></p>
+<p>Le mot “chien” permet sans surprise de discriminer en particulier le deuxième épigramme.</p>
+<p>En recherche d’information on dirait que le deuxième document est le plus pertinent pour le terme “chien”.</p>
+<p>Lire sur <a href="https://fr.wikipedia.org/wiki/TF-IDF">wiki</a></p>
+</section>
+<section id="calcul-de-proximitédistance" class="slide level2">
+<h2>Calcul de proximité/distance</h2>
+<p>Une application fréquente des vecteurs est le calcul de proximité.</p>
+<p>Ce calcul peut se faire de différentes manières. On trouve :</p>
+<ul>
+<li>Distance L1 ou Manhattan</li>
+<li>Distance L2 ou euclidienne</li>
+<li>Proximité cosinus</li>
+</ul>
+
+<img data-src="img/Manhattan_distance.svg" class="r-stretch quarto-figure-center"><p class="caption">Distance L1 et L2</p><p>|<a href="img/Cosinus_de_A.svg.png">Calcul du cosinus d’un angle</a></p>
+<p>Source : <a href="https://fr.wikipedia.org/wiki/Distance_de_Manhattan">wikipedia distance Manhattan</a> et <a href="https://fr.wikipedia.org/wiki/Cosinus">wikipedia cosinus</a></p>
 </section>
 <section id="exercice" class="slide level2">
 <h2>Exercice</h2>
+<p>https://alexiaschn.github.io/dhsi-2026/notebooks.html</p>
+<p><code>jour2_BoW_TFiDF_exercice.ipynb</code></p>
 </section>
-<section id="algorithmes-de-classification" class="slide level2">
+<section id="algorithmes-de-classification" class="slide level2 scrollable">
 <h2>Algorithmes de classification</h2>
+<p>La classification est une tâche d’apprentissage supervisé visant à prédire une catégorie (classe) pour une donnée d’entrée. Nous allons explorer trois approches fondamentales :</p>
+<ol type="1">
+<li><strong>k-Nearest Neighbors (k-NN)</strong> : Une méthode basée sur la proximité immédiate.</li>
+<li><strong>Régression Logistique</strong> : Une méthode statistique pour estimer des probabilités.</li>
+<li><strong>Random Forest (Forêt Aléatoire)</strong> : Une méthode d’ensemble combinant plusieurs modèles.</li>
+</ol>
+<p>Ces algorithmes sont les piliers de la classification classique avant d’aborder les réseaux de neurones profonds.</p>
 </section>
-<section id="random-forrest" class="slide level2">
-<h2>Random Forrest</h2>
+<section id="k-nearest-neighbors-k-nn" class="slide level2">
+<h2>k-Nearest Neighbors (k-NN)</h2>
+<p><strong>Le principe</strong> : “Dis-moi qui sont tes voisins, je te dirai qui tu es.”</p>
+<ul>
+<li><strong>Fonctionnement</strong> : Pour classifier une nouvelle donnée, on calcule sa distance (ex: Euclidienne) avec toutes les données d’entraînement.</li>
+<li><strong>Le paramètre k</strong> : On sélectionne les <span class="math inline">\(k\)</span> voisins les plus proches. La classe prédite est celle qui apparaît le plus souvent parmi ces <span class="math inline">\(k\)</span> voisins (vote majoritaire).</li>
+<li><strong>Avantages</strong> : Simple à comprendre, pas de phase d’entraînement explicite (apprentissage paresseux).</li>
+<li><strong>Limites</strong> : Lent sur de grands jeux de données, sensible aux données non normalisées et au “bruit”.</li>
+</ul>
 </section>
-<section id="logistic-regression" class="slide level2">
-<h2>Logistic Regression</h2>
+<section id="random-forest" class="slide level2">
+<h2>Random Forest</h2>
+<ul>
+<li>C’est un algorithme d’ensemble (“Ensemble Learning”) basé sur les arbres de décision.</li>
+<li><strong>Construction</strong> : On crée de nombreux arbres de décision sur des sous-échantillons aléatoires des données et des features.</li>
+<li><strong>Prédiction</strong> : Chaque arbre vote, et la classe retenue est celle qui obtient le plus de votes (bagging).</li>
+<li><strong>Avantages</strong> : Très robuste au surapprentissage (overfitting), gère bien les données non linéaires.</li>
+</ul>
+</section>
+<section id="régression-logistique" class="slide level2">
+<h2>Régression Logistique</h2>
+<ul>
+<li>Bien que nommée “régression”, elle sert à la classification.</li>
+<li>Elle modélise la probabilité qu’une donnée appartienne à une classe spécifique à l’aide d’une fonction sigmoïde.</li>
+<li>Elle trace une frontière de décision (linéaire ou non linéaire selon les features) pour séparer les classes.</li>
+<li><strong>Idéal pour</strong> : Les problèmes linéaires, l’interprétabilité des coefficients.</li>
+</ul>
+</section></section>
+<section>
+<section id="slide-4-synthèse-et-comparaison" class="title-slide slide level1 center">
+<h1>Slide 4 : Synthèse et Comparaison</h1>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Critère</th>
+<th style="text-align: left;">k-NN</th>
+<th style="text-align: left;">Régression Logistique</th>
+<th style="text-align: left;">Random Forest</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Complexité</strong></td>
+<td style="text-align: left;">Faible (mais calcul lourd à l’inférence)</td>
+<td style="text-align: left;">Faible</td>
+<td style="text-align: left;">Moyenne</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Frontière</strong></td>
+<td style="text-align: left;">Non-paramétrique (locale)</td>
+<td style="text-align: left;">Linéaire (globale)</td>
+<td style="text-align: left;">Non-linéaire (complexe)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Robustesse</strong></td>
+<td style="text-align: left;">Sensible au bruit et aux features</td>
+<td style="text-align: left;">Sensible aux corrélations</td>
+<td style="text-align: left;">Très robuste</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Interprétabilité</strong></td>
+<td style="text-align: left;">Difficile (boîte noire locale)</td>
+<td style="text-align: left;">Élevée (coefficients)</td>
+<td style="text-align: left;">Moyenne (importance des features)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusion</strong> : * Utilisez <strong>k-NN</strong> pour des petits jeux de données et une rapidité de mise en œuvre. * Utilisez la <strong>Régression Logistique</strong> pour la simplicité et l’interprétabilité. * Utilisez <strong>Random Forest</strong> pour la performance et la robustesse sur des problèmes complexes.</p>
 </section>
 <section id="bibliographie" class="slide level2">
 <h2>Bibliographie</h2>

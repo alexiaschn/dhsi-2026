@@ -299,11 +299,77 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </section>
 <section id="travailler-avec-de-lia-générative" class="slide level2">
 <h2>Travailler avec de l’“IA générative”</h2>
+<p>Contrairement à certaines des approches qu’on a pu voir les jours précédents, la génération par LLM contient des éléments d’incertitude qui mettent en jeu l’interprétabilité des résultats obtenus :</p>
+<ul>
+<li>probabiliste et stochastique : variable aléatoire peuvent varier les probabilité.</li>
+<li>très large dimension du jeu d’entrainement qui est non annoté -&gt; préférence pour le reinforcement learning plutôt que l’annotation massive à la source.</li>
+<li>difficile interprétabilité de l’output et de la trace dans les couches neuronales.</li>
+</ul>
+<p>Une solution : le <em>prompt engineering</em>.</p>
 </section>
 <section id="le-prompt-engineering" class="slide level2">
 <h2>Le prompt engineering</h2>
 <p>Rendre un prompt robuste et surtout permettre l’évaluation systématique d’une stratégie de prompt. Réintégrer une forme de modélisation de son problème pour optimiser un prompt : le template.</p>
+</section>
+<section id="éléments-de-prompt-engineering" class="slide level2">
+<h2>Éléments de prompt engineering</h2>
+<p>Tout repose sur l’évaluation des outputs du SIA. Comment passer d’une exploration opportuniste et empirique d’un prompt ou deux au déploiement d’un outil reposant sur un LLM avec un bonne certitude qu’il s’agit d’un système fiable ?</p>
+<ul>
+<li>concevoir des scénarios d’utilisation</li>
+<li>chercher les limites</li>
+<li>analyser les erreurs</li>
+<li>quantifier l’évaluation -&gt; définir des mesures pertinentes pour la tâche à effectuer</li>
+</ul>
+</section>
+<section id="typologie-dévaluation" class="slide level2">
+<h2>Typologie d’évaluation</h2>
+<div>
+<ul>
+<li class="fragment">Basé sur une référence : comparaison des sorties à partir d’une <em>ground truth</em></li>
+<li class="fragment">reference-free : test libre</li>
+<li class="fragment">comparaison par paires : comparaison de deux sorties (ex : pour comparer la qualité de deux prompts)</li>
+<li class="fragment">code-based : évaluation plus robuste</li>
+<li class="fragment">LLM-based : peu fiable</li>
+<li class="fragment">human-evaluation</li>
+</ul>
+</div>
+</section>
+<section id="stratégies-de-prompt" class="slide level2">
+<h2>Stratégies de prompt</h2>
+<ul>
+<li>0 shot</li>
+<li>few shots</li>
+<li>personas</li>
+<li>Chain of Thought (devenu ‘reasoning step’ inclus dans le LLM )</li>
+<li>formatted outputs</li>
+</ul>
+</section>
+<section id="bonnes-pratiques" class="slide level2">
+<h2>Bonnes pratiques</h2>
+<ul>
+<li>Décomposer la tâche à effectuer.</li>
+<li>Composer un jeu de donnée a minima : cerner ce à quoi doit ressembler la sortie.</li>
+<li>Partir d’un exemple minimal avant de complexifier la tâche</li>
+</ul>
+</section>
+<section id="chainforge" class="slide level2">
+<h2>ChainForge</h2>
 <p><a href="https://chainforge.ai/play/">ChainForge</a> : outil de comparaison de prompt : comparaison de modèle, comparaison de template (un texte qui inclut des variables) visualisation côte à côte des sorties.</p>
+<p>-&gt; pas à pas de l’utilisation de ChainForge : exemple de la classification binaire en “animal/pas animal”</p>
+</section>
+<section id="exercice" class="slide level2">
+<h2>Exercice</h2>
+<p>Vous pouvez vous servir de votre propre jeu de donnée.</p>
+<p>A défaut :</p>
+<p>Effectuer une classification d’épigrammes selon 2 genres proches :</p>
+<p>Romantique / Érotique</p>
+<p>API :</p>
+<p>Jeu de données : epigrammes_classification.csv</p>
+<p>Formuler 3 prompts différents.</p>
+<p>Ajouter les données avec l’import CSV.</p>
+<p>Utiliser seulement le modèle : togetherAI/</p>
+<p>Ajouter 2 évaluateurs LLM : le premier pour déterminer la qualité de la classification sur une échelle de 1 à 10. le second donnera une évaluation en True/False de la qualité de la classification. Ex “Donne une note de 1 à 10 sur la qualité de la classification : le modèle dont tu évalues la réponse devait déterminer si le texte suivant {épigramme} était romantique ou érotique”.</p>
+<p>Comparer la qualité des sorties des différents prompts et la qualité des évaluations par les LLM.</p>
 </section>
 <section id="bibliographie" class="slide level2 smaller scrollable">
 <h2>Bibliographie</h2>

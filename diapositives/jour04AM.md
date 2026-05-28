@@ -218,14 +218,90 @@ Voir :
 ## Travailler avec de l'"IA générative"
 
 
+Contrairement à certaines des approches qu'on a pu voir les jours précédents, la génération par LLM contient des éléments d'incertitude qui mettent en jeu l'interprétabilité des résultats obtenus :
 
+- probabiliste et stochastique : variable aléatoire peuvent varier les probabilité.
+- très large dimension du jeu d'entrainement qui est non annoté -> préférence pour le reinforcement learning plutôt que l'annotation massive à la source. 
+- difficile interprétabilité de l'output et de la trace dans les couches neuronales.
 
+Une solution : le _prompt engineering_. 
 
 ## Le prompt engineering
 
 Rendre un prompt robuste et surtout permettre l'évaluation systématique d'une stratégie de prompt. Réintégrer une forme de modélisation de son problème pour optimiser un prompt : le template. 
 
+
+## Éléments de prompt engineering
+
+
+Tout repose sur l'évaluation des outputs du SIA. Comment passer d'une exploration opportuniste et empirique d'un prompt ou deux au déploiement d'un outil reposant sur un LLM avec un bonne certitude qu'il s'agit d'un système fiable ?
+
+- concevoir des scénarios d'utilisation
+- chercher les limites 
+- analyser les erreurs
+- quantifier l'évaluation -> définir des mesures pertinentes pour la tâche à effectuer
+
+## Typologie d'évaluation 
+
+::: {.incremental}
+
+- Basé sur une référence : comparaison des sorties à partir d'une _ground truth_ 
+- reference-free : test libre
+- comparaison par paires : comparaison de deux sorties (ex : pour comparer la qualité de deux prompts)
+- code-based : évaluation plus robuste 
+- LLM-based : peu fiable
+- human-evaluation 
+
+:::
+
+## Stratégies de prompt 
+
+- 0 shot
+- few shots
+- personas
+- Chain of Thought (devenu 'reasoning step' inclus dans le LLM )
+- formatted outputs 
+
+
+## Bonnes pratiques
+
+
+- Décomposer la tâche à effectuer.
+- Composer un jeu de donnée a minima : cerner ce à quoi doit ressembler la sortie.
+- Partir d'un exemple minimal avant de complexifier la tâche
+
+
+## ChainForge
+
+
 [ChainForge](https://chainforge.ai/play/) : outil de comparaison de prompt : comparaison de modèle, comparaison de template (un texte qui inclut des variables) visualisation côte à côte des sorties. 
+
+-> pas à pas de l'utilisation de ChainForge : exemple de la classification binaire en "animal/pas animal"
+
+## Exercice
+
+Vous pouvez vous servir de votre propre jeu de donnée. 
+
+A défaut :
+
+Effectuer une classification d'épigrammes selon 2 genres proches : 
+
+Romantique / Érotique 
+
+API : 
+
+Jeu de données : epigrammes_classification.csv
+
+Formuler 3 prompts différents.
+
+Ajouter les données avec l'import CSV.
+
+Utiliser seulement le modèle : togetherAI/
+
+Ajouter 2 évaluateurs LLM : le premier pour déterminer la qualité de la classification sur une échelle de 1 à 10. le second donnera une évaluation en True/False de la qualité de la classification. Ex "Donne une note de 1 à 10 sur la qualité de la classification : le modèle dont tu évalues la réponse devait déterminer si le texte suivant {épigramme} était romantique ou érotique".
+
+Comparer la qualité des sorties des différents prompts et la qualité des évaluations par les LLM. 
+
 
 
 ## Bibliographie
