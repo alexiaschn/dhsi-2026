@@ -2,11 +2,11 @@
 
 <div style="display: flex; gap: 10px; align-items: center; margin-right: 20px;">
        
-<a href="https://www.ecrituresnumeriques.ca/fr"><img src="statics/logo-ecrinum.png" alt="Logo labo écritures numériques" style="height: 40px;">
+<a href="https://www.ecrituresnumeriques.ca/fr"><img src="diapositives/img/logo-ecrinum.png" alt="Logo labo écritures numériques" style="height: 40px;">
 </a>
 
 
-<a href="https://dhsi.org/"><img src="statics/logo-dhsi.png" alt="Logo DHSI" style="height: 40px;">
+<a href="https://dhsi.org/"><img src="diapositives/img/logo-dhsi.png" alt="Logo DHSI" style="height: 40px;">
 </a>
 </div>
 

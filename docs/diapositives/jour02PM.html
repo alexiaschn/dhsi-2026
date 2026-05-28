@@ -207,8 +207,36 @@ Yann Audin <a href="https://orcid.org/https://orcid.org/0000-0003-3456-9767" cla
 <h1>Pause</h1>
 
 </section>
+<section id="prétraitement-fin" class="slide level2">
+<h2>Prétraitement (fin)</h2>
+<p>Le corpus nettoyé n’est pas directement exploitable par les modèles mathématiques : les chaînes de caractères sont sémantiquement riches mais numériquement inopérantes.</p>
+<p>L’étape suivante consiste à transformer ces données textuelles en <strong>représentations numériques vectorielles</strong>. Ce processus convertit le texte en vecteurs de nombres, permettant ainsi des calculs arithmétiques et des comparaisons mathématiques précises.</p>
+<p>Exemple de comparaison vectorielle :</p>
+<ul>
+<li>“chien” -&gt; [0, 1, 0, 1, 0]</li>
+<li>“éléphant” -&gt; [1, 0, 0, 0, 0]</li>
+</ul>
+<p>Dans cette représentation, l’opération “chien” &gt; “éléphant” (ou toute autre comparaison vectorielle) devient un calcul arithmétique standard, rendant le texte “lisible” par la machine pour la tâche d’apprentissage.</p>
+</section>
 <section id="repésentation-vectorielle-principes" class="slide level2">
 <h2>Repésentation vectorielle : Principes</h2>
+<p>Un vecteur est une représentation numérique d’une donnée. Le vecteur est une sorte de coordonnée spatiale.</p>
+<p>Exemple : dans un espace à 4 dimensions :</p>
+<pre><code>v_chien = np.array([0.8, 0.3, 0.9, 0.2])  # "Chien" : Fort sur les dim 1 et 3
+v_elephant = np.array([0.2, 0.9, 0.1, 0.8]) # "Éléphant" : Fort sur les dim 2 et 4</code></pre>
+
+<img data-src="img/vectors.png" class="r-stretch quarto-figure-center"><p class="caption">Représentation d’un vecteur dans un espace réduit à 2 dimensions (moyenne)</p><p>Plusieurs principes :</p>
+<ul>
+<li>les vecteurs sont des séries de nombres, dans l’exemple les valeurs sont normalisées (= entre 0 et 1)</li>
+<li>pour pouvoir être comparés, les vecteurs doivent avoir la même longueur</li>
+</ul>
+</section>
+<section id="comment-obtenir-un-vecteur" class="slide level2">
+<h2>Comment obtenir un vecteur ?</h2>
+<p>On compte !</p>
+<h3 id="approche-sac-de-motsbag-of-words">Approche Sac-de-mots/<em>Bag of Words</em></h3>
+<p>Représentations vectorielles (20 minutes + 40 minutes d’exercice) <span class="citation" data-cites="alexia">(<a href="" role="doc-biblioref" onclick="return false;"><strong>alexia?</strong></a>)</span> - BOW - TF-IDF - Classification (15 minutes + 15 minutes de démonstration) - RandomForest - LR - etc.</p>
+<p>C’est</p>
 </section>
 <section id="bow" class="slide level2">
 <h2>BOW</h2>

@@ -21,7 +21,8 @@ Pour obtenir les notebooks au format ipynb:
 for nb in notebooks:
     name = nb.name
     content += f'- [{name}]({nb.as_posix()}){{download="{name}"}}\n'
-    content += f"\n\n# Lire les notebooks au format HTML"
+
+content += f"\n\n# Lire les notebooks au format HTML"
 
 Path("notebooks.md").write_text(content, encoding="utf-8")
 

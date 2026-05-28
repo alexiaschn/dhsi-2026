@@ -15,7 +15,7 @@ colorlinks: true
 fig-cap-location: top
 format:
     revealjs: 
-        output-file: "jour1.html" 
+        output-file: "jour01.html" 
         # template: simple
         smaller: true
         # incremental: true

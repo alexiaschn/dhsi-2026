@@ -6,7 +6,7 @@ project:
 
 resources:
   - notebooks/*_exercice.ipynb
-  - corpus/*
+  - notebooks/corpus/*
 # toc: true
 bibliography: dhsi2026.bib
 

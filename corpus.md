@@ -1,6 +1,6 @@
 ---
 listing: 
-    contents: corpus/*
+    contents: notebooks/corpus/*
     type: table
     sort: "date"
 ---
