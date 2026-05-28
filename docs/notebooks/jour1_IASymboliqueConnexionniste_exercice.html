@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -100,6 +100,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -171,21 +174,103 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="cell-2" class="cell" data-outputid="d8e614c4-e722-4f5d-e2fd-7a6ce3023802">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install wget pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-3" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># peut être commenté si travail en local</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget <span class="op">-</span>P corpus https:<span class="op">//</span>github.com<span class="op">/</span>alexiaschn<span class="op">/</span>dhsi<span class="op">-</span><span class="dv">2026</span><span class="op">/</span>blob<span class="op">/</span>main<span class="op">/</span>notebooks<span class="op">/</span>corpus<span class="op">/</span>epigrammes_anthologia_graeca_fr.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-3" class="cell" data-outputid="eaa53a59-6423-4beb-e1c3-b3e0b5d3e4a0" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.csv"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>P corpus https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>alexiaschn<span class="op">/</span>dhsi<span class="op">-</span><span class="dv">2026</span><span class="op">/</span>main<span class="op">/</span>notebooks<span class="op">/</span>corpus<span class="op">/</span>epigrammes_anthologia_graeca_fr.csv</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.csv"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--2026-05-28 14:20:19--  https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/corpus/epigrammes_anthologia_graeca_fr.csv
+Résolution de raw.githubusercontent.com (raw.githubusercontent.com)… 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
+Connexion à raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443… connecté.
+requête HTTP transmise, en attente de la réponse… 200 OK
+Taille&nbsp;: 5597 (5,5K) [text/plain]
+Enregistre : ‘corpus/epigrammes_anthologia_graeca_fr.csv.2’
+
+epigrammes_antholog 100%[===================&gt;]   5,47K  --.-KB/s    ds 0s      
+
+2026-05-28 14:20:19 (63,5 MB/s) - ‘corpus/epigrammes_anthologia_graeca_fr.csv.2’ enregistré [5597/5597]
+</code></pre>
 </div>
-<div id="cell-4" class="cell" data-outputid="eaa53a59-6423-4beb-e1c3-b3e0b5d3e4a0">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"/corpus/epigrammes_anthologia_graeca_fr.csv"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">epigramme_id</th>
+<th data-quarto-table-cell-role="th">book</th>
+<th data-quarto-table-cell-role="th">fragment</th>
+<th data-quarto-table-cell-role="th">urn</th>
+<th data-quarto-table-cell-role="th">author_fr</th>
+<th data-quarto-table-cell-role="th">text_fr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>7.114</td>
+<td>7</td>
+<td>114</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.114</td>
+<td>Diogène Laërce</td>
+<td>Tu voulais, Héraclide, laisser aux hommes le b...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>7.115</td>
+<td>7</td>
+<td>115</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.115</td>
+<td>Diogène Laërce</td>
+<td>« Tu as vécu en chien, Antisthène. - C'est que...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>7.116</td>
+<td>7</td>
+<td>116</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.116</td>
+<td>Diogène Laërce</td>
+<td>« Diogène, allons, dis-moi quel destin t'a rav...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>7.120</td>
+<td>7</td>
+<td>120</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.120</td>
+<td>Xénophane</td>
+<td>On dit qu'un jour il passait devant un jeune c...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>7.171</td>
+<td>7</td>
+<td>171</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.171</td>
+<td>Mnasalcès</td>
+<td>Ici aussi l'oiseau sacré reposera son aile rap...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <section id="système-expert" class="level2">
 <h2 class="anchored" data-anchor-id="système-expert">Système expert</h2>
 <p>Système à base de règle.</p>
-<div id="cell-6" class="cell" data-outputid="0ad349bb-1390-440b-9cfb-75c01051725a">
+<div id="cell-5" class="cell" data-outputid="0ad349bb-1390-440b-9cfb-75c01051725a">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># définition de règle : motif textuel de base</span></span>
@@ -204,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Comment pourrions-nous améliorer ce programme ?</p>
-<div id="cell-8" class="cell" data-outputid="5c51dc63-6270-42f5-e405-e794cd3e661d">
+<div id="cell-7" class="cell" data-outputid="5c51dc63-6270-42f5-e405-e794cd3e661d">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># possible version améliorée du système expert</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># récupération d'une liste plus complète de https://liste-animaux.fr/</span></span>
@@ -227,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Nom des 5 premiers 'animaux' listés : </span><span class="sc">{</span>animaux[:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Nom des 5 derniers 'animaux' listés : </span><span class="sc">{</span>animaux[<span class="op">-</span><span class="dv">5</span>:]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-9" class="cell" data-outputid="feee925a-a9cf-4b8e-a7a3-4486f5684e86">
+<div id="cell-8" class="cell" data-outputid="feee925a-a9cf-4b8e-a7a3-4486f5684e86">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reformulation du motif, on ignore le premier item de la liste qui est "logo liste animaux" et non un animal</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>motif_animal_complet <span class="op">=</span> re.<span class="bu">compile</span>(<span class="vs">rf"(</span><span class="sc">{</span><span class="st">'|'</span><span class="sc">.</span>join(animaux[<span class="dv">1</span>:])<span class="sc">}</span><span class="vs">)"</span>, flags<span class="op">=</span>re.IGNORECASE)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(motif_animal_complet)</span>
@@ -251,15 +336,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="système-inductif">Système inductif</h2>
 <p>Nous allons modéliser très rapidement une logique inductive pour réaliser cette classification basique.</p>
 <p>Pour cela il nous faut des exemples d’épigrammes qui ne mentionnent <strong>pas</strong> d’animal. Le repo contient le document <code>epigrammes_no_animal.csv</code> qu’il faut ajouter manuellement sur l’environnement virtuel Colab.</p>
-<div id="cell-12" class="cell" data-outputid="073608c6-b4aa-440f-da42-dbaab0271d88">
+<div id="cell-11" class="cell" data-outputid="073608c6-b4aa-440f-da42-dbaab0271d88">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ajout du corpus d'épigrammes ne mentionnant pas d'animal</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># peut être commenté si travail en local</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget <span class="op">-</span>P corpus https:<span class="op">//</span>github.com<span class="op">/</span>alexiaschn<span class="op">/</span>dhsi<span class="op">-</span><span class="dv">2026</span><span class="op">/</span>blob<span class="op">/</span>main<span class="op">/</span>notebooks<span class="op">/</span>corpus<span class="op">/</span>epigrammes_no_animal.csv</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>data_no_animal <span class="op">=</span> pd.read_csv(<span class="st">"/corpus/epigrammes_no_animal.csv"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    data_no_animal <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_no_animal.csv"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>P corpus https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>alexiaschn<span class="op">/</span>dhsi<span class="op">-</span><span class="dv">2026</span><span class="op">/</span>main<span class="op">/</span>notebooks<span class="op">/</span>corpus<span class="op">/</span>epigrammes_anthologia_graeca_fr.csv</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    data_no_animal <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_no_animal.csv"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ajout d'une colonne d'annotation pour chacun des corpus</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>data_no_animal[<span class="st">'animal'</span>] <span class="op">=</span> [<span class="va">False</span> <span class="cf">for</span> epigramme <span class="kw">in</span> data_no_animal]</span>
@@ -271,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># à droite : nouvelle colonne 'animal' contenant une valeur booléenne (True/False)</span></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-13" class="cell">
+<div id="cell-12" class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On va créer un dictionnaire pour stocker les "habitudes" des deux catégories (True or False).</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Structure : { mot : { "True": 2, "False": 4, } }</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># chaque mot obtient un compteur d'apparition : si le mot "valise" est présent dans une épigramme classée "True" alors "valise" ajoutera un point à son score "True".</span></span>
@@ -293,14 +378,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># On "apprend" : on incrémente le compteur de la catégorie du mot</span></span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        modele_appris[mot][true_or_false] <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-14" class="cell" data-outputid="927410a9-a66a-495f-ea65-9392a7507126">
+<div id="cell-13" class="cell" data-outputid="927410a9-a66a-495f-ea65-9392a7507126">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage de ce que l'algorithme a "appris"</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Modèle appris (Fréquence des mots par catégorie) ---"</span>)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> mot, scores <span class="kw">in</span> modele_appris.items():</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Mot '</span><span class="sc">{</span>mot<span class="sc">}</span><span class="ss">' : </span><span class="sc">{</span>scores<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-15" class="cell" data-outputid="b440681f-dc36-43ae-b73f-8364d825f542">
+<div id="cell-14" class="cell" data-outputid="b440681f-dc36-43ae-b73f-8364d825f542">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. LA PHASE DE PRÉDICTION (Classification d'une nouvelle phrase)</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classifier_nouvelle_phrase(texte_nouveau):</span>
@@ -336,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"-&gt; Prédiction : </span><span class="sc">{</span>categorie<span class="sc">}</span><span class="ss"> (Scores : </span><span class="sc">{</span>scores<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Les modèles inductifs ne sont pas par définition opaques : un accès aux données d’entrainement et à la logique de mise en relation du document avec la catégorie peut rendre transparente la prédiction.</p>
-<div id="cell-17" class="cell">
+<div id="cell-16" class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Essayer avec d'autres phrases</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>votre_phrase <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Entrez votre phrase à classer"</span>)</span>
@@ -344,7 +429,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>categorie, scores <span class="op">=</span> classifier_nouvelle_phrase(votre_phrase)</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"-&gt; Prédiction : </span><span class="sc">{</span>categorie<span class="sc">}</span><span class="ss"> (Scores : </span><span class="sc">{</span>scores<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-18" class="cell" data-outputid="2f8fc594-aab9-4aaa-ff69-0cad52521c2d">
+<div id="cell-17" class="cell" data-outputid="2f8fc594-aab9-4aaa-ff69-0cad52521c2d">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classifier_nouvelle_phrase_detailed(texte_nouveau):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    mots <span class="op">=</span> texte_nouveau.lower().split()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    scores_prediction <span class="op">=</span> {<span class="st">"True"</span>: <span class="dv">0</span>, <span class="st">"False"</span>: <span class="dv">0</span>}</span>
