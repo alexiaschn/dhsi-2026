@@ -1,0 +1,2892 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Jour 2 : Bag of Words, TFiDF et calcul de proximité de vecteur – DHSI 2026 - Décrypter l’IA</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-70d4c3208de8a1051988463b6828f5b7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">DHSI 2026 - Décrypter l’IA</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../diapositives.html"> 
+<span class="menu-text">Diapositives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notebooks.html"> 
+<span class="menu-text">Notebooks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../corpus.html"> 
+<span class="menu-text">Corpus</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Jour 2 : Bag of Words, TFiDF et calcul de proximité de vecteur</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="cell-2" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas numpy scikit<span class="op">-</span>learn spacy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Requirement already satisfied: pandas in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (2.2.3)
+Requirement already satisfied: numpy in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (2.2.4)
+Requirement already satisfied: scikit-learn in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (1.6.1)
+Requirement already satisfied: spacy in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (3.8.7)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/lib/python3/dist-packages (from pandas) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/lib/python3/dist-packages (from pandas) (2024.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from pandas) (2025.2)
+Requirement already satisfied: scipy&gt;=1.6.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from scikit-learn) (1.15.2)
+Requirement already satisfied: joblib&gt;=1.2.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from scikit-learn) (1.4.2)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from scikit-learn) (3.6.0)
+Requirement already satisfied: spacy-legacy&lt;3.1.0,&gt;=3.0.11 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (3.0.12)
+Requirement already satisfied: spacy-loggers&lt;2.0.0,&gt;=1.0.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (1.0.5)
+Requirement already satisfied: murmurhash&lt;1.1.0,&gt;=0.28.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (1.0.13)
+Requirement already satisfied: cymem&lt;2.1.0,&gt;=2.0.2 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (2.0.11)
+Requirement already satisfied: preshed&lt;3.1.0,&gt;=3.0.2 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (3.0.10)
+Requirement already satisfied: thinc&lt;8.4.0,&gt;=8.3.4 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (8.3.6)
+Requirement already satisfied: wasabi&lt;1.2.0,&gt;=0.9.1 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (1.1.3)
+Requirement already satisfied: srsly&lt;3.0.0,&gt;=2.4.3 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (2.5.1)
+Requirement already satisfied: catalogue&lt;2.1.0,&gt;=2.0.6 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (2.0.10)
+Requirement already satisfied: weasel&lt;0.5.0,&gt;=0.1.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (0.4.1)
+Requirement already satisfied: typer&lt;1.0.0,&gt;=0.3.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (0.16.0)
+Requirement already satisfied: tqdm&lt;5.0.0,&gt;=4.38.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (4.67.1)
+Requirement already satisfied: requests&lt;3.0.0,&gt;=2.13.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (2.32.5)
+Requirement already satisfied: pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (2.11.5)
+Requirement already satisfied: jinja2 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (3.1.6)
+Requirement already satisfied: setuptools in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (80.9.0)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/lib/python3/dist-packages (from spacy) (24.0)
+Requirement already satisfied: langcodes&lt;4.0.0,&gt;=3.2.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from spacy) (3.5.0)
+Requirement already satisfied: language-data&gt;=1.2 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from langcodes&lt;4.0.0,&gt;=3.2.0-&gt;spacy) (1.3.0)
+Requirement already satisfied: annotated-types&gt;=0.6.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4-&gt;spacy) (0.7.0)
+Requirement already satisfied: pydantic-core==2.33.2 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4-&gt;spacy) (2.33.2)
+Requirement already satisfied: typing-extensions&gt;=4.12.2 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4-&gt;spacy) (4.13.2)
+Requirement already satisfied: typing-inspection&gt;=0.4.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4-&gt;spacy) (0.4.1)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (3.4.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/lib/python3/dist-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (3.6)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/lib/python3/dist-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (2.0.7)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/lib/python3/dist-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (2023.11.17)
+Requirement already satisfied: blis&lt;1.4.0,&gt;=1.3.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from thinc&lt;8.4.0,&gt;=8.3.4-&gt;spacy) (1.3.0)
+Requirement already satisfied: confection&lt;1.0.0,&gt;=0.0.1 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from thinc&lt;8.4.0,&gt;=8.3.4-&gt;spacy) (0.1.5)
+Requirement already satisfied: click&gt;=8.0.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from typer&lt;1.0.0,&gt;=0.3.0-&gt;spacy) (8.3.0)
+Requirement already satisfied: shellingham&gt;=1.3.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from typer&lt;1.0.0,&gt;=0.3.0-&gt;spacy) (1.5.4)
+Requirement already satisfied: rich&gt;=10.11.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from typer&lt;1.0.0,&gt;=0.3.0-&gt;spacy) (14.2.0)
+Requirement already satisfied: cloudpathlib&lt;1.0.0,&gt;=0.7.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from weasel&lt;0.5.0,&gt;=0.1.0-&gt;spacy) (0.21.1)
+Requirement already satisfied: smart-open&lt;8.0.0,&gt;=5.2.1 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from weasel&lt;0.5.0,&gt;=0.1.0-&gt;spacy) (7.3.0.post1)
+Requirement already satisfied: wrapt in /usr/lib/python3/dist-packages (from smart-open&lt;8.0.0,&gt;=5.2.1-&gt;weasel&lt;0.5.0,&gt;=0.1.0-&gt;spacy) (1.15.0)
+Requirement already satisfied: marisa-trie&gt;=1.1.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from language-data&gt;=1.2-&gt;langcodes&lt;4.0.0,&gt;=3.2.0-&gt;spacy) (1.2.1)
+Requirement already satisfied: markdown-it-py&gt;=2.2.0 in /usr/lib/python3/dist-packages (from rich&gt;=10.11.0-&gt;typer&lt;1.0.0,&gt;=0.3.0-&gt;spacy) (3.0.0)
+Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.13.0 in /usr/lib/python3/dist-packages (from rich&gt;=10.11.0-&gt;typer&lt;1.0.0,&gt;=0.3.0-&gt;spacy) (2.17.2)
+Requirement already satisfied: mdurl~=0.1 in /usr/lib/python3/dist-packages (from markdown-it-py&gt;=2.2.0-&gt;rich&gt;=10.11.0-&gt;typer&lt;1.0.0,&gt;=0.3.0-&gt;spacy) (0.1.2)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/lib/python3/dist-packages (from jinja2-&gt;spacy) (2.1.5)
+
+[notice] A new release of pip is available: 25.3 -&gt; 26.1.1
+[notice] To update, run: pip install --upgrade pip</code></pre>
+</div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python <span class="op">-</span>m spacy download fr_core_news_sm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages/torch/cuda/__init__.py:789: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+/home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages/torch/cuda/__init__.py:991: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 11040). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  r = torch._C._cuda_getDeviceCount() if nvml_count &lt; 0 else nvml_count
+Collecting fr-core-news-sm==3.8.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-3.8.0/fr_core_news_sm-3.8.0-py3-none-any.whl (16.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.3/16.3 MB 9.8 MB/s  0:00:01m eta 0:00:01
+
+[notice] A new release of pip is available: 25.3 -&gt; 26.1.1
+[notice] To update, run: pip install --upgrade pip
+✔ Download and installation successful
+You can now load the package via spacy.load('fr_core_news_sm')</code></pre>
+</div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fr_core_news_sm</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse.linalg <span class="im">import</span> svds</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer, TfidfVectorizer</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> manhattan_distances, euclidean_distances, cosine_similarity, linear_kernel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages/torch/cuda/__init__.py:789: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+/home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages/torch/cuda/__init__.py:991: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 11040). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  r = torch._C._cuda_getDeviceCount() if nvml_count &lt; 0 else nvml_count</code></pre>
+</div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># récupération du jeu de données</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.csv"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>P corpus https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>alexiaschn<span class="op">/</span>dhsi<span class="op">-</span><span class="dv">2026</span><span class="op">/</span>main<span class="op">/</span>notebooks<span class="op">/</span>corpus<span class="op">/</span>epigrammes_anthologia_graeca_fr.csv</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.csv"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>data.head()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">epigramme_id</th>
+<th data-quarto-table-cell-role="th">book</th>
+<th data-quarto-table-cell-role="th">fragment</th>
+<th data-quarto-table-cell-role="th">urn</th>
+<th data-quarto-table-cell-role="th">author_fr</th>
+<th data-quarto-table-cell-role="th">text_fr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>7.114</td>
+<td>7</td>
+<td>114</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.114</td>
+<td>Diogène Laërce</td>
+<td>Tu voulais, Héraclide, laisser aux hommes le b...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>7.115</td>
+<td>7</td>
+<td>115</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.115</td>
+<td>Diogène Laërce</td>
+<td>« Tu as vécu en chien, Antisthène. - C'est que...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>7.116</td>
+<td>7</td>
+<td>116</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.116</td>
+<td>Diogène Laërce</td>
+<td>« Diogène, allons, dis-moi quel destin t'a rav...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>7.120</td>
+<td>7</td>
+<td>120</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.120</td>
+<td>Xénophane</td>
+<td>On dit qu'un jour il passait devant un jeune c...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>7.171</td>
+<td>7</td>
+<td>171</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.171</td>
+<td>Mnasalcès</td>
+<td>Ici aussi l'oiseau sacré reposera son aile rap...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Pour cet exercice on ne se sert plus que du texte</p>
+<div id="cell-7" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>corpus <span class="op">=</span> data.text_fr</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>corpus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>0     Tu voulais, Héraclide, laisser aux hommes le b...
+1     « Tu as vécu en chien, Antisthène. - C'est que...
+2     « Diogène, allons, dis-moi quel destin t'a rav...
+3     On dit qu'un jour il passait devant un jeune c...
+4     Ici aussi l'oiseau sacré reposera son aile rap...
+5     Moi, Alcimènés, jadis j'écartais l'etourneau e...
+6     D'elles-mêmes, le soir, les vaches sont revenu...
+7     Non, jamais plus, mélodieuse sauterelle, Hélio...
+8     A la sauterelle, rossignol des guérets, à la c...
+9     Moi qui jadis, en renvoyant le sons, répondais...
+10    Jamais plus de tes ailes bruissantes tu ne cha...
+11    Sauterelle, toi qui trompes mes regrets et apa...
+12    Tu ne jettes plus, posée sur les feuilles vert...
+13    Tu ne vas plus t'élancer à travers les profond...
+14    Les flots et les vagues houleuses m'ont jeté s...
+Name: text_fr, dtype: object</code></pre>
+</div>
+</div>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prétraitement = tokenisation spaCy</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>spacy_pipeline <span class="op">=</span> fr_core_news_sm.load(disable<span class="op">=</span>[<span class="st">"parser"</span>, <span class="st">"ner"</span>, <span class="st">"lemmatizer"</span>])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_into_tokens_spacy(text) :</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    doc <span class="op">=</span> spacy_pipeline(text)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [w.text <span class="cf">for</span> w <span class="kw">in</span> doc]</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_into_tokens_wosw_spacy(text):</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    doc <span class="op">=</span> spacy_pipeline(text)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [t.text <span class="cf">for</span> t <span class="kw">in</span> doc <span class="cf">if</span> <span class="kw">not</span> t.is_stop]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="représentation-sac-de-mots-pondérée-par-la-fréquence" class="level2">
+<h2 class="anchored" data-anchor-id="représentation-sac-de-mots-pondérée-par-la-fréquence">2. 👜 Représentation “sac de mots” pondérée par la fréquence</h2>
+<p>La transformation en vecteurs (sac de mots) est réalisée à l’aide de la bibliothèque Scikit-learn et de <code>CountVectorizer</code>. <code>CountVectorizer</code> a de nombreuses options, qui sont détaillées ici : https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html</p>
+<p><code>CountVectorizer</code> a un paramètre nommé <code>tokenizer</code> qui permet de passer une fonction qui découpe le texte en tokens et effectue éventuellement d’autres prétraitements. Si aucune fonction de tokénisation n’est fournie, par défaut les tokens sont composés de séquences de deux caractères alphanumériques ou plus, la ponctuation est ignorée et considérée comme séparateur de token.</p>
+<p>Le paramètre <code>min_df</code> permet de spécifier la proportion minimale des documents dans lesquels un token doit se trouver. Ainsi, <code>min_df=0.01</code> signifie que les tokens qui se trouvent dans moins de 1% des documents (ici, les épigrammes) ne seront pas pris en compte.</p>
+<div id="cell-10" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bow_transformer1  <span class="op">=</span> CountVectorizer(tokenizer<span class="op">=</span>split_into_tokens_spacy,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                                    lowercase <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                                    min_df<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit --&gt; "apprentissage" du vocabulaire</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>bow_transformer1.fit(corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages/sklearn/feature_extraction/text.py:517: UserWarning: The parameter 'token_pattern' will not be used since 'tokenizer' is not None'
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>CountVectorizer(min_df=0.01,
+                tokenizer=&lt;function split_into_tokens_spacy at 0x7b2fc78bdee0&gt;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>CountVectorizer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html">?<span>Documentation for CountVectorizer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>CountVectorizer(min_df=0.01,
+                tokenizer=&lt;function split_into_tokens_spacy at 0x7b2fc78bdee0&gt;)</pre></div> </div></div></div></div>
+</div>
+</div>
+<div id="cell-11" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vocabulaire</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>voc1 <span class="op">=</span> bow_transformer1.get_feature_names_out()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(voc1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['!' "'" ',' '-' '-moi' '.' ':' ';' '?' 'a' 'abondante' 'accents' 'afin'
+ 'agiles' 'agreste' 'agréable' 'ai' 'aile' 'ailes' 'aimé' 'air' 'ait'
+ 'alcimènés' 'alkis' 'allait' 'allons' 'amer' 'ami' 'amour' 'antisthène'
+ 'apaises' 'appartenait' 'apte' 'arracher' 'arrêtant' 'arrête' 'as'
+ 'attrait' 'au' 'aussi' 'aussitôt' 'autour' 'autrefois' 'aux' 'avaient'
+ 'avais' 'avec' 'avoir' 'barques' 'besoin' 'bien' 'bistonie' 'blondes'
+ 'bornes' 'bouillonnantes' 'bras' 'bruissantes' 'bruit' 'bête' 'bûcherons'
+ "c'" 'cailloux' 'calculs' 'car' 'ce' 'celle' 'ces' 'ceux' 'chair'
+ 'changé' 'chanson' 'chant' 'chantais' 'chanter' 'chanteras' 'chants'
+ 'charmé' 'chasse' 'cheville' 'chez' 'chien' 'chêne' 'ciel' 'cigale'
+ 'clyménos' 'comme' 'comment' 'commune' 'compassion' 'confiance'
+ 'convaicu' 'couvertes' 'cri' 'crier' 'cris' 'crocs' 'cœur' "d'" 'dans'
+ 'danser' 'dauphin' 'de' 'demeure' 'des' 'destin' 'devant' 'diogène'
+ 'dipsas' 'dira' 'dis' 'dit' 'diviseras' 'donnerai' 'dort' 'dos' 'double'
+ 'doute' 'du' 'déchirer' 'déchue' 'déjà' 'eau' 'effet' 'effrayer' 'eh'
+ 'elle' 'elles' 'empire' 'emportant' 'en' 'enfanté' 'enlèvent' 'entendant'
+ 'es' 'est' 'et' 'etourneau' 'eut' 'faisant' 'fait' 'fertiles' 'feu'
+ 'feuilles' 'fille' 'fit' 'fleurs' 'flots' 'flûte' 'fois' 'frappait'
+ 'frappant' 'frappe' 'fronde' 'fus' 'féroce' 'garçon' 'genre' 'gis' 'glu'
+ 'grue' 'guide' 'guérets' 'hadès' 'hommes' 'honoré' 'houleuses' 'humides'
+ 'hélas' 'hélios' 'héraclide' 'hêtres' 'hôtesse' 'ici' 'il' 'imitation'
+ 'impitoyable' 'infortune' "j'" 'jadis' 'jaillir' 'jamais' 'je' 'jetais'
+ 'jettes' 'jeté' 'jeune' 'jeux' 'jour' "jusqu'" "l'" 'la' 'laisser'
+ 'langue' 'larme' 'le' 'les' 'leur' 'loin' 'long' 'lyre' 'lèvres' "m'"
+ 'ma' 'main' 'maintenant' 'mais' 'mal' 'malée' 'marins' 'me' 'mer' 'mes'
+ 'moi' 'mon' 'montagne' 'morsure' 'mort' 'mots' 'muse' 'myro' 'mâchoires'
+ 'mélien' 'mélodieuse' 'mélodieux' 'même' 'mêmes' "n'" 'naturelle' 'ne'
+ 'neige' 'ni' 'non' 'nourrisson' 'nuée' 'né' 'néréides' 'objet' 'océan'
+ 'oiseau' 'oiseaux' 'ombre' 'on' 'ont' 'opulente' 'par' 'pareille'
+ 'paroles' 'pas' 'passait' 'passants' 'pattes' 'peines' 'percée'
+ 'perséphone' 'perçant' 'pie' 'pied' 'pieds' 'pipeaux' 'piquant' 'pitié'
+ 'piété' 'place' 'plantes' 'platane' 'plein' 'plongé' 'plus' 'poimandros'
+ 'poireau' 'porter' 'posée' 'pour' 'prairies' 'prendre' 'pris' 'privant'
+ 'profondeurs' 'promontoire' 'prononça' 'propre' 'près' 'pâtres' 'périr'
+ 'pêcheurs' "qu'" 'quand' 'que' 'quel' 'quelle' "quelqu'" 'quelque' 'qui'
+ 'quoi' 'rameaux' 'rampait' 'rapide' 'ravi' 'rayonnante' 'reconnue'
+ 'regardant' 'regrets' 'renvoyant' 'reposera' 'repoussais' 'revenues'
+ 'rivage' 'rossignol' 'rosée' 'rythmé' 'récompense' 'répandit' 'répondais'
+ 'répondre' 'répétés' 'réveil' 's' "s'" 'sa' 'sables' 'sacré' 'sage'
+ 'sais' 'sans' 'sauterelle' 'semences' 'serai' 'serpent' 'servir' 'ses'
+ 'sillons' 'soir' 'soleil' 'sommeil' 'son' 'sonores' 'sons' 'sont'
+ 'sophistiques' 'souci' 'soulevée' 'souvent' 'stridente' 'sur' 'sûrement'
+ "t'" 'te' 'tendant' 'tendue' 'terre' 'tes' 'thérimachos' 'toi' 'tombe'
+ 'tombeau' 'tombée' 'ton' 'toujours' 'tous' 'tout' 'travers' 'trompent'
+ 'trompes' 'trompeurs' 'trompé' 'troupeaux' 'trous' 'tu' 'tua' 'téthys'
+ 'un' 'une' 'vaches' 'vague' 'vagues' 'vas' 'venin' 'verra' 'vers'
+ 'verser' 'versé' 'vert' 'vertes' 'viendra' 'vipère' 'virginale' 'vision'
+ 'voilà' 'voix' 'vol' 'voleuse' 'voulais' 'vu' 'vue' 'vécu' 'y' 'yeux' '«'
+ '»' 'à' 'âme' 'écartais' 'écho' 'écumant' 'élancer' 'élevé' 'épargné'
+ 'étable' 'étais' 'étendu' 'éternel' 'étrange' 'été' 'être' 'ô']</code></pre>
+</div>
+</div>
+<div id="cell-12" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>corpus_bow <span class="op">=</span> bow_transformer1.transform(corpus)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>corpus_bow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>&lt;Compressed Sparse Row sparse matrix of dtype 'int64'
+    with 701 stored elements and shape (15, 415)&gt;</code></pre>
+</div>
+</div>
+<div id="cell-13" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>corpus_bow_df <span class="op">=</span> pd.DataFrame(corpus_bow.toarray(), columns<span class="op">=</span>voc1)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>corpus_bow_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">!</th>
+<th data-quarto-table-cell-role="th">'</th>
+<th data-quarto-table-cell-role="th">,</th>
+<th data-quarto-table-cell-role="th">-</th>
+<th data-quarto-table-cell-role="th">-moi</th>
+<th data-quarto-table-cell-role="th">.</th>
+<th data-quarto-table-cell-role="th">:</th>
+<th data-quarto-table-cell-role="th">;</th>
+<th data-quarto-table-cell-role="th">?</th>
+<th data-quarto-table-cell-role="th">a</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">élevé</th>
+<th data-quarto-table-cell-role="th">épargné</th>
+<th data-quarto-table-cell-role="th">étable</th>
+<th data-quarto-table-cell-role="th">étais</th>
+<th data-quarto-table-cell-role="th">étendu</th>
+<th data-quarto-table-cell-role="th">éternel</th>
+<th data-quarto-table-cell-role="th">étrange</th>
+<th data-quarto-table-cell-role="th">été</th>
+<th data-quarto-table-cell-role="th">être</th>
+<th data-quarto-table-cell-role="th">ô</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>3</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0</td>
+<td>1</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>0</td>
+<td>0</td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>0</td>
+<td>0</td>
+<td>9</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>0</td>
+<td>0</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>15 rows × 415 columns</p>
+</div>
+</div>
+</div>
+<p>Quel constat peut-on faire de cette représentation ? Quels sont les tokens les plus représentés ?</p>
+<p>Comment est-ce qu’on pourrait améliorer cette vectorisation ? (comment pourrait-on obtenir des vecteurs plus denses ?)</p>
+<div id="cell-15" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># écrire la fonction de lemmatisation avec spaCy sur le modèle de la fonction spaCy de tokenisation</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_into_lemmas_spacy(text):</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># here</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-16" class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ajouter l'antidictionnaire français de NLTK à la pipeline CountVectorizer avec l'option stopwords</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>nltk.corpus.stopwords.words(<span class="st">'french'</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>bow_transformer2  <span class="op">=</span> CountVectorizer(tokenizer<span class="op">=</span>split_into_lemmas_spacy,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                                    lowercase <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                                    min_df<span class="op">=</span><span class="fl">0.01</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                                    <span class="co"># ici</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                                    )</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit --&gt; "apprentissage" du vocabulaire</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>bow_transformer2.fit(corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[nltk_data] Downloading package stopwords to /home/schn/nltk_data...
+[nltk_data]   Unzipping corpora/stopwords.zip.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>['au',
+ 'aux',
+ 'avec',
+ 'ce',
+ 'ces',
+ 'dans',
+ 'de',
+ 'des',
+ 'du',
+ 'elle',
+ 'en',
+ 'et',
+ 'eux',
+ 'il',
+ 'ils',
+ 'je',
+ 'la',
+ 'le',
+ 'les',
+ 'leur',
+ 'lui',
+ 'ma',
+ 'mais',
+ 'me',
+ 'même',
+ 'mes',
+ 'moi',
+ 'mon',
+ 'ne',
+ 'nos',
+ 'notre',
+ 'nous',
+ 'on',
+ 'ou',
+ 'par',
+ 'pas',
+ 'pour',
+ 'qu',
+ 'que',
+ 'qui',
+ 'sa',
+ 'se',
+ 'ses',
+ 'son',
+ 'sur',
+ 'ta',
+ 'te',
+ 'tes',
+ 'toi',
+ 'ton',
+ 'tu',
+ 'un',
+ 'une',
+ 'vos',
+ 'votre',
+ 'vous',
+ 'c',
+ 'd',
+ 'j',
+ 'l',
+ 'à',
+ 'm',
+ 'n',
+ 's',
+ 't',
+ 'y',
+ 'été',
+ 'étée',
+ 'étées',
+ 'étés',
+ 'étant',
+ 'étante',
+ 'étants',
+ 'étantes',
+ 'suis',
+ 'es',
+ 'est',
+ 'sommes',
+ 'êtes',
+ 'sont',
+ 'serai',
+ 'seras',
+ 'sera',
+ 'serons',
+ 'serez',
+ 'seront',
+ 'serais',
+ 'serait',
+ 'serions',
+ 'seriez',
+ 'seraient',
+ 'étais',
+ 'était',
+ 'étions',
+ 'étiez',
+ 'étaient',
+ 'fus',
+ 'fut',
+ 'fûmes',
+ 'fûtes',
+ 'furent',
+ 'sois',
+ 'soit',
+ 'soyons',
+ 'soyez',
+ 'soient',
+ 'fusse',
+ 'fusses',
+ 'fût',
+ 'fussions',
+ 'fussiez',
+ 'fussent',
+ 'ayant',
+ 'ayante',
+ 'ayantes',
+ 'ayants',
+ 'eu',
+ 'eue',
+ 'eues',
+ 'eus',
+ 'ai',
+ 'as',
+ 'avons',
+ 'avez',
+ 'ont',
+ 'aurai',
+ 'auras',
+ 'aura',
+ 'aurons',
+ 'aurez',
+ 'auront',
+ 'aurais',
+ 'aurait',
+ 'aurions',
+ 'auriez',
+ 'auraient',
+ 'avais',
+ 'avait',
+ 'avions',
+ 'aviez',
+ 'avaient',
+ 'eut',
+ 'eûmes',
+ 'eûtes',
+ 'eurent',
+ 'aie',
+ 'aies',
+ 'ait',
+ 'ayons',
+ 'ayez',
+ 'aient',
+ 'eusse',
+ 'eusses',
+ 'eût',
+ 'eussions',
+ 'eussiez',
+ 'eussent']</code></pre>
+</div>
+</div>
+<div id="cell-17" class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compléter la série (extraction du vocabulaire, transformation du corpus en BoW, afficher le dataFrame du nouveau BoW)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="pondération-tf-idf" class="level2">
+<h2 class="anchored" data-anchor-id="pondération-tf-idf">Pondération TF-iDF</h2>
+<div id="cell-19" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tfidf_vectorizer <span class="op">=</span> TfidfVectorizer(tokenizer<span class="op">=</span>split_into_tokens_spacy)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>tfidf_vectorizer.fit(corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages/sklearn/feature_extraction/text.py:517: UserWarning: The parameter 'token_pattern' will not be used since 'tokenizer' is not None'
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<style>#sk-container-id-2 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-2 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-2 pre {
+  padding: 0;
+}
+
+#sk-container-id-2 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-2 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-2 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-2 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-2 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-2 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-2 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-2 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-2 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-2 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-2 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-2 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-2 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-2 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-2 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-2 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-2 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-2 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-2 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-2 div.sk-label label.sk-toggleable__label,
+#sk-container-id-2 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-2 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-2 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-2 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-2 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-2 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-2 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-2 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-2 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-2 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-2 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>TfidfVectorizer(tokenizer=&lt;function split_into_tokens_spacy at 0x7b2fc78bdee0&gt;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked=""><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>TfidfVectorizer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">?<span>Documentation for TfidfVectorizer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>TfidfVectorizer(tokenizer=&lt;function split_into_tokens_spacy at 0x7b2fc78bdee0&gt;)</pre></div> </div></div></div></div>
+</div>
+</div>
+<div id="cell-20" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>corpus_tfidf <span class="op">=</span> tfidf_vectorizer.transform(corpus)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>tfidf_feat_names <span class="op">=</span> tfidf_vectorizer.get_feature_names_out()</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>corpus_tfid_df <span class="op">=</span> pd.DataFrame(corpus_tfidf.toarray(), columns<span class="op">=</span>tfidf_feat_names).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>corpus_tfid_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">!</th>
+<th data-quarto-table-cell-role="th">'</th>
+<th data-quarto-table-cell-role="th">,</th>
+<th data-quarto-table-cell-role="th">-</th>
+<th data-quarto-table-cell-role="th">-moi</th>
+<th data-quarto-table-cell-role="th">.</th>
+<th data-quarto-table-cell-role="th">:</th>
+<th data-quarto-table-cell-role="th">;</th>
+<th data-quarto-table-cell-role="th">?</th>
+<th data-quarto-table-cell-role="th">a</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">élevé</th>
+<th data-quarto-table-cell-role="th">épargné</th>
+<th data-quarto-table-cell-role="th">étable</th>
+<th data-quarto-table-cell-role="th">étais</th>
+<th data-quarto-table-cell-role="th">étendu</th>
+<th data-quarto-table-cell-role="th">éternel</th>
+<th data-quarto-table-cell-role="th">étrange</th>
+<th data-quarto-table-cell-role="th">été</th>
+<th data-quarto-table-cell-role="th">être</th>
+<th data-quarto-table-cell-role="th">ô</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.34</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.09</td>
+<td>0.09</td>
+<td>0.08</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.13</td>
+<td>0.13</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.13</td>
+<td>0.00</td>
+<td>0.08</td>
+<td>0.30</td>
+<td>0.00</td>
+<td>0.17</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.26</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.21</td>
+<td>0.17</td>
+<td>0.19</td>
+<td>0.07</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.19</td>
+<td>0.24</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.15</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.05</td>
+<td>0.11</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.00</td>
+<td>0.18</td>
+<td>0.17</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.11</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.28</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.11</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.06</td>
+<td>...</td>
+<td>0.11</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.32</td>
+<td>0.13</td>
+<td>0.00</td>
+<td>0.05</td>
+<td>0.12</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.09</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.17</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.17</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.18</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.12</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.33</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.06</td>
+<td>0.12</td>
+<td>0.11</td>
+<td>0.00</td>
+<td>0.09</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.40</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.08</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.23</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.06</td>
+<td>0.00</td>
+<td>0.11</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.18</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.32</td>
+<td>0.00</td>
+<td>0.10</td>
+<td>0.07</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.06</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.26</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.06</td>
+<td>0.00</td>
+<td>0.13</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.29</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.07</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.06</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.11</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.24</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.10</td>
+<td>0.00</td>
+<td>0.07</td>
+<td>0.09</td>
+<td>0.23</td>
+<td>...</td>
+<td>0.00</td>
+<td>0.11</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.11</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+</tbody>
+</table>
+
+<p>15 rows × 415 columns</p>
+</div>
+</div>
+</div>
+<div id="cell-21" class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># refaire la pipeline avec la lemmatisation et les stopwords de nltk dans la pipeline TfidfVectorizer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="calculs-de-distance-proximité" class="level1">
+<h1>Calculs de distance (/proximité)</h1>
+<div id="cell-23" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cos_sim <span class="op">=</span> cosine_similarity(corpus_tfidf)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cos_sim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1.         0.18212743 0.09328803 0.09888427 0.12877372 0.20929594
+  0.20010314 0.16832386 0.2004976  0.25106631 0.16429388 0.22866336
+  0.19727076 0.18291959 0.17566897]
+ [0.18212743 1.         0.20023387 0.23189026 0.13499657 0.12262235
+  0.11627551 0.12394001 0.14436509 0.09840273 0.0894291  0.10318637
+  0.13606922 0.10679236 0.12859806]
+ [0.09328803 0.20023387 1.         0.11663194 0.0531584  0.12840416
+  0.17792359 0.06365365 0.16024071 0.1142412  0.06409812 0.19790131
+  0.08212686 0.1390908  0.2590686 ]
+ [0.09888427 0.23189026 0.11663194 1.         0.16533387 0.13881599
+  0.13500927 0.08762074 0.14010548 0.1240653  0.08811618 0.08766038
+  0.1891098  0.11606494 0.12831408]
+ [0.12877372 0.13499657 0.0531584  0.16533387 1.         0.18023645
+  0.12143764 0.14790877 0.12617979 0.11385275 0.10458168 0.11758552
+  0.17263363 0.17023105 0.14829731]
+ [0.20929594 0.12262235 0.12840416 0.13881599 0.18023645 1.
+  0.23567378 0.21865917 0.26150386 0.24892584 0.14508824 0.30234065
+  0.1421853  0.26014893 0.24708839]
+ [0.20010314 0.11627551 0.17792359 0.13500927 0.12143764 0.23567378
+  1.         0.14604427 0.23701133 0.2361401  0.13467762 0.24164124
+  0.13781366 0.230965   0.2407041 ]
+ [0.16832386 0.12394001 0.06365365 0.08762074 0.14790877 0.21865917
+  0.14604427 1.         0.14776313 0.12949562 0.1857852  0.24887352
+  0.20049658 0.24738398 0.15525183]
+ [0.2004976  0.14436509 0.16024071 0.14010548 0.12617979 0.26150386
+  0.23701133 0.14776313 1.         0.19134869 0.1750691  0.20898797
+  0.17743498 0.20508877 0.17405579]
+ [0.25106631 0.09840273 0.1142412  0.1240653  0.11385275 0.24892584
+  0.2361401  0.12949562 0.19134869 1.         0.12749513 0.26231293
+  0.12491028 0.20832725 0.21666532]
+ [0.16429388 0.0894291  0.06409812 0.08811618 0.10458168 0.14508824
+  0.13467762 0.1857852  0.1750691  0.12749513 1.         0.27965872
+  0.19061757 0.16309646 0.08395273]
+ [0.22866336 0.10318637 0.19790131 0.08766038 0.11758552 0.30234065
+  0.24164124 0.24887352 0.20898797 0.26231293 0.27965872 1.
+  0.18779677 0.25665817 0.26932953]
+ [0.19727076 0.13606922 0.08212686 0.1891098  0.17263363 0.1421853
+  0.13781366 0.20049658 0.17743498 0.12491028 0.19061757 0.18779677
+  1.         0.22609893 0.14929161]
+ [0.18291959 0.10679236 0.1390908  0.11606494 0.17023105 0.26014893
+  0.230965   0.24738398 0.20508877 0.20832725 0.16309646 0.25665817
+  0.22609893 1.         0.27147764]
+ [0.17566897 0.12859806 0.2590686  0.12831408 0.14829731 0.24708839
+  0.2407041  0.15525183 0.17405579 0.21666532 0.08395273 0.26932953
+  0.14929161 0.27147764 1.        ]]</code></pre>
+</div>
+</div>
+<div id="cell-24" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_most_similar_epigram(epigram_index):</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"L'épigramme le plus proche de '</span><span class="sc">{</span>corpus[epigram_index]<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extraire la ligne contenant les scores de similarité pour cet épigramme : retourne tuple (position, score)</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">list</span>(<span class="bu">enumerate</span>(cos_sim[epigram_index]))</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># on organise la liste pour que le score le plus élevé (valeur en position 1 du tuple) soit en tête de liste</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">sorted</span>(sim_scores, key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># comme le score le plus élevé est avec lui-même, on ne prend la liste qu'à partir du 2e élément</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> sim_scores[<span class="dv">1</span>:]</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> corpus[sim_scores[<span class="dv">0</span>][<span class="dv">0</span>]]</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_most_similar_epigram(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>L'épigramme le plus proche de '« Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »'
+On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut compassion et prononça ces paroles : « Arrête et ne frappe plus, car sûrement c'est l'âme d'un ami, que j'ai reconnue en l'entendant crier. »</code></pre>
+</div>
+</div>
+<div id="cell-25" class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réécrire la fonction get_most_similar_epigram() pour qu'elle retourne les 3 épigrammes les plus proches avec leur score</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Il existe d’autres façon de calculer la proximité entre deux vecteurs, par exemple:</p>
+<ul>
+<li>Distance L1 ou Manhattan</li>
+<li>Distance L2 ou euclidienne</li>
+</ul>
+<div id="cell-27" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reproduire le calcul des distances avec l'une ou l'autre distance à l'aide des fonctions pré-importées de scikit-learn :  manhattan_distances() ou euclidean_distances()</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>l1_distances <span class="op">=</span> manhattan_distances(corpus_tfidf)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(l1_distances)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 0.         10.58499673 10.04300624 10.98411054 10.66291335 11.65377446
+  10.23285136 10.35181515 10.13816463 10.12520071  9.95544651 11.35928714
+  10.18764654 11.88308674 11.37053893]
+ [10.58499673  0.          9.22144227  9.84687489 10.88038333 12.75783489
+  11.21114567 10.99019616 10.78990568 11.36425637 10.88325701 12.8306298
+  10.59856381 12.88932923 11.82438735]
+ [10.04300624  9.22144227  0.          9.38818335 10.14488158 11.30569102
+   8.95135516 10.04294947  9.36118479  9.88203761  9.46245204 10.37527211
+   9.5611364  10.86256849  9.81023405]
+ [10.98411054  9.84687489  9.38818335  0.          9.90509862 12.19804624
+  10.55129809 10.70860219 10.3074987  11.00472999 10.51025721 12.57294198
+   9.68630461 12.08249073 11.7589903 ]
+ [10.66291335 10.88038333 10.14488158  9.90509862  0.         11.82985277
+  10.81260676  9.88918211 10.62134249 10.95693507 10.22383669 12.34233902
+   9.64767134 11.69752316 11.50840485]
+ [11.65377446 12.75783489 11.30569102 12.19804624 11.82985277  0.
+  11.30459027 11.58294388 11.31491899 11.25103149 11.52210462 11.9235711
+  12.09421328 12.48548208 11.91372524]
+ [10.23285136 11.21114567  8.95135516 10.55129809 10.81260676 11.30459027
+   0.         10.70878683  9.46872052 10.0437851  10.03920524 11.12173879
+  10.32082722 11.30175484 10.91382495]
+ [10.35181515 10.99019616 10.04294947 10.70860219  9.88918211 11.58294388
+  10.70878683  0.         10.68497923 10.74956023  9.51305947 10.71376657
+   9.44066544 11.14231117 11.3397494 ]
+ [10.13816463 10.78990568  9.36118479 10.3074987  10.62134249 11.31491899
+   9.46872052 10.68497923  0.         10.56743692  9.41166666 11.46544295
+   9.80996197 11.5752232  11.59770206]
+ [10.12520071 11.36425637  9.88203761 11.00472999 10.95693507 11.25103149
+  10.0437851  10.74956023 10.56743692  0.         10.26248327 10.73842199
+  10.84194142 11.73505757 10.95424396]
+ [ 9.95544651 10.88325701  9.46245204 10.51025721 10.22383669 11.52210462
+  10.03920524  9.51305947  9.41166666 10.26248327  0.         10.12392976
+   9.05756606 11.14381859 11.59122221]
+ [11.35928714 12.8306298  10.37527211 12.57294198 12.34233902 11.9235711
+  11.12173879 10.71376657 11.46544295 10.73842199 10.12392976  0.
+  11.39376724 11.98461376 12.36973165]
+ [10.18764654 10.59856381  9.5611364   9.68630461  9.64767134 12.09421328
+  10.32082722  9.44066544  9.80996197 10.84194142  9.05756606 11.39376724
+   0.         11.00257821 11.13139415]
+ [11.88308674 12.88932923 10.86256849 12.08249073 11.69752316 12.48548208
+  11.30175484 11.14231117 11.5752232  11.73505757 11.14381859 11.98461376
+  11.00257821  0.         11.62857523]
+ [11.37053893 11.82438735  9.81023405 11.7589903  11.50840485 11.91372524
+  10.91382495 11.3397494  11.59770206 10.95424396 11.59122221 12.36973165
+  11.13139415 11.62857523  0.        ]]</code></pre>
+</div>
+</div>
+<div id="cell-28" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_most_similar_epigram2(epigram_index):</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"L'épigramme le plus proche de '</span><span class="sc">{</span>corpus[epigram_index]<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extraire la ligne contenant les scores de similarité pour cet épigramme : retourne tuple (position, score)</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">list</span>(<span class="bu">enumerate</span>(l1_distances[epigram_index]))</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># on organise la liste pour que le score le plus élevé (valeur en position 1 du tuple) soit en tête de liste</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">sorted</span>(sim_scores, key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># comme le score le plus élevé est avec lui-même, on ne prend la liste qu'à partir du 2e élément</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> sim_scores[<span class="dv">1</span>:]</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> corpus[sim_scores[<span class="dv">0</span>][<span class="dv">0</span>]]</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_most_similar_epigram2(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>L'épigramme le plus proche de '« Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »'
+Sauterelle, toi qui trompes mes regrets et apaises mon sommeil, sauterelle, muse agreste au vol mélodieux, imitation naturelle de la lyre, dis-moi quelque chant aimé en frappant de tes pattes tes ailes sonores, afin de m'arracher au souci de mes peines qui m'enlèvent le sommeil, cigale, toi qui sais les chants qui trompent l'amour. A ton réveil je te donnerai comme récompense du poireau toujours vert et des plantes humides de rosée, que tu diviseras de tes lèvres.</code></pre>
+</div>
+</div>
+<div id="cell-29" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>([<span class="bu">len</span>(epi.split()) <span class="cf">for</span> epi <span class="kw">in</span> corpus[:<span class="dv">3</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>130</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
