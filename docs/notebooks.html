@@ -193,13 +193,28 @@ window.Quarto = {
 </header>
 
 
+<script>
+function downloadFile(url, filename) {
+  fetch(url)
+    .then(response => response.blob())
+    .then(blob => {
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    })
+    .catch(error => console.error("Erreur de téléchargement:", error));
+}
+</script>
 <section id="télécharger-les-notebooks-au-format-ipynb" class="level1">
 <h1>Télécharger les notebooks au format ipynb</h1>
 <p>Pour obtenir les notebooks au format ipynb:</p>
 <p><code>Clic droit + Enregistrer la cible du lien sous...</code></p>
 <ul>
-<li><a href="./notebooks/jour1_IASymboliqueConnexionniste_exercice.html" download="jour1_IASymboliqueConnexionniste_exercice.ipynb">jour1_IASymboliqueConnexionniste_exercice.ipynb</a></li>
-<li><a href="./notebooks/jour2_BoW_TFiDF_exercice.html" download="jour2_BoW_TFiDF_exercice.ipynb">jour2_BoW_TFiDF_exercice.ipynb</a></li>
+<li><a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/jour1_IASymboliqueConnexionniste_exercice.ipynb', 'jour1_IASymboliqueConnexionniste_exercice.ipynb'); return false;">jour1_IASymboliqueConnexionniste_exercice.ipynb</a></li>
+<li><a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/jour2_BoW_TFiDF_exercice.ipynb', 'jour2_BoW_TFiDF_exercice.ipynb'); return false;">jour2_BoW_TFiDF_exercice.ipynb</a></li>
 </ul>
 </section>
 <section id="lire-les-notebooks-au-format-html" class="level1">
