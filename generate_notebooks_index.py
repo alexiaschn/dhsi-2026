@@ -29,9 +29,6 @@ function downloadFile(url, filename) {
 
 Pour obtenir les notebooks au format ipynb: 
 
-``` Clic droit + Enregistrer la cible du lien sous...```
-
-
 """
 
 for nb in notebooks:

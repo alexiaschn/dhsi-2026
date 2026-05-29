@@ -273,7 +273,6 @@ Tout repose sur l'évaluation des outputs du SIA. Comment passer d'une explorati
 
 ## ChainForge
 
-
 [ChainForge](https://chainforge.ai/play/) : outil de comparaison de prompt : comparaison de modèle, comparaison de template (un texte qui inclut des variables) visualisation côte à côte des sorties. 
 
 -> pas à pas de l'utilisation de ChainForge : exemple de la classification binaire en "animal/pas animal"

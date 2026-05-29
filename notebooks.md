@@ -25,9 +25,6 @@ function downloadFile(url, filename) {
 
 Pour obtenir les notebooks au format ipynb: 
 
-``` Clic droit + Enregistrer la cible du lien sous...```
-
-
 - <a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/jour1_IASymboliqueConnexionniste_exercice.ipynb', 'jour1_IASymboliqueConnexionniste_exercice.ipynb'); return false;">jour1_IASymboliqueConnexionniste_exercice.ipynb</a>
 - <a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/jour2_BoW_TFiDF_exercice.ipynb', 'jour2_BoW_TFiDF_exercice.ipynb'); return false;">jour2_BoW_TFiDF_exercice.ipynb</a>
 

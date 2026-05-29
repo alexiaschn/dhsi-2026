@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Jour 1 : Système déductif vs.&nbsp;système inductif – DHSI 2026 - Décrypter l'IA</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-70d4c3208de8a1051988463b6828f5b7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">DHSI 2026 - Décrypter l’IA</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../diapositives.html"> 
+<span class="menu-text">Diapositives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notebooks.html"> 
+<span class="menu-text">Notebooks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../corpus.html"> 
+<span class="menu-text">Corpus</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Jour 1 : Système déductif vs.&nbsp;système inductif</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Nous allons essayer de définir un algorithme permettant de classer un épigramme en “parle d’animal” ou non avec les deux approches.</p>
+<div id="cell-2" class="cell" data-outputid="d8e614c4-e722-4f5d-e2fd-7a6ce3023802">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install wget pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-3" class="cell" data-outputid="eaa53a59-6423-4beb-e1c3-b3e0b5d3e4a0" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.csv"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>P corpus https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>alexiaschn<span class="op">/</span>dhsi<span class="op">-</span><span class="dv">2026</span><span class="op">/</span>main<span class="op">/</span>notebooks<span class="op">/</span>corpus<span class="op">/</span>epigrammes_anthologia_graeca_fr.csv</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.csv"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">epigramme_id</th>
+<th data-quarto-table-cell-role="th">book</th>
+<th data-quarto-table-cell-role="th">fragment</th>
+<th data-quarto-table-cell-role="th">urn</th>
+<th data-quarto-table-cell-role="th">author_fr</th>
+<th data-quarto-table-cell-role="th">text_fr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>7.114</td>
+<td>7</td>
+<td>114</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.114</td>
+<td>Diogène Laërce</td>
+<td>Tu voulais, Héraclide, laisser aux hommes le b...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>7.115</td>
+<td>7</td>
+<td>115</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.115</td>
+<td>Diogène Laërce</td>
+<td>« Tu as vécu en chien, Antisthène. - C'est que...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>7.116</td>
+<td>7</td>
+<td>116</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.116</td>
+<td>Diogène Laërce</td>
+<td>« Diogène, allons, dis-moi quel destin t'a rav...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>7.120</td>
+<td>7</td>
+<td>120</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.120</td>
+<td>Xénophane</td>
+<td>On dit qu'un jour il passait devant un jeune c...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>7.171</td>
+<td>7</td>
+<td>171</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.171</td>
+<td>Mnasalcès</td>
+<td>Ici aussi l'oiseau sacré reposera son aile rap...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="système-expert" class="level2">
+<h2 class="anchored" data-anchor-id="système-expert">Système expert</h2>
+<p>Système à base de règle.</p>
+<div id="cell-5" class="cell" data-outputid="0ad349bb-1390-440b-9cfb-75c01051725a" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># définition de règle : motif textuel de base</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>motif_animal <span class="op">=</span> re.<span class="bu">compile</span>(<span class="vs">r"(chien|chat|souris|rat|pieuvre|marmotte)"</span>, flags<span class="op">=</span>re.IGNORECASE)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contient_animal(texte):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> re.search(motif_animal, texte):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(texte)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> texte <span class="kw">in</span> data[<span class="st">'text_fr'</span>]:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(contient_animal(texte))</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>False
+« Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »
+True
+« Diogène, allons, dis-moi quel destin t'a ravi? - C'est la morsure féroce du Chien, qui m'a ravi chez Hadès. »
+True
+On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut compassion et prononça ces paroles : « Arrête et ne frappe plus, car sûrement c'est l'âme d'un ami, que j'ai reconnue en l'entendant crier. »
+True
+False
+False
+False
+False
+False
+False
+False
+False
+False
+False
+False</code></pre>
+</div>
+</div>
+<p>Comment pourrions-nous améliorer ce programme ?</p>
+<div id="cell-7" class="cell" data-outputid="5c51dc63-6270-42f5-e405-e794cd3e661d" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># possible version améliorée du système expert</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># récupération d'une liste plus complète de https://liste-animaux.fr/</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> wget</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># on télécharge la page web, elle s'enregistre automatiquement dans le dossier où se trouve le notebook</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>page_html <span class="op">=</span> wget.download(<span class="st">"https://liste-animaux.fr/"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># import du module BeautifulSoup pour lire les pages HTML</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ouverture de la page HTML</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(page_html, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    soup <span class="op">=</span> BeautifulSoup(f)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extraction de la légende 'alt' de toutes les balises &lt;img&gt; de la page web où se trouve les noms des animaux</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    animaux <span class="op">=</span> [animal[<span class="st">'alt'</span>] <span class="cf">for</span> animal <span class="kw">in</span> soup.find_all(<span class="st">'img'</span>, alt<span class="op">=</span><span class="va">True</span>)]</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Nombre d'animaux: </span><span class="sc">{</span><span class="bu">len</span>(animaux)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Nom des 5 premiers 'animaux' listés : </span><span class="sc">{</span>animaux[:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Nom des 5 derniers 'animaux' listés : </span><span class="sc">{</span>animaux[<span class="op">-</span><span class="dv">5</span>:]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nombre d'animaux: 869
+Nom des 5 premiers 'animaux' listés : ['logo liste animaux', 'Abeille', 'Accenteur mouchet', 'Addax', 'Agneau']
+Nom des 5 derniers 'animaux' listés : ['Zèbre', 'Zébu', 'Zibeline', 'Zorille', 'Zygaène']</code></pre>
+</div>
+</div>
+<div id="cell-8" class="cell" data-outputid="feee925a-a9cf-4b8e-a7a3-4486f5684e86" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reformulation du motif, on ignore le premier item de la liste qui est "logo liste animaux" et non un animal</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>motif_animal_complet <span class="op">=</span> re.<span class="bu">compile</span>(<span class="vs">rf"(</span><span class="sc">{</span><span class="st">'|'</span><span class="sc">.</span>join(animaux[<span class="dv">1</span>:])<span class="sc">}</span><span class="vs">)"</span>, flags<span class="op">=</span>re.IGNORECASE)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(motif_animal_complet)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contient_animal_complet(texte):</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span> <span class="cf">if</span> re.search(motif_animal_complet, texte) <span class="cf">else</span> <span class="va">False</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># tous les épigrammes devraient renvoyer True</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> texte <span class="kw">in</span> data[<span class="st">'text_fr'</span>]:</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> contient_animal_complet(texte)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pred)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pred <span class="op">==</span> <span class="va">False</span>:</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"L'épigramme suivant ne mentionne pas d'animal : </span><span class="sc">{</span>texte<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>re.compile('(Abeille|Accenteur mouchet|Addax|Agneau|Agouti|Aigle|Aigrette|Albatros|Alligator|Alouate|Alouette|Alpaga|Amazone|Amblypyge|Anaconda|Anchois|Âne|Anémone de mer|Anguille|Anoa des plaines|Anolis|Antiloc, re.IGNORECASE)
+True
+True
+True
+True
+False
+L'épigramme suivant ne mentionne pas d'animal : Ici aussi l'oiseau sacré reposera son aile rapide, en s' arrêtant sur ce platane plein d'attrait. Il est mort en effet, Poimandros de Mélien, et il ne viendra plus verser sa glu sur ses pipeaux de chasse.
+True
+True
+True
+True
+True
+True
+True
+True
+True
+True</code></pre>
+</div>
+</div>
+<p>Avez-vous des idées pour rendre encore plus robuste (c’est à dire capable de couvrir tous les scénarios possibles) ce programme ?</p>
+<p>Quelles sont les limites de la logique déductives ?</p>
+</section>
+<section id="système-inductif" class="level2">
+<h2 class="anchored" data-anchor-id="système-inductif">Système inductif</h2>
+<p>Nous allons modéliser très rapidement une logique inductive pour réaliser cette classification basique.</p>
+<p>Pour cela il nous faut des exemples d’épigrammes qui ne mentionnent <strong>pas</strong> d’animal. Le repo contient le document <code>epigrammes_no_animal.csv</code> qu’il faut ajouter manuellement sur l’environnement virtuel Colab.</p>
+<div id="cell-11" class="cell" data-outputid="073608c6-b4aa-440f-da42-dbaab0271d88" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ajout du corpus d'épigrammes ne mentionnant pas d'animal</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    data_no_animal <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_no_animal.csv"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>P corpus https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>alexiaschn<span class="op">/</span>dhsi<span class="op">-</span><span class="dv">2026</span><span class="op">/</span>main<span class="op">/</span>notebooks<span class="op">/</span>corpus<span class="op">/</span>epigrammes_anthologia_graeca_fr.csv</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    data_no_animal <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_no_animal.csv"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ajout d'une colonne d'annotation pour chacun des corpus </span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># le corpus data_no_animal contient une colonne composée uniquement de la valeur "False"</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>data_no_animal[<span class="st">'animal'</span>] <span class="op">=</span> [<span class="va">False</span>] <span class="op">*</span> <span class="bu">len</span>(data_no_animal)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># le corpus data est toujours True</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'animal'</span>] <span class="op">=</span> [<span class="va">True</span>] <span class="op">*</span> <span class="bu">len</span>(data)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># concaténation des deux jeux de données</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([data, data_no_animal])</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># à droite : nouvelle colonne 'animal' contenant une valeur booléenne (True/False)</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">epigramme_id</th>
+<th data-quarto-table-cell-role="th">book</th>
+<th data-quarto-table-cell-role="th">fragment</th>
+<th data-quarto-table-cell-role="th">urn</th>
+<th data-quarto-table-cell-role="th">author_fr</th>
+<th data-quarto-table-cell-role="th">text_fr</th>
+<th data-quarto-table-cell-role="th">animal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>7.114</td>
+<td>7</td>
+<td>114</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.114</td>
+<td>Diogène Laërce</td>
+<td>Tu voulais, Héraclide, laisser aux hommes le b...</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>7.115</td>
+<td>7</td>
+<td>115</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.115</td>
+<td>Diogène Laërce</td>
+<td>« Tu as vécu en chien, Antisthène. - C'est que...</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>7.116</td>
+<td>7</td>
+<td>116</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.116</td>
+<td>Diogène Laërce</td>
+<td>« Diogène, allons, dis-moi quel destin t'a rav...</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>7.120</td>
+<td>7</td>
+<td>120</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.120</td>
+<td>Xénophane</td>
+<td>On dit qu'un jour il passait devant un jeune c...</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>7.171</td>
+<td>7</td>
+<td>171</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.171</td>
+<td>Mnasalcès</td>
+<td>Ici aussi l'oiseau sacré reposera son aile rap...</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>7.172</td>
+<td>7</td>
+<td>172</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.172</td>
+<td>Antipatros de Sidon</td>
+<td>Moi, Alcimènés, jadis j'écartais l'etourneau e...</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>7.173</td>
+<td>7</td>
+<td>173</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.173</td>
+<td>Diotimos d'Adramytte; Diotime d'Athènes; Léoni...</td>
+<td>D'elles-mêmes, le soir, les vaches sont revenu...</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>7.189</td>
+<td>7</td>
+<td>189</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.189</td>
+<td>Aristodicos de Rhodes</td>
+<td>Non, jamais plus, mélodieuse sauterelle, Hélio...</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>7.190</td>
+<td>7</td>
+<td>190</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.190</td>
+<td>Anytè; Léonidas de Tarente</td>
+<td>A la sauterelle, rossignol des guérets, à la c...</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>7.191</td>
+<td>7</td>
+<td>191</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.191</td>
+<td>Archias; Archias de Mytilène</td>
+<td>Moi qui jadis, en renvoyant le sons, répondais...</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>7.192</td>
+<td>7</td>
+<td>192</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.192</td>
+<td>Mnasalcès</td>
+<td>Jamais plus de tes ailes bruissantes tu ne cha...</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>7.195</td>
+<td>7</td>
+<td>195</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.195</td>
+<td>Méléagre de Gadara</td>
+<td>Sauterelle, toi qui trompes mes regrets et apa...</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>7.201</td>
+<td>7</td>
+<td>201</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.201</td>
+<td>Pamphile d'Alexandrie</td>
+<td>Tu ne jettes plus, posée sur les feuilles vert...</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>7.214</td>
+<td>7</td>
+<td>214</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.214</td>
+<td>Archias; Archias de Mytilène</td>
+<td>Tu ne vas plus t'élancer à travers les profond...</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>7.216</td>
+<td>7</td>
+<td>216</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.216</td>
+<td>Antipater de Thessalonique</td>
+<td>Les flots et les vagues houleuses m'ont jeté s...</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">0</td>
+<td>5.100</td>
+<td>5</td>
+<td>1</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.1</td>
+<td>Constantin Céphalas</td>
+<td>Enflammant le cœur des jeunes avec une ferveur...</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>5.200</td>
+<td>5</td>
+<td>2</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.2</td>
+<td>anonyme</td>
+<td>Sthénélaïde, celle qui fait brûler les villes,...</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>5.300</td>
+<td>5</td>
+<td>3</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.3</td>
+<td>Antipater de Thessalonique</td>
+<td>Le jour se lève, Chrysille, et depuis longtemp...</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>5.400</td>
+<td>5</td>
+<td>4</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.4</td>
+<td>Philodème de Gadara</td>
+<td>Philénis, après avoir enivré la lampe qui conn...</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5.500</td>
+<td>5</td>
+<td>5</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.5</td>
+<td>Statilius Flaccus</td>
+<td>Moi, lampe en argent, fidèle témoin des amours...</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>5.600</td>
+<td>5</td>
+<td>6</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.6</td>
+<td>Callimaque de Cyrène</td>
+<td>Callignote a juré à Ionis que jamais il n’aime...</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">6</td>
+<td>5.700</td>
+<td>5</td>
+<td>7</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.7</td>
+<td>Asclépiade de Samos</td>
+<td>Lampe, devant toi Héraclée a juré trois fois q...</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">7</td>
+<td>5.800</td>
+<td>5</td>
+<td>8</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.8</td>
+<td>Méléagre de Gadara</td>
+<td>Ô nuit sacrée, ô lampe, tous deux nous n’avons...</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">8</td>
+<td>5.900</td>
+<td>5</td>
+<td>9</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.9</td>
+<td>Rufin</td>
+<td>Moi, Rufin, à ma très douce Elpis, je souhaite...</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9</td>
+<td>5.100</td>
+<td>5</td>
+<td>10</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.10</td>
+<td>Alcée de Messène</td>
+<td>Je hais l’Amour : pourquoi, pesant, sur les bê...</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">10</td>
+<td>5.110</td>
+<td>5</td>
+<td>11</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.11</td>
+<td>anonyme</td>
+<td>Si tu sauves ceux qui sont en mer, Cypris, moi...</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">11</td>
+<td>5.120</td>
+<td>5</td>
+<td>12</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.12</td>
+<td>Rufin</td>
+<td>Baignons-nous, Prodikè, puis couronnons-nous d...</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">12</td>
+<td>5.130</td>
+<td>5</td>
+<td>13</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.13</td>
+<td>Philodème de Gadara</td>
+<td>Charito achève d'accomplir ses soixante révolu...</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">13</td>
+<td>5.140</td>
+<td>5</td>
+<td>14</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.14</td>
+<td>Rufin</td>
+<td>Le baiser d’Europe, même s’il ne vient qu’aux ...</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">14</td>
+<td>5.150</td>
+<td>5</td>
+<td>15</td>
+<td>urn:cts:greekLit:tlg7000.tlg001.ag:5.15</td>
+<td>Rufin</td>
+<td>Où est donc aujourd’hui Praxitèle? où sont les...</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-12" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On va créer un dictionnaire pour stocker les "habitudes" des deux catégories (True or False).</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Structure : { mot : { "True": 2, "False": 4, } }</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># chaque mot obtient un compteur d'apparition : si le mot "valise" est présent dans une épigramme classée "True" alors "valise" ajoutera un point à son score "True".</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>modele_appris <span class="op">=</span> {}</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># On parcourt toutes les phrases d'entraînement</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, epigramme <span class="kw">in</span> data.iterrows():</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    true_or_false <span class="op">=</span> <span class="bu">str</span>(epigramme[<span class="st">"animal"</span>])</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># On découpe la phrase en mots (en minuscule pour simplifier)</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    mots <span class="op">=</span> epigramme[<span class="st">'text_fr'</span>].lower().split()</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> mot <span class="kw">in</span> mots:</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si le mot n'est pas encore dans le modèle, on l'ajoute</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> mot <span class="kw">not</span> <span class="kw">in</span> modele_appris:</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>            modele_appris[mot] <span class="op">=</span> {<span class="st">"True"</span>: <span class="dv">0</span>, <span class="st">"False"</span>: <span class="dv">0</span>}</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># On "apprend" : on incrémente le compteur de la catégorie du mot</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        modele_appris[mot][true_or_false] <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-13" class="cell" data-outputid="927410a9-a66a-495f-ea65-9392a7507126" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage de ce que l'algorithme a "appris"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Modèle appris (Fréquence des mots par catégorie) ---"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> mot, scores <span class="kw">in</span> modele_appris.items():</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Mot '</span><span class="sc">{</span>mot<span class="sc">}</span><span class="ss">' : </span><span class="sc">{</span>scores<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- Modèle appris (Fréquence des mots par catégorie) ---
+Mot 'tu' : {'True': 13, 'False': 5}
+Mot 'voulais,' : {'True': 1, 'False': 0}
+Mot 'héraclide,' : {'True': 1, 'False': 0}
+Mot 'laisser' : {'True': 1, 'False': 0}
+Mot 'aux' : {'True': 6, 'False': 0}
+Mot 'hommes' : {'True': 1, 'False': 0}
+Mot 'le' : {'True': 11, 'False': 15}
+Mot 'bruit' : {'True': 1, 'False': 0}
+Mot 'que' : {'True': 6, 'False': 9}
+Mot 'avais' : {'True': 1, 'False': 0}
+Mot 'été,' : {'True': 1, 'False': 0}
+Mot 'une' : {'True': 6, 'False': 4}
+Mot 'fois' : {'True': 1, 'False': 1}
+Mot 'mort,' : {'True': 1, 'False': 0}
+Mot 'changé' : {'True': 1, 'False': 0}
+Mot 'yeux' : {'True': 1, 'False': 1}
+Mot 'de' : {'True': 30, 'False': 26}
+Mot 'tous' : {'True': 1, 'False': 2}
+Mot 'en' : {'True': 18, 'False': 8}
+Mot 'serpent.' : {'True': 1, 'False': 0}
+Mot 'mais' : {'True': 6, 'False': 7}
+Mot 'fus' : {'True': 3, 'False': 0}
+Mot 'trompé' : {'True': 1, 'False': 0}
+Mot 'dans' : {'True': 5, 'False': 3}
+Mot 'tes' : {'True': 6, 'False': 2}
+Mot 'calculs' : {'True': 1, 'False': 0}
+Mot 'sophistiques' : {'True': 1, 'False': 0}
+Mot ':' : {'True': 4, 'False': 4}
+Mot 'la' : {'True': 20, 'False': 19}
+Mot 'bête,' : {'True': 2, 'False': 0}
+Mot 'effet,' : {'True': 2, 'False': 1}
+Mot 'appartenait' : {'True': 1, 'False': 0}
+Mot 'bien' : {'True': 2, 'False': 3}
+Mot 'au' : {'True': 8, 'False': 4}
+Mot 'genre' : {'True': 2, 'False': 0}
+Mot 'serpent' : {'True': 1, 'False': 0}
+Mot ';' : {'True': 5, 'False': 3}
+Mot 'toi,' : {'True': 1, 'False': 6}
+Mot 'convaicu' : {'True': 1, 'False': 0}
+Mot 'd'être' : {'True': 1, 'False': 0}
+Mot 'pas' : {'True': 3, 'False': 5}
+Mot 'du' : {'True': 8, 'False': 4}
+Mot 'sage.' : {'True': 1, 'False': 0}
+Mot '«' : {'True': 3, 'False': 0}
+Mot 'as' : {'True': 2, 'False': 0}
+Mot 'vécu' : {'True': 1, 'False': 0}
+Mot 'chien,' : {'True': 2, 'False': 0}
+Mot 'antisthène.' : {'True': 1, 'False': 0}
+Mot '-' : {'True': 4, 'False': 2}
+Mot 'c'est' : {'True': 7, 'False': 0}
+Mot 'j'étais' : {'True': 1, 'False': 0}
+Mot 'né' : {'True': 1, 'False': 0}
+Mot 'pour' : {'True': 5, 'False': 4}
+Mot 'déchirer' : {'True': 1, 'False': 0}
+Mot 'cœur' : {'True': 1, 'False': 1}
+Mot 'avec' : {'True': 2, 'False': 2}
+Mot 'des' : {'True': 9, 'False': 11}
+Mot 'mots' : {'True': 1, 'False': 0}
+Mot 'et' : {'True': 16, 'False': 16}
+Mot 'non' : {'True': 1, 'False': 0}
+Mot 'crocs.' : {'True': 1, 'False': 0}
+Mot 'es' : {'True': 1, 'False': 1}
+Mot 'mort' : {'True': 2, 'False': 0}
+Mot 'chien' : {'True': 2, 'False': 0}
+Mot 'étais' : {'True': 1, 'False': 0}
+Mot 'né,' : {'True': 1, 'False': 0}
+Mot 'dira' : {'True': 1, 'False': 0}
+Mot 'sans' : {'True': 3, 'False': 2}
+Mot 'doute' : {'True': 1, 'False': 0}
+Mot 'quelqu'un.' : {'True': 1, 'False': 0}
+Mot 'eh' : {'True': 1, 'False': 0}
+Mot 'quoi' : {'True': 1, 'False': 0}
+Mot '!' : {'True': 1, 'False': 0}
+Mot 'il' : {'True': 6, 'False': 4}
+Mot 'fait' : {'True': 2, 'False': 3}
+Mot 'qu'il' : {'True': 1, 'False': 0}
+Mot 'y' : {'True': 2, 'False': 0}
+Mot 'ait' : {'True': 1, 'False': 0}
+Mot 'servir' : {'True': 1, 'False': 0}
+Mot 'guide' : {'True': 1, 'False': 0}
+Mot 'chez' : {'True': 2, 'False': 0}
+Mot 'hadès.' : {'True': 2, 'False': 0}
+Mot '»' : {'True': 3, 'False': 0}
+Mot 'diogène,' : {'True': 1, 'False': 0}
+Mot 'allons,' : {'True': 1, 'False': 1}
+Mot 'dis-moi' : {'True': 2, 'False': 0}
+Mot 'quel' : {'True': 1, 'False': 1}
+Mot 'destin' : {'True': 1, 'False': 0}
+Mot 't'a' : {'True': 2, 'False': 0}
+Mot 'ravi?' : {'True': 1, 'False': 0}
+Mot 'morsure' : {'True': 1, 'False': 0}
+Mot 'féroce' : {'True': 1, 'False': 0}
+Mot 'qui' : {'True': 14, 'False': 14}
+Mot 'm'a' : {'True': 3, 'False': 0}
+Mot 'ravi' : {'True': 1, 'False': 0}
+Mot 'on' : {'True': 1, 'False': 0}
+Mot 'dit' : {'True': 1, 'False': 1}
+Mot 'qu'un' : {'True': 2, 'False': 0}
+Mot 'jour' : {'True': 1, 'False': 1}
+Mot 'passait' : {'True': 2, 'False': 0}
+Mot 'devant' : {'True': 1, 'False': 1}
+Mot 'un' : {'True': 2, 'False': 6}
+Mot 'jeune' : {'True': 3, 'False': 2}
+Mot 'qu'on' : {'True': 1, 'False': 0}
+Mot 'frappait,' : {'True': 1, 'False': 0}
+Mot 'eut' : {'True': 1, 'False': 0}
+Mot 'compassion' : {'True': 1, 'False': 0}
+Mot 'prononça' : {'True': 1, 'False': 0}
+Mot 'ces' : {'True': 1, 'False': 3}
+Mot 'paroles' : {'True': 1, 'False': 0}
+Mot 'arrête' : {'True': 1, 'False': 0}
+Mot 'ne' : {'True': 7, 'False': 11}
+Mot 'frappe' : {'True': 1, 'False': 0}
+Mot 'plus,' : {'True': 4, 'False': 1}
+Mot 'car' : {'True': 3, 'False': 1}
+Mot 'sûrement' : {'True': 1, 'False': 0}
+Mot 'l'âme' : {'True': 1, 'False': 0}
+Mot 'd'un' : {'True': 2, 'False': 0}
+Mot 'ami,' : {'True': 1, 'False': 0}
+Mot 'j'ai' : {'True': 1, 'False': 0}
+Mot 'reconnue' : {'True': 1, 'False': 0}
+Mot 'l'entendant' : {'True': 1, 'False': 0}
+Mot 'crier.' : {'True': 1, 'False': 0}
+Mot 'ici' : {'True': 1, 'False': 0}
+Mot 'aussi' : {'True': 1, 'False': 1}
+Mot 'l'oiseau' : {'True': 1, 'False': 0}
+Mot 'sacré' : {'True': 1, 'False': 0}
+Mot 'reposera' : {'True': 1, 'False': 0}
+Mot 'son' : {'True': 2, 'False': 2}
+Mot 'aile' : {'True': 1, 'False': 0}
+Mot 'rapide,' : {'True': 1, 'False': 0}
+Mot 's'' : {'True': 1, 'False': 0}
+Mot 'arrêtant' : {'True': 1, 'False': 0}
+Mot 'sur' : {'True': 7, 'False': 4}
+Mot 'ce' : {'True': 3, 'False': 4}
+Mot 'platane' : {'True': 1, 'False': 0}
+Mot 'plein' : {'True': 1, 'False': 0}
+Mot 'd'attrait.' : {'True': 1, 'False': 0}
+Mot 'est' : {'True': 1, 'False': 4}
+Mot 'poimandros' : {'True': 1, 'False': 0}
+Mot 'mélien,' : {'True': 1, 'False': 0}
+Mot 'viendra' : {'True': 1, 'False': 0}
+Mot 'plus' : {'True': 3, 'False': 5}
+Mot 'verser' : {'True': 1, 'False': 0}
+Mot 'sa' : {'True': 2, 'False': 3}
+Mot 'glu' : {'True': 1, 'False': 0}
+Mot 'ses' : {'True': 3, 'False': 6}
+Mot 'pipeaux' : {'True': 1, 'False': 0}
+Mot 'chasse.' : {'True': 1, 'False': 0}
+Mot 'moi,' : {'True': 2, 'False': 2}
+Mot 'alcimènés,' : {'True': 1, 'False': 0}
+Mot 'jadis' : {'True': 1, 'False': 1}
+Mot 'j'écartais' : {'True': 1, 'False': 0}
+Mot 'l'etourneau' : {'True': 1, 'False': 0}
+Mot 'voleuse' : {'True': 1, 'False': 0}
+Mot 'semences,' : {'True': 1, 'False': 0}
+Mot 'grue' : {'True': 1, 'False': 0}
+Mot 'bistonie' : {'True': 1, 'False': 0}
+Mot 'vol' : {'True': 3, 'False': 0}
+Mot 'élevé,' : {'True': 1, 'False': 0}
+Mot 'tendant' : {'True': 1, 'False': 0}
+Mot 'les' : {'True': 15, 'False': 21}
+Mot 'bras' : {'True': 1, 'False': 1}
+Mot 'agiles' : {'True': 1, 'False': 0}
+Mot 'ma' : {'True': 2, 'False': 3}
+Mot 'fronde,' : {'True': 1, 'False': 0}
+Mot 'je' : {'True': 6, 'False': 12}
+Mot 'repoussais' : {'True': 1, 'False': 0}
+Mot 'loin' : {'True': 1, 'False': 0}
+Mot 'nuée' : {'True': 1, 'False': 0}
+Mot 'oiseaux.' : {'True': 1, 'False': 0}
+Mot 'me' : {'True': 2, 'False': 7}
+Mot 'piquant' : {'True': 1, 'False': 0}
+Mot 'près' : {'True': 1, 'False': 0}
+Mot 'cheville,' : {'True': 1, 'False': 0}
+Mot 'vipère' : {'True': 1, 'False': 0}
+Mot 'dipsas' : {'True': 1, 'False': 0}
+Mot 'a' : {'True': 5, 'False': 4}
+Mot 'versé' : {'True': 1, 'False': 0}
+Mot 'chair' : {'True': 1, 'False': 0}
+Mot 'venin' : {'True': 1, 'False': 0}
+Mot 'amer' : {'True': 1, 'False': 0}
+Mot 'mâchoires,' : {'True': 1, 'False': 0}
+Mot 'privant' : {'True': 1, 'False': 0}
+Mot 'vue' : {'True': 1, 'False': 0}
+Mot 'soleil.' : {'True': 1, 'False': 0}
+Mot 'voilà' : {'True': 1, 'False': 0}
+Mot 'comment' : {'True': 1, 'False': 0}
+Mot 'regardant' : {'True': 1, 'False': 0}
+Mot 'l'air,' : {'True': 1, 'False': 0}
+Mot 'n'ai' : {'True': 1, 'False': 0}
+Mot 'vu' : {'True': 2, 'False': 0}
+Mot 'mal' : {'True': 1, 'False': 0}
+Mot 'rampait' : {'True': 1, 'False': 0}
+Mot 'à' : {'True': 7, 'False': 13}
+Mot 'mes' : {'True': 4, 'False': 1}
+Mot 'pieds.' : {'True': 1, 'False': 0}
+Mot 'd'elles-mêmes,' : {'True': 1, 'False': 0}
+Mot 'soir,' : {'True': 1, 'False': 0}
+Mot 'vaches' : {'True': 1, 'False': 0}
+Mot 'sont' : {'True': 1, 'False': 4}
+Mot 'revenues' : {'True': 1, 'False': 0}
+Mot 'montagne' : {'True': 1, 'False': 0}
+Mot 'l'étable,' : {'True': 1, 'False': 0}
+Mot 'couvertes' : {'True': 1, 'False': 0}
+Mot 'd'une' : {'True': 3, 'False': 0}
+Mot 'neige' : {'True': 1, 'False': 0}
+Mot 'abondante' : {'True': 1, 'False': 0}
+Mot 'et,' : {'True': 1, 'False': 0}
+Mot 'hélas,' : {'True': 1, 'False': 0}
+Mot 'pied' : {'True': 1, 'False': 0}
+Mot 'chêne,' : {'True': 1, 'False': 0}
+Mot 'thérimachos' : {'True': 1, 'False': 0}
+Mot 'dort' : {'True': 1, 'False': 0}
+Mot 'sommeil' : {'True': 1, 'False': 1}
+Mot 'éternel' : {'True': 1, 'False': 0}
+Mot 'feu' : {'True': 1, 'False': 1}
+Mot 'ciel' : {'True': 1, 'False': 0}
+Mot 'l'y' : {'True': 1, 'False': 0}
+Mot 'plongé.' : {'True': 1, 'False': 0}
+Mot 'non,' : {'True': 1, 'False': 1}
+Mot 'jamais' : {'True': 3, 'False': 1}
+Mot 'mélodieuse' : {'True': 1, 'False': 0}
+Mot 'sauterelle,' : {'True': 5, 'False': 0}
+Mot 'hélios' : {'True': 1, 'False': 0}
+Mot 'te' : {'True': 3, 'False': 1}
+Mot 'verra' : {'True': 1, 'False': 0}
+Mot 'chanter' : {'True': 1, 'False': 0}
+Mot 'demeure' : {'True': 1, 'False': 0}
+Mot 'opulente' : {'True': 1, 'False': 0}
+Mot 'd'alkis.' : {'True': 1, 'False': 0}
+Mot 'déjà' : {'True': 1, 'False': 0}
+Mot 'effet' : {'True': 1, 'False': 0}
+Mot 'pris' : {'True': 1, 'False': 0}
+Mot 'ton' : {'True': 4, 'False': 1}
+Mot 'vers' : {'True': 1, 'False': 2}
+Mot 'prairies' : {'True': 1, 'False': 0}
+Mot 'clyménos' : {'True': 1, 'False': 0}
+Mot 'fleurs' : {'True': 1, 'False': 0}
+Mot 'humides' : {'True': 2, 'False': 0}
+Mot 'rosée' : {'True': 1, 'False': 0}
+Mot 'rayonnante' : {'True': 1, 'False': 0}
+Mot 'perséphone.' : {'True': 1, 'False': 0}
+Mot 'rossignol' : {'True': 1, 'False': 0}
+Mot 'guérets,' : {'True': 1, 'False': 0}
+Mot 'cigale,' : {'True': 3, 'False': 0}
+Mot 'hôtesse' : {'True': 1, 'False': 0}
+Mot 'hêtres,' : {'True': 1, 'False': 0}
+Mot 'myro' : {'True': 1, 'False': 0}
+Mot 'fit' : {'True': 1, 'False': 0}
+Mot 'tombe' : {'True': 1, 'False': 0}
+Mot 'commune' : {'True': 1, 'False': 0}
+Mot 'elle' : {'True': 1, 'False': 4}
+Mot 'répandit,' : {'True': 1, 'False': 0}
+Mot 'fille,' : {'True': 1, 'False': 0}
+Mot 'larme' : {'True': 1, 'False': 0}
+Mot 'virginale' : {'True': 1, 'False': 0}
+Mot 'l'impitoyable' : {'True': 1, 'False': 0}
+Mot 'hadès' : {'True': 1, 'False': 0}
+Mot 's'en' : {'True': 1, 'False': 0}
+Mot 'allait' : {'True': 1, 'False': 0}
+Mot 'emportant' : {'True': 1, 'False': 0}
+Mot 'double' : {'True': 1, 'False': 0}
+Mot 'objet' : {'True': 1, 'False': 0}
+Mot 'jeux.' : {'True': 1, 'False': 0}
+Mot 'moi' : {'True': 2, 'False': 2}
+Mot 'jadis,' : {'True': 1, 'False': 0}
+Mot 'renvoyant' : {'True': 1, 'False': 0}
+Mot 'sons,' : {'True': 1, 'False': 0}
+Mot 'répondais' : {'True': 1, 'False': 0}
+Mot 'souvent' : {'True': 2, 'False': 0}
+Mot 'pâtres,' : {'True': 1, 'False': 0}
+Mot 'bûcherons' : {'True': 1, 'False': 0}
+Mot 'pêcheurs,' : {'True': 1, 'False': 0}
+Mot 'pie,' : {'True': 1, 'False': 0}
+Mot 'jetais' : {'True': 1, 'False': 0}
+Mot 'cris' : {'True': 1, 'False': 0}
+Mot 'répétés,' : {'True': 1, 'False': 0}
+Mot 'comme' : {'True': 3, 'False': 2}
+Mot 'écho,' : {'True': 1, 'False': 0}
+Mot 'accents' : {'True': 1, 'False': 0}
+Mot 'trompeurs' : {'True': 1, 'False': 0}
+Mot 'voix' : {'True': 1, 'False': 0}
+Mot 'apte' : {'True': 1, 'False': 0}
+Mot 'répondre' : {'True': 1, 'False': 0}
+Mot 'chants,' : {'True': 1, 'False': 0}
+Mot 'maintenant' : {'True': 1, 'False': 4}
+Mot 'tombée' : {'True': 1, 'False': 0}
+Mot 'terre.' : {'True': 1, 'False': 0}
+Mot 'gis' : {'True': 1, 'False': 0}
+Mot 'langue' : {'True': 1, 'False': 0}
+Mot 'voix,' : {'True': 1, 'False': 0}
+Mot 'déchue' : {'True': 1, 'False': 0}
+Mot 'mon' : {'True': 2, 'False': 4}
+Mot 'besoin' : {'True': 1, 'False': 0}
+Mot 'd'imitation.' : {'True': 1, 'False': 0}
+Mot 'ailes' : {'True': 2, 'False': 0}
+Mot 'bruissantes' : {'True': 1, 'False': 0}
+Mot 'chanteras,' : {'True': 1, 'False': 0}
+Mot 'posée' : {'True': 2, 'False': 0}
+Mot 'long' : {'True': 1, 'False': 0}
+Mot 'sillons' : {'True': 1, 'False': 0}
+Mot 'fertiles' : {'True': 1, 'False': 0}
+Mot 'étendu' : {'True': 1, 'False': 0}
+Mot 'l'ombre' : {'True': 1, 'False': 0}
+Mot 'rameaux,' : {'True': 1, 'False': 0}
+Mot 'serai' : {'True': 1, 'False': 0}
+Mot 'charmé' : {'True': 1, 'False': 0}
+Mot 'chant' : {'True': 3, 'False': 0}
+Mot 'mélodieux' : {'True': 1, 'False': 0}
+Mot 'rythmé' : {'True': 1, 'False': 0}
+Mot 'par' : {'True': 1, 'False': 2}
+Mot 'blondes' : {'True': 1, 'False': 0}
+Mot 'ailes.' : {'True': 1, 'False': 0}
+Mot 'toi' : {'True': 2, 'False': 1}
+Mot 'trompes' : {'True': 1, 'False': 0}
+Mot 'regrets' : {'True': 1, 'False': 0}
+Mot 'apaises' : {'True': 1, 'False': 0}
+Mot 'sommeil,' : {'True': 2, 'False': 0}
+Mot 'muse' : {'True': 1, 'False': 0}
+Mot 'agreste' : {'True': 1, 'False': 0}
+Mot 'mélodieux,' : {'True': 1, 'False': 0}
+Mot 'imitation' : {'True': 1, 'False': 0}
+Mot 'naturelle' : {'True': 1, 'False': 0}
+Mot 'lyre,' : {'True': 1, 'False': 0}
+Mot 'quelque' : {'True': 1, 'False': 0}
+Mot 'aimé' : {'True': 1, 'False': 0}
+Mot 'frappant' : {'True': 1, 'False': 0}
+Mot 'pattes' : {'True': 1, 'False': 0}
+Mot 'sonores,' : {'True': 1, 'False': 0}
+Mot 'afin' : {'True': 1, 'False': 0}
+Mot 'm'arracher' : {'True': 1, 'False': 0}
+Mot 'souci' : {'True': 1, 'False': 0}
+Mot 'peines' : {'True': 1, 'False': 0}
+Mot 'm'enlèvent' : {'True': 1, 'False': 0}
+Mot 'sais' : {'True': 1, 'False': 0}
+Mot 'chants' : {'True': 1, 'False': 1}
+Mot 'trompent' : {'True': 1, 'False': 0}
+Mot 'l'amour.' : {'True': 1, 'False': 0}
+Mot 'réveil' : {'True': 1, 'False': 0}
+Mot 'donnerai' : {'True': 1, 'False': 0}
+Mot 'récompense' : {'True': 1, 'False': 0}
+Mot 'poireau' : {'True': 1, 'False': 0}
+Mot 'toujours' : {'True': 1, 'False': 3}
+Mot 'vert' : {'True': 1, 'False': 0}
+Mot 'plantes' : {'True': 1, 'False': 0}
+Mot 'rosée,' : {'True': 1, 'False': 0}
+Mot 'diviseras' : {'True': 1, 'False': 0}
+Mot 'lèvres.' : {'True': 1, 'False': 0}
+Mot 'jettes' : {'True': 1, 'False': 0}
+Mot 'feuilles' : {'True': 1, 'False': 0}
+Mot 'vertes,' : {'True': 1, 'False': 0}
+Mot 'l'agréable' : {'True': 1, 'False': 0}
+Mot 'chanson' : {'True': 1, 'False': 0}
+Mot 'cri' : {'True': 1, 'False': 0}
+Mot 'perçant' : {'True': 1, 'False': 0}
+Mot 'quand' : {'True': 1, 'False': 0}
+Mot 'chantais,' : {'True': 1, 'False': 0}
+Mot 'stridente' : {'True': 1, 'False': 0}
+Mot 'garçon' : {'True': 1, 'False': 0}
+Mot 'tua' : {'True': 1, 'False': 0}
+Mot 'main' : {'True': 1, 'False': 0}
+Mot 'tendue.' : {'True': 1, 'False': 0}
+Mot 'vas' : {'True': 1, 'False': 0}
+Mot 't'élancer' : {'True': 1, 'False': 0}
+Mot 'travers' : {'True': 1, 'False': 0}
+Mot 'profondeurs' : {'True': 1, 'False': 0}
+Mot 'bouillonnantes' : {'True': 1, 'False': 0}
+Mot 'mer,' : {'True': 2, 'False': 1}
+Mot 'ô' : {'True': 1, 'False': 3}
+Mot 'dauphin,' : {'True': 2, 'False': 0}
+Mot 'effrayer' : {'True': 1, 'False': 0}
+Mot 'troupeaux' : {'True': 1, 'False': 0}
+Mot 'marins' : {'True': 1, 'False': 0}
+Mot 'ni' : {'True': 1, 'False': 1}
+Mot 'danser' : {'True': 1, 'False': 0}
+Mot 'flûte' : {'True': 1, 'False': 0}
+Mot 'percée' : {'True': 1, 'False': 0}
+Mot 'trous,' : {'True': 1, 'False': 0}
+Mot 'faisant' : {'True': 1, 'False': 0}
+Mot 'jaillir' : {'True': 1, 'False': 0}
+Mot 'l'eau' : {'True': 1, 'False': 0}
+Mot 'autour' : {'True': 1, 'False': 0}
+Mot 'barques' : {'True': 1, 'False': 0}
+Mot 'ni,' : {'True': 1, 'False': 0}
+Mot 'tout' : {'True': 1, 'False': 2}
+Mot 'écumant,' : {'True': 1, 'False': 0}
+Mot 'prendre' : {'True': 1, 'False': 0}
+Mot 'dos' : {'True': 1, 'False': 0}
+Mot 'autrefois' : {'True': 1, 'False': 0}
+Mot 'néréides,' : {'True': 1, 'False': 0}
+Mot 'porter' : {'True': 1, 'False': 0}
+Mot 'jusqu'aux' : {'True': 1, 'False': 0}
+Mot 'bornes' : {'True': 1, 'False': 0}
+Mot 'l'empire' : {'True': 1, 'False': 0}
+Mot 'téthys.' : {'True': 1, 'False': 0}
+Mot 'vague,' : {'True': 1, 'False': 0}
+Mot 'pareille' : {'True': 1, 'False': 0}
+Mot 'promontoire' : {'True': 1, 'False': 0}
+Mot 'malée,' : {'True': 1, 'False': 0}
+Mot 's'est' : {'True': 1, 'False': 0}
+Mot 'soulevée' : {'True': 1, 'False': 0}
+Mot 'jeté' : {'True': 2, 'False': 0}
+Mot 'sables' : {'True': 1, 'False': 0}
+Mot 'cailloux' : {'True': 1, 'False': 0}
+Mot 'rivage.' : {'True': 1, 'False': 0}
+Mot 'flots' : {'True': 1, 'False': 1}
+Mot 'vagues' : {'True': 1, 'False': 0}
+Mot 'houleuses' : {'True': 1, 'False': 0}
+Mot 'm'ont' : {'True': 2, 'False': 0}
+Mot 'rivage,' : {'True': 1, 'False': 0}
+Mot 'passants' : {'True': 1, 'False': 0}
+Mot 'étrange' : {'True': 1, 'False': 0}
+Mot 'vision' : {'True': 1, 'False': 0}
+Mot 'd'infortune.' : {'True': 1, 'False': 0}
+Mot 'terre' : {'True': 1, 'False': 1}
+Mot 'place' : {'True': 1, 'False': 0}
+Mot 'pitié' : {'True': 1, 'False': 0}
+Mot 'ceux' : {'True': 1, 'False': 2}
+Mot 'm'avaient' : {'True': 1, 'False': 0}
+Mot 'aussitôt,' : {'True': 1, 'False': 0}
+Mot 'leur' : {'True': 1, 'False': 1}
+Mot 'piété,' : {'True': 1, 'False': 0}
+Mot 'honoré' : {'True': 1, 'False': 0}
+Mot 'tombeau.' : {'True': 1, 'False': 0}
+Mot 'celle' : {'True': 1, 'False': 3}
+Mot 'enfanté,' : {'True': 1, 'False': 0}
+Mot 'périr.' : {'True': 1, 'False': 0}
+Mot 'quelle' : {'True': 1, 'False': 0}
+Mot 'confiance' : {'True': 1, 'False': 0}
+Mot 'avoir' : {'True': 1, 'False': 2}
+Mot 'l'océan,' : {'True': 1, 'False': 0}
+Mot 'n'a' : {'True': 1, 'False': 0}
+Mot 'même' : {'True': 1, 'False': 2}
+Mot 'épargné' : {'True': 1, 'False': 0}
+Mot 'propre' : {'True': 1, 'False': 0}
+Mot 'nourrisson' : {'True': 1, 'False': 0}
+Mot '?' : {'True': 1, 'False': 1}
+Mot 'enflammant' : {'True': 0, 'False': 1}
+Mot 'jeunes' : {'True': 0, 'False': 2}
+Mot 'ferveur' : {'True': 0, 'False': 1}
+Mot 'savante,' : {'True': 0, 'False': 1}
+Mot 'ferai' : {'True': 0, 'False': 1}
+Mot 'l’amour' : {'True': 0, 'False': 3}
+Mot 'soit' : {'True': 0, 'False': 3}
+Mot 'commencement' : {'True': 0, 'False': 1}
+Mot 'discours' : {'True': 0, 'False': 1}
+Mot 'c’est' : {'True': 0, 'False': 2}
+Mot 'lui,' : {'True': 0, 'False': 1}
+Mot 'allume' : {'True': 0, 'False': 1}
+Mot 'flambeau' : {'True': 0, 'False': 1}
+Mot 'sthénélaïde,' : {'True': 0, 'False': 1}
+Mot 'brûler' : {'True': 0, 'False': 1}
+Mot 'villes,' : {'True': 0, 'False': 1}
+Mot 'se' : {'True': 0, 'False': 2}
+Mot 'payer' : {'True': 0, 'False': 1}
+Mot 'cher,' : {'True': 0, 'False': 1}
+Mot 'crache' : {'True': 0, 'False': 1}
+Mot 'l’or' : {'True': 0, 'False': 1}
+Mot 'd’après' : {'True': 0, 'False': 1}
+Mot 'désirent,' : {'True': 0, 'False': 1}
+Mot 'rêve' : {'True': 0, 'False': 1}
+Mot 'l’a' : {'True': 0, 'False': 2}
+Mot 'couchée' : {'True': 0, 'False': 1}
+Mot 'nue' : {'True': 0, 'False': 1}
+Mot 'côtés' : {'True': 0, 'False': 1}
+Mot 'toute' : {'True': 0, 'False': 2}
+Mot 'nuit' : {'True': 0, 'False': 2}
+Mot 'donnant' : {'True': 0, 'False': 1}
+Mot 'plaisir' : {'True': 0, 'False': 1}
+Mot 'gratuitement' : {'True': 0, 'False': 1}
+Mot 'jusqu’à' : {'True': 0, 'False': 1}
+Mot 'l’aurore.' : {'True': 0, 'False': 1}
+Mot 'devrai' : {'True': 0, 'False': 1}
+Mot 'supplier' : {'True': 0, 'False': 1}
+Mot 'genoux,' : {'True': 0, 'False': 1}
+Mot 'cette' : {'True': 0, 'False': 5}
+Mot 'barbare,' : {'True': 0, 'False': 1}
+Mot 'pleurer' : {'True': 0, 'False': 1}
+Mot 'moi-même,' : {'True': 0, 'False': 1}
+Mot 'parce' : {'True': 0, 'False': 1}
+Mot 'j’ai' : {'True': 0, 'False': 1}
+Mot 'm’accorde' : {'True': 0, 'False': 1}
+Mot 'plaisirs.' : {'True': 0, 'False': 1}
+Mot 'lève,' : {'True': 0, 'False': 1}
+Mot 'chrysille,' : {'True': 0, 'False': 1}
+Mot 'depuis' : {'True': 0, 'False': 1}
+Mot 'longtemps,' : {'True': 0, 'False': 1}
+Mot 'coq' : {'True': 0, 'False': 1}
+Mot 'matinier' : {'True': 0, 'False': 1}
+Mot 'chantant' : {'True': 0, 'False': 1}
+Mot 'apparaître' : {'True': 0, 'False': 1}
+Mot 'l’aurore' : {'True': 0, 'False': 1}
+Mot 'envieuse.' : {'True': 0, 'False': 1}
+Mot 'va' : {'True': 0, 'False': 1}
+Mot 'diable' : {'True': 0, 'False': 1}
+Mot 'jaloux' : {'True': 0, 'False': 1}
+Mot 'oiseaux,' : {'True': 0, 'False': 1}
+Mot 'presse' : {'True': 0, 'False': 1}
+Mot 'hors' : {'True': 0, 'False': 1}
+Mot 'maison' : {'True': 0, 'False': 2}
+Mot 'nombreux' : {'True': 0, 'False': 1}
+Mot 'célibataires.' : {'True': 0, 'False': 1}
+Mot 'vieillis,' : {'True': 0, 'False': 1}
+Mot 'tithon' : {'True': 0, 'False': 1}
+Mot 'pourquoi' : {'True': 0, 'False': 1}
+Mot 'sinon' : {'True': 0, 'False': 1}
+Mot 'chasses' : {'True': 0, 'False': 1}
+Mot 'épouse' : {'True': 0, 'False': 1}
+Mot 'aurore' : {'True': 0, 'False': 1}
+Mot 'lit' : {'True': 0, 'False': 2}
+Mot 'si' : {'True': 0, 'False': 5}
+Mot 'tôt' : {'True': 0, 'False': 1}
+Mot 'philénis,' : {'True': 0, 'False': 1}
+Mot 'après' : {'True': 0, 'False': 1}
+Mot 'enivré' : {'True': 0, 'False': 1}
+Mot 'lampe' : {'True': 0, 'False': 2}
+Mot 'connaît' : {'True': 0, 'False': 1}
+Mot 'garde' : {'True': 0, 'False': 1}
+Mot 'secrètes' : {'True': 0, 'False': 1}
+Mot 'choses' : {'True': 0, 'False': 1}
+Mot 'qu’on' : {'True': 0, 'False': 1}
+Mot 'peut' : {'True': 0, 'False': 2}
+Mot 'dire' : {'True': 0, 'False': 2}
+Mot 'd’une' : {'True': 0, 'False': 1}
+Mot 'liqueur' : {'True': 0, 'False': 1}
+Mot 'huileuse,' : {'True': 0, 'False': 1}
+Mot 'va-t-en' : {'True': 0, 'False': 1}
+Mot 'solitaire' : {'True': 0, 'False': 1}
+Mot 'n’apprécie' : {'True': 0, 'False': 1}
+Mot 'témoins' : {'True': 0, 'False': 1}
+Mot 'vivants,' : {'True': 0, 'False': 1}
+Mot 'ferme' : {'True': 0, 'False': 1}
+Mot 'porte,' : {'True': 0, 'False': 1}
+Mot 'philénis.' : {'True': 0, 'False': 1}
+Mot 'embrasse-moi,' : {'True': 0, 'False': 1}
+Mot 'xantho' : {'True': 0, 'False': 1}
+Mot 'quant' : {'True': 0, 'False': 1}
+Mot 'aime' : {'True': 0, 'False': 1}
+Mot 'aimants,' : {'True': 0, 'False': 1}
+Mot 'apprends' : {'True': 0, 'False': 1}
+Mot 'qu’il' : {'True': 0, 'False': 3}
+Mot 'faut' : {'True': 0, 'False': 1}
+Mot 'savoir' : {'True': 0, 'False': 1}
+Mot 'd’aphrodite.' : {'True': 0, 'False': 1}
+Mot 'argent,' : {'True': 0, 'False': 1}
+Mot 'fidèle' : {'True': 0, 'False': 1}
+Mot 'témoin' : {'True': 0, 'False': 2}
+Mot 'amours' : {'True': 0, 'False': 1}
+Mot 'nocturnes,' : {'True': 0, 'False': 1}
+Mot 'flaccus' : {'True': 0, 'False': 1}
+Mot 'm’a' : {'True': 0, 'False': 1}
+Mot 'donnée' : {'True': 0, 'False': 1}
+Mot 'l’infidèle' : {'True': 0, 'False': 1}
+Mot 'nape,' : {'True': 0, 'False': 1}
+Mot 'consomme' : {'True': 0, 'False': 1}
+Mot 'côté' : {'True': 0, 'False': 1}
+Mot 'lit,' : {'True': 0, 'False': 2}
+Mot 'pendant' : {'True': 0, 'False': 2}
+Mot 'regarde' : {'True': 0, 'False': 1}
+Mot 'toutes' : {'True': 0, 'False': 1}
+Mot 'horreurs' : {'True': 0, 'False': 1}
+Mot 'insupportables' : {'True': 0, 'False': 1}
+Mot 'fille' : {'True': 0, 'False': 1}
+Mot 'parjure.' : {'True': 0, 'False': 1}
+Mot 'flaccus,' : {'True': 0, 'False': 1}
+Mot 'réveillé,' : {'True': 0, 'False': 1}
+Mot 'troublantes' : {'True': 0, 'False': 1}
+Mot 'angoisses' : {'True': 0, 'False': 1}
+Mot 't’accablent' : {'True': 0, 'False': 1}
+Mot 'deux,' : {'True': 0, 'False': 1}
+Mot 'nous' : {'True': 0, 'False': 4}
+Mot 'brûlons,' : {'True': 0, 'False': 1}
+Mot 'chacun' : {'True': 0, 'False': 1}
+Mot 'notre' : {'True': 0, 'False': 1}
+Mot 'côté.' : {'True': 0, 'False': 1}
+Mot 'callignote' : {'True': 0, 'False': 1}
+Mot 'juré' : {'True': 0, 'False': 3}
+Mot 'ionis' : {'True': 0, 'False': 1}
+Mot 'n’aimera' : {'True': 0, 'False': 1}
+Mot 'quelqu’un' : {'True': 0, 'False': 1}
+Mot 'homme' : {'True': 0, 'False': 1}
+Mot 'ou' : {'True': 0, 'False': 2}
+Mot 'femme' : {'True': 0, 'False': 1}
+Mot 'qu’elle.' : {'True': 0, 'False': 1}
+Mot 'juré;' : {'True': 0, 'False': 1}
+Mot 'gens' : {'True': 0, 'False': 1}
+Mot 'disent' : {'True': 0, 'False': 1}
+Mot 'vrai:' : {'True': 0, 'False': 1}
+Mot 'serments' : {'True': 0, 'False': 3}
+Mot 'amour' : {'True': 0, 'False': 1}
+Mot 'n’atteignent' : {'True': 0, 'False': 1}
+Mot 'oreilles' : {'True': 0, 'False': 1}
+Mot 'immortels.' : {'True': 0, 'False': 1}
+Mot 'réchauffe,' : {'True': 0, 'False': 1}
+Mot 'homme:' : {'True': 0, 'False': 1}
+Mot 'pauvre' : {'True': 0, 'False': 1}
+Mot 'épouse,' : {'True': 0, 'False': 1}
+Mot 'mégariens,' : {'True': 0, 'False': 1}
+Mot 'n’en' : {'True': 0, 'False': 1}
+Mot 'tient' : {'True': 0, 'False': 1}
+Mot 'compte.' : {'True': 0, 'False': 1}
+Mot 'lampe,' : {'True': 0, 'False': 4}
+Mot 'héraclée' : {'True': 0, 'False': 1}
+Mot 'trois' : {'True': 0, 'False': 1}
+Mot 'qu’elle' : {'True': 0, 'False': 3}
+Mot 'viendrait' : {'True': 0, 'False': 1}
+Mot 'vient' : {'True': 0, 'False': 2}
+Mot 'pas:' : {'True': 0, 'False': 1}
+Mot 'dieu,' : {'True': 0, 'False': 1}
+Mot 'punis' : {'True': 0, 'False': 1}
+Mot 'traitresse,' : {'True': 0, 'False': 1}
+Mot 'batifole' : {'True': 0, 'False': 1}
+Mot 'amant' : {'True': 0, 'False': 1}
+Mot 'éteins-toi' : {'True': 0, 'False': 1}
+Mot 'fais' : {'True': 0, 'False': 2}
+Mot 'lumière.' : {'True': 0, 'False': 1}
+Mot 'sacrée,' : {'True': 0, 'False': 1}
+Mot 'deux' : {'True': 0, 'False': 1}
+Mot 'n’avons' : {'True': 0, 'False': 1}
+Mot 'voulu' : {'True': 0, 'False': 1}
+Mot 'aucun' : {'True': 0, 'False': 1}
+Mot 'autre' : {'True': 0, 'False': 1}
+Mot 'nos' : {'True': 0, 'False': 1}
+Mot 'vous' : {'True': 0, 'False': 3}
+Mot 'avons' : {'True': 0, 'False': 1}
+Mot 'lui' : {'True': 0, 'False': 2}
+Mot 'm’aimerait,' : {'True': 0, 'False': 1}
+Mot 'quitterais' : {'True': 0, 'False': 1}
+Mot 'jamais,' : {'True': 0, 'False': 1}
+Mot 'ensemble' : {'True': 0, 'False': 1}
+Mot 'détenez' : {'True': 0, 'False': 1}
+Mot 'preuve.' : {'True': 0, 'False': 1}
+Mot 'écrits' : {'True': 0, 'False': 1}
+Mot 'l’eau,' : {'True': 0, 'False': 1}
+Mot 'vois' : {'True': 0, 'False': 1}
+Mot 'd’autres' : {'True': 0, 'False': 1}
+Mot 'personnes.' : {'True': 0, 'False': 1}
+Mot 'rufin,' : {'True': 0, 'False': 1}
+Mot 'très' : {'True': 0, 'False': 1}
+Mot 'douce' : {'True': 0, 'False': 1}
+Mot 'elpis,' : {'True': 0, 'False': 1}
+Mot 'souhaite' : {'True': 0, 'False': 1}
+Mot 'joie,' : {'True': 0, 'False': 1}
+Mot 'joie' : {'True': 0, 'False': 1}
+Mot 'absence.' : {'True': 0, 'False': 1}
+Mot 'puis' : {'True': 0, 'False': 2}
+Mot 'j’en' : {'True': 0, 'False': 1}
+Mot 'jure' : {'True': 0, 'False': 1}
+Mot 'yeux,' : {'True': 0, 'False': 2}
+Mot 'supporter' : {'True': 0, 'False': 1}
+Mot 'séparation' : {'True': 0, 'False': 1}
+Mot 'd’avec' : {'True': 0, 'False': 1}
+Mot 'solitude' : {'True': 0, 'False': 1}
+Mot 'cet' : {'True': 0, 'False': 1}
+Mot 'isolement' : {'True': 0, 'False': 1}
+Mot 'auquel' : {'True': 0, 'False': 1}
+Mot 'condamne' : {'True': 0, 'False': 1}
+Mot 'baigné' : {'True': 0, 'False': 1}
+Mot 'larmes,' : {'True': 0, 'False': 1}
+Mot 'm’en' : {'True': 0, 'False': 1}
+Mot 'vais' : {'True': 0, 'False': 1}
+Mot 'coressos' : {'True': 0, 'False': 1}
+Mot 'temple' : {'True': 0, 'False': 1}
+Mot 'grande' : {'True': 0, 'False': 1}
+Mot 'artémis.' : {'True': 0, 'False': 1}
+Mot 'demain' : {'True': 0, 'False': 1}
+Mot 'patrie' : {'True': 0, 'False': 1}
+Mot 'm’aura' : {'True': 0, 'False': 1}
+Mot 'reçu' : {'True': 0, 'False': 1}
+Mot 'volerai' : {'True': 0, 'False': 1}
+Mot 'adieu' : {'True': 0, 'False': 1}
+Mot 'encore' : {'True': 0, 'False': 2}
+Mot 'mille' : {'True': 0, 'False': 1}
+Mot 'fois.' : {'True': 0, 'False': 1}
+Mot 'hais' : {'True': 0, 'False': 1}
+Mot 'pourquoi,' : {'True': 0, 'False': 1}
+Mot 'pesant,' : {'True': 0, 'False': 1}
+Mot 'bêtes' : {'True': 0, 'False': 1}
+Mot 'sauvages' : {'True': 0, 'False': 1}
+Mot 's’élance-t-il' : {'True': 0, 'False': 1}
+Mot 'pas,' : {'True': 0, 'False': 1}
+Mot 'alors' : {'True': 0, 'False': 1}
+Mot 'jette' : {'True': 0, 'False': 1}
+Mot 'traits' : {'True': 0, 'False': 1}
+Mot 'cœur?' : {'True': 0, 'False': 1}
+Mot 'qu’a-t-il' : {'True': 0, 'False': 1}
+Mot 'gagner,' : {'True': 0, 'False': 1}
+Mot 'dieu' : {'True': 0, 'False': 1}
+Mot 'consume' : {'True': 0, 'False': 1}
+Mot 'homme?' : {'True': 0, 'False': 1}
+Mot 'trophée' : {'True': 0, 'False': 1}
+Mot 'tuant,' : {'True': 0, 'False': 1}
+Mot 'tire-t-il' : {'True': 0, 'False': 1}
+Mot 'tête?' : {'True': 0, 'False': 1}
+Mot 'sauves' : {'True': 0, 'False': 1}
+Mot 'cypris,' : {'True': 0, 'False': 1}
+Mot 'naufrage;' : {'True': 0, 'False': 1}
+Mot 'déesse' : {'True': 0, 'False': 1}
+Mot 'bienveillante,' : {'True': 0, 'False': 1}
+Mot 'sauve-moi' : {'True': 0, 'False': 1}
+Mot 'perdition.' : {'True': 0, 'False': 1}
+Mot 'baignons-nous,' : {'True': 0, 'False': 1}
+Mot 'prodikè,' : {'True': 0, 'False': 1}
+Mot 'couronnons-nous' : {'True': 0, 'False': 1}
+Mot 'fleurs,' : {'True': 0, 'False': 1}
+Mot 'humer' : {'True': 0, 'False': 1}
+Mot 'vin' : {'True': 0, 'False': 1}
+Mot 'pur' : {'True': 0, 'False': 1}
+Mot 'prenons' : {'True': 0, 'False': 1}
+Mot 'coupes' : {'True': 0, 'False': 1}
+Mot 'grandes.' : {'True': 0, 'False': 1}
+Mot 'l'âge' : {'True': 0, 'False': 1}
+Mot 'jouissances' : {'True': 0, 'False': 1}
+Mot 'court' : {'True': 0, 'False': 1}
+Mot 'vie;' : {'True': 0, 'False': 1}
+Mot 'ensuite,' : {'True': 0, 'False': 1}
+Mot 'reste' : {'True': 0, 'False': 1}
+Mot 'temps,' : {'True': 0, 'False': 1}
+Mot 'vieillesse' : {'True': 0, 'False': 1}
+Mot 'interdira,' : {'True': 0, 'False': 1}
+Mot 'finir' : {'True': 0, 'False': 1}
+Mot 'sera' : {'True': 0, 'False': 1}
+Mot 'mort.' : {'True': 0, 'False': 1}
+Mot 'charito' : {'True': 0, 'False': 1}
+Mot 'achève' : {'True': 0, 'False': 1}
+Mot 'd'accomplir' : {'True': 0, 'False': 1}
+Mot 'soixante' : {'True': 0, 'False': 1}
+Mot 'révolutions' : {'True': 0, 'False': 1}
+Mot 'annuelles,' : {'True': 0, 'False': 1}
+Mot 'longs' : {'True': 0, 'False': 1}
+Mot 'cheveux' : {'True': 0, 'False': 1}
+Mot 'noirs' : {'True': 0, 'False': 1}
+Mot 'poitrine' : {'True': 0, 'False': 1}
+Mot 'seins' : {'True': 0, 'False': 1}
+Mot 'marbre' : {'True': 0, 'False': 1}
+Mot 'dressent' : {'True': 0, 'False': 1}
+Mot 'pointe,' : {'True': 0, 'False': 1}
+Mot 'qu'aucune' : {'True': 0, 'False': 1}
+Mot 'ceinture' : {'True': 0, 'False': 1}
+Mot 'emprisonne;' : {'True': 0, 'False': 1}
+Mot 'peau,' : {'True': 0, 'False': 1}
+Mot 'flétrit' : {'True': 0, 'False': 1}
+Mot 'aucune' : {'True': 0, 'False': 1}
+Mot 'ride,' : {'True': 0, 'False': 1}
+Mot 'distille' : {'True': 0, 'False': 1}
+Mot 'l'ambroisie,' : {'True': 0, 'False': 1}
+Mot 'séductions' : {'True': 0, 'False': 1}
+Mot 'sorte' : {'True': 0, 'False': 1}
+Mot 'grâces' : {'True': 0, 'False': 1}
+Mot 'innombrables.' : {'True': 0, 'False': 1}
+Mot 'fuyez' : {'True': 0, 'False': 1}
+Mot 'désirs' : {'True': 0, 'False': 1}
+Mot 'bouillonnants,' : {'True': 0, 'False': 1}
+Mot 'vrais' : {'True': 0, 'False': 1}
+Mot 'amants,' : {'True': 0, 'False': 1}
+Mot 'venez' : {'True': 0, 'False': 1}
+Mot 'ici,' : {'True': 0, 'False': 1}
+Mot 'regarder' : {'True': 0, 'False': 1}
+Mot 'nombre' : {'True': 0, 'False': 1}
+Mot 'décades.' : {'True': 0, 'False': 1}
+Mot 'baiser' : {'True': 0, 'False': 1}
+Mot 'd’europe,' : {'True': 0, 'False': 1}
+Mot 's’il' : {'True': 0, 'False': 2}
+Mot 'qu’aux' : {'True': 0, 'False': 1}
+Mot 'lèvres' : {'True': 0, 'False': 2}
+Mot 'doux,' : {'True': 0, 'False': 1}
+Mot 'touche' : {'True': 0, 'False': 1}
+Mot 'qu’à' : {'True': 0, 'False': 1}
+Mot 'surface' : {'True': 0, 'False': 1}
+Mot 'bouche.' : {'True': 0, 'False': 1}
+Mot 'n’est' : {'True': 0, 'False': 1}
+Mot 'bout' : {'True': 0, 'False': 1}
+Mot 'touche,' : {'True': 0, 'False': 1}
+Mot 'luttant' : {'True': 0, 'False': 1}
+Mot 'bouche,' : {'True': 0, 'False': 1}
+Mot 'vide' : {'True': 0, 'False': 1}
+Mot 'complètement' : {'True': 0, 'False': 1}
+Mot 'âme.' : {'True': 0, 'False': 1}
+Mot 'où' : {'True': 0, 'False': 4}
+Mot 'donc' : {'True': 0, 'False': 1}
+Mot 'aujourd’hui' : {'True': 0, 'False': 1}
+Mot 'praxitèle?' : {'True': 0, 'False': 1}
+Mot 'mains' : {'True': 0, 'False': 1}
+Mot 'polyclète' : {'True': 0, 'False': 1}
+Mot 'conféraient' : {'True': 0, 'False': 1}
+Mot 'âme' : {'True': 0, 'False': 1}
+Mot 'œuvres?' : {'True': 0, 'False': 1}
+Mot 'façonnera' : {'True': 0, 'False': 1}
+Mot 'tresses' : {'True': 0, 'False': 1}
+Mot 'parfumées' : {'True': 0, 'False': 1}
+Mot 'mélite,' : {'True': 0, 'False': 1}
+Mot 'brûlants,' : {'True': 0, 'False': 1}
+Mot 'splendeur' : {'True': 0, 'False': 1}
+Mot 'cou?' : {'True': 0, 'False': 1}
+Mot 'mouleurs?' : {'True': 0, 'False': 1}
+Mot 'maçons?' : {'True': 0, 'False': 1}
+Mot 'convient' : {'True': 0, 'False': 1}
+Mot 'telle' : {'True': 0, 'False': 1}
+Mot 'beauté,' : {'True': 0, 'False': 1}
+Mot 'd’avoir' : {'True': 0, 'False': 1}
+Mot 'temple,' : {'True': 0, 'False': 1}
+Mot 'effigie' : {'True': 0, 'False': 1}
+Mot 'bienheureux.' : {'True': 0, 'False': 1}</code></pre>
+</div>
+</div>
+<div id="cell-14" class="cell" data-outputid="b440681f-dc36-43ae-b73f-8364d825f542" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. LA PHASE DE PRÉDICTION (Classification d'une nouvelle phrase)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classifier_nouvelle_phrase(texte_nouveau):</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    mots <span class="op">=</span> texte_nouveau.lower().split()</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    scores_prediction <span class="op">=</span> {<span class="st">"True"</span>: <span class="dv">0</span>, <span class="st">"False"</span>: <span class="dv">0</span>}</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> mot <span class="kw">in</span> mots:</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si le mot a été vu pendant l'apprentissage</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> mot <span class="kw">in</span> modele_appris:</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>            <span class="co"># On ajoute les scores appris pour ce mot</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> categorie <span class="kw">in</span> scores_prediction:</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>                scores_prediction[categorie] <span class="op">+=</span> modele_appris[mot][categorie]</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Si le mot est inconnu, on le traite comme neutre (ou on ignore)</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Pour simplifier, on ignore ici.</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">pass</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># On retourne la catégorie avec le score le plus élevé</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    categorie_gagnante <span class="op">=</span> <span class="bu">max</span>(scores_prediction, key<span class="op">=</span>scores_prediction.get)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> categorie_gagnante, scores_prediction</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. TESTS</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">--- Tests de classification ---"</span>)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>phrases_tests <span class="op">=</span> [</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Tu es un beau chat."</span>,</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Les plumes de cet animal chatoient."</span>,</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"La facture a été payée"</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> phrase <span class="kw">in</span> phrases_tests:</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    categorie, scores <span class="op">=</span> classifier_nouvelle_phrase(phrase)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Phrase : '</span><span class="sc">{</span>phrase<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"-&gt; Prédiction : </span><span class="sc">{</span>categorie<span class="sc">}</span><span class="ss"> (Scores : </span><span class="sc">{</span>scores<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+--- Tests de classification ---
+Phrase : 'Tu es un beau chat.'
+-&gt; Prédiction : True (Scores : {'True': 16, 'False': 12})
+Phrase : 'Les plumes de cet animal chatoient.'
+-&gt; Prédiction : False (Scores : {'True': 45, 'False': 48})
+Phrase : 'La facture a été payée'
+-&gt; Prédiction : True (Scores : {'True': 25, 'False': 23})</code></pre>
+</div>
+</div>
+<p>Les modèles inductifs ne sont pas par définition opaques : un accès aux données d’entrainement et à la logique de mise en relation du document avec la catégorie peut rendre transparente la prédiction.</p>
+<div id="cell-16" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Essayer avec d'autres phrases</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>votre_phrase <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Entrez votre phrase à classer"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>categorie, scores <span class="op">=</span> classifier_nouvelle_phrase(votre_phrase)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"-&gt; Prédiction : </span><span class="sc">{</span>categorie<span class="sc">}</span><span class="ss"> (Scores : </span><span class="sc">{</span>scores<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-&gt; Prédiction : False (Scores : {'True': 16, 'False': 18})</code></pre>
+</div>
+</div>
+<div id="cell-17" class="cell" data-outputid="2f8fc594-aab9-4aaa-ff69-0cad52521c2d" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classifier_nouvelle_phrase_detailed(texte_nouveau):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    mots <span class="op">=</span> texte_nouveau.lower().split()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    scores_prediction <span class="op">=</span> {<span class="st">"True"</span>: <span class="dv">0</span>, <span class="st">"False"</span>: <span class="dv">0</span>}</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Stockage des contributions par mot (NOUVEAU)</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    contributions_par_mot <span class="op">=</span> {}</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> mot <span class="kw">in</span> mots:</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> mot <span class="kw">in</span> modele_appris:</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>            <span class="co"># On met à jour le score global</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> categorie <span class="kw">in</span> scores_prediction:</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>                scores_prediction[categorie] <span class="op">+=</span> modele_appris[mot][categorie]</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># On enregistre combien ce mot a contribué à chaque catégorie</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>            contributions_par_mot[mot] <span class="op">=</span> modele_appris[mot].copy()</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>            contributions_par_mot[mot] <span class="op">=</span> {<span class="st">"True"</span>: <span class="dv">0</span>, <span class="st">"False"</span>: <span class="dv">0</span>}</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># On trouve le gagnant</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    categorie_gagnante <span class="op">=</span> <span class="bu">max</span>(scores_prediction, key<span class="op">=</span>scores_prediction.get)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># On retourne TOUT : la catégorie, le score global, et le détail par mot</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> categorie_gagnante, scores_prediction, contributions_par_mot</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co"># --- </span><span class="al">TEST</span><span class="co"> AVEC DÉTAIL ---</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">--- Analyse détaillée des contributions ---"</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>phrase_test <span class="op">=</span> <span class="st">"Le chien est un animal domestique. Les poires sont des fruits."</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>cat, scores, details <span class="op">=</span> classifier_nouvelle_phrase_detailed(phrase_test)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Phrase : '</span><span class="sc">{</span>phrase_test<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Prédiction finale : </span><span class="sc">{</span>cat<span class="sc">}</span><span class="ss"> (Score total : </span><span class="sc">{</span>scores<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Contribution de chaque mot (qui a fait pencher la balance) :"</span>)</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(details)</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="co"># On trie les mots par "impact" (différence entre le score max et min pour ce mot)</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="co"># ou simplement on affiche les scores bruts pour voir les "gros" nombres.</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> mot, scores_mot <span class="kw">in</span> details.items():</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mot <span class="op">!=</span> <span class="st">""</span>: <span class="co"># On ignore les espaces vides si nécessaire</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># On calcule l'impact : la différence entre la catégorie gagnante et les autres</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>        impact <span class="op">=</span> scores_mot[cat] <span class="op">-</span> <span class="bu">max</span>([v <span class="cf">for</span> k, v <span class="kw">in</span> scores_mot.items() <span class="cf">if</span> k <span class="op">!=</span> cat])</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Affichage formaté</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"  - Mot '</span><span class="sc">{</span>mot<span class="sc">}</span><span class="ss">' : </span><span class="sc">{</span>scores_mot<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> scores_mot[cat] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"      -&gt; A apporté </span><span class="sc">{</span>scores_mot[cat]<span class="sc">}</span><span class="ss"> point(s) à '</span><span class="sc">{</span>cat<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(<span class="ss">f"        -&gt; N'était pas présent dans les données d'entrainement."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+--- Analyse détaillée des contributions ---
+Phrase : 'Le chien est un animal domestique. Les poires sont des fruits.'
+Prédiction finale : False (Score total : {'True': 41, 'False': 61})
+
+Contribution de chaque mot (qui a fait pencher la balance) :
+{'le': {'True': 11, 'False': 15}, 'chien': {'True': 2, 'False': 0}, 'est': {'True': 1, 'False': 4}, 'un': {'True': 2, 'False': 6}, 'animal': {'True': 0, 'False': 0}, 'domestique.': {'True': 0, 'False': 0}, 'les': {'True': 15, 'False': 21}, 'poires': {'True': 0, 'False': 0}, 'sont': {'True': 1, 'False': 4}, 'des': {'True': 9, 'False': 11}, 'fruits.': {'True': 0, 'False': 0}}
+  - Mot 'le' : {'True': 11, 'False': 15}
+      -&gt; A apporté 15 point(s) à 'False'
+  - Mot 'chien' : {'True': 2, 'False': 0}
+        -&gt; N'était pas présent dans les données d'entrainement.
+  - Mot 'est' : {'True': 1, 'False': 4}
+      -&gt; A apporté 4 point(s) à 'False'
+  - Mot 'un' : {'True': 2, 'False': 6}
+      -&gt; A apporté 6 point(s) à 'False'
+  - Mot 'animal' : {'True': 0, 'False': 0}
+        -&gt; N'était pas présent dans les données d'entrainement.
+  - Mot 'domestique.' : {'True': 0, 'False': 0}
+        -&gt; N'était pas présent dans les données d'entrainement.
+  - Mot 'les' : {'True': 15, 'False': 21}
+      -&gt; A apporté 21 point(s) à 'False'
+  - Mot 'poires' : {'True': 0, 'False': 0}
+        -&gt; N'était pas présent dans les données d'entrainement.
+  - Mot 'sont' : {'True': 1, 'False': 4}
+      -&gt; A apporté 4 point(s) à 'False'
+  - Mot 'des' : {'True': 9, 'False': 11}
+      -&gt; A apporté 11 point(s) à 'False'
+  - Mot 'fruits.' : {'True': 0, 'False': 0}
+        -&gt; N'était pas présent dans les données d'entrainement.</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -224,8 +224,8 @@ Marcello Vitali-Rosati <a href="https://orcid.org/https://orcid.org/0000-0001-64
 <li>Jour 1 - Théorie de l’IA : systèmes experts et approches inductives</li>
 <li>Jour 2 - Traitement automatique de la langue et prétraitement de texte</li>
 <li>Jour 3 - Apprentissage profond : outils et applications</li>
-<li>Jour 4 - Modèles génératifs : Correction, annotation et structuration de données textuelles</li>
-<li>Jour 5 - Recherche, synthèse et extraction de connaissances</li>
+<li>Jour 4 - Modèles génératifs et prompt engineering</li>
+<li>Jour 5 - Systèmes complexes d’IA (RAG, système agentique)</li>
 </ul>
 </section></section>
 <section id="des-questions" class="title-slide slide level1 center">
@@ -240,15 +240,12 @@ Marcello Vitali-Rosati <a href="https://orcid.org/https://orcid.org/0000-0001-64
 </section>
 <section id="objectifs-de-laprès-midi" class="slide level2">
 <h2>Objectifs de l’après-midi</h2>
-<p>Théorie :</p>
 <ul>
-<li><p>Qu’est-ce que l’IA ?</p></li>
-<li><p>Étudier l’IA pour les SHS</p></li>
-<li><p>Retours historiques</p></li>
-<li><p>Typologie des IA</p></li>
-<li><p>Cas d’usage et modélisation experte (ELIZA)</p></li>
-<li><p>Principe fondamentaux de l’apprentissage machine (modèles spécialisés)</p></li>
-<li><p>Les LLMs : les modèles généralistes et les systèmes agentiques.</p></li>
+<li>Qu’est-ce que l’IA ?</li>
+<li>Étudier l’IA pour les SHS</li>
+<li>Retours historiques</li>
+<li>Typologie basique de l’IA</li>
+<li>Mise en place de l’environnement de travail</li>
 </ul>
 </section></section>
 <section>
@@ -307,7 +304,7 @@ Marcello Vitali-Rosati <a href="https://orcid.org/https://orcid.org/0000-0001-64
 <h2>Histoire de l’Intelligence artificielle (partie 2)</h2>
 <p><strong>À partir du XXe siècle, on ne s’intéresse plus seulement aux machines qui font, mais aux machines qui pensent.</strong></p>
 <p>1930s : Turing définit les termes du fonctionnement d’une “machine automatique”.</p>
-<p>1935<a href="https://fr.wikipedia.org/wiki/Th%C3%A8se_de_Church">Hypothèse Church-Turing</a>: définition de la calculabilité : la méthode de calcul respecte un nombre fini d’instructions simples, l’algorithme fournit toujours un résultat, les instructions ne demandent pas d’intelligence de la part de l’humain qui les suit.</p>
+<p>1935 : <a href="https://fr.wikipedia.org/wiki/Th%C3%A8se_de_Church">Hypothèse Church-Turing</a>: définition de la calculabilité : la méthode de calcul respecte un nombre fini d’instructions simples, l’algorithme fournit toujours un résultat, les instructions ne demandent pas d’intelligence de la part de l’humain qui les suit.</p>
 <p>1941 : Z3 de Konrad Zuse calculateur électromagnétique programmable binaire, parfois nommé “le premier ordinateur”.</p>
 <p>1940s : Science-fiction et roman d’Isaac Asimov <em>Runaround</em> en 1942.</p>
 <p><span class="citation" data-cites="turingComputingMachineryIntelligence1950">(<a href="#/bibliographie" role="doc-biblioref" onclick="">Turing 1950</a>)</span> : ‘Can machines think?’</p>
@@ -315,8 +312,8 @@ Marcello Vitali-Rosati <a href="https://orcid.org/https://orcid.org/0000-0001-64
 <p>1951 : UNIVAC, premier ordinateur “general purpose machine” commercialisé.</p>
 <p>1956: ‘intelligence artificielle’ terme utilisé pour la première fois par Minsky et McCarthy àpour une demande de subvention de la Dartmouth Summer Research Project on Artificial Intelligence (DSRPAI). -&gt; une économie de la promesse.</p>
 <p>1966 : ELIZA <span class="citation" data-cites="weizenbaumELIZAComputerProgram1966">(<a href="#/bibliographie" role="doc-biblioref" onclick="">Weizenbaum 1966</a>)</span></p>
-<p>1974-1980 : (Rapport Lighthill en 1974) premier hiver de l’IA</p>
-<p>1990-2000s : Deuxième hiver de l’IA -&gt; termes moins connotés : “<em>machine learning</em>” ou plus généralement, “informatique”</p>
+<p>1974-1980 : Rapport Lighthill en 1974. Premier hiver de l’IA</p>
+<p>1990-2000s : Deuxième hiver de l’IA -&gt; adoption générale de termes moins connotés : “<em>machine learning</em>” ou plus généralement, “informatique”</p>
 <p>1997 : DeepBlue d’IBM bat Kasparov.</p>
 <p>2015 : AlphaGo de Google bat Fan Hui.</p>
 <p>2020s : Nouveau printemps de l’IA</p>
@@ -350,28 +347,32 @@ Marcello Vitali-Rosati <a href="https://orcid.org/https://orcid.org/0000-0001-64
 </ul>
 </section></section>
 <section>
-<section id="exemple-plus-concret" class="title-slide slide level1 center">
-<h1>Exemple plus concret</h1>
+<section id="mise-en-place-de-lenvironnement-pour-la-semaine" class="title-slide slide level1 center">
+<h1>Mise en place de l’environnement pour la semaine</h1>
 
 </section>
-<section id="présentation-du-corpus-de-travail-pour-la-semaine" class="slide level2">
-<h2>Présentation du corpus de travail pour la semaine</h2>
+<section id="préambule-présentation-du-corpus-de-travail-pour-la-semaine" class="slide level2">
+<h2>Préambule : Présentation du corpus de travail pour la semaine</h2>
+<p>Anthologie Grecque</p>
 <!-- à compléter au besoin par William (5min) -->
 </section>
-<section id="petite-mise-en-place" class="slide level2 scrollable">
-<h2>Petite mise en place</h2>
-<ol type="1">
-<li>Repo du cours :</li>
-</ol>
-<p>Pour les personnes familières de Git : https://github.com/alexiaschn/dhsi-2026/</p>
+<section id="mise-en-place-de-lenvironnement-téléchargement-des-notebooks" class="slide level2">
+<h2>Mise en place de l’environnement : Téléchargement des notebooks</h2>
+<p><strong>Solution 1.</strong></p>
+<p>Le téléchargement des notebooks et des données pour les exercices peut se faire via <strong>le site du cours</strong> :</p>
+<p><a href="https://alexiaschn.github.io/dhsi-2026/">https://alexiaschn.github.io/dhsi-2026/</a></p>
+<p>Vous pourrez télécharger au fur et à mesure les notebooks et les jeux de données en retournant sur le site au moment indiqués dans le cours.</p>
+<p><strong>Solution 2.</strong></p>
+<p>Il est possible de télécharger l’intégralité des supports de cours via le repo du cours : <a href="https://github.com/alexiaschn/dhsi-2026/">https://github.com/alexiaschn/dhsi-2026/</a></p>
+<p>En ligne de commande :</p>
 <p><code>git clone https://github.com/alexiaschn/dhsi-2026.git</code></p>
-<p>Pour les moins familiers :</p>
+<p>Ou, pour les moins familiers :</p>
 <p>Code &gt; Download source code &gt; zip</p>
-<p>Extraire dans le dossier de son choix.</p>
-<ol start="2" type="1">
-<li>Plusieurs solutions pour utiliser un notebook interactif Jupyter :</li>
-</ol>
-<p>Si Python est installé sur sa machine :</p>
+</section>
+<section id="mise-en-place-de-lenvironnement-python" class="slide level2">
+<h2>Mise en place de l’environnement : Python</h2>
+<p>Plusieurs solutions pour utiliser un notebook interactif Jupyter :</p>
+<p><strong>Si Python est installé sur sa machine :</strong></p>
 <ul>
 <li>via son IDE de choix comme VSCode/VSCodium : télécharger le module Jupyter et sélectionner son interpréteur Python (Cmd + P : Python interpreter)</li>
 <li>via Anaconda UI</li>
@@ -381,13 +382,15 @@ Marcello Vitali-Rosati <a href="https://orcid.org/https://orcid.org/0000-0001-64
 <pre><code>python3 -m pip install --upgrade pip
 python3 -m pip install jupyter
 jupyter notebook</code></pre>
-<p>puis ouvrir le localhost : le Notebook Dashboard devrait apparaitre avec l’arborescence du repo</p>
-<p>Si Python n’est pas installé :</p>
-<p>Depuis un compte Google : Télécharger l’application Colab https://colab.research.google.com</p>
+<p>puis ouvrir le localhost : le Notebook Dashboard devrait apparaitre avec l’arborescence du repo.</p>
+<p><strong>Si Python n’est pas installé sur sa machine :</strong></p>
+<p>Depuis un compte Google :</p>
+<p>Télécharger l’application Colab <a href="https://colab.research.google.com">https://colab.research.google.com</a></p>
 <p>Fichier &gt; Importer le notebook</p>
-<p>NB : il faudra bien penser à importer manuellement pour chaque notebook les documents du corpus</p>
 
-<img data-src="img/importer_corpus_colab.png" class="r-stretch quarto-figure-center"><p class="caption">Importer le corpus de travail dans l’environnement Google Colab</p></section>
+<img data-src="img/importer_corpus_colab.png" class="r-stretch quarto-figure-center"><p class="caption">Importer le corpus de travail dans l’environnement Google Colab</p><p><strong>Si quelqu’un ne veut absolument pas toucher à du code :</strong></p>
+<p>Tous les notebooks complétés viennent en HTML : <a href="https://alexiaschn.github.io/dhsi-2026/notebooks.html">https://alexiaschn.github.io/dhsi-2026/notebooks.html</a></p>
+</section>
 <section id="pratique-concevoir-un-système-expert" class="slide level2">
 <h2>Pratique : concevoir un système expert</h2>
 <p>Objectif : obtenir un programme capable de classer une phrase selon une thématique prédéfinie.</p>
@@ -442,8 +445,8 @@ jupyter notebook</code></pre>
 </section>
 <section id="exercicedémo" class="slide level2">
 <h2>Exercice/Démo</h2>
-<p>Ouvrir le notebook : <code>jour1_IASymboliqueConnexionniste_exercice.ipynb</code></p>
-<p>Une version déjà executée est disponible aussi: <code>jour1_ASymboliqueConnexionniste_complet.ipynb</code></p>
+<p><a href="https://alexiaschn.github.io/dhsi-2026/notebooks.html">Aller sur l’index des notebooks du cours</a></p>
+<p><code>jour1_IASymboliqueConnexionniste_exercice.ipynb</code></p>
 <p>Bonus pour les curieux.ses : <a href="https://demo-atelier.streamlit.app/">programme de démo tiré de “Debogue tes Humanités”</a></p>
 </section>
 <section id="approche-inductive-généraliste-les-llms" class="slide level2">

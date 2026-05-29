@@ -63,8 +63,8 @@ format:
 - Jour 1 - Théorie de l'IA : systèmes experts et approches inductives 
 - Jour 2 - Traitement automatique de la langue et prétraitement de texte 
 - Jour 3 - Apprentissage profond : outils et applications
-- Jour 4 - Modèles génératifs : Correction, annotation et structuration de données textuelles
-- Jour 5 - Recherche, synthèse et extraction de connaissances 
+- Jour 4 - Modèles génératifs et prompt engineering
+- Jour 5 - Systèmes complexes d'IA (RAG, système agentique) 
 
 # Des questions ?
 
@@ -72,17 +72,11 @@ format:
 
 ## Objectifs de l'après-midi
 
-Théorie : 
-
 - Qu'est-ce que l'IA ? 
 - Étudier l'IA pour les SHS
 - Retours historiques
-- Typologie des IA
-
-
-- Cas d'usage et modélisation experte (ELIZA)
-- Principe fondamentaux de l'apprentissage machine (modèles spécialisés)
-- Les LLMs : les modèles généralistes et les systèmes agentiques.
+- Typologie basique de l'IA 
+- Mise en place de l'environnement de travail 
 
 # Des exemples d'"Intelligences Artificielles" ? 
 
@@ -154,7 +148,7 @@ Babbage "la machine analytique" machine hypothétique avec capacité de computat
 
 1930s : Turing définit les termes du fonctionnement d'une "machine automatique". 
 
-1935[ Hypothèse Church-Turing ](https://fr.wikipedia.org/wiki/Th%C3%A8se_de_Church): définition de la calculabilité : la méthode de calcul respecte un nombre fini d'instructions simples, l'algorithme fournit toujours un résultat, les instructions ne demandent pas d'intelligence de la part de l'humain qui les suit. 
+1935 : [Hypothèse Church-Turing ](https://fr.wikipedia.org/wiki/Th%C3%A8se_de_Church): définition de la calculabilité : la méthode de calcul respecte un nombre fini d'instructions simples, l'algorithme fournit toujours un résultat, les instructions ne demandent pas d'intelligence de la part de l'humain qui les suit. 
 
 
 1941 : Z3 de Konrad Zuse  calculateur électromagnétique programmable binaire, parfois nommé "le premier ordinateur".
@@ -172,9 +166,9 @@ Babbage "la machine analytique" machine hypothétique avec capacité de computat
 
 1966 : ELIZA [@weizenbaumELIZAComputerProgram1966]
 
-1974-1980 : (Rapport Lighthill en 1974) premier hiver de l'IA 
+1974-1980 : Rapport Lighthill en 1974. Premier hiver de l'IA 
 
-1990-2000s : Deuxième hiver de l'IA -> termes moins connotés : "_machine learning_" ou plus généralement, "informatique"
+1990-2000s : Deuxième hiver de l'IA -> adoption générale de termes moins connotés : "_machine learning_" ou plus généralement, "informatique"
 
 1997 :  DeepBlue d'IBM bat Kasparov.
 
@@ -206,55 +200,78 @@ Actuellement : tendance à l'hybridation de ces modèles : Neuro-Symbolic Integr
 
 
 
-# Exemple plus concret 
+# Mise en place de l'environnement pour la semaine
 
 
-## Présentation du corpus de travail pour la semaine
+## Préambule : Présentation du corpus de travail pour la semaine 
+
+Anthologie Grecque
+
+
 
 
 <!-- à compléter au besoin par William (5min) -->
 
-## Petite mise en place
+## Mise en place de l'environnement : Téléchargement des notebooks
 
-1. Repo du cours : 
+**Solution 1.**
 
-Pour les personnes familières de Git : https://github.com/alexiaschn/dhsi-2026/
+Le téléchargement des notebooks et des données pour les exercices peut se faire via **le site du cours** :
+
+[https://alexiaschn.github.io/dhsi-2026/](https://alexiaschn.github.io/dhsi-2026/)
+
+Vous pourrez télécharger au fur et à mesure les notebooks et les jeux de données en retournant sur le site au moment indiqués dans le cours.
+
+**Solution 2.**
+
+Il est possible de télécharger l'intégralité des supports de cours via le repo du cours :  [https://github.com/alexiaschn/dhsi-2026/](https://github.com/alexiaschn/dhsi-2026/)
+
+En ligne de commande : 
 
 ```git clone https://github.com/alexiaschn/dhsi-2026.git```
 
-Pour les moins familiers : 
+Ou, pour les moins familiers : 
 
 Code > Download source code > zip 
 
-Extraire dans le dossier de son choix.
+## Mise en place de l'environnement : Python 
 
-2. Plusieurs solutions pour utiliser un notebook interactif Jupyter : 
+Plusieurs solutions pour utiliser un notebook interactif Jupyter : 
 
-Si Python est installé sur sa machine : 
+**Si Python est installé sur sa machine :** 
 
 - via son IDE de choix comme VSCode/VSCodium : télécharger le module Jupyter et sélectionner son interpréteur Python (Cmd + P : Python interpreter)
 - via Anaconda UI
 - via Jupyter après installation : 
 
 à la racine du repo : 
+
 ```
 python3 -m pip install --upgrade pip
 python3 -m pip install jupyter
 jupyter notebook
 ```
-puis ouvrir le localhost : le Notebook Dashboard devrait apparaitre avec l'arborescence du repo
 
-Si Python n'est pas installé :
+puis ouvrir le localhost : le Notebook Dashboard devrait apparaitre avec l'arborescence du repo.
+
+**Si Python n'est pas installé sur sa machine :** 
 
 Depuis un compte Google : 
+
+
 Télécharger l'application Colab
-https://colab.research.google.com
+[https://colab.research.google.com](https://colab.research.google.com)
 
-Fichier > Importer le notebook 
+Fichier > Importer le notebook
 
-NB : il faudra bien penser à importer manuellement pour chaque notebook les documents du corpus 
 
 ![Importer le corpus de travail dans l'environnement Google Colab](img/importer_corpus_colab.png)
+
+
+
+**Si quelqu'un ne veut absolument pas toucher à du code :**
+
+Tous les notebooks complétés viennent en HTML : [https://alexiaschn.github.io/dhsi-2026/notebooks.html](https://alexiaschn.github.io/dhsi-2026/notebooks.html)
 
 
 ## Pratique : concevoir un système expert 
@@ -320,12 +337,13 @@ Possiblement : 3e étape Entraînement supervisé : apprentissage spécialisé
 
 ## Exercice/Démo
 
-Ouvrir le notebook : `jour1_IASymboliqueConnexionniste_exercice.ipynb`
 
-Une version déjà executée est disponible aussi: `jour1_ASymboliqueConnexionniste_complet.ipynb`
+[Aller sur l'index des notebooks du cours](https://alexiaschn.github.io/dhsi-2026/notebooks.html)
+
+
+`jour1_IASymboliqueConnexionniste_exercice.ipynb`
 
 Bonus pour les curieux.ses : [programme de démo tiré de "Debogue tes Humanités"](https://demo-atelier.streamlit.app/)
-
 
 
 ## Approche inductive généraliste : les LLMs 

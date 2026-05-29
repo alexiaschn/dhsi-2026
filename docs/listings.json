@@ -4,6 +4,15 @@
     "items": []
   },
   {
+    "listing": "/notebooks.html",
+    "items": [
+      "/notebooks/jour1_IASymboliqueConnexionniste_complet.html",
+      "/notebooks/jour2_BoW_TFiDF_complet.html",
+      "/notebooks/jour2_regex_complet.html",
+      "/notebooks/jour4_steeringLLM_complet.html"
+    ]
+  },
+  {
     "listing": "/diapositives.html",
     "items": [
       "/diapositives/jour01.html",
@@ -12,14 +21,6 @@
       "/diapositives/jour03.html",
       "/diapositives/jour04AM.html",
       "/diapositives/jour05.html"
-    ]
-  },
-  {
-    "listing": "/notebooks.html",
-    "items": [
-      "/notebooks/jour2_BoW_TFiDF_complet.html",
-      "/notebooks/jour2_regex_complet.html",
-      "/notebooks/jour4_steeringLLM_complet.html"
     ]
   }
 ]
