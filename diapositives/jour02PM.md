@@ -26,15 +26,15 @@ format:
 
 PM: (2h30)
 
-- Atelier de nettoyage de corpus (45 minutes) @alexia
+- Atelier de nettoyage de corpus (1 heure) 
 - PAUSE (15 min)
-- Représentations vectorielles (20 minutes + 40 minutes d'exercice) @alexia
+- Représentations vectorielles (1h15 d'exercice) 
     - BOW
     - TF-IDF
-- Classification (15 minutes + 15 minutes de démonstration)
+- Classification (15 minutes)
+    - KNN
     - RandomForest 
     - LR 
-    - etc.
 
 ## Nettoyer et structurer un corpus avec des Regex
 
@@ -53,6 +53,8 @@ Par conséquent, c'est une forme d'automatisation ou IA symboliste de bas niveau
 ## Principes de base des regex 
 
 
+[Démonstration de base](https://regex101.com/)
+
 [Cheat Sheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/)
 
 
@@ -63,6 +65,7 @@ Module `re` :
 
 ```
 import re 
+
 ```
 
 
@@ -73,13 +76,17 @@ import re
 
 ## Atelier Expression régulière ou _Regular Expression_ / Regex
 
+
+[https://alexiaschn.github.io/dhsi-2026/notebooks.html](https://alexiaschn.github.io/dhsi-2026/notebooks.html)
+
+
 Importer le notebook : 
 
-jour2_regex_exercice.ipynb 
+`jour2_regex_exercice.ipynb`
 
 La correction est en HTML : 
 
-jour2_regex_complet.ipynb 
+`jour2_regex_complet.html`
 
 
 # Pause
@@ -214,8 +221,7 @@ Source : [wikipedia distance Manhattan](https://fr.wikipedia.org/wiki/Distance_d
 ## Exercice 
 
 
-https://alexiaschn.github.io/dhsi-2026/notebooks.html
-
+[https://alexiaschn.github.io/dhsi-2026/notebooks.html](https://alexiaschn.github.io/dhsi-2026/notebooks.html)
 
 `jour2_BoW_TFiDF_exercice.ipynb`
 
@@ -242,6 +248,10 @@ Ces algorithmes sont les piliers de la classification classique avant d'aborder 
 *   **Avantages** : Simple à comprendre, pas de phase d'entraînement explicite (apprentissage paresseux).
 *   **Limites** : Lent sur de grands jeux de données, sensible aux données non normalisées et au "bruit".
 
+![K-NN](img/knn.png)
+
+Source: [Geeksforgeeks](https://www.geeksforgeeks.org/machine-learning/k-nearest-neighbours/)
+
 ## Random Forest
 
 *   C'est un algorithme d'ensemble ("Ensemble Learning") basé sur les arbres de décision.
@@ -249,15 +259,23 @@ Ces algorithmes sont les piliers de la classification classique avant d'aborder 
 *   **Prédiction** : Chaque arbre vote, et la classe retenue est celle qui obtient le plus de votes (bagging).
 *   **Avantages** : Très robuste au surapprentissage (overfitting), gère bien les données non linéaires.
 
+![Random Forest](img/random-forest.png)
 
-## Régression Logistique 
+
+
+
+## Régression Logistique et Régression linéaire
+
+
 
 *   Bien que nommée "régression", elle sert à la classification.
-*   Elle modélise la probabilité qu'une donnée appartienne à une classe spécifique à l'aide d'une fonction sigmoïde.
+*   Elle modélise la probabilité qu'une donnée appartienne à une classe spécifique à l'aide d'une fonction sigmoïde si logistique et linéaire si régression linéaire.
 *   Elle trace une frontière de décision (linéaire ou non linéaire selon les features) pour séparer les classes.
 *   **Idéal pour** : Les problèmes linéaires, l'interprétabilité des coefficients.
 
-# Slide 4 : Synthèse et Comparaison
+![Algo de Regressions](img/LR.png)
+
+# Synthèse et Comparaison
 
 | Critère | k-NN | Régression Logistique | Random Forest |
 | :--- | :--- | :--- | :--- |
@@ -272,7 +290,6 @@ Ces algorithmes sont les piliers de la classification classique avant d'aborder 
 *   Utilisez **Random Forest** pour la performance et la robustesse sur des problèmes complexes.
 
 
-## Bibliographie
 
 
    

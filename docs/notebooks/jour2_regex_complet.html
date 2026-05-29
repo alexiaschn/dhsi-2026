@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -100,9 +100,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -171,183 +168,143 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Commençons par voir les bases des Expressions régulières</p>
-<div id="cell-2" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-3" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    texte_original <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.txt"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>P corpus https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>alexiaschn<span class="op">/</span>dhsi<span class="op">-</span><span class="dv">2026</span><span class="op">/</span>main<span class="op">/</span>notebooks<span class="op">/</span>corpus<span class="op">/</span>epigrammes_anthologia_graeca_fr.txt</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    texte_original <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.txt"</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>texte_original</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>/home/schn/Documents/GitLab/dhsi/notebooks
-/home/schn/Documents/GitLab/dhsi/notebooks</code></pre>
+<pre><code>Requirement already satisfied: pandas in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (2.2.3)
+Requirement already satisfied: numpy&gt;=1.26.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from pandas) (2.2.4)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/lib/python3/dist-packages (from pandas) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/lib/python3/dist-packages (from pandas) (2024.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from pandas) (2025.2)
+
+[notice] A new release of pip is available: 25.3 -&gt; 26.1.1
+[notice] To update, run: pip install --upgrade pip</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">epigramme_id</th>
-<th data-quarto-table-cell-role="th">book</th>
-<th data-quarto-table-cell-role="th">fragment</th>
-<th data-quarto-table-cell-role="th">urn</th>
-<th data-quarto-table-cell-role="th">author_fr</th>
-<th data-quarto-table-cell-role="th">text_fr</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>7.114</td>
-<td>7</td>
-<td>114</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.114</td>
-<td>Diogène Laërce</td>
-<td>Tu voulais, Héraclide, laisser aux hommes le b...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>7.115</td>
-<td>7</td>
-<td>115</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.115</td>
-<td>Diogène Laërce</td>
-<td>« Tu as vécu en chien, Antisthène. - C'est que...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>7.116</td>
-<td>7</td>
-<td>116</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.116</td>
-<td>Diogène Laërce</td>
-<td>« Diogène, allons, dis-moi quel destin t'a rav...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>7.120</td>
-<td>7</td>
-<td>120</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.120</td>
-<td>Xénophane</td>
-<td>On dit qu'un jour il passait devant un jeune c...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>7.171</td>
-<td>7</td>
-<td>171</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.171</td>
-<td>Mnasalcès</td>
-<td>Ici aussi l'oiseau sacré reposera son aile rap...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>7.172</td>
-<td>7</td>
-<td>172</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.172</td>
-<td>Antipatros de Sidon</td>
-<td>Moi, Alcimènés, jadis j'écartais l'etourneau e...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>7.173</td>
-<td>7</td>
-<td>173</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.173</td>
-<td>Diotimos d'Adramytte; Diotime d'Athènes; Léoni...</td>
-<td>D'elles-mêmes, le soir, les vaches sont revenu...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>7.189</td>
-<td>7</td>
-<td>189</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.189</td>
-<td>Aristodicos de Rhodes</td>
-<td>Non, jamais plus, mélodieuse sauterelle, Hélio...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>7.190</td>
-<td>7</td>
-<td>190</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.190</td>
-<td>Anytè; Léonidas de Tarente</td>
-<td>A la sauterelle, rossignol des guérets, à la c...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>7.191</td>
-<td>7</td>
-<td>191</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.191</td>
-<td>Archias; Archias de Mytilène</td>
-<td>Moi qui jadis, en renvoyant le sons, répondais...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>7.192</td>
-<td>7</td>
-<td>192</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.192</td>
-<td>Mnasalcès</td>
-<td>Jamais plus de tes ailes bruissantes tu ne cha...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>7.195</td>
-<td>7</td>
-<td>195</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.195</td>
-<td>Méléagre de Gadara</td>
-<td>Sauterelle, toi qui trompes mes regrets et apa...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">12</td>
-<td>7.201</td>
-<td>7</td>
-<td>201</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.201</td>
-<td>Pamphile d'Alexandrie</td>
-<td>Tu ne jettes plus, posée sur les feuilles vert...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">13</td>
-<td>7.214</td>
-<td>7</td>
-<td>214</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.214</td>
-<td>Archias; Archias de Mytilène</td>
-<td>Tu ne vas plus t'élancer à travers les profond...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">14</td>
-<td>7.216</td>
-<td>7</td>
-<td>216</td>
-<td>urn:cts:greekLit:tlg7000.tlg001.ag:7.216</td>
-<td>Antipater de Thessalonique</td>
-<td>Les flots et les vagues houleuses m'ont jeté s...</td>
-</tr>
-</tbody>
-</table>
-
 </div>
+<div id="cell-3" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import de nos données pour l'exercice </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># si le notebook n'est pas exécuté dans un environnement local, les données sont téléchargées automatiquement</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.txt"</span>, <span class="st">'r'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        texte_original <span class="op">=</span> f.read()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>P corpus https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>alexiaschn<span class="op">/</span>dhsi<span class="op">-</span><span class="dv">2026</span><span class="op">/</span>main<span class="op">/</span>notebooks<span class="op">/</span>corpus<span class="op">/</span>epigrammes_anthologia_graeca_fr.txt</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.txt"</span>, <span class="st">'r'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        texte_original <span class="op">=</span> f.read()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(texte_original)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>epigramme_id: 7.114
+book: 7
+fragment: 114
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.114
+author_fr: Diogène Laërce
+text_fr: Tu voulais, Héraclide, laisser aux hommes le bruit que tu avais été, une fois mort, changé aux yeux de tous en serpent. Mais tu fus trompé dans tes calculs sophistiques : la bête, en effet, appartenait bien au genre serpent ; toi, tu fus convaicu d'être bête, mais pas du genre sage.
+
+epigramme_id: 7.115
+book: 7
+fragment: 115
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.115
+author_fr: Diogène Laërce
+text_fr: « Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »
+
+epigramme_id: 7.116
+book: 7
+fragment: 116
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.116
+author_fr: Diogène Laërce
+text_fr: « Diogène, allons, dis-moi quel destin t'a ravi? - C'est la morsure féroce du Chien, qui m'a ravi chez Hadès. »
+
+epigramme_id: 7.120
+book: 7
+fragment: 120
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.120
+author_fr: Xénophane
+text_fr: On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut compassion et prononça ces paroles : « Arrête et ne frappe plus, car sûrement c'est l'âme d'un ami, que j'ai reconnue en l'entendant crier. »
+
+epigramme_id: 7.171
+book: 7
+fragment: 171
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.171
+author_fr: Mnasalcès
+text_fr: Ici aussi l'oiseau sacré reposera son aile rapide, en s' arrêtant sur ce platane plein d'attrait. Il est mort en effet, Poimandros de Mélien, et il ne viendra plus verser sa glu sur ses pipeaux de chasse.
+
+epigramme_id: 7.172
+book: 7
+fragment: 172
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.172
+author_fr: Antipatros de Sidon
+text_fr: Moi, Alcimènés, jadis j'écartais l'etourneau et la voleuse de semences, la grue de Bistonie au vol élevé, en tendant les bras agiles de ma fronde, et je repoussais au loin la nuée des oiseaux. Mais en me piquant près de la cheville, une vipère dipsas a versé dans ma chair le venin amer de ses mâchoires, me privant de la vue du soleil. Voilà comment en regardant ce qui ce passait en l'air, je n'ai pas vu le mal qui rampait à mes pieds.
+
+epigramme_id: 7.173
+book: 7
+fragment: 173
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.173
+author_fr: Diotimos d'Adramytte; Diotime d'Athènes; Léonidas de Tarente
+text_fr: D'elles-mêmes, le soir, les vaches sont revenues de la montagne à l'étable, couvertes d'une neige abondante et, hélas, au pied d'une chêne, Thérimachos dort du sommeil éternel : c'est le feu du ciel qui l'y a plongé.
+
+epigramme_id: 7.189
+book: 7
+fragment: 189
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.189
+author_fr: Aristodicos de Rhodes
+text_fr: Non, jamais plus, mélodieuse sauterelle, Hélios ne te verra chanter dans la demeure opulente d'Alkis. Déjà en effet tu as pris ton vol vers les prairies de Clyménos et les fleurs humides de rosée de la rayonnante Perséphone.
+
+epigramme_id: 7.190
+book: 7
+fragment: 190
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.190
+author_fr: Anytè; Léonidas de Tarente
+text_fr: A la sauterelle, rossignol des guérets, à la cigale, hôtesse des hêtres, Myro fit une tombe commune ; elle répandit, la jeune fille, une larme virginale : c'est que l'impitoyable Hadès s'en allait en emportant le double objet de ses jeux.
+
+epigramme_id: 7.191
+book: 7
+fragment: 191
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.191
+author_fr: Archias; Archias de Mytilène
+text_fr: Moi qui jadis, en renvoyant le sons, répondais souvent aux pâtres, aux bûcherons et aux pêcheurs, moi, la pie, qui souvent jetais mes cris répétés, comme un écho, accents trompeurs d'une voix apte à répondre aux chants, maintenant tombée à terre. Je gis sans langue et sans voix, déchue de mon besoin d'imitation.
+
+epigramme_id: 7.192
+book: 7
+fragment: 192
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.192
+author_fr: Mnasalcès
+text_fr: Jamais plus de tes ailes bruissantes tu ne chanteras, sauterelle, posée le long des sillons fertiles ; jamais plus, étendu à l'ombre des rameaux, je ne serai charmé du chant mélodieux rythmé par tes blondes ailes.
+
+epigramme_id: 7.195
+book: 7
+fragment: 195
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.195
+author_fr: Méléagre de Gadara
+text_fr: Sauterelle, toi qui trompes mes regrets et apaises mon sommeil, sauterelle, muse agreste au vol mélodieux, imitation naturelle de la lyre, dis-moi quelque chant aimé en frappant de tes pattes tes ailes sonores, afin de m'arracher au souci de mes peines qui m'enlèvent le sommeil, cigale, toi qui sais les chants qui trompent l'amour. A ton réveil je te donnerai comme récompense du poireau toujours vert et des plantes humides de rosée, que tu diviseras de tes lèvres.
+
+epigramme_id: 7.201
+book: 7
+fragment: 201
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.201
+author_fr: Pamphile d'Alexandrie
+text_fr: Tu ne jettes plus, posée sur les feuilles vertes, l'agréable chanson de ton cri perçant ; mais c'est quand tu chantais, stridente cigale, qu'un jeune garçon te tua de sa main tendue.
+
+epigramme_id: 7.214
+book: 7
+fragment: 214
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.214
+author_fr: Archias; Archias de Mytilène
+text_fr: Tu ne vas plus t'élancer à travers les profondeurs bouillonnantes de la mer, ô dauphin, et effrayer les troupeaux marins ni danser au chant de la flûte percée de trous, en faisant jaillir l'eau autour des barques ni, tout écumant, prendre sur ton dos comme autrefois les Néréides, pour les porter jusqu'aux bornes de l'empire de Téthys. Car une vague, pareille au promontoire Malée, s'est soulevée et t'a jeté sur les sables et les cailloux du rivage.
+
+epigramme_id: 7.216
+book: 7
+fragment: 216
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.216
+author_fr: Antipater de Thessalonique
+text_fr: Les flots et les vagues houleuses m'ont jeté sur le rivage, moi dauphin, et je fus pour les passants une étrange vision d'infortune. Mais sur la terre il y a place pour la pitié ; car ceux qui m'avaient vu m'ont aussitôt, dans leur piété, honoré d'un tombeau. C'est celle qui m'a enfanté, la mer, qui m'a fait périr. Quelle confiance avoir dans l'Océan, qui n'a même pas épargné son propre nourrisson ?
+
+</code></pre>
 </div>
 </div>
 <section id="expressions-régulières-de-base" class="level2">
@@ -381,28 +338,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exercices-plus-facile" class="level2">
 <h2 class="anchored" data-anchor-id="exercices-plus-facile">Exercices plus facile</h2>
 <p>Chercher toutes les lignes contenant les noms d’auteur.</p>
-<p>Chercher toutes les lignes contenant un chien ou un chat.</p>
+<p>Chercher toutes les lignes contenant le mot ‘chien’ ou ‘oiseau’.</p>
 <p>Transformer tous les a en b.</p>
 <p>Transformer tous les a majuscule ou minuscule en b.</p>
 <p>Inverser toutes les lettres a suivies d’un i en ia ex: voulait -&gt; vouliat.</p>
-<p>Capturer les textes écrits par Xénophane</p>
-<div id="cell-6" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chercher toutes les lignes contenant les noms d'auteur. </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(re.findall(<span class="vs">r'author_fr:.*'</span>, texte_original))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Capturer les textes écrits par Diogène Laërce</p>
+<div id="cell-7" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chercher toutes les lignes contenant les noms d'auteur. </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>.join([author <span class="cf">for</span> author <span class="kw">in</span> re.findall(<span class="vs">r'author_fr:.*'</span>, texte_original)]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>['author_fr: Diogène Laërce', 'author_fr: Diogène Laërce', 'author_fr: Diogène Laërce', 'author_fr: Xénophane', 'author_fr: Mnasalcès', 'author_fr: Antipatros de Sidon', "author_fr: Diotimos d'Adramytte; Diotime d'Athènes; Léonidas de Tarente", 'author_fr: Aristodicos de Rhodes', 'author_fr: Anytè; Léonidas de Tarente', 'author_fr: Archias; Archias de Mytilène', 'author_fr: Mnasalcès', 'author_fr: Méléagre de Gadara', "author_fr: Pamphile d'Alexandrie", 'author_fr: Archias; Archias de Mytilène', 'author_fr: Antipater de Thessalonique']</code></pre>
+<pre><code>author_fr: Diogène Laërce
+author_fr: Diogène Laërce
+author_fr: Diogène Laërce
+author_fr: Xénophane
+author_fr: Mnasalcès
+author_fr: Antipatros de Sidon
+author_fr: Diotimos d'Adramytte; Diotime d'Athènes; Léonidas de Tarente
+author_fr: Aristodicos de Rhodes
+author_fr: Anytè; Léonidas de Tarente
+author_fr: Archias; Archias de Mytilène
+author_fr: Mnasalcès
+author_fr: Méléagre de Gadara
+author_fr: Pamphile d'Alexandrie
+author_fr: Archias; Archias de Mytilène
+author_fr: Antipater de Thessalonique</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chercher toutes les épigrammes contenant un chien ou un chat. </span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(re.findall(<span class="vs">r'(text_fr:.*(chien|chat).*)'</span>, texte_original))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chercher toutes les épigrammes contenant un chien ou un oiseau. </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>.join([chien_chat[<span class="dv">0</span>] <span class="cf">for</span> chien_chat <span class="kw">in</span> re.findall(<span class="vs">r'(text_fr:.*(chien|oiseau).*)'</span>, texte_original)]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[("text_fr: « Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »", 'chien'), ("text_fr: On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut compassion et prononça ces paroles : « Arrête et ne frappe plus, car sûrement c'est l'âme d'un ami, que j'ai reconnue en l'entendant crier. »", 'chien')]</code></pre>
+<pre><code>text_fr: « Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »
+text_fr: On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut compassion et prononça ces paroles : « Arrête et ne frappe plus, car sûrement c'est l'âme d'un ami, que j'ai reconnue en l'entendant crier. »
+text_fr: Ici aussi l'oiseau sacré reposera son aile rapide, en s' arrêtant sur ce platane plein d'attrait. Il est mort en effet, Poimandros de Mélien, et il ne viendra plus verser sa glu sur ses pipeaux de chasse.
+text_fr: Moi, Alcimènés, jadis j'écartais l'etourneau et la voleuse de semences, la grue de Bistonie au vol élevé, en tendant les bras agiles de ma fronde, et je repoussais au loin la nuée des oiseaux. Mais en me piquant près de la cheville, une vipère dipsas a versé dans ma chair le venin amer de ses mâchoires, me privant de la vue du soleil. Voilà comment en regardant ce qui ce passait en l'air, je n'ai pas vu le mal qui rampait à mes pieds.</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformer tous les a en b.</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(re.sub(<span class="vs">r'a'</span>, <span class="st">'b'</span>, texte_original))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-9" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformer tous les a en b.</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(re.sub(<span class="vs">r'a'</span>, <span class="st">'b'</span>, texte_original))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>epigrbmme_id: 7.114
 book: 7
@@ -512,9 +486,9 @@ text_fr: Les flots et les vbgues houleuses m'ont jeté sur le rivbge, moi dbuphi
 </code></pre>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inverser toutes les lettres a suivies d'un i en ia ex: voulait -&gt; vouliat. </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(re.sub(<span class="vs">r'ai'</span>, <span class="st">'ia'</span>, texte_original))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-10" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inverser toutes les lettres a suivies d'un i en ia ex: voulait -&gt; vouliat. </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(re.sub(<span class="vs">r'ai'</span>, <span class="st">'ia'</span>, texte_original))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>epigramme_id: 7.114
 book: 7
@@ -624,12 +598,14 @@ text_fr: Les flots et les vagues houleuses m'ont jeté sur le rivage, moi dauphi
 </code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Capturer les textes écrits par Xénophane</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(re.findall(<span class="vs">r'author_fr: Xénophane\ntext_fr: (.*)'</span>, texte_original))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-11" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Capturer les textes écrits par Diogène Laërce</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>.join([epi <span class="cf">for</span> epi <span class="kw">in</span> re.findall(<span class="vs">r'author_fr: Diogène Laërce\ntext_fr: (.*)'</span>, texte_original)]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>["On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut compassion et prononça ces paroles : « Arrête et ne frappe plus, car sûrement c'est l'âme d'un ami, que j'ai reconnue en l'entendant crier. »"]</code></pre>
+<pre><code>Tu voulais, Héraclide, laisser aux hommes le bruit que tu avais été, une fois mort, changé aux yeux de tous en serpent. Mais tu fus trompé dans tes calculs sophistiques : la bête, en effet, appartenait bien au genre serpent ; toi, tu fus convaicu d'être bête, mais pas du genre sage.
+« Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »
+« Diogène, allons, dis-moi quel destin t'a ravi? - C'est la morsure féroce du Chien, qui m'a ravi chez Hadès. »</code></pre>
 </div>
 </div>
 </section>
@@ -641,57 +617,162 @@ text_fr: Les flots et les vagues houleuses m'ont jeté sur le rivage, moi dauphi
 <p>Extraire le dernier texte</p>
 <p>Numéro de l’épigramme qui contient le mot “rossignol”</p>
 <p>Substitution de tous les noms d’auteur commençant par D par votre nom.</p>
-<div id="cell-12" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire tous les numéros de fragment. </span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>numeros <span class="op">=</span> re.findall(<span class="vs">r"fragment: (\d</span><span class="sc">{3}</span><span class="vs">)"</span>, texte_original)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Numéros des fragments : </span><span class="sc">{</span>numeros<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-13" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire tous les numéros de fragment. </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>numeros <span class="op">=</span> re.findall(<span class="vs">r"fragment: (\d</span><span class="sc">{3}</span><span class="vs">)"</span>, texte_original)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Numéros des fragments :</span><span class="ch">\n</span><span class="sc">{</span><span class="st">'</span><span class="ch">\n</span><span class="st">'</span><span class="sc">.</span>join(numeros)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Numéros des fragments : ['114', '115', '116', '120', '171', '172', '173', '189', '190', '191', '192', '195', '201', '214', '216']</code></pre>
-</div>
-</div>
-<div id="cell-13" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire toutes les épigrammes avec leurs métadonnées. </span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>epigrammes_completes <span class="op">=</span> re.split(<span class="vs">r"\n\n"</span>, texte_original)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Épigrammes avec leurs métadonnées : </span><span class="sc">{</span>epigrammes_completes<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Épigrammes avec leurs métadonnées : ["epigramme_id: 7.114\nbook: 7\nfragment: 114\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.114\nauthor_fr: Diogène Laërce\ntext_fr: Tu voulais, Héraclide, laisser aux hommes le bruit que tu avais été, une fois mort, changé aux yeux de tous en serpent. Mais tu fus trompé dans tes calculs sophistiques : la bête, en effet, appartenait bien au genre serpent ; toi, tu fus convaicu d'être bête, mais pas du genre sage.", "epigramme_id: 7.115\nbook: 7\nfragment: 115\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.115\nauthor_fr: Diogène Laërce\ntext_fr: « Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »", "epigramme_id: 7.116\nbook: 7\nfragment: 116\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.116\nauthor_fr: Diogène Laërce\ntext_fr: « Diogène, allons, dis-moi quel destin t'a ravi? - C'est la morsure féroce du Chien, qui m'a ravi chez Hadès. »", "epigramme_id: 7.120\nbook: 7\nfragment: 120\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.120\nauthor_fr: Xénophane\ntext_fr: On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut compassion et prononça ces paroles : « Arrête et ne frappe plus, car sûrement c'est l'âme d'un ami, que j'ai reconnue en l'entendant crier. »", "epigramme_id: 7.171\nbook: 7\nfragment: 171\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.171\nauthor_fr: Mnasalcès\ntext_fr: Ici aussi l'oiseau sacré reposera son aile rapide, en s' arrêtant sur ce platane plein d'attrait. Il est mort en effet, Poimandros de Mélien, et il ne viendra plus verser sa glu sur ses pipeaux de chasse.", "epigramme_id: 7.172\nbook: 7\nfragment: 172\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.172\nauthor_fr: Antipatros de Sidon\ntext_fr: Moi, Alcimènés, jadis j'écartais l'etourneau et la voleuse de semences, la grue de Bistonie au vol élevé, en tendant les bras agiles de ma fronde, et je repoussais au loin la nuée des oiseaux. Mais en me piquant près de la cheville, une vipère dipsas a versé dans ma chair le venin amer de ses mâchoires, me privant de la vue du soleil. Voilà comment en regardant ce qui ce passait en l'air, je n'ai pas vu le mal qui rampait à mes pieds.", "epigramme_id: 7.173\nbook: 7\nfragment: 173\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.173\nauthor_fr: Diotimos d'Adramytte; Diotime d'Athènes; Léonidas de Tarente\ntext_fr: D'elles-mêmes, le soir, les vaches sont revenues de la montagne à l'étable, couvertes d'une neige abondante et, hélas, au pied d'une chêne, Thérimachos dort du sommeil éternel : c'est le feu du ciel qui l'y a plongé.", "epigramme_id: 7.189\nbook: 7\nfragment: 189\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.189\nauthor_fr: Aristodicos de Rhodes\ntext_fr: Non, jamais plus, mélodieuse sauterelle, Hélios ne te verra chanter dans la demeure opulente d'Alkis. Déjà en effet tu as pris ton vol vers les prairies de Clyménos et les fleurs humides de rosée de la rayonnante Perséphone.", "epigramme_id: 7.190\nbook: 7\nfragment: 190\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.190\nauthor_fr: Anytè; Léonidas de Tarente\ntext_fr: A la sauterelle, rossignol des guérets, à la cigale, hôtesse des hêtres, Myro fit une tombe commune ; elle répandit, la jeune fille, une larme virginale : c'est que l'impitoyable Hadès s'en allait en emportant le double objet de ses jeux.", "epigramme_id: 7.191\nbook: 7\nfragment: 191\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.191\nauthor_fr: Archias; Archias de Mytilène\ntext_fr: Moi qui jadis, en renvoyant le sons, répondais souvent aux pâtres, aux bûcherons et aux pêcheurs, moi, la pie, qui souvent jetais mes cris répétés, comme un écho, accents trompeurs d'une voix apte à répondre aux chants, maintenant tombée à terre. Je gis sans langue et sans voix, déchue de mon besoin d'imitation.", "epigramme_id: 7.192\nbook: 7\nfragment: 192\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.192\nauthor_fr: Mnasalcès\ntext_fr: Jamais plus de tes ailes bruissantes tu ne chanteras, sauterelle, posée le long des sillons fertiles ; jamais plus, étendu à l'ombre des rameaux, je ne serai charmé du chant mélodieux rythmé par tes blondes ailes.", "epigramme_id: 7.195\nbook: 7\nfragment: 195\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.195\nauthor_fr: Méléagre de Gadara\ntext_fr: Sauterelle, toi qui trompes mes regrets et apaises mon sommeil, sauterelle, muse agreste au vol mélodieux, imitation naturelle de la lyre, dis-moi quelque chant aimé en frappant de tes pattes tes ailes sonores, afin de m'arracher au souci de mes peines qui m'enlèvent le sommeil, cigale, toi qui sais les chants qui trompent l'amour. A ton réveil je te donnerai comme récompense du poireau toujours vert et des plantes humides de rosée, que tu diviseras de tes lèvres.", "epigramme_id: 7.201\nbook: 7\nfragment: 201\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.201\nauthor_fr: Pamphile d'Alexandrie\ntext_fr: Tu ne jettes plus, posée sur les feuilles vertes, l'agréable chanson de ton cri perçant ; mais c'est quand tu chantais, stridente cigale, qu'un jeune garçon te tua de sa main tendue.", "epigramme_id: 7.214\nbook: 7\nfragment: 214\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.214\nauthor_fr: Archias; Archias de Mytilène\ntext_fr: Tu ne vas plus t'élancer à travers les profondeurs bouillonnantes de la mer, ô dauphin, et effrayer les troupeaux marins ni danser au chant de la flûte percée de trous, en faisant jaillir l'eau autour des barques ni, tout écumant, prendre sur ton dos comme autrefois les Néréides, pour les porter jusqu'aux bornes de l'empire de Téthys. Car une vague, pareille au promontoire Malée, s'est soulevée et t'a jeté sur les sables et les cailloux du rivage.", "epigramme_id: 7.216\nbook: 7\nfragment: 216\nurn: urn:cts:greekLit:tlg7000.tlg001.ag:7.216\nauthor_fr: Antipater de Thessalonique\ntext_fr: Les flots et les vagues houleuses m'ont jeté sur le rivage, moi dauphin, et je fus pour les passants une étrange vision d'infortune. Mais sur la terre il y a place pour la pitié ; car ceux qui m'avaient vu m'ont aussitôt, dans leur piété, honoré d'un tombeau. C'est celle qui m'a enfanté, la mer, qui m'a fait périr. Quelle confiance avoir dans l'Océan, qui n'a même pas épargné son propre nourrisson ?", '']</code></pre>
+<pre><code>Numéros des fragments :
+114
+115
+116
+120
+171
+172
+173
+189
+190
+191
+192
+195
+201
+214
+216</code></pre>
 </div>
 </div>
 <div id="cell-14" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire le premier texte. </span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>premier_texte <span class="op">=</span> re.search(<span class="vs">r"text_fr:(.*)"</span>, texte_original)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Premier texte : </span><span class="sc">{</span>premier_texte<span class="sc">.</span>group(<span class="dv">1</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire toutes les épigrammes avec leurs métadonnées. </span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>epigrammes_completes <span class="op">=</span> re.split(<span class="vs">r"\n\n"</span>, texte_original)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Épigrammes avec leurs métadonnées :</span><span class="ch">\n</span><span class="sc">{</span><span class="st">'</span><span class="ch">\n</span><span class="st">'</span><span class="sc">.</span>join(epigrammes_completes)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Épigrammes avec leurs métadonnées :
+epigramme_id: 7.114
+book: 7
+fragment: 114
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.114
+author_fr: Diogène Laërce
+text_fr: Tu voulais, Héraclide, laisser aux hommes le bruit que tu avais été, une fois mort, changé aux yeux de tous en serpent. Mais tu fus trompé dans tes calculs sophistiques : la bête, en effet, appartenait bien au genre serpent ; toi, tu fus convaicu d'être bête, mais pas du genre sage.
+epigramme_id: 7.115
+book: 7
+fragment: 115
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.115
+author_fr: Diogène Laërce
+text_fr: « Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »
+epigramme_id: 7.116
+book: 7
+fragment: 116
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.116
+author_fr: Diogène Laërce
+text_fr: « Diogène, allons, dis-moi quel destin t'a ravi? - C'est la morsure féroce du Chien, qui m'a ravi chez Hadès. »
+epigramme_id: 7.120
+book: 7
+fragment: 120
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.120
+author_fr: Xénophane
+text_fr: On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut compassion et prononça ces paroles : « Arrête et ne frappe plus, car sûrement c'est l'âme d'un ami, que j'ai reconnue en l'entendant crier. »
+epigramme_id: 7.171
+book: 7
+fragment: 171
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.171
+author_fr: Mnasalcès
+text_fr: Ici aussi l'oiseau sacré reposera son aile rapide, en s' arrêtant sur ce platane plein d'attrait. Il est mort en effet, Poimandros de Mélien, et il ne viendra plus verser sa glu sur ses pipeaux de chasse.
+epigramme_id: 7.172
+book: 7
+fragment: 172
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.172
+author_fr: Antipatros de Sidon
+text_fr: Moi, Alcimènés, jadis j'écartais l'etourneau et la voleuse de semences, la grue de Bistonie au vol élevé, en tendant les bras agiles de ma fronde, et je repoussais au loin la nuée des oiseaux. Mais en me piquant près de la cheville, une vipère dipsas a versé dans ma chair le venin amer de ses mâchoires, me privant de la vue du soleil. Voilà comment en regardant ce qui ce passait en l'air, je n'ai pas vu le mal qui rampait à mes pieds.
+epigramme_id: 7.173
+book: 7
+fragment: 173
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.173
+author_fr: Diotimos d'Adramytte; Diotime d'Athènes; Léonidas de Tarente
+text_fr: D'elles-mêmes, le soir, les vaches sont revenues de la montagne à l'étable, couvertes d'une neige abondante et, hélas, au pied d'une chêne, Thérimachos dort du sommeil éternel : c'est le feu du ciel qui l'y a plongé.
+epigramme_id: 7.189
+book: 7
+fragment: 189
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.189
+author_fr: Aristodicos de Rhodes
+text_fr: Non, jamais plus, mélodieuse sauterelle, Hélios ne te verra chanter dans la demeure opulente d'Alkis. Déjà en effet tu as pris ton vol vers les prairies de Clyménos et les fleurs humides de rosée de la rayonnante Perséphone.
+epigramme_id: 7.190
+book: 7
+fragment: 190
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.190
+author_fr: Anytè; Léonidas de Tarente
+text_fr: A la sauterelle, rossignol des guérets, à la cigale, hôtesse des hêtres, Myro fit une tombe commune ; elle répandit, la jeune fille, une larme virginale : c'est que l'impitoyable Hadès s'en allait en emportant le double objet de ses jeux.
+epigramme_id: 7.191
+book: 7
+fragment: 191
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.191
+author_fr: Archias; Archias de Mytilène
+text_fr: Moi qui jadis, en renvoyant le sons, répondais souvent aux pâtres, aux bûcherons et aux pêcheurs, moi, la pie, qui souvent jetais mes cris répétés, comme un écho, accents trompeurs d'une voix apte à répondre aux chants, maintenant tombée à terre. Je gis sans langue et sans voix, déchue de mon besoin d'imitation.
+epigramme_id: 7.192
+book: 7
+fragment: 192
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.192
+author_fr: Mnasalcès
+text_fr: Jamais plus de tes ailes bruissantes tu ne chanteras, sauterelle, posée le long des sillons fertiles ; jamais plus, étendu à l'ombre des rameaux, je ne serai charmé du chant mélodieux rythmé par tes blondes ailes.
+epigramme_id: 7.195
+book: 7
+fragment: 195
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.195
+author_fr: Méléagre de Gadara
+text_fr: Sauterelle, toi qui trompes mes regrets et apaises mon sommeil, sauterelle, muse agreste au vol mélodieux, imitation naturelle de la lyre, dis-moi quelque chant aimé en frappant de tes pattes tes ailes sonores, afin de m'arracher au souci de mes peines qui m'enlèvent le sommeil, cigale, toi qui sais les chants qui trompent l'amour. A ton réveil je te donnerai comme récompense du poireau toujours vert et des plantes humides de rosée, que tu diviseras de tes lèvres.
+epigramme_id: 7.201
+book: 7
+fragment: 201
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.201
+author_fr: Pamphile d'Alexandrie
+text_fr: Tu ne jettes plus, posée sur les feuilles vertes, l'agréable chanson de ton cri perçant ; mais c'est quand tu chantais, stridente cigale, qu'un jeune garçon te tua de sa main tendue.
+epigramme_id: 7.214
+book: 7
+fragment: 214
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.214
+author_fr: Archias; Archias de Mytilène
+text_fr: Tu ne vas plus t'élancer à travers les profondeurs bouillonnantes de la mer, ô dauphin, et effrayer les troupeaux marins ni danser au chant de la flûte percée de trous, en faisant jaillir l'eau autour des barques ni, tout écumant, prendre sur ton dos comme autrefois les Néréides, pour les porter jusqu'aux bornes de l'empire de Téthys. Car une vague, pareille au promontoire Malée, s'est soulevée et t'a jeté sur les sables et les cailloux du rivage.
+epigramme_id: 7.216
+book: 7
+fragment: 216
+urn: urn:cts:greekLit:tlg7000.tlg001.ag:7.216
+author_fr: Antipater de Thessalonique
+text_fr: Les flots et les vagues houleuses m'ont jeté sur le rivage, moi dauphin, et je fus pour les passants une étrange vision d'infortune. Mais sur la terre il y a place pour la pitié ; car ceux qui m'avaient vu m'ont aussitôt, dans leur piété, honoré d'un tombeau. C'est celle qui m'a enfanté, la mer, qui m'a fait périr. Quelle confiance avoir dans l'Océan, qui n'a même pas épargné son propre nourrisson ?
+</code></pre>
+</div>
+</div>
+<div id="cell-15" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire le premier texte. </span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>premier_texte <span class="op">=</span> re.search(<span class="vs">r"text_fr:(.*)"</span>, texte_original)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Premier texte : </span><span class="sc">{</span>premier_texte<span class="sc">.</span>group(<span class="dv">1</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Premier texte :  Tu voulais, Héraclide, laisser aux hommes le bruit que tu avais été, une fois mort, changé aux yeux de tous en serpent. Mais tu fus trompé dans tes calculs sophistiques : la bête, en effet, appartenait bien au genre serpent ; toi, tu fus convaicu d'être bête, mais pas du genre sage.</code></pre>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire le dernier texte</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>dernier_texte <span class="op">=</span> re.search(<span class="vs">r".*text_fr:(.*)"</span>, texte_original, flags<span class="op">=</span>re.DOTALL)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Premier texte : </span><span class="sc">{</span>dernier_texte<span class="sc">.</span>group(<span class="dv">1</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-16" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire le dernier texte</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>dernier_texte <span class="op">=</span> re.search(<span class="vs">r".*text_fr:(.*)"</span>, texte_original, flags<span class="op">=</span>re.DOTALL)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dernier texte : </span><span class="sc">{</span>dernier_texte<span class="sc">.</span>group(<span class="dv">1</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Premier texte :  Les flots et les vagues houleuses m'ont jeté sur le rivage, moi dauphin, et je fus pour les passants une étrange vision d'infortune. Mais sur la terre il y a place pour la pitié ; car ceux qui m'avaient vu m'ont aussitôt, dans leur piété, honoré d'un tombeau. C'est celle qui m'a enfanté, la mer, qui m'a fait périr. Quelle confiance avoir dans l'Océan, qui n'a même pas épargné son propre nourrisson ?
+<pre><code>Dernier texte :  Les flots et les vagues houleuses m'ont jeté sur le rivage, moi dauphin, et je fus pour les passants une étrange vision d'infortune. Mais sur la terre il y a place pour la pitié ; car ceux qui m'avaient vu m'ont aussitôt, dans leur piété, honoré d'un tombeau. C'est celle qui m'a enfanté, la mer, qui m'a fait périr. Quelle confiance avoir dans l'Océan, qui n'a même pas épargné son propre nourrisson ?
 
 </code></pre>
 </div>
 </div>
-<div id="cell-16" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numéro de l'épigramme qui contient le mot "rossignol"</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>oiseau <span class="op">=</span> re.search(<span class="vs">r"fragment: (\d</span><span class="sc">{3}</span><span class="vs">)(?:(?!epigramme_id:).)*rossignol"</span>, texte_original, flags<span class="op">=</span>re.DOTALL)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Oiseau fragment id : </span><span class="sc">{</span>oiseau<span class="sc">.</span>group(<span class="dv">1</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-17" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numéro de l'épigramme qui contient le mot "rossignol"</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>oiseau <span class="op">=</span> re.search(<span class="vs">r"fragment: (\d</span><span class="sc">{3}</span><span class="vs">)(?:(?!epigramme_id:).)*rossignol"</span>, texte_original, flags<span class="op">=</span>re.DOTALL)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Oiseau fragment id : </span><span class="sc">{</span>oiseau<span class="sc">.</span>group(<span class="dv">1</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Oiseau fragment id : 190</code></pre>
 </div>
 </div>
-<div id="cell-17" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Substitution de tous les noms d'auteur commençant par D par votre nom. </span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>x_nom <span class="op">=</span> re.sub(<span class="vs">r"(author_fr: )([D].*)"</span>, <span class="vs">r"\1Alexia"</span>, texte_original )</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_nom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-18" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Substitution de tous les noms d'auteur commençant par D par votre nom. </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>x_nom <span class="op">=</span> re.sub(<span class="vs">r"(author_fr: )([D].*)"</span>, <span class="vs">r"\1Alexia"</span>, texte_original )</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_nom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>epigramme_id: 7.114
 book: 7
@@ -804,71 +885,135 @@ text_fr: Les flots et les vagues houleuses m'ont jeté sur le rivage, moi dauphi
 </section>
 <section id="nettoyer-un-corpus" class="level1">
 <h1>Nettoyer un corpus</h1>
-<p>Nettoyer un corpus signifie en général : supprimer les espaces supplémentaires, uniformiser la syntaxes, renommer les documents.</p>
-<p>Prenons en exemple un corpus non nettoyé</p>
-<p>épigrammes :</p>
-<div id="cell-19" class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># importer les épigrammes avec l'API de l'Anthologie Grecque</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.error <span class="im">import</span> HTTPError, URLError</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.request <span class="im">import</span> Request, urlopen</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>EPIGRAMMES <span class="op">=</span> [</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"7.324"</span>,</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"7.447"</span>,</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"7.381"</span>,</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>API_TEMPLATE <span class="op">=</span> <span class="st">"https://anthologiagraeca.org/api/passages/urn:cts:greekLit:tlg7000.tlg001.ag:</span><span class="sc">{epigramme_id}</span><span class="st">/"</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> charger_passage(epigramme_id: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Appelle l'API pour une épigramme et renvoie sa reponse JSON."""</span></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> API_TEMPLATE.<span class="bu">format</span>(epigramme_id<span class="op">=</span>epigramme_id)</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Les en-têtes indiquent que l'on souhaite recevoir du JSON.</span></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    requete <span class="op">=</span> Request(</span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>        url,</span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>        headers<span class="op">=</span>{</span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Accept"</span>: <span class="st">"application/json"</span>,</span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>            <span class="st">"User-Agent"</span>: <span class="st">"dhsi-2026-corpus/1.0"</span>,</span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>        },</span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> urlopen(requete, timeout<span class="op">=</span><span class="dv">30</span>) <span class="im">as</span> reponse:</span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> json.load(reponse)</span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> (HTTPError, URLError) <span class="im">as</span> erreur:</span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">RuntimeError</span>(<span class="ss">f"Erreur pendant le chargement de </span><span class="sc">{</span>epigramme_id<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>erreur<span class="sc">}</span><span class="ss">"</span>) <span class="im">from</span> erreur</span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>corpus <span class="op">=</span> []</span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epigramme_id <span class="kw">in</span> EPIGRAMMES:</span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>    passage <span class="op">=</span> charger_passage(epigramme_id)</span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>    corpus.append(passage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-20" class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identifier les problèmes de normalisation à corriger sur les épigrammes</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>corpus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-21" class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Structurer chaque épigramme du corpus en Dictionnaire </span></span>
+<p>Nettoyer un corpus comprend plusieurs étapes : - s’assurer que les données correspondent à ce qu’on attend. Exemple : corriger une OCRisation -&gt; remplacer les caractères qui ont mal été retranscrits. - uniformiser ses choix. Exemple : utiliser les guillements français «» et non anglais “” - structurer l’ensemble des documents. Exemple : formatter ses documents en texte brut en CSV (comma separated value) - normaliser l’ensemble du corpus. Exemple : convention de nommage avec un identifiant unique par document, pas d’espace et de caractères spéciaux pour éviter les problèmes de manipulation.</p>
+<p>Pour l’exemple, imaginons que nous venons de trouver dans des archives 3 nouvelles épigrammes et que nous souhaitons les ajouter à notre corpus en CSV.</p>
+<p>Nous avons OCRisé les 3 épigrammes et le résultat est le suivant : urn:cts:greekLit:tlg7000.tlg001.ag:5.17 Gardienne du rivage battu des flotsƒ, je t’envoie Ces gâteaux et ces présents d’un simple sacrifice. Car demain je traverserai, sur la large mer Ionienne M’empressant vers le sein de mon Idothée ; Brille avec une douce brise sur mon amour et mon mât O Cypris, reine des chambres nuptiales et des rivages. —Gétulicus «urn:cts:greekLit:tlg7000.tlg001.ag:5.18 Nous préférons aux fières dames davantage les servantes, Nous qui ne prenons pas plaisir aux intrigues luxueuses. La peau des premières sent le parfum, elles sont hautaines, Et même dans un rendez-vous elle est suivie . La peau et la grâce des secondes sont les leurs, et leur lit est prêt Et ne fait pas de cas des présents luxueux . J’imite Pyrrhus le fils d’Achille, qui préféra À Hermione comme épouse, la servante Andromaque. — Rufin urn:cts:greekLit:tlg7000.tlg001.ag:5.19 «Je ne suis plus amoureux fou des garçons comme avant, mais maintenant on dit de moi Que je suis fou des femmes, et que le disque me tient lieu de crotale . Au lieu de la peau sans ornement des garçons je prends plaisir aux chairs De ƒƒcraie, et de la brillance appliquée du fard. L’Érymanthe couvert d’arbres nourrira les dauphins, Et les flots gris de la mer, les cerfs rapides.» —Rufin</p>
+<div id="cell-20" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Télécharger le corpus 'epigrammes_a_nettoyer.txt' et le lire</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_a_nettoyer.txt"</span>, <span class="st">'r'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        a_corriger <span class="op">=</span> f.read()</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>P corpus https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>alexiaschn<span class="op">/</span>dhsi<span class="op">-</span><span class="dv">2026</span><span class="op">/</span>main<span class="op">/</span>notebooks<span class="op">/</span>corpus<span class="op">/</span>epigrammes_anthologia_graeca_fr.txt</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_a_nettoyer.txt"</span>, <span class="st">'r'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>        a_corriger <span class="op">=</span> f.read()</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_corriger)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>urn:cts:greekLit:tlg7000.tlg001.ag:5.17   Gardienne du rivage battu des flotsƒ, je t’envoie Ces gâteaux et ces présents d’un simple sacrifice. Car demain je traverserai, sur la large mer Ionienne M’empressant vers le sein de mon Idothée ; Brille avec une douce brise sur mon amour et mon mât O Cypris, reine des chambres nuptiales et des rivages. ---Gétulicus
+«urn:cts:greekLit:tlg7000.tlg001.ag:5.18  Nous préférons aux fières dames davantage les servantes, Nous qui ne prenons pas plaisir aux intrigues luxueuses. La peau des premières sent le parfum, elles sont hautaines, Et même dans un rendez-vous elle est suivie . La peau et la grâce des secondes sont les leurs, et leur lit est prêt Et ne fait pas de cas des présents luxueux . J’imite Pyrrhus le fils d’Achille, qui préféra À Hermione comme épouse, la servante Andromaque. --- Rufin
+urn:cts:greekLit:tlg7000.tlg001.ag:5.19             «Je ne suis plus amoureux fou des garçons comme avant, mais maintenant on dit de moi Que je suis fou des femmes, et que le disque me tient lieu de crotale . Au lieu de la peau sans ornement des garçons je prends plaisir aux chairs De ƒƒcraie, et de la brillance appliquée du fard. L’Érymanthe couvert d’arbres nourrira les dauphins, Et les flots gris de la mer, les cerfs rapides.» ---Rufin</code></pre>
 </div>
-<div id="cell-22" class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nettoyer le texte</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nettoyer_texte(texte: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Nettoie le texte français récupéré depuis l'API."""</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recolle les mots coupés par un tiret suivi d'un espace ou d'un retour à la ligne.</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Exemple : "sau- terelle" devient "sauterelle".</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    texte <span class="op">=</span> re.sub(<span class="vs">r"(?&lt;=\w)-\s+(?=\w)"</span>, <span class="st">""</span>, texte)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Transforme ensuite les retours à la ligne et espaces multiples en espaces simples.</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> re.sub(<span class="vs">r"\s+"</span>, <span class="st">" "</span>, texte).strip()</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epigramme <span class="kw">in</span> corpus:</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    epigramme[<span class="st">'texte'</span>] <span class="op">=</span> nettoyer_texte(epigramme[<span class="st">'texte'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-21" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identifier les problèmes de normalisation à corriger sur les épigrammes</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># supprimer les caractères qui ne devraient pas être là ƒ, €, </span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>texte_propre <span class="op">=</span> re.sub(<span class="vs">r'[ƒ€]'</span>, <span class="st">''</span>, a_corriger )</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(texte_propre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>urn:cts:greekLit:tlg7000.tlg001.ag:5.17   Gardienne du rivage battu des flots, je t’envoie Ces gâteaux et ces présents d’un simple sacrifice. Car demain je traverserai, sur la large mer Ionienne M’empressant vers le sein de mon Idothée ; Brille avec une douce brise sur mon amour et mon mât O Cypris, reine des chambres nuptiales et des rivages. ---Gétulicus
+«urn:cts:greekLit:tlg7000.tlg001.ag:5.18  Nous préférons aux fières dames davantage les servantes, Nous qui ne prenons pas plaisir aux intrigues luxueuses. La peau des premières sent le parfum, elles sont hautaines, Et même dans un rendez-vous elle est suivie . La peau et la grâce des secondes sont les leurs, et leur lit est prêt Et ne fait pas de cas des présents luxueux . J’imite Pyrrhus le fils d’Achille, qui préféra À Hermione comme épouse, la servante Andromaque. --- Rufin
+urn:cts:greekLit:tlg7000.tlg001.ag:5.19             «Je ne suis plus amoureux fou des garçons comme avant, mais maintenant on dit de moi Que je suis fou des femmes, et que le disque me tient lieu de crotale . Au lieu de la peau sans ornement des garçons je prends plaisir aux chairs De craie, et de la brillance appliquée du fard. L’Érymanthe couvert d’arbres nourrira les dauphins, Et les flots gris de la mer, les cerfs rapides.» ---Rufin</code></pre>
+</div>
+</div>
+<div id="cell-22" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nous allons structurer en liste chaque ligne avec un split()</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>texte_propre <span class="op">=</span> texte_propre.split(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>.join(texte_propre))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>urn:cts:greekLit:tlg7000.tlg001.ag:5.17   Gardienne du rivage battu des flots, je t’envoie Ces gâteaux et ces présents d’un simple sacrifice. Car demain je traverserai, sur la large mer Ionienne M’empressant vers le sein de mon Idothée ; Brille avec une douce brise sur mon amour et mon mât O Cypris, reine des chambres nuptiales et des rivages. ---Gétulicus
+«urn:cts:greekLit:tlg7000.tlg001.ag:5.18  Nous préférons aux fières dames davantage les servantes, Nous qui ne prenons pas plaisir aux intrigues luxueuses. La peau des premières sent le parfum, elles sont hautaines, Et même dans un rendez-vous elle est suivie . La peau et la grâce des secondes sont les leurs, et leur lit est prêt Et ne fait pas de cas des présents luxueux . J’imite Pyrrhus le fils d’Achille, qui préféra À Hermione comme épouse, la servante Andromaque. --- Rufin
+urn:cts:greekLit:tlg7000.tlg001.ag:5.19             «Je ne suis plus amoureux fou des garçons comme avant, mais maintenant on dit de moi Que je suis fou des femmes, et que le disque me tient lieu de crotale . Au lieu de la peau sans ornement des garçons je prends plaisir aux chairs De craie, et de la brillance appliquée du fard. L’Érymanthe couvert d’arbres nourrira les dauphins, Et les flots gris de la mer, les cerfs rapides.» ---Rufin</code></pre>
+</div>
+</div>
+<div id="cell-23" class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Structurons les données en récupérant l'identifiant de l'épigramme, le livre et le numéro de fragment qui se trouve à la fin de l'URI (ex: urn:cts:greekLit:tlg7000.tlg001.ag:5.17 rend livre 5 et fragment 17)</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nous avons besoin des valeurs du tableau : epigramme_id,book,fragment,urn,author_fr,text_fr</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>corpus_a_ajouter <span class="op">=</span> []</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> texte <span class="kw">in</span> texte_propre:</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    urn <span class="op">=</span> re.search(<span class="vs">r'urn:cts:greekLit:tlg7000\.tlg001\.ag:\d\.\d+'</span>, texte)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    urn <span class="op">=</span> urn.group()</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    identifiant <span class="op">=</span> re.search(<span class="vs">r'(\d\.\d+)\W'</span>, texte)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    identifiant <span class="op">=</span> identifiant.group(<span class="dv">1</span>)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    livre, fragment <span class="op">=</span> identifiant.split(<span class="st">'.'</span>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    text_fr <span class="op">=</span> re.sub(urn, <span class="st">''</span>, texte)</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    author <span class="op">=</span> re.search(<span class="vs">r'---(.*)'</span>, texte)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    text_fr <span class="op">=</span> re.sub(author.group(<span class="dv">0</span>), <span class="st">''</span>, text_fr)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    author <span class="op">=</span> author.group(<span class="dv">1</span>)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    corpus_a_ajouter.append({<span class="st">'epigramme_id'</span>: identifiant,</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'book'</span>: livre, </span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'fragment'</span>: fragment, </span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'urn'</span>: urn, </span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'author_fr'</span>: author,</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'text_fr'</span>: text_fr</span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>                            })</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(corpus_a_ajouter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[{'epigramme_id': '5.17', 'book': '5', 'fragment': '17', 'urn': 'urn:cts:greekLit:tlg7000.tlg001.ag:5.17', 'author_fr': 'Gétulicus', 'text_fr': '   Gardienne du rivage battu des flots, je t’envoie Ces gâteaux et ces présents d’un simple sacrifice. Car demain je traverserai, sur la large mer Ionienne M’empressant vers le sein de mon Idothée ; Brille avec une douce brise sur mon amour et mon mât O Cypris, reine des chambres nuptiales et des rivages. '}, {'epigramme_id': '5.18', 'book': '5', 'fragment': '18', 'urn': 'urn:cts:greekLit:tlg7000.tlg001.ag:5.18', 'author_fr': ' Rufin', 'text_fr': '«  Nous préférons aux fières dames davantage les servantes, Nous qui ne prenons pas plaisir aux intrigues luxueuses. La peau des premières sent le parfum, elles sont hautaines, Et même dans un rendez-vous elle est suivie . La peau et la grâce des secondes sont les leurs, et leur lit est prêt Et ne fait pas de cas des présents luxueux . J’imite Pyrrhus le fils d’Achille, qui préféra À Hermione comme épouse, la servante Andromaque. '}, {'epigramme_id': '5.19', 'book': '5', 'fragment': '19', 'urn': 'urn:cts:greekLit:tlg7000.tlg001.ag:5.19', 'author_fr': 'Rufin', 'text_fr': '             «Je ne suis plus amoureux fou des garçons comme avant, mais maintenant on dit de moi Que je suis fou des femmes, et que le disque me tient lieu de crotale . Au lieu de la peau sans ornement des garçons je prends plaisir aux chairs De craie, et de la brillance appliquée du fard. L’Érymanthe couvert d’arbres nourrira les dauphins, Et les flots gris de la mer, les cerfs rapides.» '}]</code></pre>
+</div>
+</div>
+<div id="cell-24" class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On va nettoyer le texte text_fr </span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epigramme <span class="kw">in</span> corpus_a_ajouter:</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># suppression des espaces en tête de texte et des guillemets inutiles</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    epigramme[<span class="st">'text_fr'</span>] <span class="op">=</span> re.sub(<span class="vs">r'^\W+'</span>, <span class="st">''</span>, epigramme[<span class="st">'text_fr'</span>])</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    epigramme[<span class="st">'text_fr'</span>] <span class="op">=</span> re.sub(<span class="vs">r'\W+$'</span>, <span class="st">''</span>, epigramme[<span class="st">'text_fr'</span>])</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(epigramme[<span class="st">'text_fr'</span>])</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Gardienne du rivage battu des flots, je t’envoie Ces gâteaux et ces présents d’un simple sacrifice. Car demain je traverserai, sur la large mer Ionienne M’empressant vers le sein de mon Idothée ; Brille avec une douce brise sur mon amour et mon mât O Cypris, reine des chambres nuptiales et des rivages
+Nous préférons aux fières dames davantage les servantes, Nous qui ne prenons pas plaisir aux intrigues luxueuses. La peau des premières sent le parfum, elles sont hautaines, Et même dans un rendez-vous elle est suivie . La peau et la grâce des secondes sont les leurs, et leur lit est prêt Et ne fait pas de cas des présents luxueux . J’imite Pyrrhus le fils d’Achille, qui préféra À Hermione comme épouse, la servante Andromaque
+Je ne suis plus amoureux fou des garçons comme avant, mais maintenant on dit de moi Que je suis fou des femmes, et que le disque me tient lieu de crotale . Au lieu de la peau sans ornement des garçons je prends plaisir aux chairs De craie, et de la brillance appliquée du fard. L’Érymanthe couvert d’arbres nourrira les dauphins, Et les flots gris de la mer, les cerfs rapides</code></pre>
+</div>
+</div>
+<div id="cell-25" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># vérifions que tout est propre</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epigramme <span class="kw">in</span> corpus_a_ajouter: </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(epigramme)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'epigramme_id': '5.17', 'book': '5', 'fragment': '17', 'urn': 'urn:cts:greekLit:tlg7000.tlg001.ag:5.17', 'author_fr': 'Gétulicus', 'text_fr': 'Gardienne du rivage battu des flots, je t’envoie Ces gâteaux et ces présents d’un simple sacrifice. Car demain je traverserai, sur la large mer Ionienne M’empressant vers le sein de mon Idothée ; Brille avec une douce brise sur mon amour et mon mât O Cypris, reine des chambres nuptiales et des rivages'}
+{'epigramme_id': '5.18', 'book': '5', 'fragment': '18', 'urn': 'urn:cts:greekLit:tlg7000.tlg001.ag:5.18', 'author_fr': ' Rufin', 'text_fr': 'Nous préférons aux fières dames davantage les servantes, Nous qui ne prenons pas plaisir aux intrigues luxueuses. La peau des premières sent le parfum, elles sont hautaines, Et même dans un rendez-vous elle est suivie . La peau et la grâce des secondes sont les leurs, et leur lit est prêt Et ne fait pas de cas des présents luxueux . J’imite Pyrrhus le fils d’Achille, qui préféra À Hermione comme épouse, la servante Andromaque'}
+{'epigramme_id': '5.19', 'book': '5', 'fragment': '19', 'urn': 'urn:cts:greekLit:tlg7000.tlg001.ag:5.19', 'author_fr': 'Rufin', 'text_fr': 'Je ne suis plus amoureux fou des garçons comme avant, mais maintenant on dit de moi Que je suis fou des femmes, et que le disque me tient lieu de crotale . Au lieu de la peau sans ornement des garçons je prends plaisir aux chairs De craie, et de la brillance appliquée du fard. L’Érymanthe couvert d’arbres nourrira les dauphins, Et les flots gris de la mer, les cerfs rapides'}</code></pre>
+</div>
+</div>
+<div id="cell-26" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intégrer les nouveaux épigrammes à notre corpus existants en csv </span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.csv"</span>, <span class="st">'a'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> g:</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    writer <span class="op">=</span> csv.DictWriter(g, fieldnames<span class="op">=</span>[<span class="st">'epigramme_id'</span>,<span class="st">'book'</span>,<span class="st">'fragment'</span>,<span class="st">'urn'</span>,<span class="st">'author_fr'</span>,<span class="st">'text_fr'</span>])</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    writer.writerows(corpus_a_ajouter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-27" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.csv"</span>, <span class="st">'r'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    corpus_final <span class="op">=</span> f.read()</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(corpus_final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>epigramme_id,book,fragment,urn,author_fr,text_fr
+7.114,7,114,urn:cts:greekLit:tlg7000.tlg001.ag:7.114,Diogène Laërce,"Tu voulais, Héraclide, laisser aux hommes le bruit que tu avais été, une fois mort, changé aux yeux de tous en serpent. Mais tu fus trompé dans tes calculs sophistiques : la bête, en effet, appartenait bien au genre serpent ; toi, tu fus convaicu d'être bête, mais pas du genre sage."
+7.115,7,115,urn:cts:greekLit:tlg7000.tlg001.ag:7.115,Diogène Laërce,"« Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »"
+7.116,7,116,urn:cts:greekLit:tlg7000.tlg001.ag:7.116,Diogène Laërce,"« Diogène, allons, dis-moi quel destin t'a ravi? - C'est la morsure féroce du Chien, qui m'a ravi chez Hadès. »"
+7.120,7,120,urn:cts:greekLit:tlg7000.tlg001.ag:7.120,Xénophane,"On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut compassion et prononça ces paroles : « Arrête et ne frappe plus, car sûrement c'est l'âme d'un ami, que j'ai reconnue en l'entendant crier. »"
+7.171,7,171,urn:cts:greekLit:tlg7000.tlg001.ag:7.171,Mnasalcès,"Ici aussi l'oiseau sacré reposera son aile rapide, en s' arrêtant sur ce platane plein d'attrait. Il est mort en effet, Poimandros de Mélien, et il ne viendra plus verser sa glu sur ses pipeaux de chasse."
+7.172,7,172,urn:cts:greekLit:tlg7000.tlg001.ag:7.172,Antipatros de Sidon,"Moi, Alcimènés, jadis j'écartais l'etourneau et la voleuse de semences, la grue de Bistonie au vol élevé, en tendant les bras agiles de ma fronde, et je repoussais au loin la nuée des oiseaux. Mais en me piquant près de la cheville, une vipère dipsas a versé dans ma chair le venin amer de ses mâchoires, me privant de la vue du soleil. Voilà comment en regardant ce qui ce passait en l'air, je n'ai pas vu le mal qui rampait à mes pieds."
+7.173,7,173,urn:cts:greekLit:tlg7000.tlg001.ag:7.173,Diotimos d'Adramytte; Diotime d'Athènes; Léonidas de Tarente,"D'elles-mêmes, le soir, les vaches sont revenues de la montagne à l'étable, couvertes d'une neige abondante et, hélas, au pied d'une chêne, Thérimachos dort du sommeil éternel : c'est le feu du ciel qui l'y a plongé."
+7.189,7,189,urn:cts:greekLit:tlg7000.tlg001.ag:7.189,Aristodicos de Rhodes,"Non, jamais plus, mélodieuse sauterelle, Hélios ne te verra chanter dans la demeure opulente d'Alkis. Déjà en effet tu as pris ton vol vers les prairies de Clyménos et les fleurs humides de rosée de la rayonnante Perséphone."
+7.190,7,190,urn:cts:greekLit:tlg7000.tlg001.ag:7.190,Anytè; Léonidas de Tarente,"A la sauterelle, rossignol des guérets, à la cigale, hôtesse des hêtres, Myro fit une tombe commune ; elle répandit, la jeune fille, une larme virginale : c'est que l'impitoyable Hadès s'en allait en emportant le double objet de ses jeux."
+7.191,7,191,urn:cts:greekLit:tlg7000.tlg001.ag:7.191,Archias; Archias de Mytilène,"Moi qui jadis, en renvoyant le sons, répondais souvent aux pâtres, aux bûcherons et aux pêcheurs, moi, la pie, qui souvent jetais mes cris répétés, comme un écho, accents trompeurs d'une voix apte à répondre aux chants, maintenant tombée à terre. Je gis sans langue et sans voix, déchue de mon besoin d'imitation."
+7.192,7,192,urn:cts:greekLit:tlg7000.tlg001.ag:7.192,Mnasalcès,"Jamais plus de tes ailes bruissantes tu ne chanteras, sauterelle, posée le long des sillons fertiles ; jamais plus, étendu à l'ombre des rameaux, je ne serai charmé du chant mélodieux rythmé par tes blondes ailes."
+7.195,7,195,urn:cts:greekLit:tlg7000.tlg001.ag:7.195,Méléagre de Gadara,"Sauterelle, toi qui trompes mes regrets et apaises mon sommeil, sauterelle, muse agreste au vol mélodieux, imitation naturelle de la lyre, dis-moi quelque chant aimé en frappant de tes pattes tes ailes sonores, afin de m'arracher au souci de mes peines qui m'enlèvent le sommeil, cigale, toi qui sais les chants qui trompent l'amour. A ton réveil je te donnerai comme récompense du poireau toujours vert et des plantes humides de rosée, que tu diviseras de tes lèvres."
+7.201,7,201,urn:cts:greekLit:tlg7000.tlg001.ag:7.201,Pamphile d'Alexandrie,"Tu ne jettes plus, posée sur les feuilles vertes, l'agréable chanson de ton cri perçant ; mais c'est quand tu chantais, stridente cigale, qu'un jeune garçon te tua de sa main tendue."
+7.214,7,214,urn:cts:greekLit:tlg7000.tlg001.ag:7.214,Archias; Archias de Mytilène,"Tu ne vas plus t'élancer à travers les profondeurs bouillonnantes de la mer, ô dauphin, et effrayer les troupeaux marins ni danser au chant de la flûte percée de trous, en faisant jaillir l'eau autour des barques ni, tout écumant, prendre sur ton dos comme autrefois les Néréides, pour les porter jusqu'aux bornes de l'empire de Téthys. Car une vague, pareille au promontoire Malée, s'est soulevée et t'a jeté sur les sables et les cailloux du rivage."
+7.216,7,216,urn:cts:greekLit:tlg7000.tlg001.ag:7.216,Antipater de Thessalonique,"Les flots et les vagues houleuses m'ont jeté sur le rivage, moi dauphin, et je fus pour les passants une étrange vision d'infortune. Mais sur la terre il y a place pour la pitié ; car ceux qui m'avaient vu m'ont aussitôt, dans leur piété, honoré d'un tombeau. C'est celle qui m'a enfanté, la mer, qui m'a fait périr. Quelle confiance avoir dans l'Océan, qui n'a même pas épargné son propre nourrisson ?"
+5.17,5,17,urn:cts:greekLit:tlg7000.tlg001.ag:5.17,Gétulicus,"Gardienne du rivage battu des flots, je t’envoie Ces gâteaux et ces présents d’un simple sacrifice. Car demain je traverserai, sur la large mer Ionienne M’empressant vers le sein de mon Idothée ; Brille avec une douce brise sur mon amour et mon mât O Cypris, reine des chambres nuptiales et des rivages"
+5.18,5,18,urn:cts:greekLit:tlg7000.tlg001.ag:5.18, Rufin,"Nous préférons aux fières dames davantage les servantes, Nous qui ne prenons pas plaisir aux intrigues luxueuses. La peau des premières sent le parfum, elles sont hautaines, Et même dans un rendez-vous elle est suivie . La peau et la grâce des secondes sont les leurs, et leur lit est prêt Et ne fait pas de cas des présents luxueux . J’imite Pyrrhus le fils d’Achille, qui préféra À Hermione comme épouse, la servante Andromaque"
+5.19,5,19,urn:cts:greekLit:tlg7000.tlg001.ag:5.19,Rufin,"Je ne suis plus amoureux fou des garçons comme avant, mais maintenant on dit de moi Que je suis fou des femmes, et que le disque me tient lieu de crotale . Au lieu de la peau sans ornement des garçons je prends plaisir aux chairs De craie, et de la brillance appliquée du fard. L’Érymanthe couvert d’arbres nourrira les dauphins, Et les flots gris de la mer, les cerfs rapides"
+</code></pre>
+</div>
 </div>
 
 

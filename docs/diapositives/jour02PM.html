@@ -158,18 +158,18 @@ Yann Audin <a href="https://orcid.org/https://orcid.org/0000-0003-3456-9767" cla
 <h1>Programme de l’après-midi</h1>
 <p>PM: (2h30)</p>
 <ul>
-<li>Atelier de nettoyage de corpus (45 minutes) <span class="citation" data-cites="alexia">(<a href="" role="doc-biblioref" onclick="return false;"><strong>alexia?</strong></a>)</span></li>
+<li>Atelier de nettoyage de corpus (1 heure)</li>
 <li>PAUSE (15 min)</li>
-<li>Représentations vectorielles (20 minutes + 40 minutes d’exercice) <span class="citation" data-cites="alexia">(<a href="" role="doc-biblioref" onclick="return false;"><strong>alexia?</strong></a>)</span>
+<li>Représentations vectorielles (1h15 d’exercice)
 <ul>
 <li>BOW</li>
 <li>TF-IDF</li>
 </ul></li>
-<li>Classification (15 minutes + 15 minutes de démonstration)
+<li>Classification (15 minutes)
 <ul>
+<li>KNN</li>
 <li>RandomForest</li>
 <li>LR</li>
-<li>etc.</li>
 </ul></li>
 </ul>
 </section>
@@ -187,20 +187,23 @@ Yann Audin <a href="https://orcid.org/https://orcid.org/0000-0003-3456-9767" cla
 </section>
 <section id="principes-de-base-des-regex" class="slide level2">
 <h2>Principes de base des regex</h2>
+<p><a href="https://regex101.com/">Démonstration de base</a></p>
 <p><a href="https://cheatography.com/davechild/cheat-sheets/regular-expressions/">Cheat Sheet</a></p>
 </section>
 <section id="regex-avec-python" class="slide level2">
 <h2>Regex avec Python</h2>
 <p>Module <code>re</code> :</p>
-<pre><code>import re </code></pre>
+<pre><code>import re 
+</code></pre>
 <p><a href="https://docs.python.org/3/library/re.html">Documentation</a></p>
 </section>
 <section id="atelier-expression-régulière-ou-regular-expression-regex" class="slide level2">
 <h2>Atelier Expression régulière ou <em>Regular Expression</em> / Regex</h2>
+<p><a href="https://alexiaschn.github.io/dhsi-2026/notebooks.html">https://alexiaschn.github.io/dhsi-2026/notebooks.html</a></p>
 <p>Importer le notebook :</p>
-<p>jour2_regex_exercice.ipynb</p>
+<p><code>jour2_regex_exercice.ipynb</code></p>
 <p>La correction est en HTML :</p>
-<p>jour2_regex_complet.ipynb</p>
+<p><code>jour2_regex_complet.html</code></p>
 </section></section>
 <section>
 <section id="pause" class="title-slide slide level1 center">
@@ -359,7 +362,7 @@ TFIDF3 = 1/130*log3/2 = 0.00183508174892
 </section>
 <section id="exercice" class="slide level2">
 <h2>Exercice</h2>
-<p>https://alexiaschn.github.io/dhsi-2026/notebooks.html</p>
+<p><a href="https://alexiaschn.github.io/dhsi-2026/notebooks.html">https://alexiaschn.github.io/dhsi-2026/notebooks.html</a></p>
 <p><code>jour2_BoW_TFiDF_exercice.ipynb</code></p>
 </section>
 <section id="algorithmes-de-classification" class="slide level2 scrollable">
@@ -381,6 +384,8 @@ TFIDF3 = 1/130*log3/2 = 0.00183508174892
 <li><strong>Avantages</strong> : Simple à comprendre, pas de phase d’entraînement explicite (apprentissage paresseux).</li>
 <li><strong>Limites</strong> : Lent sur de grands jeux de données, sensible aux données non normalisées et au “bruit”.</li>
 </ul>
+
+<img data-src="img/knn.png" class="r-stretch quarto-figure-center"><p class="caption">K-NN</p><p>Source: <a href="https://www.geeksforgeeks.org/machine-learning/k-nearest-neighbours/">Geeksforgeeks</a></p>
 </section>
 <section id="random-forest" class="slide level2">
 <h2>Random Forest</h2>
@@ -390,19 +395,20 @@ TFIDF3 = 1/130*log3/2 = 0.00183508174892
 <li><strong>Prédiction</strong> : Chaque arbre vote, et la classe retenue est celle qui obtient le plus de votes (bagging).</li>
 <li><strong>Avantages</strong> : Très robuste au surapprentissage (overfitting), gère bien les données non linéaires.</li>
 </ul>
-</section>
-<section id="régression-logistique" class="slide level2">
-<h2>Régression Logistique</h2>
+
+<img data-src="img/random-forest.png" class="r-stretch quarto-figure-center"><p class="caption">Random Forest</p></section>
+<section id="régression-logistique-et-régression-linéaire" class="slide level2">
+<h2>Régression Logistique et Régression linéaire</h2>
 <ul>
 <li>Bien que nommée “régression”, elle sert à la classification.</li>
-<li>Elle modélise la probabilité qu’une donnée appartienne à une classe spécifique à l’aide d’une fonction sigmoïde.</li>
+<li>Elle modélise la probabilité qu’une donnée appartienne à une classe spécifique à l’aide d’une fonction sigmoïde si logistique et linéaire si régression linéaire.</li>
 <li>Elle trace une frontière de décision (linéaire ou non linéaire selon les features) pour séparer les classes.</li>
 <li><strong>Idéal pour</strong> : Les problèmes linéaires, l’interprétabilité des coefficients.</li>
 </ul>
-</section></section>
-<section>
-<section id="slide-4-synthèse-et-comparaison" class="title-slide slide level1 center">
-<h1>Slide 4 : Synthèse et Comparaison</h1>
+
+<img data-src="img/LR.png" class="r-stretch quarto-figure-center"><p class="caption">Algo de Regressions</p></section></section>
+<section id="synthèse-et-comparaison" class="title-slide slide level1 center">
+<h1>Synthèse et Comparaison</h1>
 <table class="caption-top">
 <colgroup>
 <col style="width: 25%">
@@ -446,12 +452,9 @@ TFIDF3 = 1/130*log3/2 = 0.00183508174892
 </tbody>
 </table>
 <p><strong>Conclusion</strong> : * Utilisez <strong>k-NN</strong> pour des petits jeux de données et une rapidité de mise en œuvre. * Utilisez la <strong>Régression Logistique</strong> pour la simplicité et l’interprétabilité. * Utilisez <strong>Random Forest</strong> pour la performance et la robustesse sur des problèmes complexes.</p>
+
+
 </section>
-<section id="bibliographie" class="slide level2">
-<h2>Bibliographie</h2>
-
-
-</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
