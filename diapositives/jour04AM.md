@@ -25,12 +25,12 @@ format:
 ## Programme de la matinée
 
 AM: (3h)
-- Présentation des modèles génératifs (60 minutes + 30 minutes démonstration) @alexia + @william
+- Présentation des modèles génératifs 1h30
     - Encoder/decoder et masquage
     - Paramétrages d'un LLM génératif 
 - PAUSE (15 minutes)
-- Classification avec modèles génératifs (45 minutes + 45 minutes d'exercice) @alexia
-    - Prompt engineering
+- Classification avec modèles génératifs (1h15) 
+    - Prompt engineering avec ChainForge
 
 ## Les LLMs 
 
@@ -182,14 +182,13 @@ Source : [Documentation Ollama](https://github.com/ollama/ollama/blob/main/docs/
 
 Reconduire un modèle consiste à lui fournir des ordres qui vont modifier son comportement pour toutes les interactions suivantes : cette instruction initiale est le "System message". 
 
-[Steer model interactively on Neuronpedia](https://www.neuronpedia.org/gemma-2-9b-it/steer)
+[Conduire un modèle interactivement avec Neuronpedia](https://www.neuronpedia.org/gemma-2-9b-it/steer)
 
 ## Bonus :  Ollama 
 
 [Téléchargement de Ollama](https://ollama.com/download)
 
 ### Utilisation de Ollama en invite de commande
-
 
 ```ollama run llama3.2``` -> télécharge et lance le modèle.
 
@@ -277,31 +276,49 @@ Tout repose sur l'évaluation des outputs du SIA. Comment passer d'une explorati
 
 -> pas à pas de l'utilisation de ChainForge : exemple de la classification binaire en "animal/pas animal"
 
+Vous pouvez suivre et importer le workflow qui se trouve dans les documents de l'onglet Corpus : `flow-classification-animal.cforge`
+
+Les données utilisées sont : `epigrammes_classification_animal.csv`
+
+
 ## Exercice
 
 Vous pouvez vous servir de votre propre jeu de donnée. 
 
 A défaut :
 
-Effectuer une classification d'épigrammes selon 2 genres proches : 
+**Effectuer une classification d'épigrammes selon 2 genres proches : Romantique / Érotique**
 
-Romantique / Érotique 
+Commencez par un New Flow, et ajouter la clé API (soit la vôtre soit la clé Together AI fournie) dans les paramètres. 
 
-API : 
-
-Jeu de données : epigrammes_classification.csv
-
-Formuler 3 prompts différents.
-
-Ajouter les données avec l'import CSV.
-
-Utiliser seulement le modèle : togetherAI/
-
-Ajouter 2 évaluateurs LLM : le premier pour déterminer la qualité de la classification sur une échelle de 1 à 10. le second donnera une évaluation en True/False de la qualité de la classification. Ex "Donne une note de 1 à 10 sur la qualité de la classification : le modèle dont tu évalues la réponse devait déterminer si le texte suivant {épigramme} était romantique ou érotique".
-
-Comparer la qualité des sorties des différents prompts et la qualité des évaluations par les LLM. 
+Télécharger dans le corpus le jeu de données `epigramme_classification.csv`
 
 
+1.Ajouter les données avec l'import CSV. -> Add Node > tabular Data 
+2. Formuler 2 variants d'un prompt, pensez aux différentes stratégies de prompt existantes (persona, Chain of Thought).  -> Add Node > Prompt Node
 
-## Bibliographie
+Tips : pour faire passer une variable d'un _node_ de CSV à celui de prompt il faut mettre la variable (le nom de la colonne) entre curly braces {}
+
+
+3. Ajouter un ou deux modèles maximum et inspecter les prompts envoyer avant de les envoyer.
+
+Si vous utilisez la clé API fournie, vous ne pourrez utiliser que les modèles : 
+
+- togetherAI/Qwen2.5-7B-Instruct-Turbo
+- togetherAI/Llama-3.3-70B-Instruct-Turbo
+
+
+4. Ajouter 2 évaluateurs LLM : le premier pour déterminer la qualité de la classification sur une échelle de 1 à 10. le second donnera une évaluation en True/False de la qualité de la classification. Ex "Donne une note de 1 à 10 sur la qualité de la classification : le modèle dont tu évalues la réponse devait déterminer si le texte suivant {épigramme} était romantique ou érotique".
+
+Tips : pour faire passer la variable du node CSV à l'évaluateur il faut utiliser la syntaxe : `response.meta['variable']`
+
+5. Comparer la qualité des sorties des différents prompts et la qualité des évaluations par les LLM. 
+
+
+Tips : 
+
+- pour faire passer une variable d'un _node_ de CSV à celui de prompt il faut mettre la variable (le nom de la colonne) entre curly braces {}
+- pour faire passer la variable du node CSV à l'évaluateur il faut utiliser la syntaxe : `response.meta['variable']`
+
+
 

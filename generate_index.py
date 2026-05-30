@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import glob
 notebooks = sorted(Path("notebooks").glob("*_exercice.ipynb"))
 
 content = """---
@@ -38,5 +38,19 @@ for nb in notebooks:
 content += f"\n\n# Lire les notebooks au format HTML"
 
 Path("notebooks.md").write_text(content, encoding="utf-8")
+print("Index des notebooks générés.")
 
-print("Page générée.")
+# corpus_files = [file for file in glob.glob('notebooks/corpus/*')]
+corpus_files = sorted(Path("notebooks/corpus").glob("*"))
+
+
+corpus_content = '# Jeux de données utilisés au cours de la semaine\n\n'
+
+for file in corpus_files:
+  name = file.name
+  corpus_content += f"""- <a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/corpus/{name}', '{name}'); return false;">{name}</a>\n"""
+
+
+Path("corpus.md").write_text(corpus_content, encoding="utf-8")
+
+print('Index du corpus généré')

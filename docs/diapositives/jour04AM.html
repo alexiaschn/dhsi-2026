@@ -175,7 +175,7 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </section>
 <section id="programme-de-la-matinée" class="slide level2">
 <h2>Programme de la matinée</h2>
-<p>AM: (3h) - Présentation des modèles génératifs (60 minutes + 30 minutes démonstration) <span class="citation" data-cites="alexia">(<a href="#/bibliographie" role="doc-biblioref" onclick=""><strong>alexia?</strong></a>)</span> + <span class="citation" data-cites="william">(<a href="#/bibliographie" role="doc-biblioref" onclick=""><strong>william?</strong></a>)</span> - Encoder/decoder et masquage - Paramétrages d’un LLM génératif - PAUSE (15 minutes) - Classification avec modèles génératifs (45 minutes + 45 minutes d’exercice) <span class="citation" data-cites="alexia">(<a href="#/bibliographie" role="doc-biblioref" onclick=""><strong>alexia?</strong></a>)</span> - Prompt engineering</p>
+<p>AM: (3h) - Présentation des modèles génératifs 1h30 - Encoder/decoder et masquage - Paramétrages d’un LLM génératif - PAUSE (15 minutes) - Classification avec modèles génératifs (1h15) - Prompt engineering avec ChainForge</p>
 </section>
 <section id="les-llms" class="slide level2">
 <h2>Les LLMs</h2>
@@ -188,7 +188,7 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </ul>
 <p>Cette typologie réfère à la façon dont le modèle a été entrainé, et par conséquent à la tâche pour laquelle il est spécialisé à l’inférence (= prédiction).</p>
 
-<img data-src="img/encoder-decoder.jpg" class="r-stretch quarto-figure-center"><p class="caption">Overview</p><p>Source : <span class="citation" data-cites="tayWhatWeActually2025">Tay (<a href="#/bibliographie" role="doc-biblioref" onclick="">2025</a>)</span></p>
+<img data-src="img/encoder-decoder.jpg" class="r-stretch quarto-figure-center"><p class="caption">Overview</p><p>Source : <span class="citation" data-cites="tayWhatWeActually2025">Tay (<a href="#/exercice" role="doc-biblioref" onclick="">2025</a>)</span></p>
 </section>
 <section id="décodeurs-gpt" class="slide level2">
 <h2>Décodeurs (GPT)</h2>
@@ -241,7 +241,7 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <h2>Encodage : l’architecture Transformers</h2>
 <p>Tous les modèles de langue ne sont pas des Transformers mais les Transformers demeurent l’architecture la plus connue et la plus répandue actuellement.</p>
 
-<img data-src="img/bert-transformers.jpg" class="r-stretch quarto-figure-center"><p class="caption">Schéma du célèbre <span class="citation" data-cites="vaswaniAttentionAllYou2017">Vaswani et al. (<a href="#/bibliographie" role="doc-biblioref" onclick="">2017</a>)</span></p><p>Encoder les données (à l’entrainement et à l’inférence) passe par plusieurs étapes:</p>
+<img data-src="img/bert-transformers.jpg" class="r-stretch quarto-figure-center"><p class="caption">Schéma du célèbre <span class="citation" data-cites="vaswaniAttentionAllYou2017">Vaswani et al. (<a href="#/exercice" role="doc-biblioref" onclick="">2017</a>)</span></p><p>Encoder les données (à l’entrainement et à l’inférence) passe par plusieurs étapes:</p>
 <ol type="1">
 <li>embedding : vectorisation selon un nombre défini de dimension (512 pour les BERT).</li>
 <li>encodage des positions : les tokens sont traités simultanément alors on conserve la position de chaque token dans la phrase dans l’embedding.<br>
@@ -276,7 +276,7 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <section id="model-steering-ou-system-message" class="slide level2">
 <h2>Model Steering ou System message</h2>
 <p>Reconduire un modèle consiste à lui fournir des ordres qui vont modifier son comportement pour toutes les interactions suivantes : cette instruction initiale est le “System message”.</p>
-<p><a href="https://www.neuronpedia.org/gemma-2-9b-it/steer">Steer model interactively on Neuronpedia</a></p>
+<p><a href="https://www.neuronpedia.org/gemma-2-9b-it/steer">Conduire un modèle interactivement avec Neuronpedia</a></p>
 </section>
 <section id="bonus-ollama" class="slide level2">
 <h2>Bonus : Ollama</h2>
@@ -356,23 +356,38 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <h2>ChainForge</h2>
 <p><a href="https://chainforge.ai/play/">ChainForge</a> : outil de comparaison de prompt : comparaison de modèle, comparaison de template (un texte qui inclut des variables) visualisation côte à côte des sorties.</p>
 <p>-&gt; pas à pas de l’utilisation de ChainForge : exemple de la classification binaire en “animal/pas animal”</p>
+<p>Vous pouvez suivre et importer le workflow qui se trouve dans les documents de l’onglet Corpus : <code>flow-classification-animal.cforge</code></p>
+<p>Les données utilisées sont : <code>epigrammes_classification_animal.csv</code></p>
 </section>
-<section id="exercice" class="slide level2">
+<section id="exercice" class="slide level2 smaller scrollable">
 <h2>Exercice</h2>
 <p>Vous pouvez vous servir de votre propre jeu de donnée.</p>
 <p>A défaut :</p>
-<p>Effectuer une classification d’épigrammes selon 2 genres proches :</p>
-<p>Romantique / Érotique</p>
-<p>API :</p>
-<p>Jeu de données : epigrammes_classification.csv</p>
-<p>Formuler 3 prompts différents.</p>
-<p>Ajouter les données avec l’import CSV.</p>
-<p>Utiliser seulement le modèle : togetherAI/</p>
-<p>Ajouter 2 évaluateurs LLM : le premier pour déterminer la qualité de la classification sur une échelle de 1 à 10. le second donnera une évaluation en True/False de la qualité de la classification. Ex “Donne une note de 1 à 10 sur la qualité de la classification : le modèle dont tu évalues la réponse devait déterminer si le texte suivant {épigramme} était romantique ou érotique”.</p>
-<p>Comparer la qualité des sorties des différents prompts et la qualité des évaluations par les LLM.</p>
-</section>
-<section id="bibliographie" class="slide level2 smaller scrollable">
-<h2>Bibliographie</h2>
+<p><strong>Effectuer une classification d’épigrammes selon 2 genres proches : Romantique / Érotique</strong></p>
+<p>Commencez par un New Flow, et ajouter la clé API (soit la vôtre soit la clé Together AI fournie) dans les paramètres.</p>
+<p>Télécharger dans le corpus le jeu de données <code>epigramme_classification.csv</code></p>
+<p>1.Ajouter les données avec l’import CSV. -&gt; Add Node &gt; tabular Data 2. Formuler 2 variants d’un prompt, pensez aux différentes stratégies de prompt existantes (persona, Chain of Thought). -&gt; Add Node &gt; Prompt Node</p>
+<p>Tips : pour faire passer une variable d’un <em>node</em> de CSV à celui de prompt il faut mettre la variable (le nom de la colonne) entre curly braces {}</p>
+<ol start="3" type="1">
+<li>Ajouter un ou deux modèles maximum et inspecter les prompts envoyer avant de les envoyer.</li>
+</ol>
+<p>Si vous utilisez la clé API fournie, vous ne pourrez utiliser que les modèles :</p>
+<ul>
+<li>togetherAI/Qwen2.5-7B-Instruct-Turbo</li>
+<li>togetherAI/Llama-3.3-70B-Instruct-Turbo</li>
+</ul>
+<ol start="4" type="1">
+<li>Ajouter 2 évaluateurs LLM : le premier pour déterminer la qualité de la classification sur une échelle de 1 à 10. le second donnera une évaluation en True/False de la qualité de la classification. Ex “Donne une note de 1 à 10 sur la qualité de la classification : le modèle dont tu évalues la réponse devait déterminer si le texte suivant {épigramme} était romantique ou érotique”.</li>
+</ol>
+<p>Tips : pour faire passer la variable du node CSV à l’évaluateur il faut utiliser la syntaxe : <code>response.meta['variable']</code></p>
+<ol start="5" type="1">
+<li>Comparer la qualité des sorties des différents prompts et la qualité des évaluations par les LLM.</li>
+</ol>
+<p>Tips :</p>
+<ul>
+<li>pour faire passer une variable d’un <em>node</em> de CSV à celui de prompt il faut mettre la variable (le nom de la colonne) entre curly braces {}</li>
+<li>pour faire passer la variable du node CSV à l’évaluateur il faut utiliser la syntaxe : <code>response.meta['variable']</code></li>
+</ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

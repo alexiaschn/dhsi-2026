@@ -27,12 +27,12 @@ format:
 ## Programme de la matinée
 
 AM:
-- RAG (45 minutes + 15 minutes démonstration) @alexia
-- Temps de projet avec l'équipe (60 minutes) @all
+- Présentation des systèmes complexes intégrants des IA agentiques et des RAG (45 min)
+- Temps de projet avec l'équipe (60 minutes) 
 - PAUSE (15 minutes)
-- Discussion (45 minutes) @all
-    - Enjeux en SHS (50 minutes)
-    - Conclusion (10 minutes)
+- Discussion (1h) 
+    - Enjeux en SHS 
+    - Conclusion 
 
 
 ## Les architectures complexes de Systèmes à base d'IA générative

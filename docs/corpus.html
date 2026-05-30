@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -68,65 +66,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-filename','listing-file-modified',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-filename-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-filename","listing-file-modified"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -177,102 +117,23 @@ window.Quarto = {
 
 
 
-<section id="documents-utilisés-pour-les-exercices" class="level1">
-<h1>Documents utilisés pour les exercices</h1>
-
+<section id="jeux-de-données-utilisés-au-cours-de-la-semaine" class="level1">
+<h1>Jeux de données utilisés au cours de la semaine</h1>
+<ul>
+<li><a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/corpus/epigrammes_a_nettoyer.txt', 'epigrammes_a_nettoyer.txt'); return false;">epigrammes_a_nettoyer.txt</a></li>
+<li><a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/corpus/epigrammes_anthologia_graeca_fr.csv', 'epigrammes_anthologia_graeca_fr.csv'); return false;">epigrammes_anthologia_graeca_fr.csv</a></li>
+<li><a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/corpus/epigrammes_anthologia_graeca_fr.txt', 'epigrammes_anthologia_graeca_fr.txt'); return false;">epigrammes_anthologia_graeca_fr.txt</a></li>
+<li><a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/corpus/epigrammes_classification_animal.csv', 'epigrammes_classification_animal.csv'); return false;">epigrammes_classification_animal.csv</a></li>
+<li><a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/corpus/epigrammes_no_animal.csv', 'epigrammes_no_animal.csv'); return false;">epigrammes_no_animal.csv</a></li>
+<li><a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/corpus/flow-classification-animal.cforge', 'flow-classification-animal.cforge'); return false;">flow-classification-animal.cforge</a></li>
+<li><a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/corpus/pca_epigrammes_fr.html', 'pca_epigrammes_fr.html'); return false;">pca_epigrammes_fr.html</a></li>
+<li><a href="#" onclick="downloadFile('https://raw.githubusercontent.com/alexiaschn/dhsi-2026/main/notebooks/corpus/similarites_top5_epigrammes_fr.csv', 'similarites_top5_epigrammes_fr.csv'); return false;">similarites_top5_epigrammes_fr.csv</a></li>
+</ul>
 
 
 </section>
 
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-filename-sort" data-direction="asc">
-          File Name
-        </option>
-         <option value="listing-file-modified-sort" data-direction="asc">
-          Modified - Oldest
-        </option>
-         <option value="listing-file-modified-sort" data-direction="desc">
-          Modified - Newest
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-<a class="sort" data-sort="listing-filename-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">File Name</a>
-</th>
-<th>
-<a class="sort" data-sort="listing-file-modified-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Modified</a>
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1780090596525" data-listing-filename-sort="epigrammes_a_nettoyer.txt">
-<td>
-<a href="./notebooks/corpus/epigrammes_a_nettoyer.txt" class="filename listing-filename">epigrammes_a_nettoyer.txt</a>
-</td>
-<td>
-<span class="listing-file-modified">5/29/26, 5:36:36 PM</span>
-</td>
-</tr>
-<tr data-index="1" data-listing-file-modified-sort="1780092392927" data-listing-filename-sort="epigrammes_anthologia_graeca_fr.csv">
-<td>
-<a href="./notebooks/corpus/epigrammes_anthologia_graeca_fr.csv" class="filename listing-filename">epigrammes_anthologia_graeca_fr.csv</a>
-</td>
-<td>
-<span class="listing-file-modified">5/29/26, 6:06:32 PM</span>
-</td>
-</tr>
-<tr data-index="2" data-listing-file-modified-sort="1779989768053" data-listing-filename-sort="epigrammes_anthologia_graeca_fr.txt">
-<td>
-<a href="./notebooks/corpus/epigrammes_anthologia_graeca_fr.txt" class="filename listing-filename">epigrammes_anthologia_graeca_fr.txt</a>
-</td>
-<td>
-<span class="listing-file-modified">5/28/26, 1:36:08 PM</span>
-</td>
-</tr>
-<tr data-index="3" data-listing-file-modified-sort="1780085587464" data-listing-filename-sort="epigrammes_no_animal.csv">
-<td>
-<a href="./notebooks/corpus/epigrammes_no_animal.csv" class="filename listing-filename">epigrammes_no_animal.csv</a>
-</td>
-<td>
-<span class="listing-file-modified">5/29/26, 4:13:07 PM</span>
-</td>
-</tr>
-<tr data-index="4" data-listing-file-modified-sort="1779989768056" data-listing-filename-sort="pca_epigrammes_fr.html">
-<td>
-<a href="./notebooks/corpus/pca_epigrammes_fr.html" class="filename listing-filename">pca_epigrammes_fr.html</a>
-</td>
-<td>
-<span class="listing-file-modified">5/28/26, 1:36:08 PM</span>
-</td>
-</tr>
-<tr data-index="5" data-listing-file-modified-sort="1779989768058" data-listing-filename-sort="similarites_top5_epigrammes_fr.csv">
-<td>
-<a href="./notebooks/corpus/similarites_top5_epigrammes_fr.csv" class="filename listing-filename">similarites_top5_epigrammes_fr.csv</a>
-</td>
-<td>
-<span class="listing-file-modified">5/28/26, 1:36:08 PM</span>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
