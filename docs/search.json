@@ -4,7 +4,7 @@
     "href": "corpus.html",
     "title": "Jeux de données utilisés au cours de la semaine",
     "section": "",
-    "text": "Jeux de données utilisés au cours de la semaine\n\nepigrammes_a_nettoyer.txt\nepigrammes_anthologia_graeca_fr.csv\nepigrammes_anthologia_graeca_fr.txt\nepigrammes_classification_animal.csv\nepigrammes_no_animal.csv\nflow-classification-animal.cforge\npca_epigrammes_fr.html\nsimilarites_top5_epigrammes_fr.csv"
+    "text": "Jeux de données utilisés au cours de la semaine\n\n\n\n\nDocument\n\n\nFormat\n\n\n\n\n\nepigrammes_a_nettoyer.txt\n\n\n.txt\n\n\n\n\nepigrammes_anthologia_graeca_fr.csv\n\n\n.csv\n\n\n\n\nepigrammes_anthologia_graeca_fr.txt\n\n\n.txt\n\n\n\n\nepigrammes_classification_animal.csv\n\n\n.csv\n\n\n\n\nepigrammes_no_animal.csv\n\n\n.csv\n\n\n\n\nflow-classification-animal.cforge\n\n\n.cforge\n\n\n\n\npca_epigrammes_fr.html\n\n\n.html\n\n\n\n\nsimilarites_top5_epigrammes_fr.csv\n\n\n.csv"
   },
   {
     "objectID": "notebooks/jour2_BoW_TFiDF_exercice.html",
@@ -417,7 +417,7 @@
     "href": "notebooks.html",
     "title": "Index des notebooks",
     "section": "",
-    "text": "Télécharger les notebooks au format ipynb\nPour obtenir les notebooks au format ipynb:\n\njour1_IASymboliqueConnexionniste_exercice.ipynb\njour2_BoW_TFiDF_exercice.ipynb\njour2_regex_exercice.ipynb\n\n\n\nLire les notebooks au format HTML\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nVersion complètr – Jour 1 : Système déductif vs. système inductif\n\n\n \n\n\n\n\nVersion complète – Jour 2 : Bag of Words, TFiDF et calcul de proximité de vecteur\n\n\n \n\n\n\n\nVersion complète – Jour 2 : Nettoyer un corpus avec des Expressions régulières\n\n\n \n\n\n\n\nVersion complète – Jour 4 : Model steering\n\n\n \n\n\n\n\n\nNo matching items"
+    "text": "Télécharger les notebooks au format ipynb\n\n\n\n\nDocument\n\n\n\n\n\njour1_IASymboliqueConnexionniste_exercice.ipynb\n\n\n\n\njour2_BoW_TFiDF_exercice.ipynb\n\n\n\n\njour2_regex_exercice.ipynb\n\n\n\n\n\nLire les notebooks au format HTML\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nVersion complètr – Jour 1 : Système déductif vs. système inductif\n\n\n \n\n\n\n\nVersion complète – Jour 2 : Bag of Words, TFiDF et calcul de proximité de vecteur\n\n\n \n\n\n\n\nVersion complète – Jour 2 : Nettoyer un corpus avec des Expressions régulières\n\n\n \n\n\n\n\nVersion complète – Jour 4 : Model steering\n\n\n \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "diapositives/jour02AM.html#programme-de-la-matinée",
