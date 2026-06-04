@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-226bd0f977fa82dfae4534cac220d79a.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.23">
 
   <meta name="author" content="Yann Audin">
   <meta name="author" content="William Bouchard">
@@ -31,7 +31,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-00ac2f6af1389919a18f42df5b7c0002.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -176,16 +176,172 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </ul></li>
 </ul>
 </section>
-<section id="présentation-du-corpus-de-travail-anthologia-graeca" class="slide level2">
-<h2>Présentation du corpus de travail : Anthologia Graeca</h2>
-<!-- William -->
+<section>
+<section id="présentation-du-corpus-de-travail" class="title-slide slide level1 center">
+<h1>Présentation du corpus de travail</h1>
+
 </section>
-<section id="présentation-des-projets-associés-à-lanthologie-grecque" class="slide level2">
-<h2>Présentation des projets associés à l’Anthologie Grecque</h2>
-<!-- William env 30 min -->
+<section id="lanthologia-graeca" class="slide level2">
+<h2>L’<em>Anthologia Graeca</em></h2>
 <ul>
-<li>Egée</li>
-<li></li>
+<li>Un recueil d’épigrammes grecques, de l’Antiquité à l’époque byzantine.</li>
+<li>Une épigramme est d’abord un texte bref, souvent lié à une inscription, une tombe, une offrande ou un objet.</li>
+<li>Dans l’<em>Anthologie</em>, le genre s’élargit fortement.</li>
+<li>On y trouve des textes funéraires, votifs, amoureux, satiriques, descriptifs ou moraux.</li>
+<li>C’est un <strong>corpus complexe</strong>, déjà structuré par une histoire de transmission et d’édition.</li>
+</ul>
+</section>
+<section id="un-corpus-stratifié" class="slide level2">
+<h2>Un corpus stratifié</h2>
+<ul>
+<li>Des époques différentes, des auteurs différents, des contextes socioculturels variés.</li>
+<li>Elle conserve des traces de traditions multiples.</li>
+<li>Différents états manuscrits, attributions douteuses…</li>
+<li>L’<em>Anthologie</em> : une forme d’organisation des données?</li>
+</ul>
+<p>(Pas de panique, nous travaillerons principalement le texte)</p>
+</section>
+<section id="une-anthologie-nest-jamais-neutre" class="slide level2">
+<h2>Une anthologie n’est jamais neutre</h2>
+<ul>
+<li>Une anthologie suppose toujours des choix.</li>
+<li>Ces choix orientent la lecture et rendent certains liens plus visibles que d’autres.</li>
+<li>Le numérique permet de rendre cette organisation plus explicite.</li>
+<li>On peut alors parcourir le corpus autrement : par auteur, thème, lieu, mot-clé ou témoin.</li>
+<li>Ce passage du texte à la donnée est au cœur de notre atelier.</li>
+</ul>
+</section>
+<section id="le-livre-vii" class="slide level2">
+<h2>Le livre VII</h2>
+<ul>
+<li>Consacré aux épigrammes funéraires.</li>
+<li>Thèmes : mort, tombeaux, mémoire, perte et le monde des morts.</li>
+<li>Pourtant, le corpus résiste vite aux catégories trop simples.</li>
+<li>Même dans un livre funéraire, on trouve des animaux, des personnages mythologiques…</li>
+<li>Le thème général est clair, mais chaque texte peut porter plusieurs motifs à la fois.</li>
+</ul>
+</section>
+<section id="le-projet-anthologia-graeca" class="slide level2">
+<h2>Le projet Anthologia Graeca</h2>
+<ul>
+<li>Une édition numérique collaborative de l’Anthologie grecque.</li>
+<li>Projet de structuration des données autour des épigrammes.</li>
+<li>La plateforme associe :
+<ul>
+<li>Textes grecs et traductions ;</li>
+<li>Auteurs et attributions ;</li>
+<li>Annotations (mots-clés, lieux cités, etc.).</li>
+</ul></li>
+<li>Démonstration.</li>
+</ul>
+</section>
+<section id="ce-que-la-plateforme-change" class="slide level2">
+<h2>Ce que la plateforme change</h2>
+<ul>
+<li>L’édition imprimée propose surtout un ordre de lecture.</li>
+<li>La plateforme numérique ajoute des possibilités de lecture.</li>
+<li>Une épigramme = un poème à lire et une entrée dans une base de données.</li>
+<li>Elle peut être exportée, reliée, filtrée, comptée, vectorisée ou comparée.</li>
+<li>La plateforme devient une <strong>anthologie de l’Anthologie</strong> : elle rassemble les textes, mais aussi les relations entre les textes.</li>
+</ul>
+</section>
+<section id="pourquoi-ce-projet-pour-un-atelier-dia" class="slide level2">
+<h2>Pourquoi ce projet pour un atelier d’IA ?</h2>
+<ul>
+<li>Le projet montre une chaîne complète, de l’objet littéraire au traitement computationnel.</li>
+<li>Le modèle d’IA n’est qu’une étape dans cette chaîne.</li>
+<li>Avant lui, il y a déjà des choix éditoriaux, de structure, d’export et de représentation.</li>
+</ul>
+<p>Ces choix déterminent ce que le modèle peut voir, ignorer, regrouper…</p>
+</section>
+<section id="pourquoi-un-csv" class="slide level2">
+<h2>Pourquoi un CSV ?</h2>
+<ul>
+<li>CSV : format lisible, tabulaire, facile à ouvrir et à manipuler</li>
+<li>Il permet d’apprendre les gestes de base : inspecter, nettoyer, transformer et analyser.</li>
+<li>Chaque ligne correspond à une entrée textuelle, ici une épigramme de 2 à 6 vers.</li>
+</ul>
+</section>
+<section id="ce-que-contient-lexport" class="slide level2">
+<h2>Ce que contient l’export</h2>
+<p>Le fichier contient <strong>15 épigrammes</strong> du livre VII.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Colonne</th>
+<th>Contenu</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>epigramme_id</code></td>
+<td>identifiant lisible de l’épigramme</td>
+</tr>
+<tr class="even">
+<td><code>book</code></td>
+<td>livre de l’Anthologie</td>
+</tr>
+<tr class="odd">
+<td><code>fragment</code></td>
+<td>numéro dans le livre</td>
+</tr>
+<tr class="even">
+<td><code>urn</code></td>
+<td>identifiant stable</td>
+</tr>
+<tr class="odd">
+<td><code>author_fr</code></td>
+<td>auteur ou attribution en français</td>
+</tr>
+<tr class="even">
+<td><code>text_fr</code></td>
+<td>traduction française</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="texte-et-métadonnées" class="slide level2">
+<h2>Texte et métadonnées</h2>
+<ul>
+<li>La colonne <code>text_fr</code> servira aux opérations sur le texte : nettoyage, segmentation, fréquences et vectorisation.</li>
+<li>Les métadonnées permettent de situer chaque épigramme dans le corpus.</li>
+<li>La colonne <code>author_fr</code> contient parfois des attributions simples, parfois des attributions multiples.</li>
+</ul>
+</section>
+<section id="que-faire-de-ce-corpus" class="slide level2">
+<h2>Que faire de ce corpus ?</h2>
+<ul>
+<li>Même un petit corpus permet de poser des questions intéressantes.</li>
+<li>Exemple : Projet IAL.</li>
+<li>Autres projets : Égée, NER, Linked Open Data…</li>
+<li>Avez-vous des exemples de questions ?</li>
+</ul>
+</section>
+<section id="récapitulatif" class="slide level2">
+<h2>Récapitulatif</h2>
+<ul>
+<li>Nous avons maintenant :
+<ul>
+<li>Un objet textuel ;</li>
+<li>Un export CSV ;</li>
+<li>Des métadonnées ;<br>
+</li>
+<li>Même quelques questions de départ.</li>
+</ul></li>
+</ul>
+</section>
+<section id="transition-vers-python" class="slide level2">
+<h2>Transition vers Python</h2>
+<ul>
+<li>La prochaine étape consiste à transformer ces éléments en opérations concrètes :
+<ul>
+<li>charger le fichier dans Python ;</li>
+<li>inspecter la structure du corpus ;</li>
+<li>nettoyer les textes ;</li>
+<li>segmenter les chaînes de caractères ;</li>
+<li>compter certains phénomènes ;</li>
+<li>préparer les données pour des analyses plus avancées.</li>
+</ul></li>
 </ul>
 </section>
 <section id="principes-du-prétraitement" class="slide level2">
@@ -196,7 +352,7 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </section>
 <section id="structuration-des-données" class="slide level2">
 <h2>Structuration des données</h2>
-</section>
+</section></section>
 <section>
 <section id="pause" class="title-slide slide level1 center">
 <h1>Pause</h1>
@@ -448,190 +604,172 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          return false;
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
             }
-          }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>
