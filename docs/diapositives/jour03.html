@@ -30,6 +30,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-00ac2f6af1389919a18f42df5b7c0002.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -440,6 +506,194 @@ y = activation(w_1x_1 + w_2x_2 + w_3x_3 + b)
 <li>observer l’évolution de la perte ;</li>
 <li>regarder comment les prédictions changent ;</li>
 <li>modifier un paramètre pour voir son effet.</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="bert-et-les-représentations-contextualisées" class="title-slide slide level1 center">
+<h1>BERT et les représentations contextualisées</h1>
+
+</section>
+<section id="pourquoi-bert" class="slide level2">
+<h2>Pourquoi BERT ?</h2>
+<ul>
+<li>Jusqu’ici, nous avons surtout représenté les textes avant de les donner aux modèles.</li>
+<li>Avec BERT, la représentation devient elle-même une partie du modèle.</li>
+<li>Le même mot peut recevoir des vecteurs différents selon son contexte.</li>
+<li>C’est ce changement qui rend BERT important pour l’analyse du texte.</li>
+</ul>
+</section>
+<section id="limites-des-approches-vues-jusquici" class="slide level2">
+<h2>Limites des approches vues jusqu’ici</h2>
+<ul>
+<li>Bag-of-Words et TF-IDF comptent les mots, mais perdent l’ordre et le contexte.</li>
+<li>Word2Vec et GloVe captent des proximités sémantiques, mais donnent une représentation stable.</li>
+<li>Les modèles classiques restent utiles, mais dépendent beaucoup des traits construits au départ.</li>
+<li>Le problème central n’est donc pas seulement de classer.</li>
+<li>Le problème est aussi de représenter des mots dont le sens change selon la phrase.</li>
+</ul>
+</section>
+<section id="lidée-centrale-de-bert" class="slide level2">
+<h2>L’idée centrale de BERT</h2>
+<ul>
+<li>BERT signifie <strong>Bidirectional Encoder Representations from Transformers</strong>.</li>
+<li>Il lit le texte en tenant compte de ce qui vient avant et après un token.</li>
+<li>Il produit une représentation vectorielle pour chaque token.</li>
+<li>Cette représentation dépend du contexte précis où le token apparaît.</li>
+<li>BERT ne donne donc pas seulement un vecteur au mot : il donne un vecteur au mot dans une phrase.</li>
+</ul>
+</section>
+<section id="un-même-mot-plusieurs-contextes" class="slide level2">
+<h2>Un même mot, plusieurs contextes</h2>
+<ul>
+<li>Le mot “tombe” ne joue pas le même rôle dans “il tombe” et “une tombe funéraire”.</li>
+<li>Le mot “chant” peut désigner une voix, une œuvre poétique ou une pratique rituelle.</li>
+<li>Dans BERT, ces usages peuvent recevoir des représentations différentes.</li>
+<li>Le modèle tient compte des mots voisins pour construire le sens local.</li>
+<li>C’est ce qui rend BERT intéressant pour des corpus littéraires.</li>
+</ul>
+</section>
+<section id="tokenisation-bert" class="slide level2">
+<h2>Tokenisation BERT</h2>
+<ul>
+<li>BERT ne lit pas exactement des mots.</li>
+<li>Il lit des <strong>tokens</strong>, souvent des mots ou des fragments de mots.</li>
+<li>Un mot long ou rare peut être découpé en sous-mots.</li>
+<li>Par exemple, “internationalisation” peut être divisé en plusieurs morceaux selon le tokenizer.</li>
+<li>Ce découpage permet au modèle de traiter des mots qu’il n’a pas vus exactement sous cette forme.</li>
+</ul>
+</section>
+<section id="tokens-spéciaux" class="slide level2">
+<h2>Tokens spéciaux</h2>
+<ul>
+<li>BERT utilise aussi des tokens spéciaux.</li>
+<li><code>[CLS]</code> sert à représenter l’ensemble d’une séquence.</li>
+<li><code>[SEP]</code> sert à séparer des segments ou à marquer la fin d’une séquence.</li>
+<li><code>[MASK]</code> sert pendant l’entraînement à cacher un token que le modèle doit deviner.</li>
+<li>Ces tokens sont des balises de travail pour le modèle.</li>
+</ul>
+</section>
+<section id="le-transformer-en-une-image-mentale" class="slide level2">
+<h2>Le Transformer en une image mentale</h2>
+<ul>
+<li>BERT est une pile d’encodeurs Transformer.</li>
+<li>Chaque couche transforme les représentations produites par la couche précédente.</li>
+<li>Les embeddings donnent une première représentation des tokens.</li>
+<li>L’attention permet aux tokens de tenir compte les uns des autres.</li>
+<li>À la sortie, chaque token possède une représentation enrichie par le contexte.</li>
+</ul>
+</section>
+<section id="le-mécanisme-dattention" class="slide level2">
+<h2>Le mécanisme d’attention</h2>
+<ul>
+<li>L’attention permet à chaque token de regarder les autres tokens de la séquence.</li>
+<li>Le modèle calcule quels autres tokens sont utiles pour construire sa représentation.</li>
+<li>Ce calcul produit des relations entre tokens.</li>
+<li>Ces relations ne sont pas forcément une explication humaine.</li>
+<li>Mais elles indiquent comment l’information circule dans le modèle.</li>
+</ul>
+</section>
+<section id="exemple-dattention" class="slide level2">
+<h2>Exemple d’attention</h2>
+<blockquote>
+<p>Le roi donne son épée à son fils parce qu’<em>il</em> part à la guerre.</p>
+</blockquote>
+<ul>
+<li>Le pronom “il” dépend du contexte.</li>
+<li>Pour l’interpréter, certains mots deviennent importants : “roi”, “fils”, “donne”, “part”, “guerre”.</li>
+<li>Le modèle calcule des liens entre ces tokens.</li>
+<li>L’attention sert à pondérer ces liens.</li>
+<li>Elle aide donc à construire une représentation contextualisée de “il”.</li>
+</ul>
+</section>
+<section id="self-attention" class="slide level2">
+<h2>Self-attention</h2>
+<ul>
+<li>On parle de <strong>self-attention</strong> parce que la phrase s’analyse à partir d’elle-même.</li>
+<li>Chaque token reçoit de l’information des autres tokens de la même séquence.</li>
+<li>Le mot “roi” peut être enrichi par “donne”, “épée”, “fils” ou “guerre”.</li>
+<li>Le mot “fils” peut être enrichi par “donne”, “épée” ou “il”.</li>
+<li>Le mot “il” peut être enrichi par les mots qui aident à résoudre la référence.</li>
+</ul>
+</section>
+<section id="mini-schème-de-self-attention" class="slide level2">
+<h2>Mini-schème de self-attention</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>roi  → regarde → donne / épée / fils / guerre</span>
+<span id="cb1-2"><a></a>fils → regarde → donne / épée / il</span>
+<span id="cb1-3"><a></a>il   → regarde → roi / fils / part / guerre</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Le mot ne reste pas isolé.</li>
+<li>Il devient une représentation nourrie par les autres mots.</li>
+<li>Le contexte n’est pas ajouté après coup : il est construit dans le modèle.</li>
+</ul>
+</section>
+<section id="multi-head-attention" class="slide level2">
+<h2>Multi-head attention</h2>
+<ul>
+<li>Une seule attention ne suffit pas toujours.</li>
+<li>BERT utilise plusieurs têtes d’attention en parallèle.</li>
+<li>Chaque tête peut capter un type différent de relation.</li>
+<li>Certaines relations peuvent être syntaxiques, référentielles ou thématiques.</li>
+</ul>
+</section>
+<section id="comment-bert-est-entraîné" class="slide level2">
+<h2>Comment BERT est entraîné</h2>
+<ul>
+<li>BERT est d’abord pré-entraîné sur de grands corpus.</li>
+<li>Pendant cet entraînement, certains tokens sont masqués.</li>
+<li>Le modèle doit prédire les tokens cachés à partir du contexte.</li>
+<li>Exemple : “Le chat boit du [MASK].”</li>
+<li>Il apprend des régularités linguistiques avant d’être adapté à une tâche précise.</li>
+</ul>
+</section>
+<section id="pré-entraînement-et-adaptation" class="slide level2">
+<h2>Pré-entraînement et adaptation</h2>
+<ul>
+<li>Le pré-entraînement donne à BERT une compétence linguistique générale.</li>
+<li>Ensuite, on peut l’utiliser pour une tâche particulière.</li>
+<li>On peut l’utiliser directement pour extraire des embeddings.</li>
+<li>On peut aussi l’adapter avec des exemples annotés : c’est le fine-tuning.</li>
+<li>Dans les deux cas, le modèle hérite de ce qu’il a appris dans ses corpus de départ.</li>
+</ul>
+</section>
+<section id="utiliser-bert-pour-une-tâche" class="slide level2">
+<h2>Utiliser BERT pour une tâche</h2>
+<ul>
+<li>BERT peut servir à classifier des textes.</li>
+<li>Il peut comparer la similarité entre deux passages.</li>
+<li>Il peut aider à extraire des informations.</li>
+<li>Il peut soutenir l’annotation ou l’exploration de corpus.</li>
+<li>En SHS, il peut aider à comparer des usages, des motifs ou des catégories.</li>
+</ul>
+</section>
+<section id="les-limites-de-bert" class="slide level2">
+<h2>Les limites de BERT</h2>
+<ul>
+<li>BERT ne comprend pas comme un lecteur humain.</li>
+<li>Il dépend fortement des corpus sur lesquels il a été entraîné.</li>
+<li>Il peut encoder des biais présents dans ces corpus.</li>
+<li>Il peut être fragile sur des textes spécialisés, anciens ou très bruités.</li>
+<li>Il produit des représentations, pas des interprétations.</li>
+</ul>
+</section>
+<section id="prudence-interprétative" class="slide level2">
+<h2>Prudence interprétative</h2>
+<ul>
+<li>Un vecteur proche n’est pas automatiquement une preuve littéraire.</li>
+<li>Une attention forte n’est pas automatiquement une explication.</li>
+<li>Une bonne performance ne signifie pas que le modèle raisonne comme nous.</li>
+<li>Les résultats doivent être replacés dans le corpus, la tâche et les choix de méthode.</li>
+</ul>
+</section>
+<section id="démonstration" class="slide level2">
+<h2>Démonstration</h2>
+<ul>
+<li>Nous allons :
+<ul>
+<li>charger un modèle de type BERT.</li>
+<li>tokeniser une ou plusieurs phrases.</li>
+<li>observer les tokens produits par le tokenizer.</li>
+<li>obtenir des embeddings contextualisés.</li>
 </ul></li>
 </ul>
 

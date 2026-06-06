@@ -267,3 +267,151 @@ $$
     - observer l’évolution de la perte ;
     - regarder comment les prédictions changent ;
     - modifier un paramètre pour voir son effet.
+
+# BERT et les représentations contextualisées
+
+## Pourquoi BERT ? 
+
+- Jusqu’ici, nous avons surtout représenté les textes avant de les donner aux modèles.
+- Avec BERT, la représentation devient elle-même une partie du modèle.
+- Le même mot peut recevoir des vecteurs différents selon son contexte.
+- C’est ce changement qui rend BERT important pour l’analyse du texte.
+
+## Limites des approches vues jusqu’ici
+
+- Bag-of-Words et TF-IDF comptent les mots, mais perdent l’ordre et le contexte.
+- Word2Vec et GloVe captent des proximités sémantiques, mais donnent une représentation stable.
+- Les modèles classiques restent utiles, mais dépendent beaucoup des traits construits au départ.
+- Le problème central n’est donc pas seulement de classer.
+- Le problème est aussi de représenter des mots dont le sens change selon la phrase.
+
+## L’idée centrale de BERT
+
+- BERT signifie **Bidirectional Encoder Representations from Transformers**.
+- Il lit le texte en tenant compte de ce qui vient avant et après un token.
+- Il produit une représentation vectorielle pour chaque token.
+- Cette représentation dépend du contexte précis où le token apparaît.
+- BERT ne donne donc pas seulement un vecteur au mot : il donne un vecteur au mot dans une phrase.
+
+## Un même mot, plusieurs contextes
+
+- Le mot “tombe” ne joue pas le même rôle dans “il tombe” et “une tombe funéraire”.
+- Le mot “chant” peut désigner une voix, une œuvre poétique ou une pratique rituelle.
+- Dans BERT, ces usages peuvent recevoir des représentations différentes.
+- Le modèle tient compte des mots voisins pour construire le sens local.
+- C’est ce qui rend BERT intéressant pour des corpus littéraires.
+
+## Tokenisation BERT
+
+- BERT ne lit pas exactement des mots.
+- Il lit des **tokens**, souvent des mots ou des fragments de mots.
+- Un mot long ou rare peut être découpé en sous-mots.
+- Par exemple, “internationalisation” peut être divisé en plusieurs morceaux selon le tokenizer.
+- Ce découpage permet au modèle de traiter des mots qu’il n’a pas vus exactement sous cette forme.
+
+## Tokens spéciaux
+
+- BERT utilise aussi des tokens spéciaux.
+- `[CLS]` sert à représenter l’ensemble d’une séquence.
+- `[SEP]` sert à séparer des segments ou à marquer la fin d’une séquence.
+- `[MASK]` sert pendant l’entraînement à cacher un token que le modèle doit deviner.
+- Ces tokens sont des balises de travail pour le modèle.
+
+## Le Transformer en une image mentale
+
+- BERT est une pile d’encodeurs Transformer.
+- Chaque couche transforme les représentations produites par la couche précédente.
+- Les embeddings donnent une première représentation des tokens.
+- L’attention permet aux tokens de tenir compte les uns des autres.
+- À la sortie, chaque token possède une représentation enrichie par le contexte.
+
+## Le mécanisme d’attention
+
+- L’attention permet à chaque token de regarder les autres tokens de la séquence.
+- Le modèle calcule quels autres tokens sont utiles pour construire sa représentation.
+- Ce calcul produit des relations entre tokens.
+- Ces relations ne sont pas forcément une explication humaine.
+- Mais elles indiquent comment l’information circule dans le modèle.
+
+## Exemple d’attention
+
+> Le roi donne son épée à son fils parce qu’*il* part à la guerre.
+
+- Le pronom “il” dépend du contexte.
+- Pour l’interpréter, certains mots deviennent importants : “roi”, “fils”, “donne”, “part”, “guerre”.
+- Le modèle calcule des liens entre ces tokens.
+- L’attention sert à pondérer ces liens.
+- Elle aide donc à construire une représentation contextualisée de “il”.
+
+## Self-attention
+
+- On parle de **self-attention** parce que la phrase s’analyse à partir d’elle-même.
+- Chaque token reçoit de l’information des autres tokens de la même séquence.
+- Le mot “roi” peut être enrichi par “donne”, “épée”, “fils” ou “guerre”.
+- Le mot “fils” peut être enrichi par “donne”, “épée” ou “il”.
+- Le mot “il” peut être enrichi par les mots qui aident à résoudre la référence.
+
+## Mini-schème de self-attention
+
+```text
+roi  → regarde → donne / épée / fils / guerre
+fils → regarde → donne / épée / il
+il   → regarde → roi / fils / part / guerre
+```
+- Le mot ne reste pas isolé.
+- Il devient une représentation nourrie par les autres mots.
+- Le contexte n’est pas ajouté après coup : il est construit dans le modèle.
+
+## Multi-head attention
+
+- Une seule attention ne suffit pas toujours.
+- BERT utilise plusieurs têtes d’attention en parallèle.
+- Chaque tête peut capter un type différent de relation.
+- Certaines relations peuvent être syntaxiques, référentielles ou thématiques.
+
+## Comment BERT est entraîné
+
+- BERT est d’abord pré-entraîné sur de grands corpus.
+- Pendant cet entraînement, certains tokens sont masqués.
+- Le modèle doit prédire les tokens cachés à partir du contexte.
+- Exemple : “Le chat boit du [MASK].”
+- Il apprend des régularités linguistiques avant d’être adapté à une tâche précise.
+
+## Pré-entraînement et adaptation
+
+- Le pré-entraînement donne à BERT une compétence linguistique générale.
+- Ensuite, on peut l’utiliser pour une tâche particulière.
+- On peut l’utiliser directement pour extraire des embeddings.
+- On peut aussi l’adapter avec des exemples annotés : c’est le fine-tuning.
+- Dans les deux cas, le modèle hérite de ce qu’il a appris dans ses corpus de départ.
+
+## Utiliser BERT pour une tâche
+
+- BERT peut servir à classifier des textes.
+- Il peut comparer la similarité entre deux passages.
+- Il peut aider à extraire des informations.
+- Il peut soutenir l’annotation ou l’exploration de corpus.
+- En SHS, il peut aider à comparer des usages, des motifs ou des catégories.
+
+## Les limites de BERT
+
+- BERT ne comprend pas comme un lecteur humain.
+- Il dépend fortement des corpus sur lesquels il a été entraîné.
+- Il peut encoder des biais présents dans ces corpus.
+- Il peut être fragile sur des textes spécialisés, anciens ou très bruités.
+- Il produit des représentations, pas des interprétations.
+
+## Prudence interprétative
+
+- Un vecteur proche n’est pas automatiquement une preuve littéraire.
+- Une attention forte n’est pas automatiquement une explication.
+- Une bonne performance ne signifie pas que le modèle raisonne comme nous.
+- Les résultats doivent être replacés dans le corpus, la tâche et les choix de méthode.
+
+## Démonstration
+
+- Nous allons :
+    - charger un modèle de type BERT.
+    - tokeniser une ou plusieurs phrases.
+    - observer les tokens produits par le tokenizer.
+    - obtenir des embeddings contextualisés.
