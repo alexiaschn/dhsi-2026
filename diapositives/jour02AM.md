@@ -38,7 +38,169 @@ AM: (3h)
     - Segmentation
     - Tokenisation
 
+# Manipulation de données
 
+## Où suis-je?
+
+Non, mais vraiment : où suis-je très exactement?
+
+:::{.incremental}
+
+- En utilisant comme point de départ la Terre, combien d'étapes sont nécessaires pour ce rendre jusqu'à moi?
+
+- À partir de quel moment est-il pertinent d'arrêter de chercher et de simplement dire mon nom pour me trouver?
+
+- Certaines étapes sont arbitraires. D'autres sont seulement utiles dans des contextes spécifiques. D'autres encore sont problématiques, ou encore limitent nos possibilités.
+
+:::
+
+## Visualiser son ~~chemin~~ *path*
+
+Les fichiers dans un ordinateur sont organisés en arborescence: tout commence par une racine, puis nous voyageons le long des branches vers des régions de plus en plus spécifiques de notre ordinateur.
+
+- Sur PC: `C:\Users\Username\Documents\fichier.txt`
+- Sur MacOS: `/Users/Username/Documents/fichier.txt`
+- Sur Linux: `/home/Username/Documents/fichier.txt`
+
+## Interlude : les librairies
+
+Lorsque nous désirons faire des opérations complexes---par exemple obtenir une racine carrée ou le contenu d’une page web---nous nous référons au travail d'autres programmeur·euses\ : il n'est pas nécessaire de réinventer la roue tous les jours!
+
+Dans ce genre de cas, nous faisons appel à une librairie en l'important (e.g. `import os`), plus en l'appelant (e.g. `os.getcwd()`).
+
+## Trouver sa position
+
+`os` est une librairie Python spécialisée en manipulation de fichier. 
+
+Par manipulation, on entend trouver, créer, déplacer, copier, supprimer et accéder aux fichiers et aux dossiers.
+
+```python
+import os
+os.getcwd()
+```
+
+- `cwd` signifie "current working directory".
+
+## Explorer les alentours
+
+Lister les éléments dans le dossier où nous sommes (le *current working directory*)\ :
+
+```python
+os.listdir()
+```
+
+## Explorer un dossier spécifique
+
+Créer un *path* vers un dossier spécifique et explorer son contenu\ :
+
+
+```python
+path = os.path.join("data", "corpus")
+
+os.listdir(path)
+```
+
+## `os`\ : fonctions plus avancées
+
+Créer et supprimer un fichier\ :
+
+```python
+import os
+os.remove(path)
+```
+
+Créer et supprimer un dossier\ :
+
+```python
+os.mkdir(path)
+os.rmdir(path) # Ne fonctionne que sur un dossier vide
+```
+
+Déplacer ou renommer un fichier ou un dossier\ :
+
+```python
+os.rename(old_path, new_path)
+```
+
+## Interlude : les types de fichiers
+
+L'extension à la fin d'un fichier (e.g. `.txt`, `.docx`, `.mp3`, ...) est une indication quant à comment l'ordinateur doit le lire. 
+
+Certains types de fichiers sont plus faciles à manipuler que d'autre\ ; dans le cadre de cet atelier et de projets en humanités numériques, nous utilisons surtout les extensions suivantes\ :
+
+- Plain text\ : `.txt`\ ;
+- JSON\ : `.json`\ ;
+- XML-TEI\ : `.xml`\ ;
+- Comma Separated Values\ : `.csv`.
+
+## Accéder aux données d'un fichier
+
+Pour manipuler des données dans un Jupyter Notebook, il faut connaître sa position exacte.
+
+```python
+import os
+
+path = os.path.join("data", "corpus", "fichier.txt")
+
+with open(path, 'r', encoding="utf-8") as f:
+    content = f.read()
+```
+
+## Accéder à plusieurs fichiers dans un même dossier
+
+```python
+import os
+folder = os.path.join("data", "corpus")
+file_list = os.listdir(folder)
+
+corpus = {}
+
+for file in file_list:
+    if file.endswith(".txt"):
+        file_path = os.path.join(folder, file)
+        with open(file_path, "r", encoding = "utf-8") as f:
+            file_content = f.read()
+            corpus[file] = file_content
+```
+
+## Interlude : les formats propriétaires
+
+Les formats plus complexes comme `.pdf` et `.docx` sont particulièrement difficiles à manipuler en dehors de logiciels dédiés. Certaines librairies permettent d'accéder au contenu utile de ces fichiers (par exemple, isoler le texte dans un pdf), mais pour des raisons de temps, nous n'en parlerons pas dans cet atelier. 
+
+## API
+
+Parfois, on veut accéder à des données (des fichiers de toutes sortes) qui ne sont pas sur notre ordinateur, mais plutôt en ligne. 
+
+Dans ce genre de cas, on fait appel à une API, une *Application Programming Interface*. 
+
+## Un exemple d'API
+
+Tous les livres du Projet Gutenberg sont référencés dans un format lisible pour un ordinateur dans `https://gutendex.com/books`.
+
+```{python}
+import requests
+
+url = "https://gutendex.com/books"
+parameters = {"search": "shelley percy"}
+
+response = requests.get(url, parameters)
+donnees = response.json()
+
+for book in donnees["results"]:
+    print(20*"=")
+    print("\t" + book["title"])
+    print("\t" + book["formats"]["text/plain; charset=utf-8"])
+```
+
+```{python}
+book_response = requests.get(url="https://www.gutenberg.org/ebooks/76161.txt.utf-8")
+
+print(book_response.text)
+```
+
+# Structure de données
+
+TODO
 
 # Présentation du corpus de travail 
 
@@ -158,17 +320,11 @@ Le fichier contient **15 épigrammes** du livre VII.
     - compter certains phénomènes ;
     - préparer les données pour des analyses plus avancées.
 
-## Principes du prétraitement <!-- Yann -->
+# Exercice
 
-## _Shit in shit out_
-
-## Structuration des données
+TODO
 
 # Pause 
-
-## Manipuler des données avec Python
-
-## API
 
 # Prétraitement du texte 
 
@@ -177,6 +333,10 @@ Le fichier contient **15 épigrammes** du livre VII.
 ## Segmentation 
 
 ## Tokenisation
+
+## Principes du prétraitement <!-- Yann -->
+
+## _Shit in shit out_
 
 # Pause de midi 
 
