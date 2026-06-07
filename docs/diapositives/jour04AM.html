@@ -188,7 +188,7 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </ul>
 <p>Cette typologie réfère à la façon dont le modèle a été entrainé, et par conséquent à la tâche pour laquelle il est spécialisé à l’inférence (= prédiction).</p>
 
-<img data-src="img/encoder-decoder.jpg" class="r-stretch quarto-figure-center"><p class="caption">Overview</p><p>Source : <span class="citation" data-cites="tayWhatWeActually2025">Tay (<a href="#/exercice" role="doc-biblioref" onclick="">2025</a>)</span></p>
+<img data-src="img/encoder-decoder.jpg" class="r-stretch quarto-figure-center"><p class="caption">Overview</p><p>Source : <span class="citation" data-cites="tayWhatWeActually2025">Tay (<a href="#/questions-liées-à-lexercice" role="doc-biblioref" onclick="">2025</a>)</span></p>
 </section>
 <section id="décodeurs-gpt" class="slide level2">
 <h2>Décodeurs (GPT)</h2>
@@ -241,7 +241,7 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <h2>Encodage : l’architecture Transformers</h2>
 <p>Tous les modèles de langue ne sont pas des Transformers mais les Transformers demeurent l’architecture la plus connue et la plus répandue actuellement.</p>
 
-<img data-src="img/bert-transformers.jpg" class="r-stretch quarto-figure-center"><p class="caption">Schéma du célèbre <span class="citation" data-cites="vaswaniAttentionAllYou2017">Vaswani et al. (<a href="#/exercice" role="doc-biblioref" onclick="">2017</a>)</span></p><p>Encoder les données (à l’entrainement et à l’inférence) passe par plusieurs étapes:</p>
+<img data-src="img/bert-transformers.jpg" class="r-stretch quarto-figure-center"><p class="caption">Schéma du célèbre <span class="citation" data-cites="vaswaniAttentionAllYou2017">Vaswani et al. (<a href="#/questions-liées-à-lexercice" role="doc-biblioref" onclick="">2017</a>)</span></p><p>Encoder les données (à l’entrainement et à l’inférence) passe par plusieurs étapes:</p>
 <ol type="1">
 <li>embedding : vectorisation selon un nombre défini de dimension (512 pour les BERT).</li>
 <li>encodage des positions : les tokens sont traités simultanément alors on conserve la position de chaque token dans la phrase dans l’embedding.<br>
@@ -278,8 +278,10 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <p>Reconduire un modèle consiste à lui fournir des ordres qui vont modifier son comportement pour toutes les interactions suivantes : cette instruction initiale est le “System message”.</p>
 <p><a href="https://www.neuronpedia.org/gemma-2-9b-it/steer">Conduire un modèle interactivement avec Neuronpedia</a></p>
 </section>
-<section id="bonus-ollama" class="slide level2">
-<h2>Bonus : Ollama</h2>
+<section id="ollama" class="slide level2">
+<h2>Ollama</h2>
+<p>Ollama permet de télécharger des modèles de langue en local et d’intérargit avec.</p>
+<p>Démo :</p>
 <p><a href="https://ollama.com/download">Téléchargement de Ollama</a></p>
 <h3 id="utilisation-de-ollama-en-invite-de-commande">Utilisation de Ollama en invite de commande</h3>
 <p><code>ollama run llama3.2</code> -&gt; télécharge et lance le modèle.</p>
@@ -359,35 +361,77 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <p>Vous pouvez suivre et importer le workflow qui se trouve dans les documents de l’onglet Corpus : <code>flow-classification-animal.cforge</code></p>
 <p>Les données utilisées sont : <code>epigrammes_classification_animal.csv</code></p>
 </section>
-<section id="exercice" class="slide level2 smaller scrollable">
+<section id="préparation-pour-lexercice" class="slide level2">
+<h2>Préparation pour l’exercice</h2>
+<h3 id="téléchargement-local-de-chainforge-et-ollama">Téléchargement local de Chainforge et Ollama</h3>
+<p>En ligne de commande :</p>
+<p>Activer son environnement virtuel (environnement Python dédié):</p>
+<blockquote>
+<p><code>source .venv/bin/activate</code></p>
+</blockquote>
+<p>Télécharger ChainForge</p>
+<blockquote>
+<p><code>pip install chainforge</code></p>
+</blockquote>
+<p>Télécharger Ollama</p>
+<p>Linux/Mac : <code>curl -fsSL https://ollama.com/install.sh | sh</code></p>
+<p>Windows : <code>irm https://ollama.com/install.ps1 | iex</code></p>
+<p>Télécharger des modèles avec Ollama. <a href="https://ollama.com/search">liste des modèles disponibles</a> (recommandé : llama3.2 pour commencer : pas trop lourd)</p>
+<blockquote>
+<p><code>ollama run llama3.2</code></p>
+</blockquote>
+<p>Pour terminer l’interaction avec le modèle <code>Ctrl + d</code> ou <code>Ctrl + c</code></p>
+<h3 id="lancer-chainforge-et-ollama-en-local">Lancer ChainForge et Ollama en local :</h3>
+<blockquote>
+<p><code>chainforge serve</code></p>
+</blockquote>
+<p>Lancer Ollama :</p>
+<blockquote>
+<p><code>ollama serve</code></p>
+</blockquote>
+<p>Le localhost (par défaut http://localhost:8000/) devrait maintenant proposer dans les Nodes de Prompt le type ‘ollama’.</p>
+
+<img data-src="img/chainforge-local-ollama.png" class="r-stretch quarto-figure-center"><p class="caption">ChainForge en local avec les modèles téléchargés sur sa machine via Ollama</p></section>
+<section id="exercice" class="slide level2 scrollable">
 <h2>Exercice</h2>
 <p>Vous pouvez vous servir de votre propre jeu de donnée.</p>
 <p>A défaut :</p>
-<p><strong>Effectuer une classification d’épigrammes selon 2 genres proches : Romantique / Érotique</strong></p>
-<p>Commencez par un New Flow, et ajouter la clé API (soit la vôtre soit la clé Together AI fournie) dans les paramètres.</p>
-<p>Télécharger dans le corpus le jeu de données <code>epigramme_classification.csv</code></p>
+<p><strong>Effectuer une classification d’épigrammes selon 2 classes : Hétérosexuel / Homosexuel</strong></p>
+<p>Commencez par un New Flow.</p>
+<p>Télécharger dans le corpus le jeu de données <code>erotiques_anthologia_graeca_fr.csv</code></p>
 <p>1.Ajouter les données avec l’import CSV. -&gt; Add Node &gt; tabular Data 2. Formuler 2 variants d’un prompt, pensez aux différentes stratégies de prompt existantes (persona, Chain of Thought). -&gt; Add Node &gt; Prompt Node</p>
-<p>Tips : pour faire passer une variable d’un <em>node</em> de CSV à celui de prompt il faut mettre la variable (le nom de la colonne) entre curly braces {}</p>
+<p>Tips : pour faire passer une variable d’un <em>node</em> de CSV à celui de prompt il faut mettre la variable (le nom de la colonne) entre curly braces {}. Exemple : “Est-ce que le texte suivant parle d’une relation homosexuelle ou hétérosexuelle ? Texte : {text_fr}”</p>
 <ol start="3" type="1">
-<li>Ajouter un ou deux modèles maximum et inspecter les prompts envoyer avant de les envoyer.</li>
+<li>Ajouter un ou deux modèles (Ollama) maximum et <strong>inspecter les prompts avant de les envoyer</strong>.</li>
 </ol>
-<p>Si vous utilisez la clé API fournie, vous ne pourrez utiliser que les modèles :</p>
-<ul>
-<li>togetherAI/Qwen2.5-7B-Instruct-Turbo</li>
-<li>togetherAI/Llama-3.3-70B-Instruct-Turbo</li>
-</ul>
+<!-- Si vous utilisez la clé API fournie, vous ne pourrez utiliser que les modèles : 
+
+- togetherAI/Qwen2.5-7B-Instruct-Turbo
+- togetherAI/Llama-3.3-70B-Instruct-Turbo -->
 <ol start="4" type="1">
-<li>Ajouter 2 évaluateurs LLM : le premier pour déterminer la qualité de la classification sur une échelle de 1 à 10. le second donnera une évaluation en True/False de la qualité de la classification. Ex “Donne une note de 1 à 10 sur la qualité de la classification : le modèle dont tu évalues la réponse devait déterminer si le texte suivant {épigramme} était romantique ou érotique”.</li>
+<li>Ajouter 2 évaluateurs :</li>
 </ol>
-<p>Tips : pour faire passer la variable du node CSV à l’évaluateur il faut utiliser la syntaxe : <code>response.meta['variable']</code></p>
+<ul>
+<li>le premier pour quantifier les réponses en Python ou en Javascript (déterminer avec True or False si la réponse était bien celle attendue).</li>
+<li>le deuxième est une évaluation ‘LLM-as-judge’ : le LLM devra déterminer si l’évaluation était correcte en comparant la réponse donnée et la réponse attendue.</li>
+</ul>
+<p>Tips : pour faire passer la variable du node CSV à l’évaluateur il faut utiliser la syntaxe : <code>response.meta['variable']</code> ex : “Donne une note de 1 à 10 sur la qualité de la classification : le modèle dont tu évalues la réponse devait déterminer si le texte suivant”{response.meta[‘text_fr’]}” était romantique ou érotique”</p>
 <ol start="5" type="1">
 <li>Comparer la qualité des sorties des différents prompts et la qualité des évaluations par les LLM.</li>
 </ol>
-<p>Tips :</p>
 <ul>
 <li>pour faire passer une variable d’un <em>node</em> de CSV à celui de prompt il faut mettre la variable (le nom de la colonne) entre curly braces {}</li>
 <li>pour faire passer la variable du node CSV à l’évaluateur il faut utiliser la syntaxe : <code>response.meta['variable']</code></li>
 </ul>
+</section>
+<section id="questions-liées-à-lexercice" class="slide level2 smaller scrollable">
+<h2>Questions liées à l’exercice</h2>
+<p>Quel est le meilleur modèle ?</p>
+<p>Quel est le meilleur prompt ?</p>
+<p>Observez les erreurs produites par les modèles, quels facteurs semblent avoir confondus les modèles ? Quels sont les biais des modèles ? Ces biais sont-ils exprimés explicitement dans les phases de réflexions du modèle ?</p>
+<p>Quelles sont les limites de cette stratégie de classification ?</p>
+<p>Quelles sont les limites de l’évaluation de la classification ?</p>
+<p>Quelles autres critères peut-on envisager pour cette classification automatique ?</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

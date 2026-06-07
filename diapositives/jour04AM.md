@@ -184,7 +184,11 @@ Reconduire un modèle consiste à lui fournir des ordres qui vont modifier son c
 
 [Conduire un modèle interactivement avec Neuronpedia](https://www.neuronpedia.org/gemma-2-9b-it/steer)
 
-## Bonus :  Ollama 
+## Ollama 
+
+Ollama permet de télécharger des modèles de langue en local et d'intérargit avec. 
+
+Démo : 
 
 [Téléchargement de Ollama](https://ollama.com/download)
 
@@ -200,6 +204,7 @@ Reconduire un modèle consiste à lui fournir des ordres qui vont modifier son c
 
 
 `ollama rm llama3.2` -> supprime un modèle 
+
 
 ### Steering un model local 
 
@@ -281,44 +286,100 @@ Vous pouvez suivre et importer le workflow qui se trouve dans les documents de l
 Les données utilisées sont : `epigrammes_classification_animal.csv`
 
 
-## Exercice
+## Préparation pour l'exercice 
+
+### Téléchargement local de Chainforge et Ollama 
+
+En ligne de commande : 
+
+Activer son environnement virtuel (environnement Python dédié): 
+
+> `source .venv/bin/activate`
+
+Télécharger ChainForge
+
+>`pip install chainforge`
+
+Télécharger Ollama 
+
+Linux/Mac : `curl -fsSL https://ollama.com/install.sh | sh`
+
+Windows : `irm https://ollama.com/install.ps1 | iex`
+
+
+Télécharger des modèles avec Ollama. [liste des modèles disponibles](https://ollama.com/search) (recommandé : llama3.2 pour commencer : pas trop lourd) 
+
+> `ollama run llama3.2` 
+
+Pour terminer l'interaction avec le modèle `Ctrl + d` ou `Ctrl + c`
+
+### Lancer ChainForge et Ollama en local : 
+
+> `chainforge serve`
+
+
+Lancer Ollama : 
+
+> `ollama serve`
+
+Le localhost (par défaut http://localhost:8000/) devrait maintenant proposer dans les Nodes de Prompt le type 'ollama'. 
+
+![ChainForge en local avec les modèles téléchargés sur sa machine via Ollama](img/chainforge-local-ollama.png)
+
+## Exercice 
 
 Vous pouvez vous servir de votre propre jeu de donnée. 
 
 A défaut :
 
-**Effectuer une classification d'épigrammes selon 2 genres proches : Romantique / Érotique**
+**Effectuer une classification d'épigrammes selon 2 classes : Hétérosexuel / Homosexuel**
 
-Commencez par un New Flow, et ajouter la clé API (soit la vôtre soit la clé Together AI fournie) dans les paramètres. 
+Commencez par un New Flow. 
 
-Télécharger dans le corpus le jeu de données `epigramme_classification.csv`
-
+Télécharger dans le corpus le jeu de données `erotiques_anthologia_graeca_fr.csv`
 
 1.Ajouter les données avec l'import CSV. -> Add Node > tabular Data 
 2. Formuler 2 variants d'un prompt, pensez aux différentes stratégies de prompt existantes (persona, Chain of Thought).  -> Add Node > Prompt Node
 
-Tips : pour faire passer une variable d'un _node_ de CSV à celui de prompt il faut mettre la variable (le nom de la colonne) entre curly braces {}
+Tips : pour faire passer une variable d'un _node_ de CSV à celui de prompt il faut mettre la variable (le nom de la colonne) entre curly braces {}. Exemple : "Est-ce que le texte suivant parle d'une relation homosexuelle ou hétérosexuelle ? Texte : {text_fr} "
 
 
-3. Ajouter un ou deux modèles maximum et inspecter les prompts envoyer avant de les envoyer.
+3. Ajouter un ou deux modèles (Ollama) maximum et **inspecter les prompts avant de les envoyer**.
 
-Si vous utilisez la clé API fournie, vous ne pourrez utiliser que les modèles : 
+<!-- Si vous utilisez la clé API fournie, vous ne pourrez utiliser que les modèles : 
 
 - togetherAI/Qwen2.5-7B-Instruct-Turbo
-- togetherAI/Llama-3.3-70B-Instruct-Turbo
+- togetherAI/Llama-3.3-70B-Instruct-Turbo -->
 
 
-4. Ajouter 2 évaluateurs LLM : le premier pour déterminer la qualité de la classification sur une échelle de 1 à 10. le second donnera une évaluation en True/False de la qualité de la classification. Ex "Donne une note de 1 à 10 sur la qualité de la classification : le modèle dont tu évalues la réponse devait déterminer si le texte suivant {épigramme} était romantique ou érotique".
+4. Ajouter 2 évaluateurs : 
 
-Tips : pour faire passer la variable du node CSV à l'évaluateur il faut utiliser la syntaxe : `response.meta['variable']`
+- le premier pour quantifier les réponses en Python ou en Javascript (déterminer avec True or False si la réponse était bien celle attendue). 
+- le deuxième est une évaluation 'LLM-as-judge' : le LLM devra déterminer si l'évaluation était correcte en comparant la réponse donnée et la réponse attendue.
+
+
+Tips : pour faire passer la variable du node CSV à l'évaluateur il faut utiliser la syntaxe : `response.meta['variable']` ex : "Donne une note de 1 à 10 sur la qualité de la classification : le modèle dont tu évalues la réponse devait déterminer si le texte suivant "{response.meta['text_fr']}" était romantique ou érotique"
 
 5. Comparer la qualité des sorties des différents prompts et la qualité des évaluations par les LLM. 
 
-
-Tips : 
-
 - pour faire passer une variable d'un _node_ de CSV à celui de prompt il faut mettre la variable (le nom de la colonne) entre curly braces {}
 - pour faire passer la variable du node CSV à l'évaluateur il faut utiliser la syntaxe : `response.meta['variable']`
+
+## Questions liées à l'exercice
+
+Quel est le meilleur modèle ? 
+
+Quel est le meilleur prompt ? 
+
+
+Observez les erreurs produites par les modèles, quels facteurs semblent avoir confondus les modèles ? Quels sont les biais des modèles ? Ces biais sont-ils exprimés explicitement dans les phases de réflexions du modèle ?  
+
+Quelles sont les limites de cette stratégie de classification ?
+
+Quelles sont les limites de l'évaluation de la classification ? 
+
+Quelles autres critères peut-on envisager pour cette classification automatique ? 
+
 
 
 
