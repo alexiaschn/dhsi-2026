@@ -38,6 +38,33 @@ AM: (3h)
     - Segmentation
     - Tokenisation
 
+# Avant-propos
+
+## Au programme ce matin
+
+- Une introduction très condensée à...
+    - Se repérer dans ses dossiers\ ;
+    - Accéder aux fichiers\ ;
+    - Comprendre quelques types de données.
+- Un corpus qui nous tient à coeur\ ;
+- Quelques activités sur le prétraitement des données textuelles.
+
+## À quoi sert cette demi-journée?
+
+- Mettre tout le monde sur le même pied d'égalité\ ;
+- Créer une fondation sur laquelle le reste de la semaine reposera\ ;
+- S'assurer que tout le monde sait comment nettoyer et manipuler des données textuelles.
+
+## Quelques questions pour se situer
+
+:::{.incremental}
+
+- Qui connaît un langage de programmation?
+    - Qui connaît Python?
+- Qui a un corpus de textes sur lesquels iels aimeraient expérimenter?
+
+:::
+
 # Manipulation de données
 
 ## Où suis-je?
@@ -488,6 +515,7 @@ df.loc[row, column]
 
 # Pause 
 
+
 # Prétraitement
 
 ## Textes propres et textes sales
@@ -527,6 +555,52 @@ D'autres doivent être fait à la main\ :
 - Vérifier que les colonnes n'ont pas fusionné\ ;
 - ...
 
+## Segmentation
+
+Quelle est l'unité de base d'un texte?
+
+::: {.columns}
+
+::: {.column}
+
+:::{.incremental}
+
+- Le caractère?
+- Le mot?
+- Le syntagme?
+- La ligne
+- La phrase?
+- Le paragraphe?
+- Le poème?
+
+:::
+
+:::
+
+::: {.column}
+
+:::{.incremental}
+
+- La nouvelle?
+- Le chapitre?
+- La scène?
+- La section?
+- L'acte?
+- Le texte entier?
+- Plusieurs textes?
+
+:::
+
+:::
+
+:::
+
+## Segmentation
+
+L'unité textuelle qui sera étudiée dépend de la question de recherche et des outils disponibles. 
+
+Les divisions entre sections sont rarement encodées dans les fichiers textuels (avec quelques exceptions notables comme le XML), il faut donc se reposer sur des proxies.
+
 ## Exercice de nettoyage des données textuelles
 
 ![[Projet Gutenberg](https://www.gutenberg.org/)](Media/Gutenberg.png)
@@ -549,10 +623,11 @@ La simple tâche de séparer une phrase en segments demande un important travail
 text = """Dans le paradigme des deux cultures (Snow 1959), l’algorithme est 1) une force a-littéraire, 2) un outil de la *méthode* et 3) absolutiste. [...] L’expression Études littéraires computationnelles (ELC) étant particulièrement récente (ce qui sera démontré dans la Section 1.2), la plupart des textes qui font l’histoire ou la généalogie de l’utilisation de méthodes computationnelles, d’algorithmes, d’outils numériques et de statistiques pour étudier les textes littéraires le font soit dans un contexte plus vaste---par exemple les humanités numériques et les *humanities computing*---soit pour des méthodes précises---comme la lecture distante ou la stylométrie."""
 ```
 
+## Tokenisation
 
-## Segmentation 
+*À venir*
 
-# Exercice
+<!--TODO-->
 
 ## Retour sur l'AG
 
@@ -561,10 +636,6 @@ text = """Dans le paradigme des deux cultures (Snow 1959), l’algorithme est 1)
     - segmenter les chaînes de caractères ;
     - compter certains phénomènes ;
     - préparer les données pour des analyses plus avancées.
-
-## Principes du prétraitement <!-- Yann -->
-
-## _Shit in shit out_
 
 # Pause de midi 
 
