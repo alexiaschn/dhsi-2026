@@ -198,9 +198,150 @@ book_response = requests.get(url="https://www.gutenberg.org/ebooks/76161.txt.utf
 print(book_response.text)
 ```
 
-# Structure de données
+# Structures de données
 
-TODO
+## Résumé
+
+Les données sont structurées dans des fichiers en fonction de standards et de conventions. Certains formats sont plus faciles à lire par l'humain alors que d'autres sont plus faciles à lire par la machine. 
+
+Dans le cadre de ce cours résumé, nous nous concentrons uniquement sur des formats *open source* qu’un humain et une machine peuvent lire et analyser.
+
+## Le format le plus simple
+
+L'extension `.txt` indique un fichier *Plain text* qui contient une suite linéaire de caractères. Par exemple, les textes du Projet Gutenberg sont toujours disponibles en format *Plain text*, généralement en encodage utf-8.
+
+## Formats communs pour les données textuelles
+
+- HTML (`.html`)\ ;
+- XML (`.xml`)\ ;
+- XHTML (`.xhtml`)\ ;
+- LaTeX (`.tex`)\ ;
+- ...
+
+Il n'est pas rare que certains formats soient en fait une série de fichiers compressés\ :
+
+- ePUB (`.epub`)\ ;
+- OpenDocument (`.odf`)\ ;
+- ...
+
+## Formats pour les métadonnées
+
+Les mêmes données peuvent être encodées dans plusieurs formats différents, mais certains formats se prêtent mieux à certaines données et vice-versa.
+
+## YAML
+
+Yet another Markup Language.
+
+::: {.columns}
+
+::: {.column}
+
+- John Doe, 30 ans, vit à New York. 
+- Jane Smith, 25 ans, vit à Londres.
+- Bob Wilson, 35 ans, vit à Paris.
+
+:::
+
+::: {.column}
+
+
+```yaml
+-
+  name: John Doe
+  age: 30
+  city: New York
+-
+  name: Jane Smith
+  age: 25
+  city: London
+-
+  name: Bob Wilson
+  age: 35
+  city: Paris
+```
+
+:::
+
+:::
+
+## JSON
+
+JavaScript Object Notation.
+
+::: {.columns}
+
+::: {.column}
+
+- John Doe, 30 ans, vit à New York. 
+- Jane Smith, 25 ans, vit à Londres.
+- Bob Wilson, 35 ans, vit à Paris.
+
+:::
+
+::: {.column}
+
+
+```json
+[
+  {
+    "name": "John Doe",
+    "age": 30,
+    "city": "New York"
+  },
+  {
+    "name": "Jane Smith",
+    "age": 25,
+    "city": "London"
+  },
+  {
+    "name": "Bob Wilson",
+    "age": 35,
+    "city": "Paris"
+  }
+]
+```
+
+:::
+
+:::
+
+## CSV
+
+Comma-Separated Values.
+
+::: {.columns}
+
+::: {.column}
+
+- John Doe, 30 ans, vit à New York. 
+- Jane Smith, 25 ans, vit à Londres.
+- Bob Wilson, 35 ans, vit à Paris.
+
+:::
+
+::: {.column}
+
+
+```csv
+name,age,city
+John Doe,30,New York
+Jane Smith,25,London
+Bob Wilson,35,Paris
+```
+
+:::
+
+:::
+
+## Plus sur JSON 
+
+JSON permet d'encoder les données en arborescence, mais il n'y a pas de limites au type d'information que l'on peut inclure dans un `.json`. Il s'agit d'un excellent format dans lequel on peut pratiquement représenter n'importe quoi (incluant un corpus entier).
+
+## Plus sur CSV
+
+Similairement, le format CSV permet d'encoder toutes sortes de données sous la forme d'un tableau. 
+
+Puisque parfois les données encodées dans un CSV contiennent des virgules, il est possible de choisir un autre caractère comme séparateur. Les exemples de séparateurs alternatifs les plus communs sont la tabulation et les points virgules, mais n'importe quel caractère peut être utilisé.
 
 # Présentation du corpus de travail 
 
@@ -310,19 +451,40 @@ Le fichier contient **15 épigrammes** du livre VII.
     - Des métadonnées ;  
     - Même quelques questions de départ.
 
-## Transition vers Python
-
-- La prochaine étape consiste à transformer ces éléments en opérations concrètes :
-    - charger le fichier dans Python ;
-    - inspecter la structure du corpus ;
-    - nettoyer les textes ;
-    - segmenter les chaînes de caractères ;
-    - compter certains phénomènes ;
-    - préparer les données pour des analyses plus avancées.
-
 # Exercice
 
-TODO
+## Objectifs
+
+Pour lire un fichier CSV dans Python, nous allons devoir créer un *path* vers celui-ci et utiliser la librairie `pandas`.
+
+Nous allons ensuite apprendre à naviguer un DataFrame.
+
+## Créer un *path*
+
+```python
+import os
+path = os.path.join("")
+```
+
+Trouvez sur votre ordinateur (ou dand Colab) le chemin vers le fichier CSV.
+
+## Charger un fichier CSV
+
+```python
+import pandas as pd
+df = pd.read_csv(path)
+```
+
+Lorsqu'on charge un CSV avec pandas, on obtient un *DataFrame*, une structure de données python.
+
+## Lire les données
+
+```python
+df.head()
+df.column
+df["column"]
+df.loc[row, column]
+```
 
 # Pause 
 
@@ -333,6 +495,16 @@ TODO
 ## Segmentation 
 
 ## Tokenisation
+
+# Exercice
+
+## Retour sur l'AG
+
+- La prochaine étape consiste à transformer ces éléments en opérations concrètes :
+    - nettoyer les textes ;
+    - segmenter les chaînes de caractères ;
+    - compter certains phénomènes ;
+    - préparer les données pour des analyses plus avancées.
 
 ## Principes du prétraitement <!-- Yann -->
 
