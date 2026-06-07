@@ -795,7 +795,7 @@
     "href": "diapositives.html",
     "title": "Index des diapositives",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\nJun 8, 2026\n\n\nJour 1 : Introduction à l’IA, histoire et typologie\n\n\nAlexia Schneider, Marcello Vitali-Rosati\n\n\n\n\n\n\nJun 9, 2026\n\n\nJour 2 après-midi : Automatisation du prétraitement d’un corpus textuel\n\n\nAlexia Schneider, Yann Audin\n\n\n\n\n\n\nJun 9, 2026\n\n\nJour 2 matin : Automatisation du prétraitement d’un corpus textuel\n\n\nYann Audin, William Bouchard\n\n\n\n\n\n\nJun 10, 2026\n\n\nJour 3 : Apprentissage profond\n\n\nWilliam Bouchard, Yann Audin\n\n\n\n\n\n\nJun 11, 2026\n\n\nJour 4 matin : Les modèles génératifs\n\n\nAlexia Schneider, William Bouchard\n\n\n\n\n\n\nJun 12, 2026\n\n\nJour 5 : Architecture des SIA complexes\n\n\nAlexia Schneider, Yann Audin, William Bouchard\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\nJun 8, 2026\n\n\nJour 1 : Introduction à l’IA, histoire et typologie\n\n\nAlexia Schneider, Marcello Vitali-Rosati\n\n\n\n\n\n\nJun 9, 2026\n\n\nJour 2 après-midi : Automatisation du prétraitement d’un corpus textuel\n\n\nAlexia Schneider, Yann Audin\n\n\n\n\n\n\nJun 9, 2026\n\n\nJour 2 matin : Automatisation du prétraitement d’un corpus textuel\n\n\nYann Audin, William Bouchard\n\n\n\n\n\n\nJun 10, 2026\n\n\nJour 3 : Apprentissage profond\n\n\nWilliam Bouchard, Yann Audin\n\n\n\n\n\n\nJun 11, 2026\n\n\nJour 4 matin : Les modèles génératifs\n\n\nAlexia Schneider, William Bouchard\n\n\n\n\n\n\nJun 11, 2026\n\n\nJour 4 PM : Les modèles génératifs (suite)\n\n\nAlexia Schneider, William Bouchard\n\n\n\n\n\n\nJun 12, 2026\n\n\nJour 5 : Architecture des SIA complexes\n\n\nAlexia Schneider, Yann Audin, William Bouchard\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "diapositives/jour02PM.html#nettoyer-et-structurer-un-corpus-avec-des-regex",
@@ -1328,5 +1328,96 @@
     "title": "Jour 3 : Apprentissage profond",
     "section": "Démonstration",
     "text": "Démonstration\n\nNous allons :\n\ncharger un modèle de type BERT.\ntokeniser une ou plusieurs phrases.\nobserver les tokens produits par le tokenizer.\nobtenir des embeddings contextualisés."
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#du-prompt-à-laffinage",
+    "href": "diapositives/jour04PM.html#du-prompt-à-laffinage",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Du prompt à l’affinage",
+    "text": "Du prompt à l’affinage\n\nCe matin, nous avons surtout contrôlé le modèle par le prompt.\nCet après-midi, nous allons voir comment adapter un modèle par entraînement.\nLe prompt modifie ce que l’on demande au modèle.\nL’affinage modifie une partie de ce que le modèle sait faire.\nFine-tuner, en bref, c’est modifier ses poids."
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#pourquoi-affiner-un-modèle",
+    "href": "diapositives/jour04PM.html#pourquoi-affiner-un-modèle",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Pourquoi affiner un modèle ?",
+    "text": "Pourquoi affiner un modèle ?\n\nOn affine un modèle quand une tâche revient souvent.\nC’est utile quand le domaine est spécialisé ou très codifié.\nCela peut aider à produire un format de sortie plus stable.\nCela permet parfois de mieux gérer un vocabulaire technique.\nCela évite aussi de dépendre d’un prompt interminable, fragile et franchement pénible."
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#exemple-dusage",
+    "href": "diapositives/jour04PM.html#exemple-dusage",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Exemple d’usage",
+    "text": "Exemple d’usage\n\nOn pourrait demander à un modèle de classifier des épigrammes avec un prompt.\nMais si la tâche revient souvent, le prompt devient vite répétitive.\nUn modèle affiné peut apprendre une consigne stable.\nExemple : associer chaque épigramme à une catégorie comme funéraire, votive, érotique…\nL’objectif est alors d’apprendre un comportement récurrent."
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#ce-que-le-fine-tuning-nest-pas",
+    "href": "diapositives/jour04PM.html#ce-que-le-fine-tuning-nest-pas",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Ce que le fine-tuning n’est pas",
+    "text": "Ce que le fine-tuning n’est pas\n\nLe fine-tuning n’est pas une base de données.\nCe n’est pas une mémoire parfaite.\nCe n’est pas une garantie de vérité.\nCe n’est pas toujours nécessaire.\nSi le problème est surtout d’ajouter des documents, le RAG est souvent plus adapté."
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#fine-tuning-ou-rag",
+    "href": "diapositives/jour04PM.html#fine-tuning-ou-rag",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Fine-tuning ou RAG ?",
+    "text": "Fine-tuning ou RAG ?\n\nDemain, nous parlerons de la Retrieval Augmented Generation (RAG).\nLe fine-tuning sert surtout à apprendre un comportement.\nLe RAG sert surtout à fournir de l’information au modèle.\nPour changer un style, une structure ou une tâche répétée, l’affinage peut être utile.\nPour donner accès à des documents précis, il vaut mieux les récupérer au moment de la requête.\nLe fine tuning change le comportement, pas l’information."
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#les-grands-types-daffinage",
+    "href": "diapositives/jour04PM.html#les-grands-types-daffinage",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Les grands types d’affinage",
+    "text": "Les grands types d’affinage\n\nLe fine-tuning complet modifie tous les poids du modèle.\nLe supervised fine-tuning entraîne le modèle sur des exemples entrée → sortie.\nL’instruction tuning apprend au modèle à suivre des consignes.\nPEFT et LoRA modifient seulement une petite partie du modèle."
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#les-données-dentraînement",
+    "href": "diapositives/jour04PM.html#les-données-dentraînement",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Les données d’entraînement",
+    "text": "Les données d’entraînement\n\nUn affinage repose sur des exemples bien préparés.\nChaque exemple contient une entrée et une sortie attendue.\nPour une classification, la sortie peut être un label.\nPour un modèle instructionnel, on utilise souvent un format instruction / input / output.\nLes données doivent être séparées en entraînement, validation et test."
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#exemple-de-format",
+    "href": "diapositives/jour04PM.html#exemple-de-format",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Exemple de format",
+    "text": "Exemple de format\n{\n  \"instruction\": \"Classe cette épigramme.\",\n  \"input\": \"...\",\n  \"output\": \"érotique\"\n}\n\nL’instruction dit au modèle quoi faire.\nL’entrée contient le texte à traiter.\nLa sortie donne la réponse attendue.\nLe modèle apprend à reproduire ce type de correspondance."
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#pipeline-général",
+    "href": "diapositives/jour04PM.html#pipeline-général",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Pipeline général",
+    "text": "Pipeline général\nCorpus brut\n→ nettoyage\n→ annotation / labels\n→ formatage\n→ entraînement\n→ évaluation\n→ comparaison au modèle de base\n\nLe vrai travail consiste à préparer des données fiables.\nUn modèle affiné apprend à partir de ce qu’on lui donne.\nSi les exemples sont flous, le comportement appris sera flou aussi."
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#évaluer-un-modèle-affiné",
+    "href": "diapositives/jour04PM.html#évaluer-un-modèle-affiné",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Évaluer un modèle affiné",
+    "text": "Évaluer un modèle affiné\nIl faut comparer le modèle avant et après l’affinage. Pour une classification, on peut utiliser l’accuracy ou le F1-score. L’évaluation humaine reste essentielle pour les cas ambigus. L’analyse des erreurs permet de comprendre ce que le modèle rate. Il faut toujours tester des exemples difficiles, pas seulement les cas gentils qui sourient au modèle."
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#risques-et-limites",
+    "href": "diapositives/jour04PM.html#risques-et-limites",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Risques et limites",
+    "text": "Risques et limites\nLe modèle peut surapprendre les exemples d’entraînement. Un petit dataset peut donner une impression trompeuse d’amélioration. Les biais présents dans les données peuvent être amplifiés. Le modèle peut oublier certains comportements utiles : c’est le catastrophic forgetting. Si ton dataset est croche, ton modèle sera croche avec confiance."
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#quand-choisir-quoi",
+    "href": "diapositives/jour04PM.html#quand-choisir-quoi",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Quand choisir quoi ?",
+    "text": "Quand choisir quoi ?\n\n\n\nBesoin\nSolution\n\n\n\n\nChanger le style ou le format\nPrompt\n\n\nAjouter des documents précis\nRAG\n\n\nApprendre une tâche répétée\nFine-tuning\n\n\nClasser avec peu d’exemples\nPrompting ou modèle classique\n\n\nDomaine très spécialisé\nFine-tuning possible"
+  },
+  {
+    "objectID": "diapositives/jour04PM.html#démonstration",
+    "href": "diapositives/jour04PM.html#démonstration",
+    "title": "Jour 4 PM : Les modèles génératifs (suite)",
+    "section": "Démonstration",
+    "text": "Démonstration\nNous allons : - charger un petit modèle ; - observer le format des exemples. - lancer un entraînement. - comparer le comportement avant et après."
   }
 ]
