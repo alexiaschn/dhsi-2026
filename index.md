@@ -19,6 +19,19 @@ Pour évaluer la pertinence des outils d’IA dans les SHS, que ce soit pour l�
 
 Cette formation est l’opportunité de s’approprier ce sujet avec la perspective critique qu’il mérite tout en dédramatisant ces nouvelles technologies qui bouleversent nos pratiques. Nous invitons chercheur..ses et étudiant..es en SHS avec un intérêt pour la programmation mais sans aucun pré-requis à participer à ce cours introductif aux fondements de l’apprentissage machine pour les SHS.
 
+## Informations pratiques
+
+Le cours se déroule du lundi 8 juin au vendredi 12 juin 2026.
+
+Les salles sont, pour les 8, 10, 11, 12 juin: **B-3280** et le 9 juin : **B-3290** à l'adresse :  Université de Montréal at 3200 Jean-Brillant St., Montréal, QC, Canada. Autrement dit, nous nous retrouvons tous les jours au 3e étage du Pavillon 3200. 
+
+Veillez à vous enregistrer au bureau qui sera installé au 2e étage de ce même bâtiment lundi entre 8h15 et 9h. De 9h à 10h30 lundi se tiendra une conférence plénière en B-2285, à côté de la table d'enregistrement. 
+
+Le vendredi, seule la matinée sera un cours, DHSI proposant une session de clôture pour toustes à partir de 11h45. Le 14h30 à 15h30 se tiendra un _show and tell_ qui sera l'occasion de présenter ce qui a été accompli pendant la semaine et de voir ce qu'on fait les participant.es des autres cours. 
+
+Pour le programme complet voir la [timetable de DHSI](https://dhsi.org/timetable/).
+
+
  
 ## Enseignant.es
 

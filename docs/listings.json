@@ -1,5 +1,16 @@
 [
   {
+    "listing": "/diapositives.html",
+    "items": [
+      "/diapositives/jour01.html",
+      "/diapositives/jour02AM.html",
+      "/diapositives/jour02PM.html",
+      "/diapositives/jour03.html",
+      "/diapositives/jour04AM.html",
+      "/diapositives/jour05.html"
+    ]
+  },
+  {
     "listing": "/notebooks.html",
     "items": [
       "/notebooks/jour1_IASymboliqueConnexionniste_complet.html",

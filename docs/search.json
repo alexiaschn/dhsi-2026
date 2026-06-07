@@ -186,7 +186,7 @@
     "href": "diapositives/jour03.html#programme",
     "title": "Jour 3 : Apprentissage profond",
     "section": "Programme",
-    "text": "Programme\nAM: (3h)\n\nIntroduction à l’apprentissage profond (30 minutes) (william?) + (yann?)\nRéseaux de neurones (45 minutes + 15 minutes démonstration) (william?)\n\n3 blue 1 brown?\n\nPAUSE (15 minutes)\nGloVe/Word2Vec (45 minutes + 30 minutes atelier) (yann?)\n\nPM: (2h30)\n\nBERT (60 minutes + 15 minutes démonstration) (william?) + (yann?)\n\nMécanisme d’attention\n\nPAUSE (15 minutes)\nPréparation du travail final (60 minutes) (all?)\n\nTravail en groupe, projet"
+    "text": "Programme\nAM: (3h)\n\nIntroduction à l’apprentissage profond (30 minutes)\nRéseaux de neurones (45 minutes + 15 minutes démonstration)\n\n3 blue 1 brown?\n\nPAUSE (15 minutes)\nGloVe/Word2Vec (45 minutes + 30 minutes atelier)\n\nPM: (2h30)\n\nBERT (60 minutes + 15 minutes démonstration)\n\nMécanisme d’attention\n\nPAUSE (15 minutes)\nPréparation du travail final (60 minutes)\n\nTravail en groupe, projet"
   },
   {
     "objectID": "diapositives/jour03.html#objectif-du-bloc",
