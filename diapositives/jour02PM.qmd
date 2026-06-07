@@ -21,12 +21,25 @@ format:
         scrollable: true
         slide-number: true
 ---
-    
-# Programme de l'après-midi
 
+# Avant-propos
+
+## Programme cet après-midi
+
+- Une discussion générale sur les fondements de l'intelligence artificielles\ ;
+- Des méthodes simples, mais efficaces pour étudier les données textueles\ ;
+- Avant l'intelligence artificielle, il avait l'intelligence artificielle!
+
+## À quoi sert cette demi-journée?
+
+- À comprendre l'importance des bonnes pratiques\ ;
+- À prouver que parfois, les méthodes traditionnelles sont aussi efficaces à une fraction de la complexité\ ;
+- À préparer le terrain pour des modèles plus sophistiqués.
+
+<!--
 PM: (2h30)
 
-- Atelier de nettoyage de corpus (1 heure) 
+- Principes généraux (1 heure) 
 - PAUSE (15 min)
 - Représentations vectorielles (1h15 d'exercice) 
     - BOW
@@ -35,6 +48,9 @@ PM: (2h30)
     - KNN
     - RandomForest 
     - LR 
+-->
+
+# Principes généraux 
 
 ## Nettoyer et structurer un corpus avec des Regex
 
