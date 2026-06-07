@@ -27,18 +27,18 @@ format:
 
 AM: (3h)
 
-- Introduction à l'apprentissage profond (30 minutes) @william + @yann
-- Réseaux de neurones (45 minutes + 15 minutes démonstration) @william
+- Introduction à l'apprentissage profond (30 minutes) 
+- Réseaux de neurones (45 minutes + 15 minutes démonstration) 
     - [3 blue 1 brown?](https://www.youtube.com/watch?v=aircAruvnKk)
 - PAUSE (15 minutes)
-- GloVe/Word2Vec (45 minutes + 30 minutes atelier) @yann
+- GloVe/Word2Vec (45 minutes + 30 minutes atelier) 
 
 PM: (2h30)
 
-- BERT (60 minutes + 15 minutes démonstration) @william + @yann
+- BERT (60 minutes + 15 minutes démonstration) 
     - Mécanisme d'attention
 - PAUSE (15 minutes)
-- Préparation du travail final (60 minutes) @all
+- Préparation du travail final (60 minutes) 
     - Travail en groupe, projet
 
 # Introduction à l’apprentissage profond

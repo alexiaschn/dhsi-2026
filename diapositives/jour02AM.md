@@ -26,14 +26,14 @@ format:
 
 AM: (3h)
 
-- Présentation du corpus et des projets (30min) @william
-- Principes (45 minutes) @yann
+- Principes (45 minutes) 
     - Shit in shit out
     - Structuration des données
+- Présentation du corpus et des projets (30min) 
 - PAUSE (15 minutes)
-- Manipuler des données dans Python (20 minutes + 10 minutes atelier) @yann
+- Manipuler des données dans Python (20 minutes + 10 minutes atelier) 
     - API
-- Prétraitement du texte (60 minutes) @yann
+- Prétraitement du texte (60 minutes) 
     - Nettoyage
     - Segmentation
     - Tokenisation
@@ -177,7 +177,7 @@ Dans ce genre de cas, on fait appel à une API, une *Application Programming Int
 
 Tous les livres du Projet Gutenberg sont référencés dans un format lisible pour un ordinateur dans `https://gutendex.com/books`.
 
-```{python}
+```python
 import requests
 
 url = "https://gutendex.com/books"
@@ -192,7 +192,7 @@ for book in donnees["results"]:
     print("\t" + book["formats"]["text/plain; charset=utf-8"])
 ```
 
-```{python}
+``
 book_response = requests.get(url="https://www.gutenberg.org/ebooks/76161.txt.utf-8")
 
 print(book_response.text)
