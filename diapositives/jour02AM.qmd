@@ -192,7 +192,7 @@ for book in donnees["results"]:
     print("\t" + book["formats"]["text/plain; charset=utf-8"])
 ```
 
-``
+```
 book_response = requests.get(url="https://www.gutenberg.org/ebooks/76161.txt.utf-8")
 
 print(book_response.text)
@@ -488,13 +488,69 @@ df.loc[row, column]
 
 # Pause 
 
-# Prétraitement du texte 
+# Prétraitement
 
-## Nettoyage
+## Textes propres et textes sales
+
+Il est (très) rare de trouver des données de qualité sur internet\ : les textes trouvés sur des sites webs et dans des bases de données sont rarement aux standards nécessaires pour les utiliser dans le cadre de travaux en humanités numériques.
+
+- Notices légales\ ;
+- Information en double ou manquante\ ;
+- Incohérences entre différents standards\ ;
+- Formats fermés ou illisibles\ ;
+- Artéfacts de conversion\ :
+    - Numéros de page\ ;
+    - En-têtes et pieds de page\ ;
+    - Notes de bas de page entre deux pages de texte\ ;
+    - Mauvaise reconnaissance de caractères\ ;
+    - Fusionnement de colonnes\ ;
+    - Mauvaise segmentation des lignes\ ;
+    - ...
+
+## Nettoyage des données
+
+Le nettoyage des données textuelles et des métadonnées est une étape centrale de toute tâche en traitement automatique de la langue\ : des données de qualité sont nécessaires pour obtenir des résultats de qualité. En fouille de données comme en apprentissage profond, la sagesse nous dit "**SH*T IN, SH*T OUT**". 
+
+## Comment nettoyer des données
+
+Certains aspects du nettoyage des données textuelles peuvent être automatisés\ :
+
+- Enlever systématiquement un artéfact récurrent\ ;
+- Détecter les informations dédoublées\ ;
+- Effacer les notices légales\ ;
+- Convertir d'un format à l'autre\ ;
+- ...
+
+D'autres doivent être fait à la main\ :
+
+- Ajouter les informations manquantes\ ;
+- Vérifier que les colonnes n'ont pas fusionné\ ;
+- ...
+
+## Exercice de nettoyage des données textuelles
+
+![[Projet Gutenberg](https://www.gutenberg.org/)](Media/Gutenberg.png)
+
+## Un exercice tout simple
+
+Comptez les mots\ :
+
+> Dans le paradigme des deux cultures (Snow 1959), l’algorithme est 1) une force a-littéraire, 2) un outil de la *méthode* et 3) absolutiste. [...] L’expression Études littéraires computationnelles (ELC) étant particulièrement récente (ce qui sera démontré dans la Section 1.2), la plupart des textes qui font l’histoire ou la généalogie de l’utilisation de méthodes computationnelles, d’algorithmes, d’outils numériques et de statistiques pour étudier les textes littéraires le font soit dans un contexte plus vaste---par exemple les humanités numériques et les *humanities computing*---soit pour des méthodes précises---comme la lecture distante ou la stylométrie.
+
+## Un exercice tout simple
+
+Peut-on formaliser ce qu'est un mot? Que fait-on des fragments de texte qui ne sont pas des mots? Est-ce que cette catégorie est même pertinente dans le contexte computationnel?
+
+La simple tâche de séparer une phrase en segments demande un important travail de modélisation.
+
+## Un exercice un peu moins simple
+
+```python
+text = """Dans le paradigme des deux cultures (Snow 1959), l’algorithme est 1) une force a-littéraire, 2) un outil de la *méthode* et 3) absolutiste. [...] L’expression Études littéraires computationnelles (ELC) étant particulièrement récente (ce qui sera démontré dans la Section 1.2), la plupart des textes qui font l’histoire ou la généalogie de l’utilisation de méthodes computationnelles, d’algorithmes, d’outils numériques et de statistiques pour étudier les textes littéraires le font soit dans un contexte plus vaste---par exemple les humanités numériques et les *humanities computing*---soit pour des méthodes précises---comme la lecture distante ou la stylométrie."""
+```
+
 
 ## Segmentation 
-
-## Tokenisation
 
 # Exercice
 
