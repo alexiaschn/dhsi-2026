@@ -30,6 +30,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-00ac2f6af1389919a18f42df5b7c0002.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -176,6 +242,2086 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </ul></li>
 </ul>
 </section>
+<section>
+<section id="manipulation-de-données" class="title-slide slide level1 center">
+<h1>Manipulation de données</h1>
+
+</section>
+<section id="où-suis-je" class="slide level2">
+<h2>Où suis-je?</h2>
+<p>Non, mais vraiment : où suis-je très exactement?</p>
+<ul>
+<li class="fragment"><p>En utilisant comme point de départ la Terre, combien d’étapes sont nécessaires pour ce rendre jusqu’à moi?</p></li>
+<li class="fragment"><p>À partir de quel moment est-il pertinent d’arrêter de chercher et de simplement dire mon nom pour me trouver?</p></li>
+<li class="fragment"><p>Certaines étapes sont arbitraires. D’autres sont seulement utiles dans des contextes spécifiques. D’autres encore sont problématiques, ou encore limitent nos possibilités.</p></li>
+</ul>
+</section>
+<section id="visualiser-son-chemin-path" class="slide level2">
+<h2>Visualiser son <del>chemin</del> <em>path</em></h2>
+<p>Les fichiers dans un ordinateur sont organisés en arborescence: tout commence par une racine, puis nous voyageons le long des branches vers des régions de plus en plus spécifiques de notre ordinateur.</p>
+<ul>
+<li>Sur PC: <code>C:\Users\Username\Documents\fichier.txt</code></li>
+<li>Sur MacOS: <code>/Users/Username/Documents/fichier.txt</code></li>
+<li>Sur Linux: <code>/home/Username/Documents/fichier.txt</code></li>
+</ul>
+</section>
+<section id="interlude-les-librairies" class="slide level2">
+<h2>Interlude : les librairies</h2>
+<p>Lorsque nous désirons faire des opérations complexes—par exemple obtenir une racine carrée ou le contenu d’une page web—nous nous référons au travail d’autres programmeur·euses&nbsp;: il n’est pas nécessaire de réinventer la roue tous les jours!</p>
+<p>Dans ce genre de cas, nous faisons appel à une librairie en l’important (e.g.&nbsp;<code>import os</code>), plus en l’appelant (e.g.&nbsp;<code>os.getcwd()</code>).</p>
+</section>
+<section id="trouver-sa-position" class="slide level2">
+<h2>Trouver sa position</h2>
+<p><code>os</code> est une librairie Python spécialisée en manipulation de fichier.</p>
+<p>Par manipulation, on entend trouver, créer, déplacer, copier, supprimer et accéder aux fichiers et aux dossiers.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a></a>os.getcwd()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>cwd</code> signifie “current working directory”.</li>
+</ul>
+</section>
+<section id="explorer-les-alentours" class="slide level2">
+<h2>Explorer les alentours</h2>
+<p>Lister les éléments dans le dossier où nous sommes (le <em>current working directory</em>)&nbsp;:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>os.listdir()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="explorer-un-dossier-spécifique" class="slide level2">
+<h2>Explorer un dossier spécifique</h2>
+<p>Créer un <em>path</em> vers un dossier spécifique et explorer son contenu&nbsp;:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>path <span class="op">=</span> os.path.join(<span class="st">"data"</span>, <span class="st">"corpus"</span>)</span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a>os.listdir(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="os-fonctions-plus-avancées" class="slide level2">
+<h2><code>os</code>&nbsp;: fonctions plus avancées</h2>
+<p>Créer et supprimer un fichier&nbsp;:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> os</span>
+<span id="cb4-2"><a></a>os.remove(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Créer et supprimer un dossier&nbsp;:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>os.mkdir(path)</span>
+<span id="cb5-2"><a></a>os.rmdir(path) <span class="co"># Ne fonctionne que sur un dossier vide</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Déplacer ou renommer un fichier ou un dossier&nbsp;:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>os.rename(old_path, new_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="interlude-les-types-de-fichiers" class="slide level2">
+<h2>Interlude : les types de fichiers</h2>
+<p>L’extension à la fin d’un fichier (e.g.&nbsp;<code>.txt</code>, <code>.docx</code>, <code>.mp3</code>, …) est une indication quant à comment l’ordinateur doit le lire.</p>
+<p>Certains types de fichiers sont plus faciles à manipuler que d’autre&nbsp;; dans le cadre de cet atelier et de projets en humanités numériques, nous utilisons surtout les extensions suivantes&nbsp;:</p>
+<ul>
+<li>Plain text&nbsp;: <code>.txt</code>&nbsp;;</li>
+<li>JSON&nbsp;: <code>.json</code>&nbsp;;</li>
+<li>XML-TEI&nbsp;: <code>.xml</code>&nbsp;;</li>
+<li>Comma Separated Values&nbsp;: <code>.csv</code>.</li>
+</ul>
+</section>
+<section id="accéder-aux-données-dun-fichier" class="slide level2">
+<h2>Accéder aux données d’un fichier</h2>
+<p>Pour manipuler des données dans un Jupyter Notebook, il faut connaître sa position exacte.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">import</span> os</span>
+<span id="cb7-2"><a></a></span>
+<span id="cb7-3"><a></a>path <span class="op">=</span> os.path.join(<span class="st">"data"</span>, <span class="st">"corpus"</span>, <span class="st">"fichier.txt"</span>)</span>
+<span id="cb7-4"><a></a></span>
+<span id="cb7-5"><a></a><span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">'r'</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb7-6"><a></a>    content <span class="op">=</span> f.read()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="accéder-à-plusieurs-fichiers-dans-un-même-dossier" class="slide level2">
+<h2>Accéder à plusieurs fichiers dans un même dossier</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">import</span> os</span>
+<span id="cb8-2"><a></a>folder <span class="op">=</span> os.path.join(<span class="st">"data"</span>, <span class="st">"corpus"</span>)</span>
+<span id="cb8-3"><a></a>file_list <span class="op">=</span> os.listdir(folder)</span>
+<span id="cb8-4"><a></a></span>
+<span id="cb8-5"><a></a>corpus <span class="op">=</span> {}</span>
+<span id="cb8-6"><a></a></span>
+<span id="cb8-7"><a></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> file_list:</span>
+<span id="cb8-8"><a></a>    <span class="cf">if</span> <span class="bu">file</span>.endswith(<span class="st">".txt"</span>):</span>
+<span id="cb8-9"><a></a>        file_path <span class="op">=</span> os.path.join(folder, <span class="bu">file</span>)</span>
+<span id="cb8-10"><a></a>        <span class="cf">with</span> <span class="bu">open</span>(file_path, <span class="st">"r"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb8-11"><a></a>            file_content <span class="op">=</span> f.read()</span>
+<span id="cb8-12"><a></a>            corpus[<span class="bu">file</span>] <span class="op">=</span> file_content</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="interlude-les-formats-propriétaires" class="slide level2">
+<h2>Interlude : les formats propriétaires</h2>
+<p>Les formats plus complexes comme <code>.pdf</code> et <code>.docx</code> sont particulièrement difficiles à manipuler en dehors de logiciels dédiés. Certaines librairies permettent d’accéder au contenu utile de ces fichiers (par exemple, isoler le texte dans un pdf), mais pour des raisons de temps, nous n’en parlerons pas dans cet atelier.</p>
+</section>
+<section id="api" class="slide level2">
+<h2>API</h2>
+<p>Parfois, on veut accéder à des données (des fichiers de toutes sortes) qui ne sont pas sur notre ordinateur, mais plutôt en ligne.</p>
+<p>Dans ce genre de cas, on fait appel à une API, une <em>Application Programming Interface</em>.</p>
+</section>
+<section id="un-exemple-dapi" class="slide level2">
+<h2>Un exemple d’API</h2>
+<p>Tous les livres du Projet Gutenberg sont référencés dans un format lisible pour un ordinateur dans <code>https://gutendex.com/books</code>.</p>
+<div id="1b4a3ccf" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-stdout">
+<pre><code>====================
+    The Complete Poetical Works of Percy Bysshe Shelley — Complete
+    https://www.gutenberg.org/ebooks/4800.txt.utf-8
+====================
+    A Defence of Poetry and Other Essays
+    https://www.gutenberg.org/ebooks/5428.txt.utf-8
+====================
+    The Prose Works of Percy Bysshe Shelley, Vol. 2 [of 2]
+    https://www.gutenberg.org/ebooks/67926.txt.utf-8
+====================
+    Adonais
+    https://www.gutenberg.org/ebooks/10119.txt.utf-8
+====================
+    The Complete Poetical Works of Percy Bysshe Shelley — Volume 2
+    https://www.gutenberg.org/ebooks/4798.txt.utf-8
+====================
+    Percy Bysshe Shelley
+    https://www.gutenberg.org/ebooks/4555.txt.utf-8
+====================
+    The Complete Poetical Works of Percy Bysshe Shelley — Volume 1
+    https://www.gutenberg.org/ebooks/4797.txt.utf-8
+====================
+    The Prose Works of Percy Bysshe Shelley, Vol. 1 [of 2]
+    https://www.gutenberg.org/ebooks/67925.txt.utf-8
+====================
+    Notes to the Complete Poetical Works of Percy Bysshe Shelley
+    https://www.gutenberg.org/ebooks/4695.txt.utf-8
+====================
+    The Complete Poetical Works of Percy Bysshe Shelley — Volume 3
+    https://www.gutenberg.org/ebooks/4799.txt.utf-8
+====================
+    Percy Bysshe Shelley as a Philosopher and Reformer
+    https://www.gutenberg.org/ebooks/16872.txt.utf-8
+====================
+    O May I Join the Choir Invisible! and Other Favorite Poems
+    https://www.gutenberg.org/ebooks/20742.txt.utf-8
+====================
+    The sensitive plant
+    https://www.gutenberg.org/ebooks/70189.txt.utf-8
+====================
+    A Vindication of Natural Diet.
+    https://www.gutenberg.org/ebooks/38727.txt.utf-8
+====================
+    History of a Six Weeks' Tour Through a Part of France, Switzerland, Germany, and Holland:: With Letters Descriptive of a Sail Round the Lake of Geneva, and of the Glaciers of Chamouni.
+    https://www.gutenberg.org/ebooks/52790.txt.utf-8
+====================
+    Peter Bell the Third
+    https://www.gutenberg.org/ebooks/4697.txt.utf-8
+====================
+    The Daemon of the World
+    https://www.gutenberg.org/ebooks/4654.txt.utf-8
+====================
+    The Witch of Atlas
+    https://www.gutenberg.org/ebooks/4696.txt.utf-8
+====================
+    Prometheus ontboeid: Een lyrisch drama in vier bedrijven
+    https://www.gutenberg.org/ebooks/17822.txt.utf-8
+====================
+    Shelleyn runoja
+    https://www.gutenberg.org/ebooks/76161.txt.utf-8</code></pre>
+</div>
+</div>
+<div id="4bde0262" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-stdout">
+<pre><code>The Project Gutenberg eBook of Shelleyn runoja
+    
+This eBook is for the use of anyone anywhere in the United States and
+most other parts of the world at no cost and with almost no restrictions
+whatsoever. You may copy it, give it away or re-use it under the terms
+of the Project Gutenberg License included with this eBook or online
+at www.gutenberg.org. If you are not located in the United States,
+you will have to check the laws of the country where you are located
+before using this eBook.
+
+Title: Shelleyn runoja
+
+Author: Percy Bysshe Shelley
+
+Translator: Jaakko Tuomikoski
+
+
+        
+Release date: May 25, 2025 [eBook #76161]
+
+Language: Finnish
+
+Original publication: Helsinki: Kustannusosakeyhtiö Kirja, 1929
+
+Other information and formats: www.gutenberg.org/ebooks/76161
+
+Credits: Tuula Temonen
+
+
+*** START OF THE PROJECT GUTENBERG EBOOK SHELLEYN RUNOJA ***
+
+language: Finnish
+
+
+
+
+SHELLEYN RUNOJA
+
+Kirj.
+
+Percy Bysshe Shelley
+
+
+Suomentanut
+
+JAAKKO TUOMIKOSKI
+
+
+
+
+
+
+Helsingissä,
+Kustannusosakeyhtiö Kirja,
+1929.
+
+
+
+
+SISÄLLYS
+
+Lukijalle
+Alastorin alkusäkeet
+Hymni sisäiselle kauneudelle
+Mennyt
+Vihalaulu
+Merenrannalla
+Kutsu kurjuudelle
+Oodi länsituulelle
+Intialainen serenaadi
+Leivoselle
+Vapaus
+Kukkia poimiessa
+Kulkurit
+Mimosa
+Katoovaisuus
+Yölle
+
+
+
+
+
+LUKIJALLE
+
+
+Suomentaja julkaisee nämä näytteet kuuluisan englantilaisen
+lyyrikon runoudesta ilman enempiä selityksiä. Shelleystä on
+kirjoitettu runsaasti, monet lukijat tuntevat hänen tuotantoaan ja
+runoilijaluonnettaan, ja kuvaus hänen elämänsä Vaiheista on jo olemassa
+suomeksi (André Maurois: Ariel eli Shelleyn elämä, Koy Kirja, 1925).
+
+Shelleyn runouden hereä sade ja kirkas paiste oli lyhytaikainen,
+mutta olen silti pitänyt asiallisena noudattaa suomennoskokoelmassa
+vuosijärjestystä runojen syntyajan mukaan. Suomennetut runot ovat
+vuosilta 1815—1822, jotka olivat hänen kolmikymmenvuotisen elämänsä
+(1792—1822) viimeiset. Uskon, että suomalainen runous ei hyli tätä
+suurta henkeä, ei käännöksissäkään, joiden täytyy monin kohdin olla
+alkuperäisestä kalvenneita.
+
+Helsingissä tammikuun lopulla 1929.
+
+J. T.
+
+
+
+
+ALASTORIN ALKUSÄKEET
+
+(ALASTOR, OR THE SPIRIT OF SOLITUDE)
+
+
+    Maa, meri, ilma, kalliit veljeni!
+     Jos suurelt’ äidiltämme imin jotain
+    niin harrasta ja totta, että voin
+    tajuta rakkautenne lahjat runsaat
+    ja palkita ne, — jos oon antaunut
+    kasteiseen aamuun, keskipäivän tuoksuun
+     ja illan loistoon laskuss’ auringon
+    ja tähtiöiden soivaan hiljaisuuteen, —
+    jos syksyn huokaus puissa kuolleissa
+    ja lumiviitat vaarain hartioilla
+    jäähelmin kirjaellut hurmas mua
+     tai kenttäin värisevä hekuma,
+    kun keväält’ ensi suudelmansa sai ne, —
+    jos lintua, maan matelijaa, kukkaa
+     en tieten loukannut, vaan rakastin
+    ja hellin läheisinä, — sietäkää
+    tää ylistys ja suokaa vieläkin
+     mun pitää suosionne osanani!
+
+    Maailman äiti, äärettömän alku,
+     puhalla henkes lauluun, jonka luon!
+    Sua vain on rakkauteni seurannut,
+    sun hahmoas ja suuruutt’ askeltes
+    ja syvyyttäs ja tutkimattomuuttas
+     mun sielunsilmän’ aina luotaavat.
+    Niin yövyin yksin ruumishuoneisiinkin,
+    miss’ itse kuolo viepi kirjaan voitot
+    suit’ ottamansa, sieltä toivoen
+    tuon janon tyydytystä, joka etsii
+     hellittämättä sua ja mit’ on sun,
+    ja uskoin että haamut, sanantuojas,
+    kun vannottaisin niitä, selon antais,
+    mit’ oomme me. Niin hetkin hiljaisin,
+    kun äänettömyys itse puhkee ääniin,
+     ma haltioituna kuin alkemisti,
+    jok’ elon uhraa epävarmaan toivoon,
+    oon sekoittanut juhlalliset sanat,
+    kysyvät katseet rakkauteen ja intoon
+     ja viattoman mielen kyyneliin,
+    niin luullen loihtineeni taikavoiman,
+    jok’ innoittais yön töistäs kertomaan.
+    Mut viel’ et mulle paljastanut koskaan
+     sisintäs, pyhintäs, ja kylliks ovat
+    jo unet, joita sanoiksi en saa,
+    hämärän näyt ja päiväin arvoitukset
+     mua seuranneet. Nyt varron liikkumatta
+    ja ääneti kuin unhoitettu lyyra,
+    jo ajat yksinänsä riippunut
+    hylätyn, jylhän templin holvikossa,
+    sun henkäystäs, suuri äiti — suo
+     mun olla tulkki tuulen huminan
+    ja metsien ja meren rytmin, soida
+    elävän luonnon äänet, hymnit yön
+     ja päivän, sykkeet ihmissydämen.
+
+                        1816
+
+
+
+
+HYMNI SISÄISELLE KAUNEUDELLE
+
+(HYMN TO INTELLECTUAL BEAUTY)
+
+
+    Keskellä maisen elon liikkuu täällä
+      kuin outo aave vaiheill’ ihmisten,
+      niin häälyvä ja hentosiipinen
+    kuin tuulen henkäys tyvenellä säällä
+    tai kuutamo ja tähtivalo tähkäin päällä,
+      ja kenen luo se lehahtaa,
+      sen, sielu ja sen kasvot saa
+    pian katoavan herkän hohtehen,
+      jonk’ ihanuus jää muistihin
+      kuin kevätyön, kuin musiikin, —
+      ei sulo vain, vaan taika tuo,
+    jok’ ihmeellisin voimin vetää luo.
+
+    Kauneuden henki, joka pyhyytes
+      suot kaikkeen kajastaa, mit’ aatoksiin
+      tai muotoon innoitat — miks häilyt niin?
+    Miks yhä meiltä pois viet antimes
+    vain kyynellaakson jättäin tänne jälkehes?
+        Miks aurinko ei ainiaaksi
+        tee sateenkaartaan metsän taaksi,
+    miks häipyy se, jost’ äsken iloittiin,
+        miks syntymää ja kuolemaa
+        yö päiväin yli varjoaa,
+        miks lempeä ja vihaa lie
+    ja toivoa ja tuskaa elon tie?
+
+    Vaikk’ kauan kysyneet on viisaimmat,
+      ei vastannut oo ylhäält’ ääni mikään.
+      Kuin turhan vaivan muistomerkit ikään
+    on taivaat, henget, itse jumalat —
+    sanoja vain, kuink’ armaina ne viettelikään —
+        ja kaikki mitä kantaa maa
+        on muuttuvaa ja katoovaa.
+    Sä yksin suot — kun usvan kirkastat
+        tai yhdyt tuulen huminaan
+        yön sordiinia soittamaan
+        tai kudot aallot kuutamoon —
+    totes ja tenhos harhain vaihteloon.
+
+    Kuin pilvi, joka pian kiitää pois,
+      niin lempi, toivo, itsetunto on.
+      Ois kaikkivoipa hän ja kuoloton,
+    joll’ ihanuutes seura luonaan ois,
+    jok’ elonvettäis, jalo henki, aina jois.
+        Sä, joka katseet lempiväin
+        viet kaivattuihin silmiin päin,
+    jok’ annat aatokselle ravinnon
+        kuin varjot liekin virvoittaa, —
+        jää vielä, ettei kammon maa
+        ja elo tää ja hauta harmaa
+    jäis yksin siksi, mik’ on varmaa!
+
+    Kun lapsena mä aaveit’ etsien
+      hain rauniot ja hiivin mykät huoneet,
+      niin selvityst’ ei henget mulle suoneet,
+    ja tumma metsä, tähtiloisteinen,
+    vait oli vain, kun haastoin haltioita sen.
+        Mut kerran, syvin miettehin
+        kun elon teitä tutkailin —
+    juur’ oli kevättuulet sanomansa tuoneet
+        herätä taasen maan ja puun
+        kukkatuoksuun, lauleluun —
+        niin äkkiä sun hahmos näin
+    ja riemust’ autuaana etees jäin.
+
+    Ma silloin vannoin palvella sua vain
+      ja sulle elää — enkö tehnyt niin?
+      Viel’ öin ja päivin puhkeen kyyneliin
+    ja sydämeni lyö, kun innossain
+    nään samat harhanäyt, joit’ ajoin takaa ain’,
+        paloinpa maisiin iloihin
+        tai tähtein taakse tapailin.
+    Ne tietää, että uniin kauneimpiin
+        toi kuteet toivo riemukas,
+        ett’ otat pois, oi valtias,
+        maailman yön ja orjuuden,
+    ja mit’ ei sanat kuvaa, annat sen!
+
+    Kuin iltaa kohti päivän kuulakkuus
+      ja rauha syventyy, niin syksykin
+      on sees, sen taivas siintää puhtaammin
+    ja laajempana aukee avaruus
+    kuin koko suven aikaan, ihmeellinen, uus!
+        Niin anna voimas, jonka sain
+        kuin sateen nuoruusvuosinain,
+    kun tahdotonna jotain janosin,
+        täst’ edespäin mua johdattaa
+        syystyveneen, miss’ aukeaa
+        sun valos kirkastama tie,
+    jok’ yhteytees, pois itsestäin mun vie!
+
+                              1817
+
+
+
+
+MENNYT
+
+(LINES)
+
+
+    Se aik’ on mennyt menojaan.
+    Se iäks tyhjiin juoksi!
+        Täss’ seisomme vain,
+        kun valituin
+    käy hautoja haamut vainajain,
+    nuo toivot, jotka tuonelaan
+        vei elon tumma vuoksi.
+
+    Niin vieri virta ohitse.
+    Se oli kangastus vain!
+        Siin’ aukeaa
+        nyt erämaa,
+    kaks kivettymää todistaa:
+    täss’ sykki syömet harhoille
+        elämän aamu-usvain.
+
+
+
+
+VIHALAULU
+
+(A HATE-SONG)
+
+
+    Ojan partaalle istui mies vihassaan,
+       ja vanha luuttu, jo halki-lauta,
+    siin’ yhtyi lauluun raatelevaan
+       naisesta, joka oli nauta.
+
+                     1818
+
+
+
+
+MERENRANNALLA
+
+(STANZAS, WRITTEN IN DEJECTION, NEAR NAPLES)
+
+
+      On lämmin, päivä kirkas on
+        ja aallot juoksee kimmeltäin
+      ja sininen ja aineeton
+        on silta etäisyyteen päin.
+        Maan tainten juuri herääväin
+      on hetki kevyt hengittää.
+        Ei missään sula äänet näin,
+      tääll’ elon melu häviää
+    ja sama lauha sointu vain ja ilo jää.
+
+      Nään kuinka syvyys vihertää
+        ja kuink’ on laajat salit sen,
+      tuoss’ aallot rantaan tyrskyää
+        kuin tähtikuurot välkkyen
+        ja meren sävel tasainen
+      soi iäisyyden tahdissa
+        ja soluu läpi sydämen
+      kuin virta — kuinka suloista,
+    jos toinen sydän sykkis tässä rinnalla!
+
+      Vaan toivoa ma löydä en,
+        en mielen rauhaa, rattoa,
+      en tyytymystä viisasten,
+        jok’ antaa hengen kirkkaana
+        maan varjoist’ ylös kohota.
+      On onnen aika, lemmen kevät,
+        on voiman päivät toisilla,
+      jotk’ elävät ja hymyilevät, —
+    mun vähät iloni jo pohjaa lähenevät.
+
+      Mut tääll’ on epätoivokin
+        kuin suvituuli leppeä.
+      Nyt lapsen lailla tahtoisin
+        täss’ itkeneenä levätä
+        ja tuta, kuinka elämä
+      ja murheet hiipis hiljaa pois
+        ja kuolon käsi viileenä
+        mua hyväilis, ja meri sois —
+    se viihdyttävä viime laulu kuulla ois.
+
+      Ehk’ itkis joku mua, kuin tätä
+        ma suren päivää jälkeenpäin,
+      jot’ elon autius, syömen hätä
+        mun suuni kautta soimaa näin.
+        Ehk’ itkis joku — koska jäin
+      ma rakkaudetta — hartaammasti
+        kuin hurmaa päiväin lähteväin,
+      jotk’ ihailtuina iltaan asti
+    viel’ loistelevat muistoissakin valoisasti.
+
+
+
+
+KUTSU KURJUUDELLE
+
+(INVOCATION TO MISERY)
+
+
+    Tule, istu rinnallen,
+    kurjuus surupukuinen!
+    Hahmos, kainon morsion,
+    vaikka mykkä, lohduton,
+     jumalaisen ylväs on!
+
+    Tule, istu rinnalleni
+    Vaikk’ oon nähdä murheinen,
+    onnellisemp’ oon kuin sa,
+    jonka otsa ihana
+     kantaa tuskan kruunua.
+
+    Olethan jo tuttavani,
+    monta vuotta majassani
+    elit siskonani jo.
+    Vielä meill’ on tuokio —
+     vuosiksi se tulleeko?
+
+    Kohtalomme okainen
+    kantakaamme parhaiten.
+    Jos lempi elää ilotta,
+    rakastakaamme kivulla
+     paratiisin toivossa.
+
+    Tule onnen haaveiluun
+    ruohikkoon jo leikattuun!
+    Heinäsirkan soitto on
+    hilpeä ja suruton
+     keskell’ elon aution!
+
+    Lehvät teltaksemme taipuu,
+    käsivarteeni pääs vaipuu.
+    Äänet, tuoksut — suruisat
+    syksyn eellä — tuutivat
+     uneen silmät raukeat.
+
+    Lemmen, joka suoniis hyytyy,
+    huules piilottamaan tyytyy!
+    Poskellas on kyyneliä —
+    voisko jäissä läikehtiä
+     maininkeja lämpimiä?
+
+    Suukkos tunnen kylmäksi,
+    käsi, joka kaulaani
+    kiertyy, mua väristää,
+    kasvoilleni painuu pää
+     niinkuin lyijy, niinkuin jää.
+
+    Joutuos häävuoteeseen!
+    Haudansyvään pimeyteen
+    rakkautemme katetaan
+    rauhaan jakamattomaan
+     unhon vaate peittonaan.
+
+    Syömen’ syleiltäväks tarjoon
+    kunnes varjo yhtyy varjoon
+    upottaen kauhun maan
+    niinkuin usvaan harmajaan,
+     uneen, jok’ ei lopukaan.
+
+    Siellä, itkun takana,
+    näämme unta ilosta,
+    niinkuin itse onnikin
+    usein kurjuus-unelmin
+     eksyy surun laaksoihin.
+
+    Kylliks ilon pitohon
+    meille maiset varjot on,
+    niinkuin pilvet juostessaan
+    ohi kuun yömatkallaan
+     saavat koirat haukkumaan.
+
+    Maa ja maailma on jo
+    niinkuin narrijoukkio
+    näyttämöllä häälyvä.
+    Kaikk’ on pelkkää ilvettä —
+     missä lienen? — miss’ oot sä?
+
+                   1819
+
+
+OODI LÄNSITUULELLE
+
+(ODE TO THE WEST WIND)
+
+
+    1
+
+    Oi länsituuli, syksyn henkäys tuima,
+    jonk’ eestä lentää lehdet kuollehet
+     kuin pakenevat haamut, parvi huima,
+
+    kellervät, tummat, taudinpunaiset
+    ja kalvenneet, vaan joka talteen kannat
+    ja talven peittoon saatat siemenet,
+
+    miss’ ohi kylmäin niiden piillä annat
+    siks kunnes haudoissaan ne elon saa,
+    kun sinertävät kevättaivaan rannat,
+
+    kun suven soitto maassa humajaa
+    ja multa tuoksuu, kuuluu kuiskailua
+    ja kasvun toivo tienoot kirkastaa, —
+
+    sa, jonka teill’ on käsky lakastua,
+     tuhooja, tallettaja, kuule mua!
+
+
+    2
+
+    Sa, joka taivaan kuohutat ja ajat
+    sen hyrskyyn pilvet tielles harhailleet,
+     syysvaaleet, irralliset vaeltajat,
+
+    salaman enteet, sateen airueet,
+    jotk’ yli suuren sinen aaltoilevat
+    kuin hiukset jätin päästä hulmunneet, —
+
+    tuoll' ulapallas rannat tummenevat
+    ja alkumerkit myrskyn ankaran
+    sen suortuvissa hiljaa suhisevat!
+
+    Sa surulaulu ajan katoovan,
+    jonk’ yli haudan holvittaa tää yö
+    sen kattain pimentoon ja usvahan, —
+
+    ah, pian on puhkeeva sen tiivis työ,
+     kun sade, salama ja rakeet lyö!
+
+
+    3
+
+    Sa, joka unelmista herätit
+    sinisen Välimeren kirkkaat veet
+     ja rikki puhalsit sen kristallit
+
+    suvisen Bajaen suussa kareilleet,
+    pois pyyhit kuvat palatsin ja linnan,
+    vuossatain päivät veessä päilyneet
+
+    ja kukkineet ja sammaltuneet rinnan, —
+    näyt liian kauniit saada sanoihin!
+    Sa, joka murrat valtameren pinnan,
+
+    sa, joka nostat vuoriks Atlantin,
+    niin että laaksot syvään lymyää
+    ja puut ja lehvät pohjalietteenkin
+
+    Sun ääntäs pelästyen säpsähtää
+    Ja kauhun jäykkään kangistukseen jää!
+
+
+    4
+
+    Jos oisin kuollut lehti saatossas
+    tai pilvi, jota kiidätät sä pois,
+     tai vaahtopää, sun kuohuun nostamas
+
+    ja innoittamas, vaikk’ en vapaa ois
+    kuin oot sa, yli kaiken kahleeton —
+    tai jos vain lapsuustanhuvilta vois
+
+    kohota kanssas taivaslentohon
+    kuin silloin, kun ei silmä epäillyt
+    sen täyttymystä — niin ei kaipion
+
+    ja kiihkon tuli polttais näin mua nyt!
+    Vie aallon, lehden, pilven tietä minut!
+    Elämä on mun veriin viiltänyt
+
+    Ja maa niin ylvään mielen kahlehtinut,
+    Jok’ omaks kaltaisekseen tunsi sinut!
+
+
+    5
+
+    Tee minut lyyrakses kuin metsän puut!
+    Jos putoovatkin lehteni, ma soin,
+     ja kohisten kuin kanteleesi muut
+
+    ma syvän, syksyäänen antaa voin,
+    surujen kaunistaman. Ole sa
+    mun oma myrskyhenken’, ohjatoin!
+
+    Vie aatosten! sirut, hajoita
+    ja kylvä ne kuin kuolleet lehdetkin
+    elämän alkajiksi tuhkasta!
+
+    Ja mitä lauloin säkein hehkuvin,
+    jotk’ yhä huulillani värisevät,
+    sen kanna kipunat maan äärihin
+
+    Ja niille ennusta, jotk’ epäilevät:
+    Jos talvi saapuu, eikö pian oo kevät!
+
+
+
+
+INTIALAINEN SERENAADI
+
+(THE INDIAN SERENADE)
+
+
+    Sinusta ma unta näin —
+     uni silmistä jo karkaa.
+    Tuolla tähdet loistavat,
+    tuulen hengitys on arkaa.
+     Sinusta ma unta näin —
+    joku askeleeni ajaa
+    kuin taian tenhoomat
+     kohti kaivattua majaa!
+
+    Yötuuli raukee jo
+     ja tumma on virta tuo,
+    joka yrttein tuoksuja
+    kuin unelmia juo,
+     satakielen soittelo
+    sen sammuu rantoihin, —
+    näin sua janoten,
+     oi armain, ma kuolisin!
+
+    Ma janoon akkunaas,
+     ma sammun, raukenen!
+    Anna lempesi, oi suo
+    suudelmies satehen
+     vuotaa huulilleni taas!
+    Sydäntän’ ahdistaa,
+    se laske sydämesi luo,
+     jossa särkyä se saa.
+
+                 1810
+
+
+
+
+LEIVOSELLE
+
+(TO A SKYLARK)
+
+
+    Terve, raikas henki —
+      lintu et sä lie,
+    joll’ on taivaasenki
+       laulun kirkas tie,
+    jok’ innossa ja ilossa sua ylös vie!
+
+    Sinne siipes ohjaa,
+      sinne kimpoot sa
+    kohti sinen pohjaa
+      niinkuin kipuna
+    ja yhä yltyy laulus ylivuotava.
+
+    Missä hehkuu tultaan
+      lasku auringon
+    valain pilvet kultaan,
+      lentos hilpee on,
+    sa oot kuin irti päässyt ilo ruumiiton.
+
+    Äänes sointuun jaloon
+      sulaa hattarat.
+    Niinkuin päivän valoon
+      tähdet hukkuvat,
+    niin sua en nää, kun raikuu tahtis riemuisat
+
+    kimmeltäin ja vähäin
+      sädekimppuin lailla,
+    joita taivas kiiltäin
+      välkyttää yön mailla —
+    ne päivin tunnetaan vain silmän kuvaa vailla.
+
+    Soittos linkoutuu
+      halki ilman, maan,
+    niinkuin öinen kuu
+      pilvipiilostaan
+    saa sädemeren yli taivaan tulvimaan.
+
+    Mikä taikas suur’ on?
+      Onko kaltaistas?
+    Ei virta sadekuuron
+      kirkas, kuulakas
+    niin helmeile kuin lauluntuoreet pisaras.
+
+    Runoilija vapaa
+      aatelennossaan,
+    jonka hymnit tapaa
+      runottoman maan,
+    mut liikuttaa sen toivollaan ja kaihollaan;
+
+    linnan impi armain
+      lemmen vankina,
+    joka hetkin harmain
+      soittaa tornissa
+    ja kutoo ikävänsä siipiin kultia;
+
+    kiiltomato palain
+      kastehunnussaan,
+    korsiin, kukkiin valain
+      herkkää loistettaan
+    mut muille näyttämättä taikalamppuaan;
+
+    ruusu verhottuna
+      oksiin lehteviin,
+    joist’ ei lämmin puna
+      näy, vaan tuoksuu niin,
+    ett’ ahneet varkain-juojat vaipuu tainnoksiin;
+
+    sade, jolla kevät
+      huuhtoo nurmikon,
+    kukat värisevät —
+      mitä vehmast’ on
+    ja raikast’ ikään, sa oot saavuttamaton.
+
+    Viinin vilpoisen,
+      lemmen autuaan
+    ylistystä en
+      kuullut milloinkaan
+    niin janoovaa, niin jumalaista hurmassaan.
+
+    Itse riemusoitto
+      tai häähymni ois
+    vain kuin kajo loitto —
+      palavammin sois
+    sun laulus, joka voittajaks sun laakerois.
+
+    Minkä lähteen juomaa
+      säveliis sä joit?
+    Mink’ aaltoin, tuulten tuomaa
+      tuo autuus, johon voit
+    muun unhoittaa, kun taivaan-kieltäs tarinoit?
+
+    Ilomieles avoin
+      ei voi uupua,
+    sua ei toisten tavoin
+      murhe varjosta
+    ja lempes ei oo sydänvaivan saartama.
+
+    Valvot taikka et,
+      varmaan kuolonkin
+    näät sä syvyydet
+      silmin selvemmin
+    kuin me, vai mistä saat tuon äänes kristallin?
+
+    Me luomme kaihon elein
+      katseemme ees ja taa,
+    naurummekin helein
+      on kivun kalvamaa
+    ja suurin laulu surustamme puhkeaa.
+
+    Vaikk’ ei tuskaa ois
+      alla auringon
+    eikä tietää vois
+      mitä kyynel on,
+    niin kuinka nousta täältä ilos lentohon?
+
+    Vaikka runo vuotais
+      mittaan kauneimpaan
+    ja syvimmällä luotais
+      parhait’ aarteitaan,
+    sun runos rikkaamp’ ois, sa halveksija maan!
+
+    Oppisinpa suita
+      puolet onnestas,
+    niin, tuo sula kulta,
+      hurma riemukas
+    sois munkin huuliltain, jok’ on sun laulussasi
+
+
+
+
+VAPAUS
+
+(LIBERTY)
+
+
+    Tulivuoret vastaavat toisillensa
+      ja kauas jyriseepi ja kaikuu maa,
+    meri heittää merelle myrskysoittimensa,
+      ja talven jäinen valtikka vavahtaa
+    taifunin kohinaa.
+
+    Yksinäinen pilvi iskee tulta,
+      sadat saaret laajalta vaikenee,
+    maan järistessä hautaa multa
+      kylät allensa, kaupungit kaatuilee,
+    manan portit vapisee.
+
+    Vaan sun silmäs on kirkkaampi salamaa
+      ja askeles maan yli voittamaton,
+    meren raivon sun mahtisi mykäksi saa,
+      tulivuorten lieska ja auringon
+    sun valossas virvaa on.
+
+    Kuin kiito tuhannen' auringonsäteen
+      läpi tuulten ja usvain ja aaltojen vie,
+    niin kansasta kansaan ja kädestä käteen
+      ja kylästä toiseen on kirkkautes tie,
+    ja orjat ja tyrannit hiipivät pois
+      saatosta aamunkois.
+
+
+
+
+KUKKIA POIMIESSA
+
+(SONG OF PROSERPINE)
+
+
+    Jumalatar, äiti Maa,
+      joka annat rintaas vasten
+    elon, kasvun kukoistaa,
+      jumalain ja ihmislasten,
+    siunaa ikirunsaasti
+    Proserpina, lapsesi.
+
+    Sa, jok’ autat umpuistaan
+      kukat kastees ruokkimina
+    tuoksumaan ja loistamaan
+      katoovista kauneimpina,
+    siunaa ikirunsaasti
+    Proserpina, lapsesi.
+
+
+
+
+KULKURIT
+
+(THE WORLD’S WANDERERS)
+
+
+    Tuuli, kurja kulkija
+    maailman porttein takana,
+    saatko sa salaa huoata
+       aallossa tai puussa?
+
+    Kalvas kuu, jonka osa on
+    taivaan kierto taloton,
+    voitko levon tuokion
+       löytää harhailuus sa?
+
+    Tähti yötä kiitävä,
+    sulkenetko silmäs sä
+    avaruuden äärillä,
+       iäisyyden suussa?
+
+
+
+
+MIMOSA
+
+(THE SENSITIVE PLANT)
+
+
+    1
+
+    Puutarhassa kasvoi mimosa.
+    Se sai kasteensa tuulista kosteista,
+    avas lehtensä viuhkat aamuisin
+     ja sulki ne taas yön suukkoihin.
+
+    Niin saapui kevät ja tullessaan
+    kuin rakkaus täytti kukkamaan,
+    ja talven unesta elämään
+     joka ruoho ja yrtti kohotti pään.
+
+    Vaan tarhassa, kedolla, erämaassa
+    ei kukaan innossa autuaassa
+    niin janonnut antia auringon
+     kuin mimosa, kukka kumppaniton.
+
+    Lumikello ja orvokki levittivät,
+    juur’ ollen sateen-lämpimät,
+    lemun raikkaan, mullasta kukkiin jääneen
+     kuin soiva kieli jättää ääneen.
+
+    Heräs vuokko ja solakka tulpaani
+    ja ihanin kaikista, narsissi,
+    joka katsoen virrasta kasvojaan
+     jää kauneuteensa riutumaan;
+
+    ja kielo, najaadi hurmaava,
+    mut kaihoistaan niin kalpea,
+    että valkeus sen kellojen väriseväin
+     läpi lehtien kuultaa vihreäin;
+
+    hyasintti, jonka tiuvuissa
+    taas soi niin herkkä humina,
+    niin hiuduttavan suloinen,
+     ett’ aisti tunsi tuoksuna sen.
+
+    Ja ruusu, nymfinä kylpien,
+    avas povensa hehkuvan syvyyden
+    terä terältä katseille paljastuvan,
+     avas ihanuutensa koko kuvan.
+
+    Ja lilja ruokovartinen
+    nosti maljansa kuutamon värisen,
+    ja sen tähtisilmä ihmeellinen
+     näki kasteen lävitse taivaan sinen.
+
+    Ja jasmiini hento ja suloisa
+    tuberosa, Eedenin-tuoksuva,
+    ja kukat muut lukemattomat
+     siinä kevättarhassa rehoittivat.
+
+    Ja yli virran soluvan juoksun,
+    johon kukkasoksat satoivat tuoksun,
+    väri kullan ja vihreän kimalteli
+     ja kuultavat juonteet karehti.
+
+    Veden kalvossa keinuivat ulpukat
+    ja lumpeet tähtinä hohtavat,
+    mut virta, pehmyt kuin sametti,
+     ohi liukui, välkkyi, aaltoili.
+
+    Puutarhaa halkoivat kierrellen
+    polut poikki nurmen ja sammalen,
+    välin aukeina tuulen ja auringon alla,
+     välin lehvistöissä ja loitommalla.
+
+    Ja kellot ja kaunokit valkeanaan
+    niitä peitti kuin polkuja tarumaan,
+    ja monet kukkaset illalla
+    pääns’ antoivat teltaksi taipua,
+     katoks kiiltomatojen kasteessa.
+
+    Kuin äidin tuudittaessa lastaan
+    hymy raikas kehdosta paistaa vastaan
+    niin ennen unta kuin jälkeen sen —
+     näiden Paratiisin lapsien,
+
+    kun huomentuuli ne herätti,
+    oli katse kirkas kuin kristalli
+    ja ne hymyili taasen taivasta kohti,
+     missä auringon lempeät kasvot hohti.
+
+    Ja jokainen kukka toiseltaan
+    imi valoa taivaan ja lemua maan
+    kuin rakastavaiset yhdessä juo
+     mit’ ikään lempi iloja suo.
+
+    Mutta mimosa, köyhä anteihin suuriin,
+    vaikka lemmessä eli se lehdistä juuriin,
+    sai muilta kaikista enimmän
+     ja tuns’ yhä lempensä yltyvän.
+
+    Näet mimosan kukka on loistoton
+    ja vähät sen huomenlahjat on,
+    vaan mit’ ei sillä ole, sitä se halaa:
+     sen sydän kauneuden kiihkossa palaa!
+
+    Mitä tuuli humisi lentäissään
+    tai sirotti haurailta siiviltään,
+    mitä kukkain silmistä säteili
+     ihanuuden loistetta ympäri —
+
+    myös hyönteiset nopsat ja keveät
+    kuin venheet paisteessa liitävät,
+    jotka valo ja tuoksu lastinaan
+     yli lentävät viheriöivän maan —
+
+    ja kasteuntuvat, jotka hohtaa
+    kukissa, kunnes ne auringon kohtaa
+    ja kohoten ilmoihin sinisiin
+     kuin henget häipyvät auteriin —
+
+    ja lämmössä läikkyvät terhenet,
+    joiss’ äänet, tuoksut ja sätehet
+    ui niinkuin kimallus aalloilla
+     tai häälyvät korret virrassa —
+
+    ne kaikki kuin taivaan lähettämät
+    mimosan mieltä viihdyttivät,
+    kun hetket vierivät viipyen
+     kuin pilvet tultua tyvenen.
+
+    Ja kun ilta laskihe taivaalta,
+    maa lepäsi, ilmojen ilossa
+    oli rauhaa hämyn syventämää,
+     johon päivätärtenkin unet jää.
+
+    Ja mit’ eli ja lensi ja hengittikään,
+    unimereen hukkui se äänettömään,
+    jonk’ aallot huuhtoivat tajun rantaa,
+     mut uurtelematta sen hienoa santaa.
+
+    Vain satakielen ääni soi
+    ihanammin kuin päivä sietää voi
+    ja joku sointu taivaallinen
+     siit’ yhtyi mimosan unehen.
+
+    Niin mimosa vaipui jo aikaiseen
+    levon helmaan, yöttären kätkyeen
+    kuin' uupuu keskellä ilonsa
+     laps heikko, mut kaikkien suosima.
+
+
+    2
+
+    Tätä sulon paikkaa valliten
+    eli lempeä voima piirissä sen,
+    ja hän oli kukilla kaitsijana
+     kuin taivaan tähdillä Luojan sana.
+
+    Tuo Eedenin Eeva ihmeellinen,
+    jonk’ olento, ohjaama sydämen,
+    oli ihana pehmeine piirteineen
+     kuin kukan meressä auenneen,
+
+    hän vaali tarhaansa aamusta aikain,
+    ja sen kasvatit liikkuissa lempeiden jalkain
+    hymys kirkkaina maisesta taivaastaan
+     kuin tähdet yön kulkua vaivoissaan.
+
+    Häll’ ei ollut ihmistä uskottuna,
+    mut hento hengitys, posken puna
+    jo kertoi aikuisen aamun koissa
+     hänen olleen maallisista poissa,
+
+    kuin ois joku henki valoisa
+    hänen vuokseen laskeunut taivaasta
+    ja vielä viipynyt lähimailla,
+     vaikk’ oli yöhämyn turvaa vailla.
+
+    Hänen jalkansa sääli ruohoja
+    ja povensa tuskin kohoileva
+    ilon kertoi jo, jonka tuuli kantoi,
+     ja surun läikkeenkin ilmiantoi.
+
+    Heti hengetär-askelten takana
+    lakas tukka maahan aaltoileva
+    ylös kevyttä höytyä nurmikosta
+     kuin paisteinen myrsky merestä nostaa.
+
+    Sitä enemmän tarhassa iloittiin,
+    kun tiettiin lempeihin askeliin
+    ja hahmoon niiden saattelemaan
+     myös yhtyvän sydämen anteliaan.
+
+    Hän pirskoitti vedellä raikkaalla
+    ne, joill’ oli kuumuus ahdistava,
+    ja sadekuuron jälkiä käyden
+     taas kevensi toisten maljakon täyden.
+
+    Hän nosti hentoja päitä varoin
+    ja siteli varpuja sormin aroin —
+    ei äitinä omiin lapsihin
+     hän kiintyä voinut ois hellemmin.
+
+    Tuhohyönteiset, toukat, nakertajat,
+    kaikk’ olennot rumat ja inhoittavat
+    hän poimi vakkaansa tiiviiseen
+     ja vei pois korven syvyyteen —
+
+    vaan sitä ennen hän vakkaan tuohon
+    oli kerännyt aarteita vihannan ruohon
+    iloks toukka-poloisten viattomain,
+     jotka rikkoivat tietämättään vain.
+
+    Mut mettinen ja hauras koi,
+    jonka suukot ei kukkia loukata voi,
+    ja päivänkorento, lentävä säen,
+     oli virassa alttiin palveluväen.
+
+    Ja haudat syntymätönten perhoin,
+    jotka unelmoivat alla verhoin
+    elon ihmeistä, peittivät vielä rinnan
+     monen setrin tuoksuvan, tumman pinnan.
+
+    Niin toi tuo ihanin ilmestys kevään
+    puutarhaan kasvussa värisevään
+    suvionnen, mut ennenkuin ensi lehti
+     vielä tummeni — hän kuolla ehti.
+
+
+    3
+
+    Kukat kolme päivää arkailivat
+    kuin tähdet kuutamon kalventamat
+    tai meren aaltoset ennenkuin
+     ne nousevat sumusta kirkastuin.
+
+    Mut neljäntenä mimosa
+    tuns hautavirren kaikua
+    läpi saattaja-askelten lähestyväin
+     ja surun nyyhkytysten syväin.
+
+    Sävel murheinen, raskas huohotus
+    ja kuoleman verkka vaellus
+    ja lemu kylmä ja ahdistava,
+     joka levisi kirstun vaiheilta,
+
+    kun vainajaa ohi kannettiin,
+    sai ruohot ja kukat kyyneliin,
+    ja tuulikin äänin tuskaisin
+     ja voihkivin kohisi mäntyihin.
+
+    Tarumaa oli kourissa kolkon aren
+    kuin ruumis sen entisen tenhottaren,
+    tuon unen-armaana eläneen,
+    jonk’ arkulle, tuhkaan ja tyhjyyteen,
+     sydän kylminkin pudotti kyyneleen.
+
+    Kesä meni, jo havisi syksyn siipi
+    ja usvaviitassa halla hiipi,
+    vaikk’ aurinko koitti kirkkaana palaa
+     ja kieltää julki, mit’ yö teki salaa.
+
+    Mutta ruusut ne varisti lehtensä pois
+    kuin punaista lunta satanut ois
+    ja liljat kelmeät, vilusta nuivat,
+     kuin kuoleman syliin kumartuivat.
+
+    Ja Intian kukat, tuoksussaan
+    ja heleydessään suloimmat maan,
+    nekin varsi varrelta kaatuivat
+     ja toistensa päälle maatuivat.
+
+    Ja lehdet keltaiset, harmajat
+    ja punaiset, kalman valkeat
+    kuin haamuparvet tuulessa liiti
+     ja linnut säikkyi ja pakoon kiiti.
+
+    Tuhoruohoista raju vihuri
+    koteloiden siemenet karisti
+    ja ne tarttuivat monen kukkasen vanaan
+     sen vieden multaan saattajanaan.
+
+    Vesikukat virrassa heiluessaan
+    putos irti sorjista varsistaan,
+    ja ne pyörteissä ees taas ajelehti
+     kuin tuulessa maalla kukka ja lehti.
+
+    Tuli sade ja varret kaatuivat lakoon
+    joka polulle ja joka vakoon
+    ja rönsyt sortuivat kierteistään
+     kuin kauneimmat kukatkin mätänemään.
+
+    Viel’ ennen lunta tähän kauneuden soraan
+    rumat rikkaruohot nostivat oraan,
+    joiden täpläiset ruumiit on nähdä pahat
+     kuin sammakonselät ja käärmeenmahat.
+
+    Nous ohdake, nokkonen, suolakka,
+    hullukaali ja katko kostea,
+    joill’ ontto runko on ja pöyhkä
+     ja joiss’ on tunkka, katkera löyhkä.
+
+    Ja toiset, joita runo karttaa,
+    siin’ inhasti työnsivät piikkistä varttaan
+    ja lehteä takkuista, tahmeaa,
+     sinen, kellan ja lyijyn kimaltavaa.
+
+    Tatit, rouskut ja muut uhos märästä maasta
+    kuin sumu tai homeinen, ruosteinen saasta,
+    kuin itse lahoova kuolo viel’ ois
+     elon innoittama ja kasvua lois!
+
+    Lika, roska ja kuona virrassa ui
+    ja sumenti veden ja patoutui
+    alajuoksussa kurjenmiekkoihin suuriin
+     ja käärmeen-kiemuraisiin juuriin.
+
+    Ja maasta kohosi yltyen
+    tyven-aikana huuru myrkyllinen,
+    jok’ aamulla näkyi, päivää kaartoi,
+     öin tienoot tähdettömiksi saartoi.
+
+    Ja päivän valossa lepattivat
+    näkymättömät virvavalkeat,
+    ruton henget, yli oksien arkain
+     ja ne voimattomiksi purivat varkain.
+
+    Ja mimosa itki kuin kiron alla
+    ja sen joka lehdellä koveralla
+    kuin luomen uurteissa kyyneleet
+     pian kaikk’ oli liimaksi hyytyneet.
+
+    Pian lehdetkin putos ja vihuri
+    kuin piilu oksat pois katkaisi
+    ja mahla pakeni juureen syvään
+     kuin veri sydämeen läkähtyvään.
+
+    Niin talvi saapui, ruoskana tuulet
+    ja sierottuneina sormet ja huulet,
+    ja koskien kohu, juur’ uhmaava, avoin,
+     hänen vyöllään kalisi kahleiden tavoin.
+
+    Hänen äänetön henkäyksensäkin
+    pani maat, vedet, ilmat kahleihin,
+    ja kun puhalti pohjois-vihuri tuima,
+     oli valtias-vaunujen kiito huima.
+
+    Tuhoruohot, elävän kuoleman puku,
+    vilun tieltä pakeni koko suku —
+    sen lakastuminen ja muutto pois
+     oli kuin vain haamu hävinnyt ois!
+
+    Myös kuolivat mimosan juurien alla
+    maan myyrät ja päästäiset kitumalla
+    ja linnut hyytyivät lennossaan
+     ja jäivät oksista riippumaan.
+
+    Viel’ lankesi sade vuolas, vaan häätyi
+    häviölle: siit’ oksat vain lujemmin jäätyi
+    ja itse raskaat pisarat
+     pian kuuravaipassa torkkuivat.
+
+    Ja pohjoinen puhuri, samotessaan
+    kuin susi lapsen raadeltuaan,
+    kävi kiinni jäykkiin oksihin
+     ja katkoi ne kourin armottomin.
+
+    Kun kevät joutui taas niille main,
+    oli mimosa alaston hylky vain,
+    mutta sienet ja lusteet ja suolakat
+     kuin ruumiit haudoista nousivat.
+
+
+    4
+
+    Tokko mimosa itse tai henki se,
+    jok’ antoi elon kasville
+    ennenkuin kuihtui muoto sen,
+     tuon muutoksen tunsi, ma tiedä en.
+
+    Tokko jalon naisen sielu tuo,
+    jok’ erkani ruumiista henkien luo,
+    joka lempeä ja valoa loi,
+     surun löysi itse, kun iloa toi,
+
+    sit’ en tiedä. Mut elon harhoissa,
+    miss’ etsimme emmekä tavoita,
+    missä kaikki näkyy kangastain
+     ja me olemme unen varjot vain,
+
+    on usko yksinkertainen
+    ja kiehtova tajutessamme sen,
+    ett’ itse kuolo kaihtamaton
+     kuin kaikki muukin harhaa on.
+
+    Tuo sulojen tarha ja tuoksujen
+    ja hyvä haltiatar sen,
+    ne eivät ole kuolleetkaan:
+     mit’ on meissä ja meidän, se muuttui vaan.
+
+    Mut lempi ja ilo ja kauneus
+    ei katoa — niiden kimallus
+    on liian kirkas kestää vain
+     elintemme hämyn saartamain.
+
+                    1821
+
+
+
+
+KATOOVAISUUS
+
+(MUTABILITY)
+
+
+    Tuo kukka hurmaava
+          huomist’ ei nää.
+    Mit’ enin halaat sa,
+          se häviää.
+    Mik’ onkaan ilo maan?
+    Salaman lento vaan
+          yökorussaan.
+
+    Hyveet ne murentuu
+          ja ystävyys!
+    Pian lemmen toukokuu
+          on tuskan syys!
+    Me jäämme jälkeen vain
+    autuuteen viittojain
+          katoavain.
+
+    Kun kukkain ilo saa
+          ja taivaan sees
+    hetkiksi haihduttaa
+          sun kyynelees,
+    unehdut onnelaas,
+    heräjät unelmaas
+          ja itket taas.
+
+
+
+
+YÖLLE
+
+(TO NIGHT)
+
+
+    Joudu, lennä jo läntehen,
+         yö himmeä,
+    luolasta idän usvaisen,
+    miss’ ikipitkän päivän sä
+    teit ilon, pelon kudelmaas,
+    tuo kauhus ja tuo lohtus taas —
+         jo kiirehdä!
+
+    Tumma viittasi kirjaile
+         tähdillä,
+    heitä hiukses päivän silmille
+    ja suudelmiis se väsytä,
+    viihdytä meri ja uuvuta maa,
+    suo unisauvas koskettaa
+         nääntyviä!
+
+    Kun noustessain näin aamunkoin,
+         sua ikävöin,
+    kun päivän helle kasteetoin
+    lepäsi yllä lehvikköin,
+    kun ehtoo viipyi poistuissaan
+    kuin vieras, jota kaihdetaan,
+         sua ikävöin!
+
+    Kun haastoi veljes kuolema:
+         kaipaanko mua?
+    kun lapses uni raukeena
+    hyrisi mettis-laulelua:
+    sun vierees pesän tekisin,
+    kaipaanko mua? — ma huudahdin:
+         ei, en sua!
+
+    Kuolo ehtii mentyäs,
+         pian, niin pian,
+    uni kulkee jäljessäs,
+    vaan ei kuule huokauksian’.
+    Anna sinä, armas yö,
+    lohdutus, kun hetkes lyö,
+         tule pian!
+
+
+
+
+LINNUT
+
+(LINES)
+
+
+    Pois, taakse taivalten,
+     jäälinnut muistojen!
+    Pesäks niin rauhaton
+    hyljätty povi on.
+     Keväänne pettävän
+    vei talvi syömestän’.
+    Paluu pois menneiden
+        on myöhäinen!
+
+    Vaan korppikotkat, te,
+     jotka pilvilinnanne
+    nostatte uljaina
+    kuolleista toivoista:
+     niit’ on kasoin karttunut,
+    ja ilot kuristetut
+    ne raadella tarjoovat
+        monet atriat.
+
+
+
+
+MUUTOS
+
+(Katkelma)
+
+
+    Tuuli vinkuu ja sataa
+    muistoksi soittelon.
+    Kylmät käärmeet mataa,
+     miss’ äsken suudeltu on.
+
+
+
+
+AIKA
+
+TIME)
+
+
+    Mitaton meri, ajan ulappa,
+     jonk’ aaltoja on vuodet, jonka vesi
+    on tuskan kyynelien suolaama!
+    Sa rajaton, jok’ otsaan kuohujesi
+    teet pyykit, missä päättyy elämä,
+     ja uutta saalist’ ulvoin ylenannat
+
+    hylyt ja täytät niillä karut rannat —
+    kavala tyynnä, kauhee myrskyssä,
+    ken voi sun kuvata,
+     mitaton ulappa?
+
+                     1822
+
+
+
+
+SÄKEITÄ
+
+(LINES)
+
+
+       Missä liesi hajoo,
+    ei lämpöä siitä saa.
+       Päivä, jok’ aaltoon vajoo,
+    valon mailta sammuttaa.
+       Kun luutun kielet laukee,
+    sävel kuoleva särähtää.
+       Miss’ ei huulet enään aukee,
+    sanat rakkaat unhoon jää.
+
+       Siin’ ei vaikene mieli
+    eikä puhkee lauluihin,
+       miss’ on mykkänä kieli
+    ja ääneti sydänkin —
+       suru laulaa vain, raunion vahti,
+    kuin tuuli vaikerois
+       tai kuohujen murhetahti
+    merimiehen haudalla sois.
+
+       Sydänliitossa lempi karkaa
+    lujast’ ensin ja heikkoon jää,
+       ja pesää liian arkaa
+    ilot menneet nyt myrkyttää.
+       Oi lempi, kielsitkö ehtos,
+    kun pysyväistä hait,
+       mut hauraimmasta kehtos
+    ja kotis ja paaris sait?
+
+       Siell’ intohimot heittää
+    sua myrskyssä tuutien,
+       sinut järjen iva peittää
+    kuin kuura talvinen.
+       Pesästäs lahoo orret,
+    pian ei kotkankotias näy,
+       ihoos pistävät pilkan korret
+    ja lehdet putoo ja viima käy.
+
+
+
+
+SURULAULU
+
+(A DIRGE)
+
+
+    Tuuli, sa tuskan voihkija
+      laulajatta jääneen,
+    sade, jok’ yhtä vuolaana
+      yön kaiken itket ääneen,
+    myrsky kyynelin murheisin,
+    puu paljas oksin alastomin,
+    suon silmä, meri vaahtopää —
+      maan vääryytt’ itkekää!
+
+
+
+
+
+
+
+
+*** END OF THE PROJECT GUTENBERG EBOOK SHELLEYN RUNOJA ***
+
+
+    
+
+Updated editions will replace the previous one—the old editions will
+be renamed.
+
+Creating the works from print editions not protected by U.S. copyright
+law means that no one owns a United States copyright in these works,
+so the Foundation (and you!) can copy and distribute it in the United
+States without permission and without paying copyright
+royalties. Special rules, set forth in the General Terms of Use part
+of this license, apply to copying and distributing Project
+Gutenberg™ electronic works to protect the PROJECT GUTENBERG™
+concept and trademark. Project Gutenberg is a registered trademark,
+and may not be used if you charge for an eBook, except by following
+the terms of the trademark license, including paying royalties for use
+of the Project Gutenberg trademark. If you do not charge anything for
+copies of this eBook, complying with the trademark license is very
+easy. You may use this eBook for nearly any purpose such as creation
+of derivative works, reports, performances and research. Project
+Gutenberg eBooks may be modified and printed and given away—you may
+do practically ANYTHING in the United States with eBooks not protected
+by U.S. copyright law. Redistribution is subject to the trademark
+license, especially commercial redistribution.
+
+
+START: FULL LICENSE
+
+THE FULL PROJECT GUTENBERG™ LICENSE
+
+PLEASE READ THIS BEFORE YOU DISTRIBUTE OR USE THIS WORK
+
+To protect the Project Gutenberg™ mission of promoting the free
+distribution of electronic works, by using or distributing this work
+(or any other work associated in any way with the phrase “Project
+Gutenberg”), you agree to comply with all the terms of the Full
+Project Gutenberg License available with this file or online at
+www.gutenberg.org/license.
+
+Section 1. General Terms of Use and Redistributing Project Gutenberg
+electronic works
+
+1.A. By reading or using any part of this Project Gutenberg
+electronic work, you indicate that you have read, understand, agree to
+and accept all the terms of this license and intellectual property
+(trademark/copyright) agreement. If you do not agree to abide by all
+the terms of this agreement, you must cease using and return or
+destroy all copies of Project Gutenberg electronic works in your
+possession. If you paid a fee for obtaining a copy of or access to a
+Project Gutenberg electronic work and you do not agree to be bound
+by the terms of this agreement, you may obtain a refund from the person
+or entity to whom you paid the fee as set forth in paragraph 1.E.8.
+
+1.B. “Project Gutenberg” is a registered trademark. It may only be
+used on or associated in any way with an electronic work by people who
+agree to be bound by the terms of this agreement. There are a few
+things that you can do with most Project Gutenberg electronic works
+even without complying with the full terms of this agreement. See
+paragraph 1.C below. There are a lot of things you can do with Project
+Gutenberg electronic works if you follow the terms of this
+agreement and help preserve free future access to Project Gutenberg
+electronic works. See paragraph 1.E below.
+
+1.C. The Project Gutenberg Literary Archive Foundation (“the
+Foundation” or PGLAF), owns a compilation copyright in the collection
+of Project Gutenberg electronic works. Nearly all the individual
+works in the collection are in the public domain in the United
+States. If an individual work is unprotected by copyright law in the
+United States and you are located in the United States, we do not
+claim a right to prevent you from copying, distributing, performing,
+displaying or creating derivative works based on the work as long as
+all references to Project Gutenberg are removed. Of course, we hope
+that you will support the Project Gutenberg mission of promoting
+free access to electronic works by freely sharing Project Gutenberg
+works in compliance with the terms of this agreement for keeping the
+Project Gutenberg name associated with the work. You can easily
+comply with the terms of this agreement by keeping this work in the
+same format with its attached full Project Gutenberg License when
+you share it without charge with others.
+
+1.D. The copyright laws of the place where you are located also govern
+what you can do with this work. Copyright laws in most countries are
+in a constant state of change. If you are outside the United States,
+check the laws of your country in addition to the terms of this
+agreement before downloading, copying, displaying, performing,
+distributing or creating derivative works based on this work or any
+other Project Gutenberg work. The Foundation makes no
+representations concerning the copyright status of any work in any
+country other than the United States.
+
+1.E. Unless you have removed all references to Project Gutenberg:
+
+1.E.1. The following sentence, with active links to, or other
+immediate access to, the full Project Gutenberg License must appear
+prominently whenever any copy of a Project Gutenberg work (any work
+on which the phrase “Project Gutenberg” appears, or with which the
+phrase “Project Gutenberg” is associated) is accessed, displayed,
+performed, viewed, copied or distributed:
+
+    This eBook is for the use of anyone anywhere in the United States and most
+    other parts of the world at no cost and with almost no restrictions
+    whatsoever. You may copy it, give it away or re-use it under the terms
+    of the Project Gutenberg™ License included with this eBook or online
+    at www.gutenberg.org. If you
+    are not located in the United States, you will have to check the laws
+    of the country where you are located before using this eBook.
+  
+1.E.2. If an individual Project Gutenberg electronic work is
+derived from texts not protected by U.S. copyright law (does not
+contain a notice indicating that it is posted with permission of the
+copyright holder), the work can be copied and distributed to anyone in
+the United States without paying any fees or charges. If you are
+redistributing or providing access to a work with the phrase “Project
+Gutenberg” associated with or appearing on the work, you must comply
+either with the requirements of paragraphs 1.E.1 through 1.E.7 or
+obtain permission for the use of the work and the Project Gutenberg
+trademark as set forth in paragraphs 1.E.8 or 1.E.9.
+
+1.E.3. If an individual Project Gutenberg electronic work is posted
+with the permission of the copyright holder, your use and distribution
+must comply with both paragraphs 1.E.1 through 1.E.7 and any
+additional terms imposed by the copyright holder. Additional terms
+will be linked to the Project Gutenberg License for all works
+posted with the permission of the copyright holder found at the
+beginning of this work.
+
+1.E.4. Do not unlink or detach or remove the full Project Gutenberg
+License terms from this work, or any files containing a part of this
+work or any other work associated with Project Gutenberg.
+
+1.E.5. Do not copy, display, perform, distribute or redistribute this
+electronic work, or any part of this electronic work, without
+prominently displaying the sentence set forth in paragraph 1.E.1 with
+active links or immediate access to the full terms of the Project
+Gutenberg License.
+
+1.E.6. You may convert to and distribute this work in any binary,
+compressed, marked up, nonproprietary or proprietary form, including
+any word processing or hypertext form. However, if you provide access
+to or distribute copies of a Project Gutenberg work in a format
+other than “Plain Vanilla ASCII” or other format used in the official
+version posted on the official Project Gutenberg website
+(www.gutenberg.org), you must, at no additional cost, fee or expense
+to the user, provide a copy, a means of exporting a copy, or a means
+of obtaining a copy upon request, of the work in its original “Plain
+Vanilla ASCII” or other form. Any alternate format must include the
+full Project Gutenberg License as specified in paragraph 1.E.1.
+
+1.E.7. Do not charge a fee for access to, viewing, displaying,
+performing, copying or distributing any Project Gutenberg works
+unless you comply with paragraph 1.E.8 or 1.E.9.
+
+1.E.8. You may charge a reasonable fee for copies of or providing
+access to or distributing Project Gutenberg electronic works
+provided that:
+
+    • You pay a royalty fee of 20% of the gross profits you derive from
+        the use of Project Gutenberg works calculated using the method
+        you already use to calculate your applicable taxes. The fee is owed
+        to the owner of the Project Gutenberg trademark, but he has
+        agreed to donate royalties under this paragraph to the Project
+        Gutenberg Literary Archive Foundation. Royalty payments must be paid
+        within 60 days following each date on which you prepare (or are
+        legally required to prepare) your periodic tax returns. Royalty
+        payments should be clearly marked as such and sent to the Project
+        Gutenberg Literary Archive Foundation at the address specified in
+        Section 4, “Information about donations to the Project Gutenberg
+        Literary Archive Foundation.”
+    
+    • You provide a full refund of any money paid by a user who notifies
+        you in writing (or by e-mail) within 30 days of receipt that s/he
+        does not agree to the terms of the full Project Gutenberg™
+        License. You must require such a user to return or destroy all
+        copies of the works possessed in a physical medium and discontinue
+        all use of and all access to other copies of Project Gutenberg™
+        works.
+    
+    • You provide, in accordance with paragraph 1.F.3, a full refund of
+        any money paid for a work or a replacement copy, if a defect in the
+        electronic work is discovered and reported to you within 90 days of
+        receipt of the work.
+    
+    • You comply with all other terms of this agreement for free
+        distribution of Project Gutenberg™ works.
+    
+
+1.E.9. If you wish to charge a fee or distribute a Project
+Gutenberg™ electronic work or group of works on different terms than
+are set forth in this agreement, you must obtain permission in writing
+from the Project Gutenberg Literary Archive Foundation, the manager of
+the Project Gutenberg™ trademark. Contact the Foundation as set
+forth in Section 3 below.
+
+1.F.
+
+1.F.1. Project Gutenberg volunteers and employees expend considerable
+effort to identify, do copyright research on, transcribe and proofread
+works not protected by U.S. copyright law in creating the Project
+Gutenberg™ collection. Despite these efforts, Project Gutenberg™
+electronic works, and the medium on which they may be stored, may
+contain “Defects,” such as, but not limited to, incomplete, inaccurate
+or corrupt data, transcription errors, a copyright or other
+intellectual property infringement, a defective or damaged disk or
+other medium, a computer virus, or computer codes that damage or
+cannot be read by your equipment.
+
+1.F.2. LIMITED WARRANTY, DISCLAIMER OF DAMAGES - Except for the “Right
+of Replacement or Refund” described in paragraph 1.F.3, the Project
+Gutenberg Literary Archive Foundation, the owner of the Project
+Gutenberg™ trademark, and any other party distributing a Project
+Gutenberg™ electronic work under this agreement, disclaim all
+liability to you for damages, costs and expenses, including legal
+fees. YOU AGREE THAT YOU HAVE NO REMEDIES FOR NEGLIGENCE, STRICT
+LIABILITY, BREACH OF WARRANTY OR BREACH OF CONTRACT EXCEPT THOSE
+PROVIDED IN PARAGRAPH 1.F.3. YOU AGREE THAT THE FOUNDATION, THE
+TRADEMARK OWNER, AND ANY DISTRIBUTOR UNDER THIS AGREEMENT WILL NOT BE
+LIABLE TO YOU FOR ACTUAL, DIRECT, INDIRECT, CONSEQUENTIAL, PUNITIVE OR
+INCIDENTAL DAMAGES EVEN IF YOU GIVE NOTICE OF THE POSSIBILITY OF SUCH
+DAMAGE.
+
+1.F.3. LIMITED RIGHT OF REPLACEMENT OR REFUND - If you discover a
+defect in this electronic work within 90 days of receiving it, you can
+receive a refund of the money (if any) you paid for it by sending a
+written explanation to the person you received the work from. If you
+received the work on a physical medium, you must return the medium
+with your written explanation. The person or entity that provided you
+with the defective work may elect to provide a replacement copy in
+lieu of a refund. If you received the work electronically, the person
+or entity providing it to you may choose to give you a second
+opportunity to receive the work electronically in lieu of a refund. If
+the second copy is also defective, you may demand a refund in writing
+without further opportunities to fix the problem.
+
+1.F.4. Except for the limited right of replacement or refund set forth
+in paragraph 1.F.3, this work is provided to you ‘AS-IS’, WITH NO
+OTHER WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PURPOSE.
+
+1.F.5. Some states do not allow disclaimers of certain implied
+warranties or the exclusion or limitation of certain types of
+damages. If any disclaimer or limitation set forth in this agreement
+violates the law of the state applicable to this agreement, the
+agreement shall be interpreted to make the maximum disclaimer or
+limitation permitted by the applicable state law. The invalidity or
+unenforceability of any provision of this agreement shall not void the
+remaining provisions.
+
+1.F.6. INDEMNITY - You agree to indemnify and hold the Foundation, the
+trademark owner, any agent or employee of the Foundation, anyone
+providing copies of Project Gutenberg™ electronic works in
+accordance with this agreement, and any volunteers associated with the
+production, promotion and distribution of Project Gutenberg™
+electronic works, harmless from all liability, costs and expenses,
+including legal fees, that arise directly or indirectly from any of
+the following which you do or cause to occur: (a) distribution of this
+or any Project Gutenberg work, (b) alteration, modification, or
+additions or deletions to any Project Gutenberg work, and (c) any
+Defect you cause.
+
+Section 2. Information about the Mission of Project Gutenberg
+
+Project Gutenberg is synonymous with the free distribution of
+electronic works in formats readable by the widest variety of
+computers including obsolete, old, middle-aged and new computers. It
+exists because of the efforts of hundreds of volunteers and donations
+from people in all walks of life.
+
+Volunteers and financial support to provide volunteers with the
+assistance they need are critical to reaching Project Gutenberg’s
+goals and ensuring that the Project Gutenberg collection will
+remain freely available for generations to come. In 2001, the Project
+Gutenberg Literary Archive Foundation was created to provide a secure
+and permanent future for Project Gutenberg and future
+generations. To learn more about the Project Gutenberg Literary
+Archive Foundation and how your efforts and donations can help, see
+Sections 3 and 4 and the Foundation information page at www.gutenberg.org.
+
+Section 3. Information about the Project Gutenberg Literary Archive Foundation
+
+The Project Gutenberg Literary Archive Foundation is a non-profit
+501(c)(3) educational corporation organized under the laws of the
+state of Mississippi and granted tax exempt status by the Internal
+Revenue Service. The Foundation’s EIN or federal tax identification
+number is 64-6221541. Contributions to the Project Gutenberg Literary
+Archive Foundation are tax deductible to the full extent permitted by
+U.S. federal laws and your state’s laws.
+
+The Foundation’s business office is located at 41 Watchung Plaza #516,
+Montclair NJ 07042, USA, +1 (862) 621-9288. Email contact links and up
+to date contact information can be found at the Foundation’s website
+and official page at www.gutenberg.org/contact
+
+Section 4. Information about Donations to the Project Gutenberg
+Literary Archive Foundation
+
+Project Gutenberg™ depends upon and cannot survive without widespread
+public support and donations to carry out its mission of
+increasing the number of public domain and licensed works that can be
+freely distributed in machine-readable form accessible by the widest
+array of equipment including outdated equipment. Many small donations
+($1 to $5,000) are particularly important to maintaining tax exempt
+status with the IRS.
+
+The Foundation is committed to complying with the laws regulating
+charities and charitable donations in all 50 states of the United
+States. Compliance requirements are not uniform and it takes a
+considerable effort, much paperwork and many fees to meet and keep up
+with these requirements. We do not solicit donations in locations
+where we have not received written confirmation of compliance. To SEND
+DONATIONS or determine the status of compliance for any particular state
+visit www.gutenberg.org/donate.
+
+While we cannot and do not solicit contributions from states where we
+have not met the solicitation requirements, we know of no prohibition
+against accepting unsolicited donations from donors in such states who
+approach us with offers to donate.
+
+International donations are gratefully accepted, but we cannot make
+any statements concerning tax treatment of donations received from
+outside the United States. U.S. laws alone swamp our small staff.
+
+Please check the Project Gutenberg web pages for current donation
+methods and addresses. Donations are accepted in a number of other
+ways including checks, online payments and credit card donations. To
+donate, please visit: www.gutenberg.org/donate.
+
+Section 5. General Information About Project Gutenberg electronic works
+
+Professor Michael S. Hart was the originator of the Project
+Gutenberg concept of a library of electronic works that could be
+freely shared with anyone. For forty years, he produced and
+distributed Project Gutenberg eBooks with only a loose network of
+volunteer support.
+
+Project Gutenberg eBooks are often created from several printed
+editions, all of which are confirmed as not protected by copyright in
+the U.S. unless a copyright notice is included. Thus, we do not
+necessarily keep eBooks in compliance with any particular paper
+edition.
+
+Most people start at our website which has the main PG search
+facility: www.gutenberg.org.
+
+This website includes information about Project Gutenberg,
+including how to make donations to the Project Gutenberg Literary
+Archive Foundation, how to help produce our new eBooks, and how to
+subscribe to our email newsletter to hear about new eBooks.
+
+
+</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="structures-de-données" class="title-slide slide level1 center">
+<h1>Structures de données</h1>
+
+</section>
+<section id="résumé" class="slide level2">
+<h2>Résumé</h2>
+<p>Les données sont structurées dans des fichiers en fonction de standards et de conventions. Certains formats sont plus faciles à lire par l’humain alors que d’autres sont plus faciles à lire par la machine.</p>
+<p>Dans le cadre de ce cours résumé, nous nous concentrons uniquement sur des formats <em>open source</em> qu’un humain et une machine peuvent lire et analyser.</p>
+</section>
+<section id="le-format-le-plus-simple" class="slide level2">
+<h2>Le format le plus simple</h2>
+<p>L’extension <code>.txt</code> indique un fichier <em>Plain text</em> qui contient une suite linéaire de caractères. Par exemple, les textes du Projet Gutenberg sont toujours disponibles en format <em>Plain text</em>, généralement en encodage utf-8.</p>
+</section>
+<section id="formats-communs-pour-les-données-textuelles" class="slide level2">
+<h2>Formats communs pour les données textuelles</h2>
+<ul>
+<li>HTML (<code>.html</code>)&nbsp;;</li>
+<li>XML (<code>.xml</code>)&nbsp;;</li>
+<li>XHTML (<code>.xhtml</code>)&nbsp;;</li>
+<li>LaTeX (<code>.tex</code>)&nbsp;;</li>
+<li>…</li>
+</ul>
+<p>Il n’est pas rare que certains formats soient en fait une série de fichiers compressés&nbsp;:</p>
+<ul>
+<li>ePUB (<code>.epub</code>)&nbsp;;</li>
+<li>OpenDocument (<code>.odf</code>)&nbsp;;</li>
+<li>…</li>
+</ul>
+</section>
+<section id="formats-pour-les-métadonnées" class="slide level2">
+<h2>Formats pour les métadonnées</h2>
+<p>Les mêmes données peuvent être encodées dans plusieurs formats différents, mais certains formats se prêtent mieux à certaines données et vice-versa.</p>
+</section>
+<section id="yaml" class="slide level2">
+<h2>YAML</h2>
+<p>Yet another Markup Language.</p>
+<div class="columns">
+<div class="column">
+<ul>
+<li>John Doe, 30 ans, vit à New York.</li>
+<li>Jane Smith, 25 ans, vit à Londres.</li>
+<li>Bob Wilson, 35 ans, vit à Paris.</li>
+</ul>
+</div><div class="column">
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a></a><span class="kw">-</span></span>
+<span id="cb11-2"><a></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> John Doe</span></span>
+<span id="cb11-3"><a></a><span class="at">  </span><span class="fu">age</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
+<span id="cb11-4"><a></a><span class="at">  </span><span class="fu">city</span><span class="kw">:</span><span class="at"> New York</span></span>
+<span id="cb11-5"><a></a><span class="kw">-</span></span>
+<span id="cb11-6"><a></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Jane Smith</span></span>
+<span id="cb11-7"><a></a><span class="at">  </span><span class="fu">age</span><span class="kw">:</span><span class="at"> </span><span class="dv">25</span></span>
+<span id="cb11-8"><a></a><span class="at">  </span><span class="fu">city</span><span class="kw">:</span><span class="at"> London</span></span>
+<span id="cb11-9"><a></a><span class="kw">-</span></span>
+<span id="cb11-10"><a></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Bob Wilson</span></span>
+<span id="cb11-11"><a></a><span class="at">  </span><span class="fu">age</span><span class="kw">:</span><span class="at"> </span><span class="dv">35</span></span>
+<span id="cb11-12"><a></a><span class="at">  </span><span class="fu">city</span><span class="kw">:</span><span class="at"> Paris</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+</section>
+<section id="json" class="slide level2">
+<h2>JSON</h2>
+<p>JavaScript Object Notation.</p>
+<div class="columns">
+<div class="column">
+<ul>
+<li>John Doe, 30 ans, vit à New York.</li>
+<li>Jane Smith, 25 ans, vit à Londres.</li>
+<li>Bob Wilson, 35 ans, vit à Paris.</li>
+</ul>
+</div><div class="column">
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb12-1"><a></a><span class="ot">[</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">{</span></span>
+<span id="cb12-3"><a></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"John Doe"</span><span class="fu">,</span></span>
+<span id="cb12-4"><a></a>    <span class="dt">"age"</span><span class="fu">:</span> <span class="dv">30</span><span class="fu">,</span></span>
+<span id="cb12-5"><a></a>    <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"New York"</span></span>
+<span id="cb12-6"><a></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb12-7"><a></a>  <span class="fu">{</span></span>
+<span id="cb12-8"><a></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Jane Smith"</span><span class="fu">,</span></span>
+<span id="cb12-9"><a></a>    <span class="dt">"age"</span><span class="fu">:</span> <span class="dv">25</span><span class="fu">,</span></span>
+<span id="cb12-10"><a></a>    <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"London"</span></span>
+<span id="cb12-11"><a></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb12-12"><a></a>  <span class="fu">{</span></span>
+<span id="cb12-13"><a></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Bob Wilson"</span><span class="fu">,</span></span>
+<span id="cb12-14"><a></a>    <span class="dt">"age"</span><span class="fu">:</span> <span class="dv">35</span><span class="fu">,</span></span>
+<span id="cb12-15"><a></a>    <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"Paris"</span></span>
+<span id="cb12-16"><a></a>  <span class="fu">}</span></span>
+<span id="cb12-17"><a></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+</section>
+<section id="csv" class="slide level2">
+<h2>CSV</h2>
+<p>Comma-Separated Values.</p>
+<div class="columns">
+<div class="column">
+<ul>
+<li>John Doe, 30 ans, vit à New York.</li>
+<li>Jane Smith, 25 ans, vit à Londres.</li>
+<li>Bob Wilson, 35 ans, vit à Paris.</li>
+</ul>
+</div><div class="column">
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource csv number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"><a></a>name,age,city</span>
+<span id="cb13-2"><a></a>John Doe,30,New York</span>
+<span id="cb13-3"><a></a>Jane Smith,25,London</span>
+<span id="cb13-4"><a></a>Bob Wilson,35,Paris</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+</section>
+<section id="plus-sur-json" class="slide level2">
+<h2>Plus sur JSON</h2>
+<p>JSON permet d’encoder les données en arborescence, mais il n’y a pas de limites au type d’information que l’on peut inclure dans un <code>.json</code>. Il s’agit d’un excellent format dans lequel on peut pratiquement représenter n’importe quoi (incluant un corpus entier).</p>
+</section>
+<section id="plus-sur-csv" class="slide level2">
+<h2>Plus sur CSV</h2>
+<p>Similairement, le format CSV permet d’encoder toutes sortes de données sous la forme d’un tableau.</p>
+<p>Puisque parfois les données encodées dans un CSV contiennent des virgules, il est possible de choisir un autre caractère comme séparateur. Les exemples de séparateurs alternatifs les plus communs sont la tabulation et les points virgules, mais n’importe quel caractère peut être utilisé.</p>
+</section></section>
 <section>
 <section id="présentation-du-corpus-de-travail" class="title-slide slide level1 center">
 <h1>Présentation du corpus de travail</h1>
@@ -329,41 +2475,41 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <li>Même quelques questions de départ.</li>
 </ul></li>
 </ul>
-</section>
-<section id="transition-vers-python" class="slide level2">
-<h2>Transition vers Python</h2>
-<ul>
-<li>La prochaine étape consiste à transformer ces éléments en opérations concrètes :
-<ul>
-<li>charger le fichier dans Python ;</li>
-<li>inspecter la structure du corpus ;</li>
-<li>nettoyer les textes ;</li>
-<li>segmenter les chaînes de caractères ;</li>
-<li>compter certains phénomènes ;</li>
-<li>préparer les données pour des analyses plus avancées.</li>
-</ul></li>
-</ul>
-</section>
-<section id="principes-du-prétraitement" class="slide level2">
-<h2>Principes du prétraitement <!-- Yann --></h2>
-</section>
-<section id="shit-in-shit-out" class="slide level2">
-<h2><em>Shit in shit out</em></h2>
-</section>
-<section id="structuration-des-données" class="slide level2">
-<h2>Structuration des données</h2>
 </section></section>
 <section>
+<section id="exercice" class="title-slide slide level1 center">
+<h1>Exercice</h1>
+
+</section>
+<section id="objectifs" class="slide level2">
+<h2>Objectifs</h2>
+<p>Pour lire un fichier CSV dans Python, nous allons devoir créer un <em>path</em> vers celui-ci et utiliser la librairie <code>pandas</code>.</p>
+<p>Nous allons ensuite apprendre à naviguer un DataFrame.</p>
+</section>
+<section id="créer-un-path" class="slide level2">
+<h2>Créer un <em>path</em></h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">import</span> os</span>
+<span id="cb14-2"><a></a>path <span class="op">=</span> os.path.join(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Trouvez sur votre ordinateur (ou dand Colab) le chemin vers le fichier CSV.</p>
+</section>
+<section id="charger-un-fichier-csv" class="slide level2">
+<h2>Charger un fichier CSV</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb15-2"><a></a>df <span class="op">=</span> pd.read_csv(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lorsqu’on charge un CSV avec pandas, on obtient un <em>DataFrame</em>, une structure de données python.</p>
+</section>
+<section id="lire-les-données" class="slide level2">
+<h2>Lire les données</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>df.head()</span>
+<span id="cb16-2"><a></a>df.column</span>
+<span id="cb16-3"><a></a>df[<span class="st">"column"</span>]</span>
+<span id="cb16-4"><a></a>df.loc[row, column]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
 <section id="pause" class="title-slide slide level1 center">
 <h1>Pause</h1>
 
 </section>
-<section id="manipuler-des-données-avec-python" class="slide level2">
-<h2>Manipuler des données avec Python</h2>
-</section>
-<section id="api" class="slide level2">
-<h2>API</h2>
-</section></section>
+
 <section>
 <section id="prétraitement-du-texte" class="title-slide slide level1 center">
 <h1>Prétraitement du texte</h1>
@@ -377,6 +2523,29 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </section>
 <section id="tokenisation" class="slide level2">
 <h2>Tokenisation</h2>
+</section></section>
+<section>
+<section id="exercice-1" class="title-slide slide level1 center">
+<h1>Exercice</h1>
+
+</section>
+<section id="retour-sur-lag" class="slide level2">
+<h2>Retour sur l’AG</h2>
+<ul>
+<li>La prochaine étape consiste à transformer ces éléments en opérations concrètes :
+<ul>
+<li>nettoyer les textes ;</li>
+<li>segmenter les chaînes de caractères ;</li>
+<li>compter certains phénomènes ;</li>
+<li>préparer les données pour des analyses plus avancées.</li>
+</ul></li>
+</ul>
+</section>
+<section id="principes-du-prétraitement" class="slide level2">
+<h2>Principes du prétraitement <!-- Yann --></h2>
+</section>
+<section id="shit-in-shit-out" class="slide level2">
+<h2><em>Shit in shit out</em></h2>
 </section></section>
 <section>
 <section id="pause-de-midi" class="title-slide slide level1 center">

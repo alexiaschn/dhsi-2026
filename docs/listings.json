@@ -7,6 +7,8 @@
       "/notebooks/jour2_regex_complet.html",
       "/notebooks/jour3_BERT_Demo_complet.html",
       "/notebooks/jour3_Entrainement_Demo_complet.html",
+      "/notebooks/jour4_Affinage_Demo_complet.html",
+      "/notebooks/jour4_Affinage_complet.html",
       "/notebooks/jour4_steeringLLM_complet.html"
     ]
   },
@@ -14,12 +16,13 @@
     "listing": "/diapositives.html",
     "items": [
       "/diapositives/jour01.html",
-      "/diapositives/jour02PM.html",
       "/diapositives/jour02AM.html",
+      "/diapositives/jour02PM.html",
       "/diapositives/jour03.html",
       "/diapositives/jour04AM.html",
       "/diapositives/jour04PM.html",
-      "/diapositives/jour05.html"
+      "/diapositives/jour05.html",
+      "/diapositives/exercice_affinage_corrige.html"
     ]
   }
 ]

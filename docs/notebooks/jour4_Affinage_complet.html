@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.23">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Exercice : Affiner un modèle sur son propre corpus – DHSI 2026 - Décrypter l’IA</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-226bd0f977fa82dfae4534cac220d79a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e690e940b3e26b88b827a1dc3a9f3def.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">DHSI 2026 - Décrypter l’IA</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../diapositives.html"> 
+<span class="menu-text">Diapositives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notebooks.html"> 
+<span class="menu-text">Notebooks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../corpus.html"> 
+<span class="menu-text">Corpus</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Exercice : Affiner un modèle sur son propre corpus</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Dans cet exercice, nous reprenons le principe du notebook de démonstration sur l’affinage, mais en l’ajustant à votre corpus personnel.</p>
+<p>Voici un aperçu de la chaîne de traitement</p>
+<pre class="text"><code>corpus personnel
+→ inspection
+→ formatage
+→ tokenisation
+→ affinage
+→ génération / comparaison</code></pre>
+<section id="installer-et-importer-les-bibliothèques" class="level2">
+<h2 class="anchored" data-anchor-id="installer-et-importer-les-bibliothèques">1. Installer et importer les bibliothèques</h2>
+<p>Nous allons utiliser :</p>
+<ul>
+<li><code>pandas</code> pour charger et inspecter le corpus ;</li>
+<li><code>datasets</code> pour créer un dataset compatible avec Hugging Face ;</li>
+<li><code>transformers</code> pour charger le modèle, le tokenizer et le <code>Trainer</code> ;</li>
+<li><code>torch</code> pour l’exécution CPU/GPU.</li>
+</ul>
+<div id="070f1ce3" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dans un environnement neuf, décommenter au besoin :</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install transformers datasets torch pandas</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datasets <span class="im">import</span> Dataset</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> (</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    AutoModelForCausalLM,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    AutoTokenizer,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    DataCollatorForLanguageModeling,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    Trainer,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    TrainingArguments,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PyTorch :"</span>, torch.__version__)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"CUDA disponible :"</span>, torch.cuda.is_available())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>PyTorch : 2.5.1+cu124
+CUDA disponible : False</code></pre>
+</div>
+</div>
+</section>
+<section id="configuration-générale" class="level2">
+<h2 class="anchored" data-anchor-id="configuration-générale">2. Configuration générale</h2>
+<p>Vous pouvez modifier :</p>
+<ul>
+<li><code>CORPUS_PATH</code> pour pointer vers votre fichier ;</li>
+<li><code>MODEL_NAME</code> pour choisir un modèle ;</li>
+<li><code>FORMAT_MODE</code> pour choisir la manière de transformer le corpus ;</li>
+<li><code>RUN_TRAINING</code> pour lancer ou non l’entraînement.</li>
+</ul>
+<p>Par défaut, l’entraînement est désactivé pour éviter de lancer un calcul long par accident.</p>
+<div id="ba9c1d61" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modèle de départ.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># "distilgpt2" est plus léger que "gpt2", donc plus pratique pour un atelier.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>MODEL_NAME <span class="op">=</span> <span class="st">"distilgpt2"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Chemin vers le corpus personnel.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Formats acceptés dans ce notebook : .txt, .csv, .jsonl</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemple :</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># CORPUS_PATH = Path("./mon_corpus.csv")</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># CORPUS_PATH = Path("./formatted_epigrams_eng_genre.txt")</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>CORPUS_PATH <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Si aucun fichier n'est fourni, on utilise un mini-corpus de secours.</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>USE_DEMO_CORPUS_IF_MISSING <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Mode de formatage :</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># - "auto" : essaie de deviner selon les colonnes disponibles</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># - "plain_text" : utilise seulement le texte</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># - "tagged" : crée un format balisé avec auteur/genre/texte</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># - "instruction" : crée un format instruction / input / output</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>FORMAT_MODE <span class="op">=</span> <span class="st">"auto"</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Colonnes possibles.</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Le notebook essaie aussi quelques variantes fréquentes.</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>TEXT_COLUMN <span class="op">=</span> <span class="st">"text"</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>AUTHOR_COLUMN <span class="op">=</span> <span class="st">"author"</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>GENRE_COLUMN <span class="op">=</span> <span class="st">"genre"</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>INSTRUCTION_COLUMN <span class="op">=</span> <span class="st">"instruction"</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>INPUT_COLUMN <span class="op">=</span> <span class="st">"input"</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>OUTPUT_COLUMN <span class="op">=</span> <span class="st">"output"</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Paramètres d'entraînement.</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>OUTPUT_DIR <span class="op">=</span> Path(<span class="st">"./checkpoints/exercice_affinage"</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>FINAL_MODEL_DIR <span class="op">=</span> Path(<span class="st">"./modele_affine_exercice_final"</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>RUN_TRAINING <span class="op">=</span> <span class="va">False</span>   <span class="co"># Mettre True pour lancer réellement l'entraînement.</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>MAX_STEPS <span class="op">=</span> <span class="dv">30</span>         <span class="co"># Petit nombre pour une démo ou un exercice.</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>MAX_LENGTH <span class="op">=</span> <span class="dv">192</span>       <span class="co"># Longueur maximale des séquences tokenisées.</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>VALIDATION_RATIO <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>SEED <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Prompt utilisé plus tard pour tester la génération.</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>PROMPT_TEMPLATE <span class="op">=</span> <span class="st">"""&lt;author&gt;Anonymous&lt;/author&gt;</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;genre&gt;funerary&lt;/genre&gt;</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;text&gt;"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mini-corpus-de-secours" class="level2">
+<h2 class="anchored" data-anchor-id="mini-corpus-de-secours">3. Mini-corpus de secours</h2>
+<p>Si aucun fichier n’est fourni, le notebook utilise ce petit corpus.</p>
+<p>Ce n’est pas un bon dataset pour entraîner un vrai modèle.<br>
+C’est simplement un filet de sécurité pour que le notebook puisse être exécuté de bout en bout.</p>
+<p>Dans un vrai exercice, remplacez ce mini-corpus par vos propres données.</p>
+<div id="6272e121" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>DEMO_EXAMPLES <span class="op">=</span> [</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"author"</span>: <span class="st">"Anonymous"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"genre"</span>: <span class="st">"funerary"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"text"</span>: <span class="st">"A small stone keeps the name of a child; the sea keeps the rest of his story."</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"author"</span>: <span class="st">"Anonymous"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"genre"</span>: <span class="st">"funerary"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"text"</span>: <span class="st">"Do not pass too quickly, stranger: this dust once loved the morning light."</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"author"</span>: <span class="st">"Anyte"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"genre"</span>: <span class="st">"animal"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"text"</span>: <span class="st">"Here lies the cicada, singer of noon, silent now beneath a little leaf."</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"author"</span>: <span class="st">"Anonymous"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"genre"</span>: <span class="st">"erotic"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"text"</span>: <span class="st">"Love wrote her name in wine; morning erased it, but not from my heart."</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"author"</span>: <span class="st">"Anonymous"</span>,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"genre"</span>: <span class="st">"votive"</span>,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"text"</span>: <span class="st">"To the goddess, I dedicate this net, these hooks, and the memory of a lucky sea."</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"author"</span>: <span class="st">"Meleager"</span>,</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"genre"</span>: <span class="st">"erotic"</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"text"</span>: <span class="st">"The garland fades, but desire keeps its own spring."</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">"author"</span>: <span class="st">"Anonymous"</span>,</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"genre"</span>: <span class="st">"satirical"</span>,</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"text"</span>: <span class="st">"He promised wisdom to all; then charged admission at the door."</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        <span class="st">"author"</span>: <span class="st">"Anonymous"</span>,</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="st">"genre"</span>: <span class="st">"funerary"</span>,</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        <span class="st">"text"</span>: <span class="st">"Beneath this marker sleeps a dog who guarded the house better than its master."</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>demo_df <span class="op">=</span> pd.DataFrame(DEMO_EXAMPLES)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>demo_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">author</th>
+<th data-quarto-table-cell-role="th">genre</th>
+<th data-quarto-table-cell-role="th">text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Anonymous</td>
+<td>funerary</td>
+<td>A small stone keeps the name of a child; the s...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Anonymous</td>
+<td>funerary</td>
+<td>Do not pass too quickly, stranger: this dust o...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Anyte</td>
+<td>animal</td>
+<td>Here lies the cicada, singer of noon, silent n...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Anonymous</td>
+<td>erotic</td>
+<td>Love wrote her name in wine; morning erased it...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Anonymous</td>
+<td>votive</td>
+<td>To the goddess, I dedicate this net, these hoo...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Meleager</td>
+<td>erotic</td>
+<td>The garland fades, but desire keeps its own sp...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Anonymous</td>
+<td>satirical</td>
+<td>He promised wisdom to all; then charged admiss...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Anonymous</td>
+<td>funerary</td>
+<td>Beneath this marker sleeps a dog who guarded t...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="charger-un-corpus-personnel" class="level2">
+<h2 class="anchored" data-anchor-id="charger-un-corpus-personnel">4. Charger un corpus personnel</h2>
+<p>Cette fonction accepte trois types de fichiers.</p>
+<section id="fichier-.txt" class="level3">
+<h3 class="anchored" data-anchor-id="fichier-.txt">Fichier <code>.txt</code></h3>
+<p>Deux possibilités :</p>
+<ol type="1">
+<li>Le fichier contient déjà des exemples séparés par <code>&lt;end&gt;</code>.</li>
+<li>Le fichier contient des paragraphes séparés par des lignes vides.</li>
+</ol>
+</section>
+<section id="fichier-.csv" class="level3">
+<h3 class="anchored" data-anchor-id="fichier-.csv">Fichier <code>.csv</code></h3>
+<p>Le fichier doit contenir au moins une colonne textuelle.</p>
+<p>Exemples de noms acceptés automatiquement :</p>
+<ul>
+<li><code>text</code></li>
+<li><code>texte</code></li>
+<li><code>text_fr</code></li>
+<li><code>content</code></li>
+<li><code>epigram</code></li>
+<li><code>epigramme</code></li>
+</ul>
+</section>
+<section id="fichier-.jsonl" class="level3">
+<h3 class="anchored" data-anchor-id="fichier-.jsonl">Fichier <code>.jsonl</code></h3>
+<p>Chaque ligne doit être un objet JSON.</p>
+<p>Exemple :</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">"instruction"</span><span class="fu">:</span> <span class="st">"Classe cette épigramme."</span><span class="fu">,</span> <span class="dt">"input"</span><span class="fu">:</span> <span class="st">"..."</span><span class="fu">,</span> <span class="dt">"output"</span><span class="fu">:</span> <span class="st">"funéraire"</span><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1412f780" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_txt_corpus(path):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> path.read_text(encoding<span class="op">=</span><span class="st">"utf-8"</span>).strip()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"&lt;end&gt;"</span> <span class="kw">in</span> content:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        parts <span class="op">=</span> [part.strip() <span class="cf">for</span> part <span class="kw">in</span> content.split(<span class="st">"&lt;end&gt;"</span>) <span class="cf">if</span> part.strip()]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        texts <span class="op">=</span> [part <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">&lt;end&gt;"</span> <span class="cf">for</span> part <span class="kw">in</span> parts]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Séparation simple par paragraphes.</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        parts <span class="op">=</span> re.split(<span class="vs">r"</span><span class="ch">\n</span><span class="dv">\s</span><span class="op">*</span><span class="ch">\n</span><span class="vs">"</span>, content)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        texts <span class="op">=</span> [part.strip() <span class="cf">for</span> part <span class="kw">in</span> parts <span class="cf">if</span> part.strip()]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame({<span class="st">"text"</span>: texts})</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_jsonl_corpus(path):</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    records <span class="op">=</span> []</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> path.<span class="bu">open</span>(<span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            line <span class="op">=</span> line.strip()</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> line:</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                records.append(json.loads(line))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(records)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_corpus(path<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> path <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> USE_DEMO_CORPUS_IF_MISSING:</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Aucun fichier fourni : utilisation du mini-corpus de secours."</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> demo_df.copy()</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Aucun fichier fourni. Définissez CORPUS_PATH."</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> Path(path)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> path.exists():</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> USE_DEMO_CORPUS_IF_MISSING:</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Fichier introuvable : </span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Utilisation du mini-corpus de secours."</span>)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> demo_df.copy()</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="ss">f"Fichier introuvable : </span><span class="sc">{</span>path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    suffix <span class="op">=</span> path.suffix.lower()</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> suffix <span class="op">==</span> <span class="st">".txt"</span>:</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> load_txt_corpus(path)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> suffix <span class="op">==</span> <span class="st">".csv"</span>:</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pd.read_csv(path)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> suffix <span class="op">==</span> <span class="st">".jsonl"</span>:</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> load_jsonl_corpus(path)</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Format non reconnu : </span><span class="sc">{</span>suffix<span class="sc">}</span><span class="ss">. "</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Formats acceptés : .txt, .csv, .jsonl"</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>raw_df <span class="op">=</span> load_corpus(CORPUS_PATH)</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>raw_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Aucun fichier fourni : utilisation du mini-corpus de secours.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">author</th>
+<th data-quarto-table-cell-role="th">genre</th>
+<th data-quarto-table-cell-role="th">text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Anonymous</td>
+<td>funerary</td>
+<td>A small stone keeps the name of a child; the s...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Anonymous</td>
+<td>funerary</td>
+<td>Do not pass too quickly, stranger: this dust o...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Anyte</td>
+<td>animal</td>
+<td>Here lies the cicada, singer of noon, silent n...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Anonymous</td>
+<td>erotic</td>
+<td>Love wrote her name in wine; morning erased it...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Anonymous</td>
+<td>votive</td>
+<td>To the goddess, I dedicate this net, these hoo...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="inspecter-les-données" class="level2">
+<h2 class="anchored" data-anchor-id="inspecter-les-données">5. Inspecter les données</h2>
+<p>Avant d’affiner un modèle, on inspecte toujours le corpus.</p>
+<p>Questions simples :</p>
+<ul>
+<li>Combien d’exemples avons-nous ?</li>
+<li>Quelles colonnes sont disponibles ?</li>
+<li>Quelle colonne contient le texte ?</li>
+<li>Les lignes sont-elles vides ou très courtes ?</li>
+<li>Les labels ou métadonnées sont-ils cohérents ?</li>
+</ul>
+<div id="2125912e" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dimensions du corpus :"</span>, raw_df.shape)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Colonnes :"</span>, <span class="bu">list</span>(raw_df.columns))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>display(raw_df.head())</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>missing_by_column <span class="op">=</span> raw_df.isna().<span class="bu">sum</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>missing_by_column</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dimensions du corpus : (8, 3)
+Colonnes : ['author', 'genre', 'text']</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">author</th>
+<th data-quarto-table-cell-role="th">genre</th>
+<th data-quarto-table-cell-role="th">text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Anonymous</td>
+<td>funerary</td>
+<td>A small stone keeps the name of a child; the s...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Anonymous</td>
+<td>funerary</td>
+<td>Do not pass too quickly, stranger: this dust o...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Anyte</td>
+<td>animal</td>
+<td>Here lies the cicada, singer of noon, silent n...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Anonymous</td>
+<td>erotic</td>
+<td>Love wrote her name in wine; morning erased it...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Anonymous</td>
+<td>votive</td>
+<td>To the goddess, I dedicate this net, these hoo...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>author    0
+genre     0
+text      0
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="trouver-automatiquement-les-colonnes-utiles" class="level2">
+<h2 class="anchored" data-anchor-id="trouver-automatiquement-les-colonnes-utiles">6. Trouver automatiquement les colonnes utiles</h2>
+<p>Pour rendre le notebook plus flexible, on cherche les colonnes à partir de plusieurs noms possibles.</p>
+<p>Cela permet de charger des corpus différents sans tout réécrire.</p>
+<p>Ce code n’est pas en lien avec la formation. Vous pouvez passez à la prochaine étape.</p>
+<div id="d4f14a7d" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_column(df, candidates):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Retourne la première colonne existante parmi une liste de candidates."""</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> candidates:</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> col <span class="kw">in</span> df.columns:</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> col</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>TEXT_CANDIDATES <span class="op">=</span> [</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    TEXT_COLUMN,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"texte"</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text_fr"</span>,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"content"</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"contenu"</span>,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"epigram"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"epigramme"</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"passage"</span>,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>AUTHOR_CANDIDATES <span class="op">=</span> [</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    AUTHOR_COLUMN,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"author"</span>,</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"auteur"</span>,</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"author_fr"</span>,</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"attribution"</span>,</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>GENRE_CANDIDATES <span class="op">=</span> [</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    GENRE_COLUMN,</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"genre"</span>,</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"category"</span>,</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"categorie"</span>,</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"catégorie"</span>,</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"label"</span>,</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>INSTRUCTION_CANDIDATES <span class="op">=</span> [</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    INSTRUCTION_COLUMN,</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"instruction"</span>,</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"consigne"</span>,</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">"prompt"</span>,</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>INPUT_CANDIDATES <span class="op">=</span> [</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    INPUT_COLUMN,</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">"input"</span>,</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">"entrée"</span>,</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"entree"</span>,</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">"source"</span>,</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>OUTPUT_CANDIDATES <span class="op">=</span> [</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    OUTPUT_COLUMN,</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>    <span class="st">"output"</span>,</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sortie"</span>,</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>    <span class="st">"response"</span>,</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>    <span class="st">"réponse"</span>,</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>    <span class="st">"reponse"</span>,</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    <span class="st">"target"</span>,</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    <span class="st">"label"</span>,</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    <span class="st">"type"</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>resolved_columns <span class="op">=</span> {</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>: find_column(raw_df, TEXT_CANDIDATES),</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>    <span class="st">"author"</span>: find_column(raw_df, AUTHOR_CANDIDATES),</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    <span class="st">"genre"</span>: find_column(raw_df, GENRE_CANDIDATES),</span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>    <span class="st">"instruction"</span>: find_column(raw_df, INSTRUCTION_CANDIDATES),</span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    <span class="st">"input"</span>: find_column(raw_df, INPUT_CANDIDATES),</span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>    <span class="st">"output"</span>: find_column(raw_df, OUTPUT_CANDIDATES),</span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>resolved_columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>{'text': 'text',
+ 'author': 'author',
+ 'genre': 'genre',
+ 'instruction': None,
+ 'input': None,
+ 'output': None}</code></pre>
+</div>
+</div>
+</section>
+<section id="nettoyer-légèrement-le-corpus" class="level2">
+<h2 class="anchored" data-anchor-id="nettoyer-légèrement-le-corpus">7. Nettoyer légèrement le corpus</h2>
+<p>On retire les lignes entièrement vides et on crée une version propre du tableau.</p>
+<p>N’hésitez pas à appliquer les techniques apprises pendant la formation.</p>
+<div id="92342778" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> raw_df.copy()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppression des lignes entièrement vides.</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.dropna(how<span class="op">=</span><span class="st">"all"</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Si une colonne textuelle existe, on enlève les textes vides.</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>text_col <span class="op">=</span> resolved_columns[<span class="st">"text"</span>]</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> text_col <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    df[text_col] <span class="op">=</span> df[text_col].astype(<span class="bu">str</span>).<span class="bu">str</span>.strip()</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[df[text_col].<span class="bu">str</span>.<span class="bu">len</span>() <span class="op">&gt;</span> <span class="dv">0</span>].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">## VOS PROPRES FONCTIONS ICI</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Nombre d'exemples après nettoyage :"</span>, <span class="bu">len</span>(df))</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>display(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nombre d'exemples après nettoyage : 8</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">author</th>
+<th data-quarto-table-cell-role="th">genre</th>
+<th data-quarto-table-cell-role="th">text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Anonymous</td>
+<td>funerary</td>
+<td>A small stone keeps the name of a child; the s...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Anonymous</td>
+<td>funerary</td>
+<td>Do not pass too quickly, stranger: this dust o...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Anyte</td>
+<td>animal</td>
+<td>Here lies the cicada, singer of noon, silent n...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Anonymous</td>
+<td>erotic</td>
+<td>Love wrote her name in wine; morning erased it...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Anonymous</td>
+<td>votive</td>
+<td>To the goddess, I dedicate this net, these hoo...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="choisir-le-format-dentraînement" class="level2">
+<h2 class="anchored" data-anchor-id="choisir-le-format-dentraînement">8. Choisir le format d’entraînement</h2>
+<p>Un modèle génératif apprend à continuer du texte.</p>
+<p>Il faut donc transformer nos données en chaînes de caractères qui montrent clairement le comportement attendu.</p>
+<p>Nous allons gérer trois formats.</p>
+<section id="format-texte-simple" class="level3">
+<h3 class="anchored" data-anchor-id="format-texte-simple">Format texte simple</h3>
+<pre class="text"><code>Texte du corpus
+&lt;end&gt;</code></pre>
+</section>
+<section id="format-balisé" class="level3">
+<h3 class="anchored" data-anchor-id="format-balisé">Format balisé</h3>
+<pre class="text"><code>&lt;author&gt;Anonymous&lt;/author&gt;
+&lt;genre&gt;funerary&lt;/genre&gt;
+&lt;epigram&gt;
+Texte du corpus
+&lt;end&gt;</code></pre>
+</section>
+<section id="format-instruction" class="level3">
+<h3 class="anchored" data-anchor-id="format-instruction">Format instruction</h3>
+<pre class="text"><code>### Instruction:
+Classe cette épigramme.
+
+### Input:
+Texte de l'épigramme
+
+### Response:
+funéraire
+&lt;end&gt;</code></pre>
+<p>Le code en lui-même n’est pas en lien avec la formation, mais les principes sont importants.</p>
+<div id="3d4bc2db" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize_value(value, default<span class="op">=</span><span class="st">"Unknown"</span>):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isna(value):</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> default</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    value <span class="op">=</span> <span class="bu">str</span>(value).strip()</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> value <span class="cf">if</span> value <span class="cf">else</span> default</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> detect_format_mode(df, resolved_columns):</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Détermine un mode de formatage raisonnable si FORMAT_MODE vaut auto."""</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> FORMAT_MODE <span class="op">!=</span> <span class="st">"auto"</span>:</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> FORMAT_MODE</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    has_instruction <span class="op">=</span> resolved_columns[<span class="st">"instruction"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    has_output <span class="op">=</span> resolved_columns[<span class="st">"output"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    has_text <span class="op">=</span> resolved_columns[<span class="st">"text"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    has_author_or_genre <span class="op">=</span> (</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>        resolved_columns[<span class="st">"author"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>        <span class="kw">or</span> resolved_columns[<span class="st">"genre"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> has_instruction <span class="kw">and</span> has_output:</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"instruction"</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> has_text <span class="kw">and</span> has_author_or_genre:</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"tagged"</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> has_text:</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"plain_text"</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Impossible de déterminer le format. "</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Ajoutez une colonne de texte ou des colonnes instruction/output."</span></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>ACTIVE_FORMAT_MODE <span class="op">=</span> detect_format_mode(df, resolved_columns)</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mode de formatage utilisé :"</span>, ACTIVE_FORMAT_MODE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mode de formatage utilisé : tagged</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="transformer-chaque-ligne-en-exemple-dentraînement" class="level2">
+<h2 class="anchored" data-anchor-id="transformer-chaque-ligne-en-exemple-dentraînement">9. Transformer chaque ligne en exemple d’entraînement</h2>
+<p>À vous de formater vos exemples selon le type choisi.</p>
+<div id="93795811" class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_training_example(row, mode<span class="op">=</span>ACTIVE_FORMAT_MODE):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    text_col <span class="op">=</span> resolved_columns[<span class="st">"text"</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    author_col <span class="op">=</span> resolved_columns[<span class="st">"author"</span>]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    genre_col <span class="op">=</span> resolved_columns[<span class="st">"genre"</span>]</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    instruction_col <span class="op">=</span> resolved_columns[<span class="st">"instruction"</span>]</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    input_col <span class="op">=</span> resolved_columns[<span class="st">"input"</span>]</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    output_col <span class="op">=</span> resolved_columns[<span class="st">"output"</span>]</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mode <span class="op">==</span> <span class="st">"plain_text"</span>:</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        text <span class="op">=</span> normalize_value(row[text_col], default<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>text<span class="sc">}</span><span class="ch">\n</span><span class="ss">&lt;end&gt;"</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mode <span class="op">==</span> <span class="st">"tagged"</span>:</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        text <span class="op">=</span> normalize_value(row[text_col], default<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        author <span class="op">=</span> normalize_value(row[author_col], default<span class="op">=</span><span class="st">"Unknown"</span>) <span class="cf">if</span> author_col <span class="cf">else</span> <span class="st">"Unknown"</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        genre <span class="op">=</span> normalize_value(row[genre_col], default<span class="op">=</span><span class="st">"unknown"</span>) <span class="cf">if</span> genre_col <span class="cf">else</span> <span class="st">"unknown"</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"""&lt;author&gt;</span><span class="sc">{</span>author<span class="sc">}</span><span class="ss">&lt;/author&gt;</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="ss">    &lt;genre&gt;</span><span class="sc">{</span>genre<span class="sc">}</span><span class="ss">&lt;/genre&gt;</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="ss">     &lt;</span><span class="sc">{</span>text_col<span class="sc">}</span><span class="ss">&gt;</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="ss">     </span><span class="sc">{</span>text<span class="sc">}</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="ss">     &lt;/</span><span class="sc">{</span>text_col<span class="sc">}</span><span class="ss">&gt;</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="ss">     &lt;end&gt;"""</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mode <span class="op">==</span> <span class="st">"instruction"</span>:</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>        instruction <span class="op">=</span> normalize_value(row[instruction_col], default<span class="op">=</span><span class="st">"Réponds à la demande."</span>)</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>        input_text <span class="op">=</span> normalize_value(row[input_col], default<span class="op">=</span><span class="st">""</span>) <span class="cf">if</span> input_col <span class="cf">else</span> <span class="st">""</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>        output_text <span class="op">=</span> normalize_value(row[output_col], default<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"""### Instruction:</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>instruction<span class="sc">}</span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a><span class="ss">### Input:</span></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>input_text<span class="sc">}</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a><span class="ss">### Response:</span></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>output_text<span class="sc">}</span></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;end&gt;"""</span></span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Mode inconnu : </span><span class="sc">{</span>mode<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"training_text"</span>] <span class="op">=</span> df.<span class="bu">apply</span>(format_training_example, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"training_length_chars"</span>] <span class="op">=</span> df[<span class="st">"training_text"</span>].<span class="bu">str</span>.<span class="bu">len</span>()</span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>display(df[[<span class="st">"training_text"</span>, <span class="st">"training_length_chars"</span>]].head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">training_text</th>
+<th data-quarto-table-cell-role="th">training_length_chars</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>&lt;author&gt;Anonymous&lt;/author&gt;\n &lt;g...</td>
+<td>229</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>&lt;author&gt;Anonymous&lt;/author&gt;\n &lt;g...</td>
+<td>226</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>&lt;author&gt;Anyte&lt;/author&gt;\n &lt;genre...</td>
+<td>217</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>&lt;author&gt;Anonymous&lt;/author&gt;\n &lt;g...</td>
+<td>220</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>&lt;author&gt;Anonymous&lt;/author&gt;\n &lt;g...</td>
+<td>230</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="inspecter-les-exemples-formatés" class="level2">
+<h2 class="anchored" data-anchor-id="inspecter-les-exemples-formatés">10. Inspecter les exemples formatés</h2>
+<p>Avant d’entraîner, on lit quelques exemples.</p>
+<div id="3c0b78ca" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, text <span class="kw">in</span> <span class="bu">enumerate</span>(df[<span class="st">"training_text"</span>].head(<span class="dv">3</span>), start<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"EXEMPLE </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(text)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================
+EXEMPLE 1
+================================================================================
+&lt;author&gt;Anonymous&lt;/author&gt;
+                &lt;genre&gt;funerary&lt;/genre&gt;
+                &lt;text&gt;
+                A small stone keeps the name of a child; the sea keeps the rest of his story.
+                &lt;/text&gt;
+                &lt;end&gt;
+
+================================================================================
+EXEMPLE 2
+================================================================================
+&lt;author&gt;Anonymous&lt;/author&gt;
+                &lt;genre&gt;funerary&lt;/genre&gt;
+                &lt;text&gt;
+                Do not pass too quickly, stranger: this dust once loved the morning light.
+                &lt;/text&gt;
+                &lt;end&gt;
+
+================================================================================
+EXEMPLE 3
+================================================================================
+&lt;author&gt;Anyte&lt;/author&gt;
+                &lt;genre&gt;animal&lt;/genre&gt;
+                &lt;text&gt;
+                Here lies the cicada, singer of noon, silent now beneath a little leaf.
+                &lt;/text&gt;
+                &lt;end&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="créer-un-dataset-hugging-face" class="level2">
+<h2 class="anchored" data-anchor-id="créer-un-dataset-hugging-face">11. Créer un Dataset Hugging Face</h2>
+<p>Le <code>Trainer</code> de Hugging Face travaille avec un objet <code>Dataset</code>.</p>
+<div id="d804502b" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> Dataset.from_pandas(df[[<span class="st">"training_text"</span>]], preserve_index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>dataset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>Dataset({
+    features: ['training_text'],
+    num_rows: 8
+})</code></pre>
+</div>
+</div>
+</section>
+<section id="séparer-entraînement-et-validation" class="level2">
+<h2 class="anchored" data-anchor-id="séparer-entraînement-et-validation">12. Séparer entraînement et validation</h2>
+<p>Même dans un exercice, il faut garder l’idée d’une séparation entre les données vues pendant l’entraînement et les données utilisées pour l’évaluation.</p>
+<div id="a5ac618c" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(dataset) <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    split_dataset <span class="op">=</span> dataset.train_test_split(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        test_size<span class="op">=</span>VALIDATION_RATIO,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        seed<span class="op">=</span>SEED</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    train_dataset_raw <span class="op">=</span> split_dataset[<span class="st">"train"</span>]</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    validation_dataset_raw <span class="op">=</span> split_dataset[<span class="st">"test"</span>]</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Corpus très petit : on réutilise le même corpus pour une validation de démonstration."</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    train_dataset_raw <span class="op">=</span> dataset</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    validation_dataset_raw <span class="op">=</span> dataset</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Exemples d'entraînement :"</span>, <span class="bu">len</span>(train_dataset_raw))</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Exemples de validation :"</span>, <span class="bu">len</span>(validation_dataset_raw))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Exemples d'entraînement : 6
+Exemples de validation : 2</code></pre>
+</div>
+</div>
+</section>
+<section id="charger-le-tokenizer-et-le-modèle" class="level2">
+<h2 class="anchored" data-anchor-id="charger-le-tokenizer-et-le-modèle">13. Charger le tokenizer et le modèle</h2>
+<p>Nous chargeons maintenant le modèle de départ.</p>
+<p>GPT-2 et DistilGPT-2 n’ont pas de token de padding par défaut.<br>
+On réutilise donc le token de fin de texte comme token de padding.</p>
+<div id="eb32689e" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(MODEL_NAME)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> tokenizer.pad_token <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    tokenizer.pad_token <span class="op">=</span> tokenizer.eos_token</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(MODEL_NAME)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Modèle chargé :"</span>, MODEL_NAME)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Taille du vocabulaire :"</span>, tokenizer.vocab_size)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Token de padding :"</span>, tokenizer.pad_token)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Modèle chargé : distilgpt2
+Taille du vocabulaire : 50257
+Token de padding : &lt;|endoftext|&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="observer-la-tokenisation-dun-exemple" class="level2">
+<h2 class="anchored" data-anchor-id="observer-la-tokenisation-dun-exemple">14. Observer la tokenisation d’un exemple</h2>
+<p>Le modèle ne reçoit pas le texte directement.</p>
+<p>Le tokenizer transforme chaque exemple en identifiants numériques.</p>
+<div id="df7b020e" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>example_text <span class="op">=</span> df[<span class="st">"training_text"</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>encoded_example <span class="op">=</span> tokenizer(example_text, truncation<span class="op">=</span><span class="va">True</span>, max_length<span class="op">=</span>MAX_LENGTH)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> tokenizer.convert_ids_to_tokens(encoded_example[<span class="st">"input_ids"</span>])</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"position"</span>: <span class="bu">range</span>(<span class="bu">len</span>(tokens)),</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"token"</span>: tokens,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"id"</span>: encoded_example[<span class="st">"input_ids"</span>],</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>}).head(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">position</th>
+<th data-quarto-table-cell-role="th">token</th>
+<th data-quarto-table-cell-role="th">id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>&lt;</td>
+<td>27</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>author</td>
+<td>9800</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2</td>
+<td>&gt;</td>
+<td>29</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>3</td>
+<td>Anonymous</td>
+<td>20660</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>4</td>
+<td>&lt;/</td>
+<td>3556</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">95</td>
+<td>95</td>
+<td>Ġ</td>
+<td>220</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">96</td>
+<td>96</td>
+<td>Ġ</td>
+<td>220</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">97</td>
+<td>97</td>
+<td>Ġ</td>
+<td>220</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">98</td>
+<td>98</td>
+<td>Ġ</td>
+<td>220</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">99</td>
+<td>99</td>
+<td>Ġ</td>
+<td>220</td>
+</tr>
+</tbody>
+</table>
+
+<p>100 rows × 3 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="tokeniser-tout-le-corpus" class="level2">
+<h2 class="anchored" data-anchor-id="tokeniser-tout-le-corpus">15. Tokeniser tout le corpus</h2>
+<p>Cette cellule transforme tous les exemples en séquences numériques.</p>
+<div id="7bb37357" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tokenize_function(batch):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tokenizer(</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        batch[<span class="st">"training_text"</span>],</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        truncation<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        max_length<span class="op">=</span>MAX_LENGTH,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>train_dataset <span class="op">=</span> train_dataset_raw.<span class="bu">map</span>(</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    tokenize_function,</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    batched<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    remove_columns<span class="op">=</span>[<span class="st">"training_text"</span>],</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>validation_dataset <span class="op">=</span> validation_dataset_raw.<span class="bu">map</span>(</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    tokenize_function,</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    batched<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    remove_columns<span class="op">=</span>[<span class="st">"training_text"</span>],</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(train_dataset)</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(validation_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"cf0c3b883860441db92edf9dd5365f6a","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"42838a82853e4ec485c3a41aeb492d5f","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dataset({
+    features: ['input_ids', 'attention_mask'],
+    num_rows: 6
+})
+Dataset({
+    features: ['input_ids', 'attention_mask'],
+    num_rows: 2
+})</code></pre>
+</div>
+</div>
+</section>
+<section id="préparer-les-lots-dentraînement" class="level2">
+<h2 class="anchored" data-anchor-id="préparer-les-lots-dentraînement">16. Préparer les lots d’entraînement</h2>
+<p>Le <code>DataCollatorForLanguageModeling</code> crée les lots envoyés au modèle.</p>
+<p>Ici, <code>mlm=False</code>, parce que GPT-2 est un modèle de langage causal : il apprend à prédire le token suivant.</p>
+<p>Ce n’est pas le même objectif que BERT, qui utilise des tokens masqués pendant son pré-entraînement.</p>
+<div id="9bea31ff" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>data_collator <span class="op">=</span> DataCollatorForLanguageModeling(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    tokenizer<span class="op">=</span>tokenizer,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    mlm<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Collator prêt."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Collator prêt.</code></pre>
+</div>
+</div>
+</section>
+<section id="configurer-lentraînement" class="level2">
+<h2 class="anchored" data-anchor-id="configurer-lentraînement">17. Configurer l’entraînement</h2>
+<p>Les paramètres importants :</p>
+<ul>
+<li><code>max_steps</code> : nombre d’étapes d’entraînement ;</li>
+<li><code>learning_rate</code> : taille des ajustements ;</li>
+<li><code>batch_size</code> : nombre d’exemples traités à la fois ;</li>
+<li><code>gradient_accumulation_steps</code> : accumule les gradients sur plusieurs petits lots ;</li>
+<li><code>fp16</code> : accélère parfois l’entraînement sur GPU compatible.</li>
+</ul>
+<div id="6111fb3c" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">4</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="dv">2</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>training_args <span class="op">=</span> TrainingArguments(</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    output_dir<span class="op">=</span><span class="bu">str</span>(OUTPUT_DIR),</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    overwrite_output_dir<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    max_steps<span class="op">=</span>MAX_STEPS,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    per_device_train_batch_size<span class="op">=</span>batch_size,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    per_device_eval_batch_size<span class="op">=</span>batch_size,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    gradient_accumulation_steps<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    save_steps<span class="op">=</span>MAX_STEPS,</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    save_total_limit<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    logging_steps<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    learning_rate<span class="op">=</span><span class="fl">5e-5</span>,</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>    warmup_steps<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span>SEED,</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>    fp16<span class="op">=</span>torch.cuda.is_available(),</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>    report_to<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>trainer <span class="op">=</span> Trainer(</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>model,</span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>    args<span class="op">=</span>training_args,</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>    train_dataset<span class="op">=</span>train_dataset,</span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>    eval_dataset<span class="op">=</span>validation_dataset,</span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>    data_collator<span class="op">=</span>data_collator,</span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Configuration prête."</span>)</span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Batch size :"</span>, batch_size)</span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Entraînement activé :"</span>, RUN_TRAINING)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Configuration prête.
+Batch size : 2
+Entraînement activé : False</code></pre>
+</div>
+</div>
+</section>
+<section id="lancer-ou-simuler-lentraînement" class="level2">
+<h2 class="anchored" data-anchor-id="lancer-ou-simuler-lentraînement">18. Lancer ou simuler l’entraînement</h2>
+<p>Par défaut, <code>RUN_TRAINING = False</code>.</p>
+<p>Pour lancer réellement l’entraînement, retournez à la cellule de configuration et mettez :</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>RUN_TRAINING <span class="op">=</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ensuite, réexécutez les cellules.</p>
+<div id="47d0b581" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> RUN_TRAINING:</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    train_result <span class="op">=</span> trainer.train()</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    trainer.save_model(<span class="bu">str</span>(FINAL_MODEL_DIR))</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    tokenizer.save_pretrained(<span class="bu">str</span>(FINAL_MODEL_DIR))</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Modèle sauvegardé dans :"</span>, FINAL_MODEL_DIR)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Entraînement non lancé."</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Pour entraîner le modèle, mettre RUN_TRAINING = True dans la configuration."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+      
+      <progress value="30" max="30" style="width:300px; height:20px; vertical-align: middle;"></progress>
+      [30/30 01:04, Epoch 15/15]
+    </div>
+    
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Step</th>
+<th data-quarto-table-cell-role="th">Training Loss</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>1.994200</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>1.464300</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>1.093200</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>0.915000</td>
+</tr>
+<tr class="odd">
+<td>25</td>
+<td>0.820900</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td>0.738100</td>
+</tr>
+</tbody>
+</table>
+<p>
+</p></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Modèle sauvegardé dans : modele_affine_exercice_final</code></pre>
+</div>
+</div>
+</section>
+<section id="évaluer-rapidement-le-modèle" class="level2">
+<h2 class="anchored" data-anchor-id="évaluer-rapidement-le-modèle">19. Évaluer rapidement le modèle</h2>
+<p>Si l’entraînement a été lancé, on peut calculer une perte de validation.</p>
+<p>La perte seule ne suffit pas à juger un modèle génératif, mais elle donne un premier indice.</p>
+<div id="ffe4c057" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> RUN_TRAINING:</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    eval_result <span class="op">=</span> trainer.evaluate()</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(eval_result)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Pas d'évaluation : l'entraînement n'a pas été lancé."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+    <div>
+      
+      <progress value="1" max="1" style="width:300px; height:20px; vertical-align: middle;"></progress>
+      [1/1 : &lt; :]
+    </div>
+    
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'eval_loss': 1.058193325996399, 'eval_runtime': 0.5478, 'eval_samples_per_second': 3.651, 'eval_steps_per_second': 1.826, 'epoch': 15.0}</code></pre>
+</div>
+</div>
+</section>
+<section id="fonction-de-génération" class="level2">
+<h2 class="anchored" data-anchor-id="fonction-de-génération">20. Fonction de génération</h2>
+<p>Nous allons maintenant préparer une petite fonction pour générer du texte.</p>
+<p>Elle pourra utiliser :</p>
+<ul>
+<li>le modèle de base ;</li>
+<li>le modèle affiné, si l’entraînement a été exécuté et sauvegardé.</li>
+</ul>
+<div id="10d64f23" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_text(model, tokenizer, prompt, max_new_tokens<span class="op">=</span><span class="dv">80</span>, temperature<span class="op">=</span><span class="fl">0.9</span>, top_p<span class="op">=</span><span class="fl">0.95</span>):</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> model.to(device)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">eval</span>()</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> tokenizer(prompt, return_tensors<span class="op">=</span><span class="st">"pt"</span>).to(device)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>        output_ids <span class="op">=</span> model.generate(</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>            <span class="op">**</span>inputs,</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>            max_new_tokens<span class="op">=</span>max_new_tokens,</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>            do_sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>            temperature<span class="op">=</span>temperature,</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>            top_p<span class="op">=</span>top_p,</span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>            pad_token_id<span class="op">=</span>tokenizer.eos_token_id,</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tokenizer.decode(output_ids[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="générer-avec-le-modèle-actuel" class="level2">
+<h2 class="anchored" data-anchor-id="générer-avec-le-modèle-actuel">21. Générer avec le modèle actuel</h2>
+<p>Si l’entraînement n’a pas été lancé, cette cellule utilise simplement le modèle de base.</p>
+<p>La génération ne sera probablement pas très adaptée au corpus.<br>
+C’est normal : le modèle n’a pas encore appris notre format.</p>
+<div id="e7d2b79b" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PROMPT :"</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(PROMPT_TEMPLATE)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"GÉNÉRATION"</span>)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(generate_text(model, tokenizer, PROMPT_TEMPLATE))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>PROMPT :
+&lt;author&gt;Anonymous&lt;/author&gt;
+                &lt;genre&gt;funerary&lt;/genre&gt;
+                &lt;text&gt;
+================================================================================
+GÉNÉRATION
+================================================================================
+&lt;author&gt;Anonymous&lt;/author&gt;
+                &lt;genre&gt;funerary&lt;/genre&gt;
+                &lt;text&gt;
+              &lt;end&gt;
+                  &lt;/end&gt;
+              &lt;/end&gt;
+                &lt;/end&gt;
+     </code></pre>
+</div>
+</div>
+</section>
+<section id="recharger-le-modèle-affiné-sil-existe" class="level2">
+<h2 class="anchored" data-anchor-id="recharger-le-modèle-affiné-sil-existe">22. Recharger le modèle affiné, s’il existe</h2>
+<p>Si un modèle a été sauvegardé dans <code>FINAL_MODEL_DIR</code>, on peut le recharger et comparer son comportement avec celui du modèle de base.</p>
+<div id="841d0f64" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> FINAL_MODEL_DIR.exists():</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Chargement du modèle affiné :"</span>, FINAL_MODEL_DIR)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    tuned_tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(<span class="bu">str</span>(FINAL_MODEL_DIR))</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    tuned_model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(<span class="bu">str</span>(FINAL_MODEL_DIR))</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tuned_tokenizer.pad_token <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>        tuned_tokenizer.pad_token <span class="op">=</span> tuned_tokenizer.eos_token</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(generate_text(tuned_model, tuned_tokenizer, PROMPT_TEMPLATE))</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Aucun modèle affiné sauvegardé pour le moment."</span>)</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Lancez l'entraînement pour créer :"</span>, FINAL_MODEL_DIR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Chargement du modèle affiné : modele_affine_exercice_final
+&lt;author&gt;Anonymous&lt;/author&gt;
+                &lt;genre&gt;funerary&lt;/genre&gt;
+                &lt;text&gt;
+                A brief, lonely little boy who likes nothing else but the flower of light.
+                   &lt;/text&gt;
+                  &lt;/text&gt;
+    </code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
