@@ -22,21 +22,6 @@ format:
         scrollable: true
         slide-number: true
 ---
-## Programme de la matinée 
-
-AM: (3h)
-
-- Principes (45 minutes) 
-    - Shit in shit out
-    - Structuration des données
-- Présentation du corpus et des projets (30min) 
-- PAUSE (15 minutes)
-- Manipuler des données dans Python (20 minutes + 10 minutes atelier) 
-    - API
-- Prétraitement du texte (60 minutes) 
-    - Nettoyage
-    - Segmentation
-    - Tokenisation
 
 # Avant-propos
 
@@ -641,3 +626,21 @@ text = """Dans le paradigme des deux cultures (Snow 1959), l’algorithme est 1)
 
 ## Bibliographie
 
+
+<!--
+## Programme de la matinée 
+
+AM: (3h)
+
+- Principes (45 minutes) 
+    - Shit in shit out
+    - Structuration des données
+- Présentation du corpus et des projets (30min) 
+- PAUSE (15 minutes)
+- Manipuler des données dans Python (20 minutes + 10 minutes atelier) 
+    - API
+- Prétraitement du texte (60 minutes) 
+    - Nettoyage
+    - Segmentation
+    - Tokenisation
+-->
