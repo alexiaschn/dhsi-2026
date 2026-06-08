@@ -218,29 +218,44 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 
   <p class="date">2026-06-09</p>
 </section>
-<section id="programme-de-la-matinée" class="slide level2">
-<h2>Programme de la matinée</h2>
-<p>AM: (3h)</p>
+<section>
+<section id="avant-propos" class="title-slide slide level1 center">
+<h1>Avant-propos</h1>
+
+</section>
+<section id="au-programme-ce-matin" class="slide level2">
+<h2>Au programme ce matin</h2>
 <ul>
-<li>Principes (45 minutes)
+<li>Une introduction très condensée à…
 <ul>
-<li>Shit in shit out</li>
-<li>Structuration des données</li>
+<li>Se repérer dans ses dossiers&nbsp;;</li>
+<li>Accéder aux fichiers&nbsp;;</li>
+<li>Comprendre quelques types de données.</li>
 </ul></li>
-<li>Présentation du corpus et des projets (30min)</li>
-<li>PAUSE (15 minutes)</li>
-<li>Manipuler des données dans Python (20 minutes + 10 minutes atelier)
-<ul>
-<li>API</li>
-</ul></li>
-<li>Prétraitement du texte (60 minutes)
-<ul>
-<li>Nettoyage</li>
-<li>Segmentation</li>
-<li>Tokenisation</li>
-</ul></li>
+<li>Un corpus qui nous tient à coeur&nbsp;;</li>
+<li>Quelques activités sur le prétraitement des données textuelles.</li>
 </ul>
 </section>
+<section id="à-quoi-sert-cette-demi-journée" class="slide level2">
+<h2>À quoi sert cette demi-journée?</h2>
+<ul>
+<li>Mettre tout le monde sur le même pied d’égalité&nbsp;;</li>
+<li>Créer une fondation sur laquelle le reste de la semaine reposera&nbsp;;</li>
+<li>S’assurer que tout le monde sait comment nettoyer et manipuler des données textuelles.</li>
+</ul>
+</section>
+<section id="quelques-questions-pour-se-situer" class="slide level2">
+<h2>Quelques questions pour se situer</h2>
+<div>
+<ul>
+<li class="fragment">Qui connaît un langage de programmation?
+<ul>
+<li class="fragment">Qui connaît Python?</li>
+</ul></li>
+<li class="fragment">Qui a un corpus de textes sur lesquels iels aimeraient expérimenter?</li>
+</ul>
+</div>
+</section></section>
 <section>
 <section id="manipulation-de-données" class="title-slide slide level1 center">
 <h1>Manipulation de données</h1>
@@ -717,10 +732,45 @@ print(book_response.text)</code></pre>
 <li>…</li>
 </ul>
 </section>
+<section id="segmentation" class="slide level2">
+<h2>Segmentation</h2>
+<p>Quelle est l’unité de base d’un texte?</p>
+<div class="columns">
+<div class="column">
+<div>
+<ul>
+<li class="fragment">Le caractère?</li>
+<li class="fragment">Le mot?</li>
+<li class="fragment">Le syntagme?</li>
+<li class="fragment">La ligne</li>
+<li class="fragment">La phrase?</li>
+<li class="fragment">Le paragraphe?</li>
+<li class="fragment">Le poème?</li>
+</ul>
+</div>
+</div><div class="column">
+<div>
+<ul>
+<li class="fragment">La nouvelle?</li>
+<li class="fragment">Le chapitre?</li>
+<li class="fragment">La scène?</li>
+<li class="fragment">La section?</li>
+<li class="fragment">L’acte?</li>
+<li class="fragment">Le texte entier?</li>
+<li class="fragment">Plusieurs textes?</li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="segmentation-1" class="slide level2">
+<h2>Segmentation</h2>
+<p>L’unité textuelle qui sera étudiée dépend de la question de recherche et des outils disponibles.</p>
+<p>Les divisions entre sections sont rarement encodées dans les fichiers textuels (avec quelques exceptions notables comme le XML), il faut donc se reposer sur des proxies.</p>
+</section>
 <section id="exercice-de-nettoyage-des-données-textuelles" class="slide level2">
 <h2>Exercice de nettoyage des données textuelles</h2>
 
-<img data-src="Media/Gutenberg.png" class="r-stretch quarto-figure-center"><p class="caption"><a href="https://www.gutenberg.org/">Projet Gutenberg</a></p></section>
+<img data-src="img/Gutenberg.png" class="r-stretch quarto-figure-center"><p class="caption"><a href="https://www.gutenberg.org/">Projet Gutenberg</a></p></section>
 <section id="un-exercice-tout-simple" class="slide level2">
 <h2>Un exercice tout simple</h2>
 <p>Comptez les mots&nbsp;:</p>
@@ -737,13 +787,10 @@ print(book_response.text)</code></pre>
 <h2>Un exercice un peu moins simple</h2>
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>text <span class="op">=</span> <span class="st">"""Dans le paradigme des deux cultures (Snow 1959), l’algorithme est 1) une force a-littéraire, 2) un outil de la *méthode* et 3) absolutiste. [...] L’expression Études littéraires computationnelles (ELC) étant particulièrement récente (ce qui sera démontré dans la Section 1.2), la plupart des textes qui font l’histoire ou la généalogie de l’utilisation de méthodes computationnelles, d’algorithmes, d’outils numériques et de statistiques pour étudier les textes littéraires le font soit dans un contexte plus vaste---par exemple les humanités numériques et les *humanities computing*---soit pour des méthodes précises---comme la lecture distante ou la stylométrie."""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="segmentation" class="slide level2">
-<h2>Segmentation</h2>
-</section></section>
-<section>
-<section id="exercice-1" class="title-slide slide level1 center">
-<h1>Exercice</h1>
-
+<section id="tokenisation" class="slide level2">
+<h2>Tokenisation</h2>
+<p><em>À venir</em></p>
+<!--TODO-->
 </section>
 <section id="retour-sur-lag" class="slide level2">
 <h2>Retour sur l’AG</h2>
@@ -756,12 +803,6 @@ print(book_response.text)</code></pre>
 <li>préparer les données pour des analyses plus avancées.</li>
 </ul></li>
 </ul>
-</section>
-<section id="principes-du-prétraitement" class="slide level2">
-<h2>Principes du prétraitement <!-- Yann --></h2>
-</section>
-<section id="shit-in-shit-out" class="slide level2">
-<h2><em>Shit in shit out</em></h2>
 </section></section>
 <section>
 <section id="pause-de-midi" class="title-slide slide level1 center">
@@ -770,6 +811,23 @@ print(book_response.text)</code></pre>
 </section>
 <section id="bibliographie" class="slide level2">
 <h2>Bibliographie</h2>
+<!--
+## Programme de la matinée 
+
+AM: (3h)
+
+- Principes (45 minutes) 
+    - Shit in shit out
+    - Structuration des données
+- Présentation du corpus et des projets (30min) 
+- PAUSE (15 minutes)
+- Manipuler des données dans Python (20 minutes + 10 minutes atelier) 
+    - API
+- Prétraitement du texte (60 minutes) 
+    - Nettoyage
+    - Segmentation
+    - Tokenisation
+-->
 
 
 </section></section>
