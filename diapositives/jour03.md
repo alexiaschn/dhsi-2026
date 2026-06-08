@@ -41,6 +41,91 @@ PM: (2h30)
 - Préparation du travail final (60 minutes) 
     - Travail en groupe, projet
 
+
+# Word2Vec et GloVe
+
+## Rappel sur les vecteurs
+
+Simplement dit, un vecteur est un objet mathématique qui a une direction et une longueur. Dans un espace cartésien, le vecteur est représenté par une série de nombres qui représentent à quel point le vecteur s'étend dans les différentes directions de l'espace. 
+
+## Vectoriser le mot
+
+> you shall know a word by the company it keeps 
+>
+> --- John Rupert Firth, *Studies in Linguistics Analysis* (1957)
+
+Est-il possible de représenter le sens d'un mot à partir d'un vecteur?
+
+:::{.incremental}
+
+- Non, mais il est possible de représenter son contexte normatif dans un corpus d'entraînement sous la forme d'un vecteur.
+
+:::
+
+## Qu'est-ce que Word2Vec
+
+Word2Vec et GloVe sont des algorithmes qui génèrent des modèles à partir de corpus textuels. 
+
+Pour chaque unique (comme nous l'avons appris hier) token présent dans le corpus d'entraînement, Word2Vec va générer un vecteur à partir de ses voisins les plus fréquents. 
+
+Ce modèle a des propriétés intéressantes, par exemple, Word2Vec capture plusieurs synonymes et même des relations entre les mots.
+
+## Comment entraîner un modèle Word2Vec
+
+Pour chaque unique token, Word2Vec initialise un vecteur aléatoirement, puis l'entraînement peut commencer. 
+
+Il existe deux manières d'entraîner un modèle Word2Vec\ :
+
+- **CBOW**\ : Pour un contexte donné, quel est le mot le plus probable?
+- **Skip-gram**\ : Pour un mot donné, quel est le contexte le plus probable?
+
+## Comment entraîner un modèle Word2Vec
+
+Word2Vec prend comme paramètre une taille de fenêtre, puis une fenêtre contextuelle de la taille indiquée glisse sur l'ensemble du corpus d'entraînement en tentant de prédire le contexte à partir du mot (skip-gram) ou le mot à partir du contexte (CBOW). 
+
+À chaque erreur, le modèle est corrigé pour être plus proche de l'exemple d'entraînement jusqu'à ce qu'il converge. Un bon modèle Word2Vec entraîné sur un grand corpus peut itérer ce processus des milliers ou même millions de fois avant de capturer le contexte normatif de ses tokens. 
+
+## Télécharger un modèle
+
+```python
+%pip install gensim huggingface_hub
+```
+
+```python
+from huggingface_hub import hf_hub_download
+from gensim.models import KeyedVectors
+
+# Le dépôt du modèle français (Fauconnier, Wikipédia FR) et son fichier .bin.
+depot = "Word2vec/fauconnier_frWiki_no_phrase_no_postag_700_cbow_cut100"
+fichier_bin = "frWiki_no_phrase_no_postag_700_cbow_cut100.bin"
+
+# Téléchargement (peut prendre une minute la première fois) puis chargement des vecteurs.
+chemin_modele = hf_hub_download(repo_id=depot, filename=fichier_bin)
+model = KeyedVectors.load_word2vec_format(chemin_modele, binary=True, unicode_errors="ignore")
+
+print("Modèle chargé :", len(model), "mots, vecteurs de dimension", model.vector_size)
+print(model["mot"])
+```
+
+## Utiliser le modèle
+
+Les modèles Word2Vec ont les fonctions suivantes (liste non-exhaustive)\ :
+
+- `model.most_similar("mot")`\ ;
+    - `model.most_similar(positive = ["roi", "femme"], negative = ["homme"])`
+- `model.similarity("comparer", "mot")`\ ;
+- `model.doesnt_match(["mot", "phrase", "paragraphe", "espion"])`.
+
+## Exercice
+
+```python
+model.most_similar(positive = ["roi", "femme"], negative = ["homme"])
+```
+
+- roi $+$ femme $-$ homme $\approx$ reine.
+- ...
+
+
 # Introduction à l’apprentissage profond
 
 ## Objectif du bloc
