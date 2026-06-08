@@ -24,16 +24,17 @@ format:
 
 # Avant-propos
 
-## Programme cet après-midi
+## Au programme cet après-midi
 
+- Une méthode flexible, simple et puissante pour trouver de l'information dans les textes\ ;
 - Une discussion générale sur les fondements de l'intelligence artificielles\ ;
-- Des méthodes simples, mais efficaces pour étudier les données textueles\ ;
+- Des méthodes simples, mais efficaces pour étudier les données textuelles\ ;
 - Avant l'intelligence artificielle, il avait l'intelligence artificielle!
 
 ## À quoi sert cette demi-journée?
 
-- À comprendre l'importance des bonnes pratiques\ ;
-- À prouver que parfois, les méthodes traditionnelles sont aussi efficaces à une fraction de la complexité\ ;
+- À apprendre les rudiments de regex\ ;
+- À prouver que parfois, les méthodes traditionnelles sont aussi efficaces que les nouvelles méthodes à une fraction de la complexité\ ;
 - À préparer le terrain pour des modèles plus sophistiqués.
 
 <!--
@@ -50,9 +51,7 @@ PM: (2h30)
     - LR 
 -->
 
-# Principes généraux 
-
-## Nettoyer et structurer un corpus avec des Regex
+# Nettoyer et structurer un corpus avec des Regex
 
 <!--In a world of human REGEX  plowed-sponge.mp4  -->
 
@@ -241,6 +240,11 @@ Source : [wikipedia distance Manhattan](https://fr.wikipedia.org/wiki/Distance_d
 
 `jour2_BoW_TFiDF_exercice.ipynb`
 
+# Principes généraux 
+
+
+
+# Classification automatique
 
 ## Algorithmes de classification
 
@@ -276,8 +280,6 @@ Source: [Geeksforgeeks](https://www.geeksforgeeks.org/machine-learning/k-nearest
 *   **Avantages** : Très robuste au surapprentissage (overfitting), gère bien les données non linéaires.
 
 ![Random Forest](img/random-forest.png)
-
-
 
 
 ## Régression Logistique et Régression linéaire
