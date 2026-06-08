@@ -38,14 +38,39 @@ format:
 - Mise en place de l'environnement de travail (Python, notebook via Colab ou Jupyter) 
 - Démonstration / Exercice sur la différence entre IA symboliste et connexionniste
 
+## Wifi
+
+Eduroam ou
+
+```
+Réseau : UdeM avec cryptage
+
+Nom d'utilisateur : fas-praxis-dhsi2026
+
+Mot de passe : Praxis26
+
+Sécurité : "Use System Certificate"
+
+Nom de domaine : umontreal.ca
+```
+
 # Présentation des formateur.ices 
 
-# Tour de table
+## Tour de table
+
+- Présentation rapide : discipline, intérêt de recherche.
+
+- Que savez-vous de l'IA ? 
+
+- Quelles sont vos attentes pour le cours ? 
+
+- Est-ce que vous travaillez sur un corpus textuel (ou d'image) ? 
+
 
 ## Objectifs de la semaine
 
-- Comprendre les fondamentaux de l'IA et son histoire
-- Tester par soi-même des programmes d'automatisation de tâches pour l'analyse de corpus en SHS
+- Comprendre les fondamentaux de l'IA et son histoire,
+- Tester par soi-même des programmes d'automatisation de tâches pour l'analyse de corpus en SHS,
 - Obtenir des notions critiques sur le fonctionnement des outils dits d'IA
 
 
@@ -127,11 +152,12 @@ XIe s : 1e machine à computation : horloge astronomique d'Al-Jazari
 
 1613 : terme "computer" utilisé pour la première fois par Richard Braithwait -> une personne qui calcule.
 
+En français : "ordinateur" est proposé en 1955 par un latiniste Jacques Perret pour la communication d'IBM. 
+
 1694 : le [calculus ratiocinator](https://fr.wikipedia.org/wiki/Calculus_ratiocinator) de Leibniz capable de faire les 4 opérations arithmétiques de base (addition, soustraction, multiplication, division).
 
-("ordinateur" : 1955 proposé par un latiniste Jacques Perret pour la communication d'IBM)
 
-1822-42: "la machine à différence" de Babbage basé sur les cartes perforées des machines à tisser Jacquart.  
+1822-42 : "la machine à différence" de Babbage basé sur les cartes perforées des machines à tisser Jacquart.  
 
 > At each increase of knowledge as well as on the contrivance of every new tool, human labour becomes abridged. 
 
@@ -148,56 +174,63 @@ Babbage "la machine analytique" machine hypothétique avec capacité de computat
 
 1930s : Turing définit les termes du fonctionnement d'une "machine automatique". 
 
-1935 : [Hypothèse Church-Turing ](https://fr.wikipedia.org/wiki/Th%C3%A8se_de_Church): définition de la calculabilité : la méthode de calcul respecte un nombre fini d'instructions simples, l'algorithme fournit toujours un résultat, les instructions ne demandent pas d'intelligence de la part de l'humain qui les suit. 
-
+1935 : [Hypothèse Church-Turing ](https://fr.wikipedia.org/wiki/Th%C3%A8se_de_Church) : définition de la calculabilité : la méthode de calcul respecte un nombre fini d'instructions simples, l'algorithme fournit toujours un résultat, les instructions ne demandent pas d'intelligence de la part de l'humain qui les suit. 
 
 1941 : Z3 de Konrad Zuse  calculateur électromagnétique programmable binaire, parfois nommé "le premier ordinateur".
 
-1940s : Science-fiction et roman d'Isaac Asimov _Runaround_ en 1942.
+1940s : Science-fiction et roman d'Isaac Asimov [_Runaround_](https://en.wikipedia.org/wiki/Runaround_(story)) en 1942 (première itération des "3 lois de la robotique").
 
-[@turingComputingMachineryIntelligence1950] : 'Can machines think?'
+@turingComputingMachineryIntelligence1950 : 'Can machines think?'
 
 1944 : Harvard Mark I d'Howard Aiken, programmeuse Grace Hopper conçoit les premiers compileurs et le langage de programmation de bas niveau COBOL.
 
 1951 : UNIVAC, premier ordinateur "general purpose machine" commercialisé.
 
-1956: 'intelligence artificielle' terme utilisé pour la première fois par Minsky et McCarthy àpour une demande de subvention de la Dartmouth Summer Research Project on Artificial Intelligence (DSRPAI). -> une économie de la promesse. 
+1956 : 'intelligence artificielle' terme utilisé pour la première fois par Minsky et McCarthy àpour une demande de subvention de la Dartmouth Summer Research Project on Artificial Intelligence (DSRPAI) -> une économie de la promesse. 
+
+@weizenbaumELIZAComputerProgram1966 : Chatbot [ELIZA](https://anthay.github.io/eliza.html) 
+
+1966 : Rapport ALPAC déclare l'échec de la traduction automatique. 
+
+1974 : Artificial Intelligence: A General Survey ou Rapport Lighthill en 1974 annonce que la recherche fondamentale en "IA" a atteint une limite à cause du passage à l'échelle et de l'explosion combinatoriale.
+
+1974-1980: Premier hiver de l'IA. ([article wikipédia recommandé](https://en.wikipedia.org/wiki/AI_winter))
+
+1990-2000s : Deuxième hiver de l'IA -> adoption générale de termes moins connotés : "_machine learning_" ou plus généralement, "informatique". 
+
+1997 :  DeepBlue d'IBM bat Kasparov aux échecs.
+
+2015 : AlphaGo de Google bat Fan Hui au jeu de Go.
+
+2020s : Nouveau printemps de l'IA ou "Boom de l'IA", un boom économique plus que technologiqeu. 
 
 
-1966 : ELIZA [@weizenbaumELIZAComputerProgram1966]
+## Histoire de l'Intelligence Artificielle (partie 3)
 
-1974-1980 : Rapport Lighthill en 1974. Premier hiver de l'IA 
+Depuis le milieu des années 2010 : pic des systèmes d'IA avec une modélisation distributionnelle du language (vecteur). 
 
-1990-2000s : Deuxième hiver de l'IA -> adoption générale de termes moins connotés : "_machine learning_" ou plus généralement, "informatique"
+Word2Vec [@mikolovEfficientEstimationWord2013], GloVE [@penningtonGloVeGlobalVectors2014]. 
 
-1997 :  DeepBlue d'IBM bat Kasparov.
-
-2015 : AlphaGo de Google bat Fan Hui.
-
-2020s : Nouveau printemps de l'IA 
-
-
-## Brève histoire de l'IA (pt. 2)
-
-Depuis le milieu des années 2010 : pic des systèmes d'IA avec une modélisation distributionnelle du language (vecteur). Word2Vec [@mikolovEfficientEstimationWord2013], GloVE [@penningtonGloVeGlobalVectors2014]. Parmi les avancées majeures de cette modélisation on compte le mécanisme d'attention [@vaswaniAttentionAllYou2017] et l'encodage bidirectionnel BERT [@devlinBERTPretrainingDeep2019] qui permettent l'arrivée de modèles très performants comme le GPT-3 d'OpenAI [@brownLanguageModelsAre2020]. 
+Parmi les avancées majeures de cette modélisation on compte le mécanisme d'attention [@vaswaniAttentionAllYou2017] et l'encodage bidirectionnel BERT [@devlinBERTPretrainingDeep2019] qui permettent l'arrivée de modèles très performants comme le GPT-3 d'OpenAI [@brownLanguageModelsAre2020] dont une version sera mise à disposition du grand public (3.5) en décembre 2022. 
 
 Actuellement : tendance à l'hybridation de ces modèles : Neuro-Symbolic Integration, Semantic Web Machine Learning [@marcusNextDecadeAI2020; @russellArtificialIntelligenceModern2022]
 
 ## Typologie de l'IA
 
-- IA symboliste ou systèmes experts : programme conçu à partir d'une logique déductive c'est à dire à partir de **règles** précises. Représentation classique sous forme d'arbe de décision _if then_.
+Deux visions de l'IA s'alternent depuis 70 ans : 
+
+- **IA symboliste** ou systèmes experts : programme conçu à partir d'une logique déductive c'est à dire à partir de **règles** précises. Représentation classique sous forme d'arbe de décision _if then_.
   - Avantages : maîtrise et transparence du système. 
   - Désavantages : 
     - Faible capacité d'adaptation à de nouvelles données ou circonstances, il faut reprendre le système. 
     - Travail principal : modélisation de la tâche à effectuer.
 
 
-- IA connexionniste : programme conçu à partir d'une logique inductive. Modélisation d'un programme à partir d'un grand volume de données. Ce sont les **motifs de répétitions** qui permettent à la machine d'émettre une prédiction. C'est le principe de l'apprentissage machine (_machine learning_). 
+- **IA connexionniste** : programme conçu à partir d'une logique inductive. Modélisation d'un programme à partir d'un grand volume de données. Ce sont les **motifs de répétitions** qui permettent à la machine d'émettre une prédiction. C'est le principe de l'apprentissage machine (_machine learning_). 
   - Avantages: prédiction possible sur de nouvelles données (à condition que des données pertinentes aient été fournies lors de l'entrainement). 
   - Désavantages : 
     - Plus grande chance d'opacité : les données, les paramétres d'entrainement et l'algorithme d'inférence produisent des prédictions possiblement différentes qu'il est plus difficile d'expliquer a postériori.
     - Travail principal : récolte des données, annotation des données. 
-
 
 
 # Mise en place de l'environnement pour la semaine
@@ -205,22 +238,22 @@ Actuellement : tendance à l'hybridation de ces modèles : Neuro-Symbolic Integr
 
 ## Préambule : Présentation du corpus de travail pour la semaine 
 
-Anthologie Grecque
+[Anthologie Grecque](https://anthologiagraeca.org/)
 
 
-
-
-<!-- à compléter au besoin par William (5min) -->
+- Classification : animal/pas animal et homo/hétéro
 
 ## Mise en place de l'environnement : Téléchargement des notebooks
 
 **Solution 1.**
 
-Le téléchargement des notebooks et des données pour les exercices peut se faire via **le site du cours** :
+Le téléchargement des notebooks (format .iypnb) et des données pour les exercices peut se faire via **le site du cours** :
 
-[https://alexiaschn.github.io/dhsi-2026/](https://alexiaschn.github.io/dhsi-2026/)
+[https://alexiaschn.github.io/dhsi-2026/notebooks.html](https://alexiaschn.github.io/dhsi-2026/notebooks.html)
 
-Vous pourrez télécharger au fur et à mesure les notebooks et les jeux de données en retournant sur le site au moment indiqués dans le cours.
+Vous pourrez télécharger au fur et à mesure les notebooks et les jeux de données pour chaque exercice ([corpus](https://alexiaschn.github.io/dhsi-2026/corpus.html)) en retournant sur le site au moment indiqués dans le cours.
+
+Les corrections des exercices sont disponibles en HTML en bas de la liste des notebooks, marqués "Version complète" ou "Démonstration". 
 
 **Solution 2.**
 
@@ -230,9 +263,8 @@ En ligne de commande :
 
 ```git clone https://github.com/alexiaschn/dhsi-2026.git```
 
-Ou, pour les moins familiers : 
+Il faudra faire un pull tous les jours car les supports sont mis à jour quotidiennement.
 
-Code > Download source code > zip 
 
 ## Mise en place de l'environnement : Python 
 
@@ -252,12 +284,11 @@ python3 -m pip install jupyter
 jupyter notebook
 ```
 
-puis ouvrir le localhost : le Notebook Dashboard devrait apparaitre avec l'arborescence du repo.
+puis ouvrir le localhost : le Notebook Dashboard devrait apparaitre avec l'arborescence du repo. Sinon l'UI d'Anaconda permet d'ouvrir un notebook avec Jupyter. 
 
 **Si Python n'est pas installé sur sa machine :** 
 
 Depuis un compte Google : 
-
 
 Télécharger l'application Colab
 [https://colab.research.google.com](https://colab.research.google.com)
@@ -276,19 +307,39 @@ Tous les notebooks complétés viennent en HTML : [https://alexiaschn.github.io/
 
 ## Pratique : concevoir un système expert 
 
-Objectif : obtenir un programme capable de classer une phrase selon une thématique prédéfinie. 
+Objectif : 
 
-Objectif : Classification d'un texte soit en "parle d'animal" soit en "ne parle pas d'animal". 
+- Définir les règles précises permettant de classer un texte selon une thématique prédéfinie. Dans notre exemple : classer un texte soit en "parle d'animal" soit en "ne parle pas d'animal". 
 
 
 ## Modéliser une approche experte 
 
 Principe de base : faire appel à un expert pour pour déterminer les règles qui définissent ce qui est une phrase parlant d'animal.
-  - exemple de règles possibles : liste de mots 'chien, chat, perroquet,  etc.' ordre des mots ou POS (_part-of-speach tagging_) pour distinguer le loup de la "gueule de loup", l'oiseau de l'"oiseau de paradis" . 
+
+Exemple de règles possibles : 
+
+- liste de mots 'chien, chat, perroquet,  etc.- ordre des mots ou POS (_part-of-speach tagging_) pour distinguer le loup de la "gueule de loup", l'oiseau de l'"oiseau de paradis" . 
+
+:::: {.columns}
+
+::: {.column width="45%"}
 
 ![Oiseau de paradis](img/oiseau-de-paradis.jpg)
 
-Une approche simpliste en apparence mais qui peut s'avérer très complexe (ex: traduction, jeu de Go) et qui se trouve à l'origine de l'automatisation de nombreuses tâches effectuées au quotidien (ex: tri du pourriel, détection de mouvement, logistique de grande échelle). 
+:::
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+![Oiseaux](img/oiseaux.png)
+
+:::
+
+::::
+
+Une approche simpliste en apparence mais qui peut s'avérer très lourde computationnellement à cause de la combinatoire (ex: traduction, jeu de Go) et qui se trouve à l'origine de l'automatisation de nombreuses tâches effectuées au quotidien (ex: tri du pourriel, détection de mouvement, logistique de grande échelle). 
 
 
 
@@ -323,7 +374,7 @@ Exemple de _literate programming_ [@knuthLiterateProgramming1984] :
 
 Cette étape vise à  mettre en rélation les caractéristiques représentant les données et la classe attribuée lors de l'annotation. L'objectif est d'obtenir le meilleur algorithme ou la meilleure logique permettant de discriminer un document d'un autre. 
 
-Différentes logiques permettent de discriminer les données entre elles. Quelques exemples d'algorithmes d'apprentissage machine classique (sur des vecteurs): 
+Différentes logiques permettent de discriminer les données entre elles. Quelques exemples d'algorithmes d'apprentissage machine classique (sur des vecteurs) : 
 
 - K-Nearest Neighbor -> le mot apartient à la même classe que ses voisins les plus proches (au nombre K)
 - Arbre de décision -> on construit un arbre de questions fermées qui dessine le jeu de données.
@@ -332,7 +383,7 @@ Différentes logiques permettent de discriminer les données entre elles. Quelqu
 
 Possiblement : 3e étape Entraînement supervisé : apprentissage spécialisé 
 
-**Ajustement des poids** (valeurs des vecteurs) à partir de données spécialisées -->
+**Ajustement des poids** (valeurs des vecteurs) à partir de données spécialisées. 
 
 
 ## Exercice/Démo
@@ -343,7 +394,7 @@ Possiblement : 3e étape Entraînement supervisé : apprentissage spécialisé
 
 `jour1_IASymboliqueConnexionniste_exercice.ipynb`
 
-Bonus pour les curieux.ses : [programme de démo tiré de "Debogue tes Humanités"](https://demo-atelier.streamlit.app/)
+Bonus pour les curieux.ses : [programme de démo tiré de "Debogue tes Humanités" 2026 "Qu'est-ce qu'IA?" ](https://demo-atelier.streamlit.app/)
 
 
 ## Approche inductive généraliste : les LLMs 
@@ -382,7 +433,9 @@ Les LLMs font de la prédiction de token :
 
 ## LLMs et chatbot
 
-Parce que les LLMs sont lourds (plusieurs Gigas) et parce qu'il est coûteux en énergie d'effectuer les calculs qui permettent de déterminer le prochain token (plusieurs GPU), l'usage le plus courant des IA générative est via le site propriétaire qui va interroger le modèle sur un serveur distant. C'est la forme ChatGPT, Mistral.ai, etc. 
+Parce que les LLMs sont lourds (plusieurs Gigas) et parce que l'inférence demande des machines très puissantes (GPU), l'usage le plus courant des "IA génératives" est via le site propriétaire qui va interroger le modèle sur un serveur distant. C'est la forme ChatGPT, Mistral.ai, etc.
+
+Ces chatbots sont aujourd'hui très complexes. La requête de l'utilisateur.ice fait l'objet d'un traitement, le prompt envoyé au LLM est complété par des informations sur la manière de répondre, une "mémoire" des échanges précédents avec ce même utilisateur, des données recherchées extraites de base de données (ex : OpenAI a un contrat avec des sites de presses) ou d'applications connectées (ex: un agenda connecté) etc. L'interaction avec le LLM fait l'objet d'une interprétation en cascade. 
 
 
 ## Un peu de vocabulaire pour finir
@@ -390,15 +443,17 @@ Parce que les LLMs sont lourds (plusieurs Gigas) et parce qu'il est coûteux en 
 
 **document** : une donnée d'entrainement : peut être une phrase
 
-**classes** : ensemble thématique de la classification. Ex : "animal" et "non animal" pour la classification binaire de notre exemple. 
+**classes** : chacun des "types" d'une classification. Ex : "animal" et "non animal" pour la classification binaire de notre exemple. 
 
-**jeu de données** : ensemble des documents 
+**jeu de données** : ensemble des documents. Un jeu de données en apprentissage machine est divisé en Jeu d'entrainement, jeu de test et jeu de validation.
 
 **apprentissage supervisé** : méthode d'apprentissage machine à partir de classes connues.
 
 **apprentissage non-supervisé** : méthode d'apprentissage machine sans connaître les classes à l'avance : a pour objectif de déterminer les caractéristiques discriminantes d'un jeu de données.
 
-**vérité de terrain** ou _ground truth_ : annotation effectuée par un humain sur l'ensemble du jeu de données. 
+**vérité de terrain** ou _ground truth_ : annotation effectuée par un humain sur l'ensemble du jeu de données utilisé pour l'entrainement (jeux d'entrainement, de test et de validation). 
+
+**inférence** : utilisation du modèle entrainé sur de nouvelles données.
 
 
 ## Ce qu'il faut retenir
@@ -410,7 +465,6 @@ Parce que les LLMs sont lourds (plusieurs Gigas) et parce qu'il est coûteux en 
 - Les 'halllucinations' ne sont pas des anomalies, ce sont des erreurs que l'on qualifie a postériori comme telles. 
 - Les systèmes inductifs sont appropriés pour certaines tâches : classification, production de résumé. Leur point fort reste leur adaptabilité à de nouveaux contextes. 
 - Les chatbots sont des interfaces qui permettent un échange homme-machine en langue naturelle : l'exploitation des capacités inductives d'un LLMs ne nécessite pas de passer par une telle interface. Ex : classification, processus expérimental plus adapté à une utilisation sans cette interface. 
-
 
 
 ## Bibliographie
