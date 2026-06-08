@@ -38,6 +38,22 @@ format:
 - Mise en place de l'environnement de travail (Python, notebook via Colab ou Jupyter) 
 - Démonstration / Exercice sur la différence entre IA symboliste et connexionniste
 
+## Wifi
+
+Eduroam ou
+
+```
+Réseau : UdeM avec cryptage
+
+Nom d'utilisateur : fas-praxis-dhsi2026
+
+Mot de passe : Praxis26
+
+Sécurité : "Use System Certificate"
+
+Nom de domaine : umontreal.ca
+```
+
 # Présentation des formateur.ices 
 
 ## Tour de table

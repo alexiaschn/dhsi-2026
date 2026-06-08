@@ -714,6 +714,13 @@
     "text": "Programme de la journée\n11h -12h :\n\nInstallation, présentation des formateur.ices\nTour de table des participant.es\nPrésentation du déroulement de la semaine et de cette journée en particulier\n\n13h30 - 16h :\n\nPrésentation théorique et historique générale de l’IA. (1h30)\nPrésentation du corpus fil rouge de la semaine\nMise en place de l’environnement de travail (Python, notebook via Colab ou Jupyter)\nDémonstration / Exercice sur la différence entre IA symboliste et connexionniste"
   },
   {
+    "objectID": "diapositives/jour01.html#wifi",
+    "href": "diapositives/jour01.html#wifi",
+    "title": "Jour 1 : Introduction à l’IA, histoire et typologie",
+    "section": "Wifi",
+    "text": "Wifi\nEduroam ou\nRéseau : UdeM avec cryptage\n\nNom d'utilisateur : fas-praxis-dhsi2026\n\nMot de passe : Praxis26\n\nSécurité : \"Use System Certificate\"\n\nNom de domaine : umontreal.ca"
+  },
+  {
     "objectID": "diapositives/jour01.html#tour-de-table",
     "href": "diapositives/jour01.html#tour-de-table",
     "title": "Jour 1 : Introduction à l’IA, histoire et typologie",
