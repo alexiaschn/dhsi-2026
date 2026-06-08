@@ -27,11 +27,11 @@ format:
 
 AM: (3h)
 
+- GloVe/Word2Vec (45 minutes + 30 minutes atelier) 
+- PAUSE (15 minutes)
 - Introduction à l'apprentissage profond (30 minutes) 
 - Réseaux de neurones (45 minutes + 15 minutes démonstration) 
     - [3 blue 1 brown?](https://www.youtube.com/watch?v=aircAruvnKk)
-- PAUSE (15 minutes)
-- GloVe/Word2Vec (45 minutes + 30 minutes atelier) 
 
 PM: (2h30)
 
@@ -116,7 +116,23 @@ Les modèles Word2Vec ont les fonctions suivantes (liste non-exhaustive)\ :
 - `model.similarity("comparer", "mot")`\ ;
 - `model.doesnt_match(["mot", "phrase", "paragraphe", "espion"])`.
 
-## Exercice
+## Exercice\ : deux hypothèses
+
+:::{.columns}
+
+:::{.column}
+
+Les modèles Word2Vec permettent de découvrir des synonymes.
+
+```python
+model.most_similar("chocolat")
+```
+
+:::
+
+:::{.column}
+
+Les modèles Word2Vec capturent des relations entre mots.
 
 ```python
 model.most_similar(positive = ["roi", "femme"], negative = ["homme"])
@@ -125,6 +141,9 @@ model.most_similar(positive = ["roi", "femme"], negative = ["homme"])
 - roi $+$ femme $-$ homme $\approx$ reine.
 - ...
 
+:::
+
+:::
 
 # Introduction à l’apprentissage profond
 
