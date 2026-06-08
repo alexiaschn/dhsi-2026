@@ -520,6 +520,10 @@ Il est (très) rare de trouver des données de qualité sur internet\ : les text
     - Mauvaise segmentation des lignes\ ;
     - ...
 
+## Un exemple de données textuelles
+
+![[Projet Gutenberg](https://www.gutenberg.org/)](Media/Gutenberg.png)
+
 ## Nettoyage des données
 
 Le nettoyage des données textuelles et des métadonnées est une étape centrale de toute tâche en traitement automatique de la langue\ : des données de qualité sont nécessaires pour obtenir des résultats de qualité. En fouille de données comme en apprentissage profond, la sagesse nous dit "**SH*T IN, SH*T OUT**". 
@@ -588,7 +592,7 @@ Les divisions entre sections sont rarement encodées dans les fichiers textuels 
 
 ## Exercice de nettoyage des données textuelles
 
-![[Projet Gutenberg](https://www.gutenberg.org/)](img/Gutenberg.png)
+
 
 ## Un exercice tout simple
 
@@ -610,37 +614,86 @@ text = """Dans le paradigme des deux cultures (Snow 1959), l’algorithme est 1)
 
 ## Tokenisation
 
-*À venir*
+La tokenisation traduit le texte que nous avons nettoyé et segmenté en unités qu'un algorithme (ou plus précisément un modèle) reconnaît. 
 
-<!--TODO-->
+Il s'agit généralement d'un mot ou morceau de mot (par exemple préfixes et suffixes), ou d'un signe de ponctuation. 
 
-## Retour sur l'AG
+## Tokens
 
-- La prochaine étape consiste à transformer ces éléments en opérations concrètes :
-    - nettoyer les textes ;
-    - segmenter les chaînes de caractères ;
-    - compter certains phénomènes ;
-    - préparer les données pour des analyses plus avancées.
+Se seront ces tokens qui seront manipulés par l'ordinateur\ ; ils seront comptés, comparés, seuls ou en groupe, et plus tard vectorisés. 
 
-# Pause de midi 
+Puisque chaque modèle différent est entraîné à partir de corpus qui ont été tokenisés différemment, les modèles sont généralement livrés avec leur `tokenizer` pour pouvoir traduire nos données locales en unités appropriées. 
 
-## Bibliographie
+Maintenant, certains modèles effectuent la tokenisation de manière implicite. Par exemple, il n'est pas nécessaire de tokeniser des prompts quand on utilise les modèles d'OpenAI, le modèle le fait automatiquement.
+
+## Un `tokenizer` tout usage
+
+La librairie spaCy permet de tokeniser les textes et offre des information sur chaque token tel que son type et son lemma.
+
+```python
+%pip install spacy
+```
+
+SpaCy nécessite l'utilisation d'un modèle qui est téléchargé et chargé à partir de la librairie. 
+
+```python
+import spacy
+spacy.cli.download("fr_core_news_sm")
+nlp = spacy.load("fr_core_news_sm")
+```
+
+## SpaCy
+
+SpaCy transforme un texte en `doc`ument, un objet Python qui contient toutes les informations sur le texte.
 
 
-<!--
-## Programme de la matinée 
+```python
+texte = """ """
+doc = nlp(texte)
+[token.text for token in doc]
+```
 
-AM: (3h)
+## SpaCy
 
-- Principes (45 minutes) 
-    - Shit in shit out
-    - Structuration des données
-- Présentation du corpus et des projets (30min) 
-- PAUSE (15 minutes)
-- Manipuler des données dans Python (20 minutes + 10 minutes atelier) 
-    - API
-- Prétraitement du texte (60 minutes) 
-    - Nettoyage
-    - Segmentation
-    - Tokenisation
--->
+Les `doc`uments spaCy contiennent les informations suivantes sur les tokens qu'ils contiennent\ :
+
+
+```python
+for token in doc:
+    print("Le token " + token.text + " est un " + token.pos_ + " (plus précisément " + token.tag_ +  ") qui a pour lemma " + token.lemma_ + ".")
+    if token.is_stop:
+        print("\t*Il s'agit d'un stopword.*")
+    elif token.is_punct:
+        print("\t*Il s'agit d'un signe de ponctuation.*")
+```
+
+## Tokenizers pour humains et pour machines
+
+Les librairies comme Spacy se basent sur des règles grammaticales supplémentés par des réseaux de neurones pour régler les cas ambigües. 
+
+Les tokenizers des grands modèles de langue optent pour une méthode différente (et moins scientifique) destinée à accélérer le processus à de très grandes échelles.
+
+## Exemple, le tokenizer de GPT-4o
+
+```python
+%pip install --quiet tiktoken
+import tiktoken
+
+# Tokenizer des modèles récents (famille GPT-4o / o1 / o3).
+encodeur = tiktoken.get_encoding("o200k_base")
+
+texte = "Anticonstitutionnellement, interdépartementalisation  et intergouvernementalisations."
+identifiants = encodeur.encode(texte)
+morceaux = [encodeur.decode([i]) for i in identifiants]
+
+print("Mots (split)  :", len(texte.split()))
+print("Tokens        :", len(identifiants))
+print("Morceaux      :", morceaux)
+```
+
+## À retenir 
+
+Les fenêtres contextuelles (et la facturation) des grands modèles de langue se mesurent en tokens, pas en mots. 
+
+Les modèles de langue ne peuvent manipuler que des tokens, ils n'ont pas de notion de mots ou de phrases.
+
