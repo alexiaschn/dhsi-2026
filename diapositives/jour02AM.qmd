@@ -697,3 +697,4 @@ Les fenêtres contextuelles (et la facturation) des grands modèles de langue se
 
 Les modèles de langue ne peuvent manipuler que des tokens, ils n'ont pas de notion de mots ou de phrases.
 
+# Pause dîner
