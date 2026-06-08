@@ -588,7 +588,7 @@ Les divisions entre sections sont rarement encodées dans les fichiers textuels 
 
 ## Exercice de nettoyage des données textuelles
 
-![[Projet Gutenberg](https://www.gutenberg.org/)](Media/Gutenberg.png)
+![[Projet Gutenberg](https://www.gutenberg.org/)](img/Gutenberg.png)
 
 ## Un exercice tout simple
 
