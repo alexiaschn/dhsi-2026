@@ -40,16 +40,6 @@ format:
 - Créer une fondation sur laquelle le reste de la semaine reposera\ ;
 - S'assurer que tout le monde sait comment nettoyer et manipuler des données textuelles.
 
-## Quelques questions pour se situer
-
-:::{.incremental}
-
-- Qui connaît un langage de programmation?
-    - Qui connaît Python?
-- Qui a un corpus de textes sur lesquels iels aimeraient expérimenter?
-
-:::
-
 # Manipulation de données
 
 ## Où suis-je?
@@ -156,6 +146,23 @@ path = os.path.join("data", "corpus", "fichier.txt")
 
 with open(path, 'r', encoding="utf-8") as f:
     content = f.read()
+```
+
+## Interlude
+
+Ceci n'est pas un cours de programmation, mais pour comprendre la suite, il faut connaître ces deux structures de programmation\ :
+
+- `if`\ ;
+- `for`.
+
+```python
+if condition:
+    print("Condition is true")
+else:
+    print("Condition is false")
+
+for element in list:
+    print(element)
 ```
 
 ## Accéder à plusieurs fichiers dans un même dossier
@@ -526,7 +533,7 @@ Il est (très) rare de trouver des données de qualité sur internet\ : les text
 
 ## Nettoyage des données
 
-Le nettoyage des données textuelles et des métadonnées est une étape centrale de toute tâche en traitement automatique de la langue\ : des données de qualité sont nécessaires pour obtenir des résultats de qualité. En fouille de données comme en apprentissage profond, la sagesse nous dit "**SH*T IN, SH*T OUT**". 
+Le nettoyage des données textuelles et des métadonnées est une étape centrale de toute tâche en traitement automatique de la langue\ : des données de qualité sont nécessaires pour obtenir des résultats de qualité. En fouille de données comme en apprentissage profond, la sagesse nous dit "**SHIT IN, SHIT OUT**". 
 
 ## Comment nettoyer des données
 
@@ -592,7 +599,7 @@ Les divisions entre sections sont rarement encodées dans les fichiers textuels 
 
 ## Exercice de nettoyage des données textuelles
 
-
+Voir le corpus d'entraînement, vos corpus, ou d'autres données en ligne. 
 
 ## Un exercice tout simple
 
