@@ -28,7 +28,6 @@ format:
 
 - Une méthode flexible, simple et puissante pour trouver de l'information dans les textes\ ;
 - Une discussion générale sur les fondements de l'intelligence artificielles\ ;
-- Des méthodes simples, mais efficaces pour étudier les données textuelles\ ;
 - Avant l'intelligence artificielle, il avait l'intelligence artificielle!
 
 ## À quoi sert cette demi-journée?
@@ -50,6 +49,37 @@ PM: (2h30)
     - RandomForest 
     - LR 
 -->
+
+# Principes généraux
+
+## Termes et expressions
+
+Quels mots associez-vous au concept d'intelligence artificielle?
+
+## Un modèle de l'apprentissage machine
+
+Au tableau!
+
+## Qu'est-ce qui est vraiment modélisé?
+
+:::{.incremental}
+
+- Une vision réductionniste de l'apprentissage\ ;
+- Une approximation de la tâche sous forme de fonction mathématique\ ;
+- Des rapports structuralistes qui forment des représentations\ ;
+- Une vision désuète du fonctionnement des neurones.
+
+:::
+
+## Un exemple
+
+Au tableau! (Si le temps le permet!)
+
+:::{.incremental}
+
+Si vous devez vous souvenir d'une chose, "shit in, shit out" fera l'affaire!
+
+:::
 
 # Nettoyer et structurer un corpus avec des Regex
 
