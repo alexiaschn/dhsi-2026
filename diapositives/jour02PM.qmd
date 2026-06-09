@@ -77,7 +77,7 @@ Au tableau! (Si le temps le permet!)
 
 :::{.incremental}
 
-Si vous devez vous souvenir d'une chose, "shit in, shit out" fera l'affaire!
+- Si vous devez vous souvenir d'une chose, "shit in, shit out" fera l'affaire!
 
 :::
 
