@@ -116,10 +116,15 @@ import re
 
 [Documentation](https://docs.python.org/3/library/re.html)
 
+## Exercices : Regex de base 
 
+[https://regexone.com/](https://regexone.com/)
+
+[https://regexlearn.com/learn/regex101](https://regexlearn.com/learn/regex101)
 
 
 ## Atelier Expression régulière ou _Regular Expression_ / Regex
+
 
 
 [https://alexiaschn.github.io/dhsi-2026/notebooks.html](https://alexiaschn.github.io/dhsi-2026/notebooks.html)
