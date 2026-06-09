@@ -145,6 +145,9 @@ La correction est en HTML :
 
 Le corpus nettoyé n'est pas directement exploitable par les modèles mathématiques : les chaînes de caractères sont sémantiquement riches mais numériquement inopérantes.
 
+## La représentation vectorielle
+
+
 L'étape suivante consiste à transformer ces données textuelles en **représentations numériques vectorielles**. Ce processus convertit le texte en vecteurs de nombres, permettant ainsi des calculs arithmétiques et des comparaisons mathématiques précises.
 
 Exemple de comparaison vectorielle :
@@ -173,6 +176,11 @@ Plusieurs principes :
 
 - les vecteurs sont des séries de nombres, dans l'exemple les valeurs sont normalisées (= entre 0 et 1)
 - pour pouvoir être comparés, les vecteurs doivent avoir la même longueur
+
+## Pourquoi on vous montre les vecteurs ? 
+
+- Une représentation numérique est compréhensible par une machine,
+- Les vecteurs sont au coeur des technologies d'IA inductives ou IA connexionnistes : les grands modèles de langue (LLMs). 
 
 ## Comment obtenir un vecteur ?
 
@@ -266,6 +274,15 @@ Ce calcul peut se faire de différentes manières. On trouve :
 
 
 Source : [wikipedia distance Manhattan](https://fr.wikipedia.org/wiki/Distance_de_Manhattan) et [wikipedia cosinus](https://fr.wikipedia.org/wiki/Cosinus)
+
+## Lire une heatmap 
+
+
+![Proximité](img/proximite_cosine.png)
+
+vs. 
+
+![Distance](img/distance_l1.png)
 
 
 ## Exercice 

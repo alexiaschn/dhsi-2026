@@ -266,6 +266,9 @@ PM: (2h30)
 <section id="prétraitement-fin" class="slide level2">
 <h2>Prétraitement (fin)</h2>
 <p>Le corpus nettoyé n’est pas directement exploitable par les modèles mathématiques : les chaînes de caractères sont sémantiquement riches mais numériquement inopérantes.</p>
+</section>
+<section id="la-représentation-vectorielle" class="slide level2">
+<h2>La représentation vectorielle</h2>
 <p>L’étape suivante consiste à transformer ces données textuelles en <strong>représentations numériques vectorielles</strong>. Ce processus convertit le texte en vecteurs de nombres, permettant ainsi des calculs arithmétiques et des comparaisons mathématiques précises.</p>
 <p>Exemple de comparaison vectorielle :</p>
 <ul>
@@ -285,6 +288,13 @@ v_elephant = np.array([0.2, 0.9, 0.1, 0.8]) # "Éléphant" : Fort sur les dim 2 
 <ul>
 <li>les vecteurs sont des séries de nombres, dans l’exemple les valeurs sont normalisées (= entre 0 et 1)</li>
 <li>pour pouvoir être comparés, les vecteurs doivent avoir la même longueur</li>
+</ul>
+</section>
+<section id="pourquoi-on-vous-montre-les-vecteurs" class="slide level2">
+<h2>Pourquoi on vous montre les vecteurs ?</h2>
+<ul>
+<li>Une représentation numérique est compréhensible par une machine,</li>
+<li>Les vecteurs sont au coeur des technologies d’IA inductives ou IA connexionnistes : les grands modèles de langue (LLMs).</li>
 </ul>
 </section>
 <section id="comment-obtenir-un-vecteur" class="slide level2">
@@ -412,6 +422,22 @@ TFIDF3 = 1/130*log3/2 = 0.00183508174892
 
 <img data-src="img/Manhattan_distance.svg" class="r-stretch quarto-figure-center"><p class="caption">Distance L1 et L2</p><p>|<a href="img/Cosinus_de_A.svg.png">Calcul du cosinus d’un angle</a></p>
 <p>Source : <a href="https://fr.wikipedia.org/wiki/Distance_de_Manhattan">wikipedia distance Manhattan</a> et <a href="https://fr.wikipedia.org/wiki/Cosinus">wikipedia cosinus</a></p>
+</section>
+<section id="lire-une-heatmap" class="slide level2">
+<h2>Lire une heatmap</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Proximité</figcaption>
+<p><img data-src="img/proximite_cosine.png"></p>
+</figure>
+</div>
+<p>vs.&nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Distance</figcaption>
+<p><img data-src="img/distance_l1.png"></p>
+</figure>
+</div>
 </section>
 <section id="exercice" class="slide level2">
 <h2>Exercice</h2>
