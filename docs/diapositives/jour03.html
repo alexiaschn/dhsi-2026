@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="William Bouchard">
   <meta name="author" content="Yann Audin">
@@ -96,7 +96,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -222,13 +222,13 @@ Yann Audin <a href="https://orcid.org/https://orcid.org/0000-0003-3456-9767" cla
 <h2>Programme</h2>
 <p>AM: (3h)</p>
 <ul>
+<li>GloVe/Word2Vec (45 minutes + 30 minutes atelier)</li>
+<li>PAUSE (15 minutes)</li>
 <li>Introduction à l’apprentissage profond (30 minutes)</li>
 <li>Réseaux de neurones (45 minutes + 15 minutes démonstration)
 <ul>
 <li><a href="https://www.youtube.com/watch?v=aircAruvnKk">3 blue 1 brown?</a></li>
 </ul></li>
-<li>PAUSE (15 minutes)</li>
-<li>GloVe/Word2Vec (45 minutes + 30 minutes atelier)</li>
 </ul>
 <p>PM: (2h30)</p>
 <ul>
@@ -243,6 +243,92 @@ Yann Audin <a href="https://orcid.org/https://orcid.org/0000-0003-3456-9767" cla
 </ul></li>
 </ul>
 </section>
+<section>
+<section id="word2vec-et-glove" class="title-slide slide level1 center">
+<h1>Word2Vec et GloVe</h1>
+
+</section>
+<section id="rappel-sur-les-vecteurs" class="slide level2">
+<h2>Rappel sur les vecteurs</h2>
+<p>Simplement dit, un vecteur est un objet mathématique qui a une direction et une longueur. Dans un espace cartésien, le vecteur est représenté par une série de nombres qui représentent à quel point le vecteur s’étend dans les différentes directions de l’espace.</p>
+</section>
+<section id="vectoriser-le-mot" class="slide level2">
+<h2>Vectoriser le mot</h2>
+<blockquote>
+<p>you shall know a word by the company it keeps</p>
+<p>— John Rupert Firth, <em>Studies in Linguistics Analysis</em> (1957)</p>
+</blockquote>
+<p>Est-il possible de représenter le sens d’un mot à partir d’un vecteur?</p>
+<div>
+<ul>
+<li class="fragment">Non, mais il est possible de représenter son contexte normatif dans un corpus d’entraînement sous la forme d’un vecteur.</li>
+</ul>
+</div>
+</section>
+<section id="quest-ce-que-word2vec" class="slide level2">
+<h2>Qu’est-ce que Word2Vec</h2>
+<p>Word2Vec et GloVe sont des algorithmes qui génèrent des modèles à partir de corpus textuels.</p>
+<p>Pour chaque unique (comme nous l’avons appris hier) token présent dans le corpus d’entraînement, Word2Vec va générer un vecteur à partir de ses voisins les plus fréquents.</p>
+<p>Ce modèle a des propriétés intéressantes, par exemple, Word2Vec capture plusieurs synonymes et même des relations entre les mots.</p>
+</section>
+<section id="comment-entraîner-un-modèle-word2vec" class="slide level2">
+<h2>Comment entraîner un modèle Word2Vec</h2>
+<p>Pour chaque unique token, Word2Vec initialise un vecteur aléatoirement, puis l’entraînement peut commencer.</p>
+<p>Il existe deux manières d’entraîner un modèle Word2Vec&nbsp;:</p>
+<ul>
+<li><strong>CBOW</strong>&nbsp;: Pour un contexte donné, quel est le mot le plus probable?</li>
+<li><strong>Skip-gram</strong>&nbsp;: Pour un mot donné, quel est le contexte le plus probable?</li>
+</ul>
+</section>
+<section id="comment-entraîner-un-modèle-word2vec-1" class="slide level2">
+<h2>Comment entraîner un modèle Word2Vec</h2>
+<p>Word2Vec prend comme paramètre une taille de fenêtre, puis une fenêtre contextuelle de la taille indiquée glisse sur l’ensemble du corpus d’entraînement en tentant de prédire le contexte à partir du mot (skip-gram) ou le mot à partir du contexte (CBOW).</p>
+<p>À chaque erreur, le modèle est corrigé pour être plus proche de l’exemple d’entraînement jusqu’à ce qu’il converge. Un bon modèle Word2Vec entraîné sur un grand corpus peut itérer ce processus des milliers ou même millions de fois avant de capturer le contexte normatif de ses tokens.</p>
+</section>
+<section id="télécharger-un-modèle" class="slide level2">
+<h2>Télécharger un modèle</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="op">%</span>pip install gensim huggingface_hub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> huggingface_hub <span class="im">import</span> hf_hub_download</span>
+<span id="cb2-2"><a></a><span class="im">from</span> gensim.models <span class="im">import</span> KeyedVectors</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a><span class="co"># Le dépôt du modèle français (Fauconnier, Wikipédia FR) et son fichier .bin.</span></span>
+<span id="cb2-5"><a></a>depot <span class="op">=</span> <span class="st">"Word2vec/fauconnier_frWiki_no_phrase_no_postag_700_cbow_cut100"</span></span>
+<span id="cb2-6"><a></a>fichier_bin <span class="op">=</span> <span class="st">"frWiki_no_phrase_no_postag_700_cbow_cut100.bin"</span></span>
+<span id="cb2-7"><a></a></span>
+<span id="cb2-8"><a></a><span class="co"># Téléchargement (peut prendre une minute la première fois) puis chargement des vecteurs.</span></span>
+<span id="cb2-9"><a></a>chemin_modele <span class="op">=</span> hf_hub_download(repo_id<span class="op">=</span>depot, filename<span class="op">=</span>fichier_bin)</span>
+<span id="cb2-10"><a></a>model <span class="op">=</span> KeyedVectors.load_word2vec_format(chemin_modele, binary<span class="op">=</span><span class="va">True</span>, unicode_errors<span class="op">=</span><span class="st">"ignore"</span>)</span>
+<span id="cb2-11"><a></a></span>
+<span id="cb2-12"><a></a><span class="bu">print</span>(<span class="st">"Modèle chargé :"</span>, <span class="bu">len</span>(model), <span class="st">"mots, vecteurs de dimension"</span>, model.vector_size)</span>
+<span id="cb2-13"><a></a><span class="bu">print</span>(model[<span class="st">"mot"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="utiliser-le-modèle" class="slide level2">
+<h2>Utiliser le modèle</h2>
+<p>Les modèles Word2Vec ont les fonctions suivantes (liste non-exhaustive)&nbsp;:</p>
+<ul>
+<li><code>model.most_similar("mot")</code>&nbsp;;
+<ul>
+<li><code>model.most_similar(positive = ["roi", "femme"], negative = ["homme"])</code></li>
+</ul></li>
+<li><code>model.similarity("comparer", "mot")</code>&nbsp;;</li>
+<li><code>model.doesnt_match(["mot", "phrase", "paragraphe", "espion"])</code>.</li>
+</ul>
+</section>
+<section id="exercice-deux-hypothèses" class="slide level2">
+<h2>Exercice&nbsp;: deux hypothèses</h2>
+<div class="columns">
+<div class="column">
+<p>Les modèles Word2Vec permettent de découvrir des synonymes.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>model.most_similar(<span class="st">"chocolat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<p>Les modèles Word2Vec capturent des relations entre mots.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>model.most_similar(positive <span class="op">=</span> [<span class="st">"roi"</span>, <span class="st">"femme"</span>], negative <span class="op">=</span> [<span class="st">"homme"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>roi <span class="math inline">\(+\)</span> femme <span class="math inline">\(-\)</span> homme <span class="math inline">\(\approx\)</span> reine.</li>
+<li>…</li>
+</ul>
+</div></div>
+</section></section>
 <section>
 <section id="introduction-à-lapprentissage-profond" class="title-slide slide level1 center">
 <h1>Introduction à l’apprentissage profond</h1>
@@ -617,9 +703,9 @@ y = activation(w_1x_1 + w_2x_2 + w_3x_3 + b)
 </section>
 <section id="mini-schème-de-self-attention" class="slide level2">
 <h2>Mini-schème de self-attention</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>roi  → regarde → donne / épée / fils / guerre</span>
-<span id="cb1-2"><a></a>fils → regarde → donne / épée / il</span>
-<span id="cb1-3"><a></a>il   → regarde → roi / fils / part / guerre</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a></a>roi  → regarde → donne / épée / fils / guerre</span>
+<span id="cb5-2"><a></a>fils → regarde → donne / épée / il</span>
+<span id="cb5-3"><a></a>il   → regarde → roi / fils / part / guerre</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Le mot ne reste pas isolé.</li>
 <li>Il devient une représentation nourrie par les autres mots.</li>

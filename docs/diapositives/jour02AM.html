@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Yann Audin">
   <meta name="author" content="William Bouchard">
@@ -96,7 +96,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -243,18 +243,6 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <li>Créer une fondation sur laquelle le reste de la semaine reposera&nbsp;;</li>
 <li>S’assurer que tout le monde sait comment nettoyer et manipuler des données textuelles.</li>
 </ul>
-</section>
-<section id="quelques-questions-pour-se-situer" class="slide level2">
-<h2>Quelques questions pour se situer</h2>
-<div>
-<ul>
-<li class="fragment">Qui connaît un langage de programmation?
-<ul>
-<li class="fragment">Qui connaît Python?</li>
-</ul></li>
-<li class="fragment">Qui a un corpus de textes sur lesquels iels aimeraient expérimenter?</li>
-</ul>
-</div>
 </section></section>
 <section>
 <section id="manipulation-de-données" class="title-slide slide level1 center">
@@ -340,20 +328,35 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <span id="cb7-5"><a></a><span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">'r'</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
 <span id="cb7-6"><a></a>    content <span class="op">=</span> f.read()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="interlude" class="slide level2">
+<h2>Interlude</h2>
+<p>Ceci n’est pas un cours de programmation, mais pour comprendre la suite, il faut connaître ces deux structures de programmation&nbsp;:</p>
+<ul>
+<li><code>if</code>&nbsp;;</li>
+<li><code>for</code>.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="cf">if</span> condition:</span>
+<span id="cb8-2"><a></a>    <span class="bu">print</span>(<span class="st">"Condition is true"</span>)</span>
+<span id="cb8-3"><a></a><span class="cf">else</span>:</span>
+<span id="cb8-4"><a></a>    <span class="bu">print</span>(<span class="st">"Condition is false"</span>)</span>
+<span id="cb8-5"><a></a></span>
+<span id="cb8-6"><a></a><span class="cf">for</span> element <span class="kw">in</span> <span class="bu">list</span>:</span>
+<span id="cb8-7"><a></a>    <span class="bu">print</span>(element)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="accéder-à-plusieurs-fichiers-dans-un-même-dossier" class="slide level2">
 <h2>Accéder à plusieurs fichiers dans un même dossier</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">import</span> os</span>
-<span id="cb8-2"><a></a>folder <span class="op">=</span> os.path.join(<span class="st">"data"</span>, <span class="st">"corpus"</span>)</span>
-<span id="cb8-3"><a></a>file_list <span class="op">=</span> os.listdir(folder)</span>
-<span id="cb8-4"><a></a></span>
-<span id="cb8-5"><a></a>corpus <span class="op">=</span> {}</span>
-<span id="cb8-6"><a></a></span>
-<span id="cb8-7"><a></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> file_list:</span>
-<span id="cb8-8"><a></a>    <span class="cf">if</span> <span class="bu">file</span>.endswith(<span class="st">".txt"</span>):</span>
-<span id="cb8-9"><a></a>        file_path <span class="op">=</span> os.path.join(folder, <span class="bu">file</span>)</span>
-<span id="cb8-10"><a></a>        <span class="cf">with</span> <span class="bu">open</span>(file_path, <span class="st">"r"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
-<span id="cb8-11"><a></a>            file_content <span class="op">=</span> f.read()</span>
-<span id="cb8-12"><a></a>            corpus[<span class="bu">file</span>] <span class="op">=</span> file_content</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">import</span> os</span>
+<span id="cb9-2"><a></a>folder <span class="op">=</span> os.path.join(<span class="st">"data"</span>, <span class="st">"corpus"</span>)</span>
+<span id="cb9-3"><a></a>file_list <span class="op">=</span> os.listdir(folder)</span>
+<span id="cb9-4"><a></a></span>
+<span id="cb9-5"><a></a>corpus <span class="op">=</span> {}</span>
+<span id="cb9-6"><a></a></span>
+<span id="cb9-7"><a></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> file_list:</span>
+<span id="cb9-8"><a></a>    <span class="cf">if</span> <span class="bu">file</span>.endswith(<span class="st">".txt"</span>):</span>
+<span id="cb9-9"><a></a>        file_path <span class="op">=</span> os.path.join(folder, <span class="bu">file</span>)</span>
+<span id="cb9-10"><a></a>        <span class="cf">with</span> <span class="bu">open</span>(file_path, <span class="st">"r"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb9-11"><a></a>            file_content <span class="op">=</span> f.read()</span>
+<span id="cb9-12"><a></a>            corpus[<span class="bu">file</span>] <span class="op">=</span> file_content</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="interlude-les-formats-propriétaires" class="slide level2">
 <h2>Interlude : les formats propriétaires</h2>
@@ -367,18 +370,18 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <section id="un-exemple-dapi" class="slide level2">
 <h2>Un exemple d’API</h2>
 <p>Tous les livres du Projet Gutenberg sont référencés dans un format lisible pour un ordinateur dans <code>https://gutendex.com/books</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">import</span> requests</span>
-<span id="cb9-2"><a></a></span>
-<span id="cb9-3"><a></a>url <span class="op">=</span> <span class="st">"https://gutendex.com/books"</span></span>
-<span id="cb9-4"><a></a>parameters <span class="op">=</span> {<span class="st">"search"</span>: <span class="st">"shelley percy"</span>}</span>
-<span id="cb9-5"><a></a></span>
-<span id="cb9-6"><a></a>response <span class="op">=</span> requests.get(url, parameters)</span>
-<span id="cb9-7"><a></a>donnees <span class="op">=</span> response.json()</span>
-<span id="cb9-8"><a></a></span>
-<span id="cb9-9"><a></a><span class="cf">for</span> book <span class="kw">in</span> donnees[<span class="st">"results"</span>]:</span>
-<span id="cb9-10"><a></a>    <span class="bu">print</span>(<span class="dv">20</span><span class="op">*</span><span class="st">"="</span>)</span>
-<span id="cb9-11"><a></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span> <span class="op">+</span> book[<span class="st">"title"</span>])</span>
-<span id="cb9-12"><a></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span> <span class="op">+</span> book[<span class="st">"formats"</span>][<span class="st">"text/plain; charset=utf-8"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">import</span> requests</span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a>url <span class="op">=</span> <span class="st">"https://gutendex.com/books"</span></span>
+<span id="cb10-4"><a></a>parameters <span class="op">=</span> {<span class="st">"search"</span>: <span class="st">"shelley percy"</span>}</span>
+<span id="cb10-5"><a></a></span>
+<span id="cb10-6"><a></a>response <span class="op">=</span> requests.get(url, parameters)</span>
+<span id="cb10-7"><a></a>donnees <span class="op">=</span> response.json()</span>
+<span id="cb10-8"><a></a></span>
+<span id="cb10-9"><a></a><span class="cf">for</span> book <span class="kw">in</span> donnees[<span class="st">"results"</span>]:</span>
+<span id="cb10-10"><a></a>    <span class="bu">print</span>(<span class="dv">20</span><span class="op">*</span><span class="st">"="</span>)</span>
+<span id="cb10-11"><a></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span> <span class="op">+</span> book[<span class="st">"title"</span>])</span>
+<span id="cb10-12"><a></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span> <span class="op">+</span> book[<span class="st">"formats"</span>][<span class="st">"text/plain; charset=utf-8"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>book_response = requests.get(url="https://www.gutenberg.org/ebooks/76161.txt.utf-8")
 
 print(book_response.text)</code></pre>
@@ -428,18 +431,18 @@ print(book_response.text)</code></pre>
 <li>Bob Wilson, 35 ans, vit à Paris.</li>
 </ul>
 </div><div class="column">
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a></a><span class="kw">-</span></span>
-<span id="cb11-2"><a></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> John Doe</span></span>
-<span id="cb11-3"><a></a><span class="at">  </span><span class="fu">age</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
-<span id="cb11-4"><a></a><span class="at">  </span><span class="fu">city</span><span class="kw">:</span><span class="at"> New York</span></span>
-<span id="cb11-5"><a></a><span class="kw">-</span></span>
-<span id="cb11-6"><a></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Jane Smith</span></span>
-<span id="cb11-7"><a></a><span class="at">  </span><span class="fu">age</span><span class="kw">:</span><span class="at"> </span><span class="dv">25</span></span>
-<span id="cb11-8"><a></a><span class="at">  </span><span class="fu">city</span><span class="kw">:</span><span class="at"> London</span></span>
-<span id="cb11-9"><a></a><span class="kw">-</span></span>
-<span id="cb11-10"><a></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Bob Wilson</span></span>
-<span id="cb11-11"><a></a><span class="at">  </span><span class="fu">age</span><span class="kw">:</span><span class="at"> </span><span class="dv">35</span></span>
-<span id="cb11-12"><a></a><span class="at">  </span><span class="fu">city</span><span class="kw">:</span><span class="at"> Paris</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a></a><span class="kw">-</span></span>
+<span id="cb12-2"><a></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> John Doe</span></span>
+<span id="cb12-3"><a></a><span class="at">  </span><span class="fu">age</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
+<span id="cb12-4"><a></a><span class="at">  </span><span class="fu">city</span><span class="kw">:</span><span class="at"> New York</span></span>
+<span id="cb12-5"><a></a><span class="kw">-</span></span>
+<span id="cb12-6"><a></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Jane Smith</span></span>
+<span id="cb12-7"><a></a><span class="at">  </span><span class="fu">age</span><span class="kw">:</span><span class="at"> </span><span class="dv">25</span></span>
+<span id="cb12-8"><a></a><span class="at">  </span><span class="fu">city</span><span class="kw">:</span><span class="at"> London</span></span>
+<span id="cb12-9"><a></a><span class="kw">-</span></span>
+<span id="cb12-10"><a></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Bob Wilson</span></span>
+<span id="cb12-11"><a></a><span class="at">  </span><span class="fu">age</span><span class="kw">:</span><span class="at"> </span><span class="dv">35</span></span>
+<span id="cb12-12"><a></a><span class="at">  </span><span class="fu">city</span><span class="kw">:</span><span class="at"> Paris</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section>
 <section id="json" class="slide level2">
@@ -453,23 +456,23 @@ print(book_response.text)</code></pre>
 <li>Bob Wilson, 35 ans, vit à Paris.</li>
 </ul>
 </div><div class="column">
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb12-1"><a></a><span class="ot">[</span></span>
-<span id="cb12-2"><a></a>  <span class="fu">{</span></span>
-<span id="cb12-3"><a></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"John Doe"</span><span class="fu">,</span></span>
-<span id="cb12-4"><a></a>    <span class="dt">"age"</span><span class="fu">:</span> <span class="dv">30</span><span class="fu">,</span></span>
-<span id="cb12-5"><a></a>    <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"New York"</span></span>
-<span id="cb12-6"><a></a>  <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb12-7"><a></a>  <span class="fu">{</span></span>
-<span id="cb12-8"><a></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Jane Smith"</span><span class="fu">,</span></span>
-<span id="cb12-9"><a></a>    <span class="dt">"age"</span><span class="fu">:</span> <span class="dv">25</span><span class="fu">,</span></span>
-<span id="cb12-10"><a></a>    <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"London"</span></span>
-<span id="cb12-11"><a></a>  <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb12-12"><a></a>  <span class="fu">{</span></span>
-<span id="cb12-13"><a></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Bob Wilson"</span><span class="fu">,</span></span>
-<span id="cb12-14"><a></a>    <span class="dt">"age"</span><span class="fu">:</span> <span class="dv">35</span><span class="fu">,</span></span>
-<span id="cb12-15"><a></a>    <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"Paris"</span></span>
-<span id="cb12-16"><a></a>  <span class="fu">}</span></span>
-<span id="cb12-17"><a></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb13-1"><a></a><span class="ot">[</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">{</span></span>
+<span id="cb13-3"><a></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"John Doe"</span><span class="fu">,</span></span>
+<span id="cb13-4"><a></a>    <span class="dt">"age"</span><span class="fu">:</span> <span class="dv">30</span><span class="fu">,</span></span>
+<span id="cb13-5"><a></a>    <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"New York"</span></span>
+<span id="cb13-6"><a></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb13-7"><a></a>  <span class="fu">{</span></span>
+<span id="cb13-8"><a></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Jane Smith"</span><span class="fu">,</span></span>
+<span id="cb13-9"><a></a>    <span class="dt">"age"</span><span class="fu">:</span> <span class="dv">25</span><span class="fu">,</span></span>
+<span id="cb13-10"><a></a>    <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"London"</span></span>
+<span id="cb13-11"><a></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb13-12"><a></a>  <span class="fu">{</span></span>
+<span id="cb13-13"><a></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Bob Wilson"</span><span class="fu">,</span></span>
+<span id="cb13-14"><a></a>    <span class="dt">"age"</span><span class="fu">:</span> <span class="dv">35</span><span class="fu">,</span></span>
+<span id="cb13-15"><a></a>    <span class="dt">"city"</span><span class="fu">:</span> <span class="st">"Paris"</span></span>
+<span id="cb13-16"><a></a>  <span class="fu">}</span></span>
+<span id="cb13-17"><a></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section>
 <section id="csv" class="slide level2">
@@ -483,10 +486,10 @@ print(book_response.text)</code></pre>
 <li>Bob Wilson, 35 ans, vit à Paris.</li>
 </ul>
 </div><div class="column">
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource csv number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"><a></a>name,age,city</span>
-<span id="cb13-2"><a></a>John Doe,30,New York</span>
-<span id="cb13-3"><a></a>Jane Smith,25,London</span>
-<span id="cb13-4"><a></a>Bob Wilson,35,Paris</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource csv number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a></a>name,age,city</span>
+<span id="cb14-2"><a></a>John Doe,30,New York</span>
+<span id="cb14-3"><a></a>Jane Smith,25,London</span>
+<span id="cb14-4"><a></a>Bob Wilson,35,Paris</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section>
 <section id="plus-sur-json" class="slide level2">
@@ -664,22 +667,22 @@ print(book_response.text)</code></pre>
 </section>
 <section id="créer-un-path" class="slide level2">
 <h2>Créer un <em>path</em></h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">import</span> os</span>
-<span id="cb14-2"><a></a>path <span class="op">=</span> os.path.join(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="im">import</span> os</span>
+<span id="cb15-2"><a></a>path <span class="op">=</span> os.path.join(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Trouvez sur votre ordinateur (ou dand Colab) le chemin vers le fichier CSV.</p>
 </section>
 <section id="charger-un-fichier-csv" class="slide level2">
 <h2>Charger un fichier CSV</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb15-2"><a></a>df <span class="op">=</span> pd.read_csv(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb16-2"><a></a>df <span class="op">=</span> pd.read_csv(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Lorsqu’on charge un CSV avec pandas, on obtient un <em>DataFrame</em>, une structure de données python.</p>
 </section>
 <section id="lire-les-données" class="slide level2">
 <h2>Lire les données</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>df.head()</span>
-<span id="cb16-2"><a></a>df.column</span>
-<span id="cb16-3"><a></a>df[<span class="st">"column"</span>]</span>
-<span id="cb16-4"><a></a>df.loc[row, column]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>df.head()</span>
+<span id="cb17-2"><a></a>df.column</span>
+<span id="cb17-3"><a></a>df[<span class="st">"column"</span>]</span>
+<span id="cb17-4"><a></a>df.loc[row, column]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section id="pause" class="title-slide slide level1 center">
 <h1>Pause</h1>
@@ -711,9 +714,13 @@ print(book_response.text)</code></pre>
 </ul></li>
 </ul>
 </section>
+<section id="un-exemple-de-données-textuelles" class="slide level2">
+<h2>Un exemple de données textuelles</h2>
+
+<img data-src="Media/Gutenberg.png" class="r-stretch quarto-figure-center"><p class="caption"><a href="https://www.gutenberg.org/">Projet Gutenberg</a></p></section>
 <section id="nettoyage-des-données" class="slide level2">
 <h2>Nettoyage des données</h2>
-<p>Le nettoyage des données textuelles et des métadonnées est une étape centrale de toute tâche en traitement automatique de la langue&nbsp;: des données de qualité sont nécessaires pour obtenir des résultats de qualité. En fouille de données comme en apprentissage profond, la sagesse nous dit “<strong>SH<em>T IN, SH</em>T OUT</strong>”.</p>
+<p>Le nettoyage des données textuelles et des métadonnées est une étape centrale de toute tâche en traitement automatique de la langue&nbsp;: des données de qualité sont nécessaires pour obtenir des résultats de qualité. En fouille de données comme en apprentissage profond, la sagesse nous dit “<strong>SHIT IN, SHIT OUT</strong>”.</p>
 </section>
 <section id="comment-nettoyer-des-données" class="slide level2">
 <h2>Comment nettoyer des données</h2>
@@ -769,8 +776,8 @@ print(book_response.text)</code></pre>
 </section>
 <section id="exercice-de-nettoyage-des-données-textuelles" class="slide level2">
 <h2>Exercice de nettoyage des données textuelles</h2>
-
-<img data-src="img/Gutenberg.png" class="r-stretch quarto-figure-center"><p class="caption"><a href="https://www.gutenberg.org/">Projet Gutenberg</a></p></section>
+<p>Voir le corpus d’entraînement, vos corpus, ou d’autres données en ligne.</p>
+</section>
 <section id="un-exercice-tout-simple" class="slide level2">
 <h2>Un exercice tout simple</h2>
 <p>Comptez les mots&nbsp;:</p>
@@ -785,52 +792,76 @@ print(book_response.text)</code></pre>
 </section>
 <section id="un-exercice-un-peu-moins-simple" class="slide level2">
 <h2>Un exercice un peu moins simple</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>text <span class="op">=</span> <span class="st">"""Dans le paradigme des deux cultures (Snow 1959), l’algorithme est 1) une force a-littéraire, 2) un outil de la *méthode* et 3) absolutiste. [...] L’expression Études littéraires computationnelles (ELC) étant particulièrement récente (ce qui sera démontré dans la Section 1.2), la plupart des textes qui font l’histoire ou la généalogie de l’utilisation de méthodes computationnelles, d’algorithmes, d’outils numériques et de statistiques pour étudier les textes littéraires le font soit dans un contexte plus vaste---par exemple les humanités numériques et les *humanities computing*---soit pour des méthodes précises---comme la lecture distante ou la stylométrie."""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a>text <span class="op">=</span> <span class="st">"""Dans le paradigme des deux cultures (Snow 1959), l’algorithme est 1) une force a-littéraire, 2) un outil de la *méthode* et 3) absolutiste. [...] L’expression Études littéraires computationnelles (ELC) étant particulièrement récente (ce qui sera démontré dans la Section 1.2), la plupart des textes qui font l’histoire ou la généalogie de l’utilisation de méthodes computationnelles, d’algorithmes, d’outils numériques et de statistiques pour étudier les textes littéraires le font soit dans un contexte plus vaste---par exemple les humanités numériques et les *humanities computing*---soit pour des méthodes précises---comme la lecture distante ou la stylométrie."""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="tokenisation" class="slide level2">
 <h2>Tokenisation</h2>
-<p><em>À venir</em></p>
-<!--TODO-->
+<p>La tokenisation traduit le texte que nous avons nettoyé et segmenté en unités qu’un algorithme (ou plus précisément un modèle) reconnaît.</p>
+<p>Il s’agit généralement d’un mot ou morceau de mot (par exemple préfixes et suffixes), ou d’un signe de ponctuation.</p>
 </section>
-<section id="retour-sur-lag" class="slide level2">
-<h2>Retour sur l’AG</h2>
-<ul>
-<li>La prochaine étape consiste à transformer ces éléments en opérations concrètes :
-<ul>
-<li>nettoyer les textes ;</li>
-<li>segmenter les chaînes de caractères ;</li>
-<li>compter certains phénomènes ;</li>
-<li>préparer les données pour des analyses plus avancées.</li>
-</ul></li>
-</ul>
+<section id="tokens" class="slide level2">
+<h2>Tokens</h2>
+<p>Se seront ces tokens qui seront manipulés par l’ordinateur&nbsp;; ils seront comptés, comparés, seuls ou en groupe, et plus tard vectorisés.</p>
+<p>Puisque chaque modèle différent est entraîné à partir de corpus qui ont été tokenisés différemment, les modèles sont généralement livrés avec leur <code>tokenizer</code> pour pouvoir traduire nos données locales en unités appropriées.</p>
+<p>Maintenant, certains modèles effectuent la tokenisation de manière implicite. Par exemple, il n’est pas nécessaire de tokeniser des prompts quand on utilise les modèles d’OpenAI, le modèle le fait automatiquement.</p>
+</section>
+<section id="un-tokenizer-tout-usage" class="slide level2">
+<h2>Un <code>tokenizer</code> tout usage</h2>
+<p>La librairie spaCy permet de tokeniser les textes et offre des information sur chaque token tel que son type et son lemma.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="op">%</span>pip install spacy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>SpaCy nécessite l’utilisation d’un modèle qui est téléchargé et chargé à partir de la librairie.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a><span class="im">import</span> spacy</span>
+<span id="cb20-2"><a></a>spacy.cli.download(<span class="st">"fr_core_news_sm"</span>)</span>
+<span id="cb20-3"><a></a>nlp <span class="op">=</span> spacy.load(<span class="st">"fr_core_news_sm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="spacy" class="slide level2">
+<h2>SpaCy</h2>
+<p>SpaCy transforme un texte en <code>doc</code>ument, un objet Python qui contient toutes les informations sur le texte.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a>texte <span class="op">=</span> <span class="st">""" """</span></span>
+<span id="cb21-2"><a></a>doc <span class="op">=</span> nlp(texte)</span>
+<span id="cb21-3"><a></a>[token.text <span class="cf">for</span> token <span class="kw">in</span> doc]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="spacy-1" class="slide level2">
+<h2>SpaCy</h2>
+<p>Les <code>doc</code>uments spaCy contiennent les informations suivantes sur les tokens qu’ils contiennent&nbsp;:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a><span class="cf">for</span> token <span class="kw">in</span> doc:</span>
+<span id="cb22-2"><a></a>    <span class="bu">print</span>(<span class="st">"Le token "</span> <span class="op">+</span> token.text <span class="op">+</span> <span class="st">" est un "</span> <span class="op">+</span> token.pos_ <span class="op">+</span> <span class="st">" (plus précisément "</span> <span class="op">+</span> token.tag_ <span class="op">+</span>  <span class="st">") qui a pour lemma "</span> <span class="op">+</span> token.lemma_ <span class="op">+</span> <span class="st">"."</span>)</span>
+<span id="cb22-3"><a></a>    <span class="cf">if</span> token.is_stop:</span>
+<span id="cb22-4"><a></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\t</span><span class="st">*Il s'agit d'un stopword.*"</span>)</span>
+<span id="cb22-5"><a></a>    <span class="cf">elif</span> token.is_punct:</span>
+<span id="cb22-6"><a></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\t</span><span class="st">*Il s'agit d'un signe de ponctuation.*"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tokenizers-pour-humains-et-pour-machines" class="slide level2">
+<h2>Tokenizers pour humains et pour machines</h2>
+<p>Les librairies comme Spacy se basent sur des règles grammaticales supplémentés par des réseaux de neurones pour régler les cas ambigües.</p>
+<p>Les tokenizers des grands modèles de langue optent pour une méthode différente (et moins scientifique) destinée à accélérer le processus à de très grandes échelles.</p>
+</section>
+<section id="exemple-le-tokenizer-de-gpt-4o" class="slide level2">
+<h2>Exemple, le tokenizer de GPT-4o</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a></a><span class="op">%</span>pip install <span class="op">--</span>quiet tiktoken</span>
+<span id="cb23-2"><a></a><span class="im">import</span> tiktoken</span>
+<span id="cb23-3"><a></a></span>
+<span id="cb23-4"><a></a><span class="co"># Tokenizer des modèles récents (famille GPT-4o / o1 / o3).</span></span>
+<span id="cb23-5"><a></a>encodeur <span class="op">=</span> tiktoken.get_encoding(<span class="st">"o200k_base"</span>)</span>
+<span id="cb23-6"><a></a></span>
+<span id="cb23-7"><a></a>texte <span class="op">=</span> <span class="st">"Anticonstitutionnellement, interdépartementalisation  et intergouvernementalisations."</span></span>
+<span id="cb23-8"><a></a>identifiants <span class="op">=</span> encodeur.encode(texte)</span>
+<span id="cb23-9"><a></a>morceaux <span class="op">=</span> [encodeur.decode([i]) <span class="cf">for</span> i <span class="kw">in</span> identifiants]</span>
+<span id="cb23-10"><a></a></span>
+<span id="cb23-11"><a></a><span class="bu">print</span>(<span class="st">"Mots (split)  :"</span>, <span class="bu">len</span>(texte.split()))</span>
+<span id="cb23-12"><a></a><span class="bu">print</span>(<span class="st">"Tokens        :"</span>, <span class="bu">len</span>(identifiants))</span>
+<span id="cb23-13"><a></a><span class="bu">print</span>(<span class="st">"Morceaux      :"</span>, morceaux)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="à-retenir" class="slide level2">
+<h2>À retenir</h2>
+<p>Les fenêtres contextuelles (et la facturation) des grands modèles de langue se mesurent en tokens, pas en mots.</p>
+<p>Les modèles de langue ne peuvent manipuler que des tokens, ils n’ont pas de notion de mots ou de phrases.</p>
 </section></section>
-<section>
-<section id="pause-de-midi" class="title-slide slide level1 center">
-<h1>Pause de midi</h1>
+<section id="pause-dîner" class="title-slide slide level1 center">
+<h1>Pause dîner</h1>
+
 
 </section>
-<section id="bibliographie" class="slide level2">
-<h2>Bibliographie</h2>
-<!--
-## Programme de la matinée 
-
-AM: (3h)
-
-- Principes (45 minutes) 
-    - Shit in shit out
-    - Structuration des données
-- Présentation du corpus et des projets (30min) 
-- PAUSE (15 minutes)
-- Manipuler des données dans Python (20 minutes + 10 minutes atelier) 
-    - API
-- Prétraitement du texte (60 minutes) 
-    - Nettoyage
-    - Segmentation
-    - Tokenisation
--->
-
-
-</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
