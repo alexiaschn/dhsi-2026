@@ -6,13 +6,13 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.39">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Alexia Schneider">
   <meta name="author" content="William Bouchard">
   <meta name="dcterms.date" content="2026-06-11">
-  <title>DHSI 2026 - Décrypter l'IA – Jour 4 matin : Les modèles génératifs</title>
+  <title>DHSI 2026 - Décrypter l'IA – Jour 4 Matin : Les modèles génératifs</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -51,7 +51,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -150,7 +150,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Jour 4 matin : Les modèles génératifs</h1>
+  <h1 class="title">Jour 4 Matin : Les modèles génératifs</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -175,7 +175,25 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </section>
 <section id="programme-de-la-matinée" class="slide level2">
 <h2>Programme de la matinée</h2>
-<p>AM: (3h) - Présentation des modèles génératifs 1h30 - Encoder/decoder et masquage - Paramétrages d’un LLM génératif - PAUSE (15 minutes) - Classification avec modèles génératifs (1h15) - Prompt engineering avec ChainForge</p>
+<p>AM: (3h)</p>
+<ul>
+<li>Présentation des modèles génératifs (30min)
+<ul>
+<li>Typologie des LLMs</li>
+<li>Paramétres d’un LLM génératif pour l’inférence,</li>
+</ul></li>
+<li>Exercices (1h)
+<ul>
+<li>Piloter un modèle avec Neuronpédia</li>
+<li>Utiliser un LLM localement</li>
+<li>Piloter un modèle en local</li>
+</ul></li>
+<li>PAUSE (15 minutes)</li>
+<li>Classification avec modèles génératifs (1h15)
+<ul>
+<li>Prompt engineering avec ChainForge</li>
+</ul></li>
+</ul>
 </section>
 <section id="les-llms" class="slide level2">
 <h2>Les LLMs</h2>
@@ -188,12 +206,12 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </ul>
 <p>Cette typologie réfère à la façon dont le modèle a été entrainé, et par conséquent à la tâche pour laquelle il est spécialisé à l’inférence (= prédiction).</p>
 
-<img data-src="img/encoder-decoder.jpg" class="r-stretch quarto-figure-center"><p class="caption">Overview</p><p>Source : <span class="citation" data-cites="tayWhatWeActually2025">Tay (<a href="#/questions-liées-à-lexercice" role="doc-biblioref" onclick="">2025</a>)</span></p>
+<img data-src="img/encoder-decoder.jpg" class="r-stretch quarto-figure-center"><p class="caption">Overview</p><p>Source : <span class="citation" data-cites="tayWhatWeActually2025">Tay (<a href="#/bibliographie" role="doc-biblioref" onclick="">2025</a>)</span></p>
 </section>
 <section id="décodeurs-gpt" class="slide level2">
 <h2>Décodeurs (GPT)</h2>
 <p>Dans le langage courant ce sont les <strong>IA génératives</strong> : ces modèles font de la prédiction de token suivant (<em>causal language modelling</em>).</p>
-<p>Ce sont des modèles auto-régressif : on fournit en entrée au modèle un prompt qui comprend l’instruction du développeur suivi de chaque token produit jusqu’à présent par le modèle.</p>
+<p>Ce sont des modèles auto-régressifs : on fournit en entrée au modèle un prompt qui comprend l’instruction du développeur suivi de chaque token produit jusqu’à présent par le modèle.</p>
 <p>Exemple :</p>
 <p>L’utilisateur entre “Quelle est la capitale de la France?”</p>
 <p>Le modèle au premier tour reçoit :</p>
@@ -215,7 +233,8 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <section id="encodeurs-bert" class="slide level2">
 <h2>Encodeurs (BERT)</h2>
 
-<img data-src="img/encoder-vs-decoder.jpg" class="r-stretch quarto-figure-center"><p class="caption">Comparaison encodeur vs.&nbsp;décodeurs</p><p>BERT : Bidirectional Encoder Representation from Transformers</p>
+<img data-src="img/encoder-vs-decoder.jpg" class="r-stretch quarto-figure-center"><p class="caption">Comparaison encodeur vs.&nbsp;décodeurs</p><p>Source : <span class="citation" data-cites="tayWhatWeActually2025">Tay (<a href="#/bibliographie" role="doc-biblioref" onclick="">2025</a>)</span></p>
+<p>BERT : Bidirectional Encoder Representation from Transformers</p>
 <p>L’entrainement de ces modèles repose sur le masquage de tokens : le modèle généralise à partir d’un encodage bidirectionnel. Leur utilisation est ainsi surtout pour la classification même s’ils peuvent aussi servir à faire de la génération en théorie.</p>
 </section>
 <section id="encodeur-décodeur-bart" class="slide level2">
@@ -224,14 +243,16 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </section>
 <section id="comment-on-obtient-un-llm" class="slide level2">
 <h2>Comment on obtient un LLM ?</h2>
-<p>Ces trois types de modèles de langue ont en commun la manière d’être entrainer.</p>
+<p>Ces trois types de modèles de langue ont en commun la manière d’être entrainé.</p>
 <p>Parce qu’il est possible d’entrainer plusieurs fois un modèle, on parle de <strong>pré-entrainement</strong> pour le premier entrainement qui mène au modèle de langue généraliste qu’on nomme un <em>foundational model</em>.</p>
-<p>Les entrainements suivants servent à <strong>alignemer</strong> le LLM :</p>
+<p>Les entrainements suivants servent à <strong>aligner</strong> le LLM :</p>
 <ul>
 <li>du <strong>reinforcement learning</strong> : des annotateurs évaluent les sorties du modèle, et un apprentissage par renforcement ajuste les préférences du modèle.</li>
 <li>de l’<strong>affinage</strong> ou <strong><em>fine-tuning</em></strong> s’il s’agit de spécialiser le modèle pour une tâche précise.</li>
 </ul>
-<h3 id="foundational-models-pré-entrainement">Foundational models : Pré-entrainement</h3>
+</section>
+<section id="foundational-models-pré-entrainement" class="slide level2">
+<h2>Foundational models : Pré-entrainement</h2>
 <p><strong>Constitution d’un corpus non annoté</strong></p>
 <p><strong>Apprentissage auto-supervisé</strong> : le modèle apprend à prédire le mot suivant ou remplir un blanc dans une phrase.</p>
 <p><strong>Encodage itératif</strong> : chaque mot/token est encodé en vecteur (embeddings) et le réseau ajuste ses poids en fonction du contexte.</p>
@@ -241,9 +262,9 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <h2>Encodage : l’architecture Transformers</h2>
 <p>Tous les modèles de langue ne sont pas des Transformers mais les Transformers demeurent l’architecture la plus connue et la plus répandue actuellement.</p>
 
-<img data-src="img/bert-transformers.jpg" class="r-stretch quarto-figure-center"><p class="caption">Schéma du célèbre <span class="citation" data-cites="vaswaniAttentionAllYou2017">Vaswani et al. (<a href="#/questions-liées-à-lexercice" role="doc-biblioref" onclick="">2017</a>)</span></p><p>Encoder les données (à l’entrainement et à l’inférence) passe par plusieurs étapes:</p>
+<img data-src="img/bert-transformers.jpg" class="r-stretch quarto-figure-center"><p class="caption">Schéma du célèbre <span class="citation" data-cites="vaswaniAttentionAllYou2017">Vaswani et al. (<a href="#/bibliographie" role="doc-biblioref" onclick="">2017</a>)</span></p><p>Encoder les données (à l’entrainement et à l’inférence) passe par plusieurs étapes:</p>
 <ol type="1">
-<li>embedding : vectorisation selon un nombre défini de dimension (512 pour les BERT).</li>
+<li>embedding : vectorisation selon un nombre défini de dimensions (512 pour les BERT).</li>
 <li>encodage des positions : les tokens sont traités simultanément alors on conserve la position de chaque token dans la phrase dans l’embedding.<br>
 </li>
 <li>mécanisme d’attention : ajustement des “poids” en fonction de l’importance du token dans la phrase; Création des vecteurs Q, K, V (Query, Key, Value) : Pour chaque mot (représenté par son vecteur), le modèle génère trois nouveaux vecteurs via des matrices de poids apprises :</li>
@@ -253,12 +274,12 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <li>Key (K) : Représente ce que le mot “offre” ou contient.</li>
 <li>Value (V) : Contient l’information réelle du mot qui sera utilisée pour la sortie.</li>
 </ul>
-<p>Calcul de la pertinence de chaque mot par rapport à un mot cible : produit scalaire entre la Query du mot cible et la Key de tous les autres mots. Cela produit un score de similarité : plus le score est élevé, plus les deux mots sont liés dans ce contexte. Ces scores sont ensuite divisés par une racine carrée (pour stabiliser les gradients) et passés à travers une fonction Softmax.</p>
+<p>Calcul de la pertinence de chaque mot par rapport à un mot cible : produit scalaire entre la Query du mot cible et la Key de tous les autres mots. Cela produit un score de similarité : plus le score est élevé, plus les deux mots sont liés dans ce contexte. Ces scores sont ensuite divisés par une racine carrée (pour stabiliser les gradients) et passés à travers une fonction Softmax (distribution des probabilités).</p>
 <p>Pondération et Somme : Le modèle multiplie chaque vecteur Value (V) de tous les mots par le pourcentage d’attention calculé précédemment. Il somme ensuite ces valeurs pondérées. Le résultat est un nouveau vecteur pour le mot cible : il contient non seulement l’information du mot lui-même, mais aussi une synthèse de toutes les informations des mots qui lui sont liés (ex: pour le mot “banque” dans “je vais à la banque de la rivière”, l’attention sera forte sur “rivière” et faible sur “argent”, produisant un vecteur qui reflète le sens de “lieu” et non de “finance”).</p>
 <p>Le processus est répété : plusieurs têtes d’attention servent à identifier des relations de type différents.</p>
 <ol start="3" type="1">
 <li><p>Entrainement : les couches d’attention sont passées dans le réseau de neurone et deviennent la première couche de la prochaine étape d’entrainement.</p></li>
-<li><p>(dans le cas des décodeurs) : à l’inférence, la sortie devient l’entrée comme expliqué plus tôt.</p></li>
+<li><p>(dans le cas des décodeurs) : à l’inférence, la sortie devient l’entrée.</p></li>
 </ol>
 <p><a href="https://arize.com/blog-course/unleashing-bert-transformer-model-nlp/">Source</a> + explication paraphrasée de Euria.</p>
 </section>
@@ -270,30 +291,119 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <li>La <strong>température</strong> (valeur de 0 à 1): détermine le degré d’utilisation de la variable aléatoire. Une température élevée signifie que le modèle sera plus “créatif” car il donnera plus probablement un token qui a une probabilité absolue moindre dans son contexte.</li>
 <li><strong>top_k</strong> (valeur de 0 à 100): variable qui réduit la probabilité de générer des tokens absurdes. Une valeur élevée donne des réponses plus variées et une valeur basse des réponses plus conservatrices. (Défaut 40)</li>
 <li><strong>top_p</strong> (valeur de 0 à 1): Fonctionne avec le top_k. Une valeur haute donne un texte varié, une valeur basse, un texte conservateur. (Défaut: 0,9)</li>
+<li><strong>pénalité de fréquence</strong> (de -2.0 à 2.0): applique une pénalité proportionnelle au nombre de fois où un token est apparu dans le prompt et dans la réponse. Une pénalité de fréquence élevée signifie qu’un token n’apparaitrait pas plusieurs fois : empêche la répétition.</li>
 </ul>
 <p>Source : <a href="https://github.com/ollama/ollama/blob/main/docs/modelfile.md#parameter">Documentation Ollama</a></p>
 </section>
-<section id="model-steering-ou-system-message" class="slide level2">
-<h2>Model Steering ou System message</h2>
-<p>Reconduire un modèle consiste à lui fournir des ordres qui vont modifier son comportement pour toutes les interactions suivantes : cette instruction initiale est le “System message”.</p>
+<section id="piloter-un-modèle-steering-et-system-message" class="slide level2">
+<h2>Piloter un modèle <em>“Steering”</em> et <em>System message</em></h2>
+<p>Piloter un modèle consiste à lui fournir des ordres qui vont modifier son comportement pour toutes les interactions suivantes : cette instruction initiale est le “System message”.</p>
+<ul>
+<li><strong>steering vector</strong> : La plupart des méthodes de pilotage ajoutent un « vecteur de pilotage » (SV) aux activations du modèle à une couche et une position de token données lors de l’inférence. Cette approche s’appuie sur l’hypothèse selon laquelle de nombreux concepts interprétables par les humains, tels que l’honnêteté, le refus et le sentiment, sont représentés sous forme de directions dans l’espace des activations. — Source : <a href="https://joschkacbraun.github.io/assets/pdf/steering_blog_post.pdf">https://joschkacbraun.github.io/assets/pdf/steering_blog_post.pdf</a></li>
+</ul>
 <p><a href="https://www.neuronpedia.org/gemma-2-9b-it/steer">Conduire un modèle interactivement avec Neuronpedia</a></p>
 </section>
-<section id="ollama" class="slide level2">
-<h2>Ollama</h2>
-<p>Ollama permet de télécharger des modèles de langue en local et d’intérargit avec.</p>
-<p>Démo :</p>
-<p><a href="https://ollama.com/download">Téléchargement de Ollama</a></p>
-<h3 id="utilisation-de-ollama-en-invite-de-commande">Utilisation de Ollama en invite de commande</h3>
-<p><code>ollama run llama3.2</code> -&gt; télécharge et lance le modèle.</p>
-<p>““” -&gt; pour des instructions longues</p>
+<section id="travailler-en-local-avec-un-llm" class="slide level2">
+<h2>Travailler en local avec un LLM</h2>
+<p>Avantages :</p>
+<ul>
+<li>Les échanges restent privés,</li>
+<li>Pas besoin de connexion internet,</li>
+<li>Plus simple de bidouiller le modèle par soi-même,</li>
+<li>Possibilité de travailler avec des modèles très différents sans passer par des plateformes propriétaires.</li>
+</ul>
+<p>Désavantages :</p>
+<ul>
+<li>Limites = les capacités de son ordinateur,</li>
+<li>Pas de mémoire des interactions précédentes,</li>
+<li>Pas d’accès à d’autres modules complémentaires comme sur une application type ChatGPT ou Mistral.ai (ex: recherche sur internet, ajout de documents, connexion avec son agenda etc. )</li>
+</ul>
+<p>NB : Travailler en local ne signifie pas que le modèle a accès aux documents sur votre ordinateur : il s’agit d’un programme indépendant.</p>
+</section>
+<section>
+<section id="préparation-pour-la-suite-de-la-journée" class="title-slide slide level1 center">
+<h1>Préparation pour la suite de la journée</h1>
+
+</section>
+<section id="installation-dollama" class="slide level2 scrollable">
+<h2>Installation d’Ollama</h2>
+<p>Ollama permet de télécharger des modèles de langue en local et d’intérargir avec.</p>
+<ol type="1">
+<li>Ouvrir son terminal :</li>
+</ol>
+<ul>
+<li>sur Windows : Chercher <code>PowerShell</code></li>
+<li>sur MacOS : <code>Command</code> + <code>espace</code> ouvre Spotlight search : chercher “terminal”</li>
+</ul>
+<ol start="2" type="1">
+<li>Entrer en ligne de commande :</li>
+</ol>
+<ul>
+<li>Windows : <code>irm https://ollama.com/install.ps1 | iex</code></li>
+<li>MacOS/Linux : <code>curl -fsSL https://ollama.com/install.sh | sh</code></li>
+</ul>
+<p>ou <a href="https://ollama.com/download">Télécharger Ollama depuis leur site</a></p>
+<ol start="3" type="1">
+<li>Télécharger et lancer un modèle:</li>
+</ol>
+<p>Liste des LLM disponibles : <a href="https://ollama.com/search">https://ollama.com/search</a> : <strong>llama3.2 pèse 2Go</strong> c’est un des plus petit.</p>
+<p><code>ollama pull llama3.2:latest</code> -&gt; télécharge le modèle.</p>
+<p><code>ollama run llama3.2</code> -&gt; lance le modèle.</p>
+<p>(“” -&gt; pour des instructions longues)</p>
+<ol start="4" type="1">
+<li>Couper la génération : <code>Ctrl</code> + <code>c</code> et couper le programme : <code>Ctrl</code> + <code>d</code></li>
+</ol>
+<p>Autres commandes :</p>
 <p><code>/show info</code> -&gt; information sur le modèle téléchargé</p>
 <p><code>ollama list</code> -&gt; liste des modèles téléchargés et utilisables</p>
 <p><code>ollama rm llama3.2</code> -&gt; supprime un modèle</p>
-<h3 id="steering-un-model-local">Steering un model local</h3>
-<p><a href="https://github.com/ollama/ollama/blob/main/docs/modelfile.md">Tutoriel</a></p>
-<p>Voir :</p>
-<p><code>jour4_steeringLLM_complet.ipynb</code></p>
+<h3 id="téléchargement-local-de-chainforge">Téléchargement local de Chainforge</h3>
+<p>En ligne de commande :</p>
+<p>Activer son environnement virtuel (environnement Python dédié):</p>
+<blockquote>
+<p><code>source .venv/bin/activate</code></p>
+</blockquote>
+<p>Télécharger ChainForge:</p>
+<ul>
+<li>Linux/MacOS : <code>pip install --global chainforge</code></li>
+<li>Windows : <code>py -m pip install --global chainforge</code></li>
+</ul>
 </section>
+<section id="exercice" class="slide level2 scrollable">
+<h2>Exercice</h2>
+<p><a href="https://www.neuronpedia.org/gemma-2-9b-it/steer">Neuronpedia piloter un modèle</a> commencez par partir d’une démonstration proposée :</p>
+<p>Modifier un paramètre, et poser une question entre chaque modification :</p>
+<ul>
+<li>température : valeur entre 0 et 1</li>
+<li>freq. penalty (pénalité de fréquence) : valeur entre -2 et 2</li>
+<li>strength multiple (force du pilotage) : valeur entre 0 et 10</li>
+</ul>
+<p>Ajouter une feature (une caractéristique) (ex : dogs, dishonesty) et modifier à nouveau les paramètres à chaque tour.</p>
+<h3 id="piloter-un-modèle-local">Piloter un modèle local</h3>
+<!-- Pour le faire en Python : 
+
+``` jour4_steeringLLM_complet.ipynb``` -->
+<p>En ligne de commande :</p>
+<ol type="1">
+<li>Télécharger le document, le mettre dans le dossier de votre choix “ModelFile” sur le site à l’onglet Corpus : <a href="https://alexiaschn.github.io/dhsi-2026/corpus.html">Lien</a>.</li>
+</ol>
+<p>Modifier les paramètres et le System Prompt à souhait.</p>
+<ol start="2" type="1">
+<li>Se déplacer dans le dossier où se trouve le document “ModelFile” :</li>
+</ol>
+<p>Exemple pour le dossier des Téléchargement:</p>
+<pre><code>Windows (PowerShell ou CMD) : ```cd Downloads``` (ou ```cd Téléchargements``` si le système est en français).
+Linux : ```cd ~/Téléchargements``` (ou ```cd ~/Downloads``` si le système est en anglais).
+macOS : ```cd ~/Downloads.``` </code></pre>
+<ol start="3" type="1">
+<li>Créer un nouveau modèle piloté : le mot ‘chien’ peut être remplacé par un autre nom.</li>
+</ol>
+<p><code>ollama create chien -f ModelFile</code></p>
+<ol start="4" type="1">
+<li>Lancer le modèle piloté en utilisant le nom donné.</li>
+</ol>
+<p><code>ollama run chien</code></p>
+</section></section>
 <section>
 <section id="pause" class="title-slide slide level1 center">
 <h1>Pause</h1>
@@ -303,19 +413,43 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <h2>Travailler avec de l’“IA générative”</h2>
 <p>Contrairement à certaines des approches qu’on a pu voir les jours précédents, la génération par LLM contient des éléments d’incertitude qui mettent en jeu l’interprétabilité des résultats obtenus :</p>
 <ul>
-<li>probabiliste et stochastique : variable aléatoire peuvent varier les probabilité.</li>
-<li>très large dimension du jeu d’entrainement qui est non annoté -&gt; préférence pour le reinforcement learning plutôt que l’annotation massive à la source.</li>
-<li>difficile interprétabilité de l’output et de la trace dans les couches neuronales.</li>
+<li>probabiliste et stochastique : variable aléatoire font varier les probabilités et donc les réponses <span class="citation" data-cites="benderDangersStochasticParrots2021">(<a href="#/bibliographie" role="doc-biblioref" onclick="">Bender et al. 2021</a>)</span></li>
+<li>Les modèles sont a priori pré-déterminé par leurs données d’entrainement (= préférence pour le <em>reinforcement learning</em> plutôt que l’annotation massive à la source).
+<ul>
+<li>Entraînenement sur des données synthètique provoque l’effondrement du modèle <span class="citation" data-cites="shumailovAIModelsCollapse2024">(<a href="#/bibliographie" role="doc-biblioref" onclick=""><strong>shumailovAIModelsCollapse2024?</strong></a>)</span>.</li>
+</ul></li>
 </ul>
-<p>Une solution : le <em>prompt engineering</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Effondrement du modèle</figcaption>
+<p><img data-src="img/modelcollapse.png"></p>
+</figure>
+</div>
+<ul>
+<li>difficile interprétabilité de l’output et de la trace dans les couches neuronales. ExplainableAI est une discipline à part entière. Exemple d’une analyse de trace à l’intérieur du modèle : <a href="https://www.neuronpedia.org/gemma-2-2b/graph">Neuronpedia</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Interprétation attendue de ce qu’il se passe</figcaption>
+<p><img data-src="img/insidemodel1.png"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Réalité</figcaption>
+<p><img data-src="img/insidemodel2.png"></p>
+</figure>
+</div>
+<p>Source : <span class="citation" data-cites="3blue1brownMaisCestQuoi2017">3Blue1Brown (<a href="#/bibliographie" role="doc-biblioref" onclick="">2017</a>)</span></p>
 </section>
 <section id="le-prompt-engineering" class="slide level2">
 <h2>Le prompt engineering</h2>
-<p>Rendre un prompt robuste et surtout permettre l’évaluation systématique d’une stratégie de prompt. Réintégrer une forme de modélisation de son problème pour optimiser un prompt : le template.</p>
+<p>Une solution : le <em>prompt engineering</em>.</p>
+<p>Rendre un prompt robuste et surtout permettre l’évaluation systématique d’une stratégie de prompt. Réintégrer une forme de modélisation de son problème pour optimiser un prompt. Le prompt engineering consiste à obtenir le meilleur “<em>template</em>” d’instruction pour résoudre un problème avec comme objectif l’adaptabilité à des situations variées et la cohérence des réponses au fur et à mesure des itérations.</p>
 </section>
 <section id="éléments-de-prompt-engineering" class="slide level2">
 <h2>Éléments de prompt engineering</h2>
-<p>Tout repose sur l’évaluation des outputs du SIA. Comment passer d’une exploration opportuniste et empirique d’un prompt ou deux au déploiement d’un outil reposant sur un LLM avec un bonne certitude qu’il s’agit d’un système fiable ?</p>
+<p>Comment passer d’une exploration opportuniste et empirique d’un prompt ou deux au déploiement d’un outil reposant sur un LLM avec un bonne certitude qu’il s’agit d’un système fiable ?</p>
 <ul>
 <li>concevoir des scénarios d’utilisation</li>
 <li>chercher les limites</li>
@@ -327,23 +461,23 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <h2>Typologie d’évaluation</h2>
 <div>
 <ul>
-<li class="fragment">Basé sur une référence : comparaison des sorties à partir d’une <em>ground truth</em></li>
-<li class="fragment">reference-free : test libre</li>
-<li class="fragment">comparaison par paires : comparaison de deux sorties (ex : pour comparer la qualité de deux prompts)</li>
-<li class="fragment">code-based : évaluation plus robuste</li>
-<li class="fragment">LLM-based : peu fiable</li>
-<li class="fragment">human-evaluation</li>
+<li class="fragment">Basé sur une référence : comparaison des sorties à partir d’une vérité de terrain (=<em>ground truth</em>)</li>
+<li class="fragment"><em>Reference-free</em> : Sans vérité de terrain pour effectuer l’évaluation</li>
+<li class="fragment">Comparaison par paires : comparaison de deux sorties (ex : pour comparer la qualité de deux prompts)</li>
+<li class="fragment">Code-based : évaluation plus robuste car basée sur une quantification de l’évaluation (ex: si on demande d’effectuer une synthèse d’un texte, s’assurer que le texte de sortie contient moins de mots que le texte à synthétiser est quantifiable).</li>
+<li class="fragment">LLM-based : Demander à un LLM d’évaluer la sortie.</li>
+<li class="fragment">Évaluation humaine : prend du temps, mais obligatoire même à moindre échelle.</li>
 </ul>
 </div>
 </section>
 <section id="stratégies-de-prompt" class="slide level2">
 <h2>Stratégies de prompt</h2>
 <ul>
-<li>0 shot</li>
-<li>few shots</li>
-<li>personas</li>
-<li>Chain of Thought (devenu ‘reasoning step’ inclus dans le LLM )</li>
-<li>formatted outputs</li>
+<li>0 shot : pas d’exemple, instruction brute.</li>
+<li>few shots : ajout d’exemples. -&gt; la stratégie la plus robuste <span class="citation" data-cites="brownLanguageModelsAre2020">(<a href="#/bibliographie" role="doc-biblioref" onclick="">Brown et al. 2020</a>)</span></li>
+<li>personas : instruction de comportement.</li>
+<li>Chain of Thought (devenu ‘reasoning step’ inclus dans le LLM ) : ”</li>
+<li>Formatted outputs : demander une sortie dans un format structuré guide les LLMs (ex: JSON)</li>
 </ul>
 </section>
 <section id="bonnes-pratiques" class="slide level2">
@@ -352,36 +486,19 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <li>Décomposer la tâche à effectuer.</li>
 <li>Composer un jeu de donnée a minima : cerner ce à quoi doit ressembler la sortie.</li>
 <li>Partir d’un exemple minimal avant de complexifier la tâche</li>
+<li>Préférer les exemples aux instructions.</li>
+<li>Demander une sortie dans un format qui demande un schéma de validation pour éviter les erreurs.</li>
 </ul>
 </section>
 <section id="chainforge" class="slide level2">
 <h2>ChainForge</h2>
 <p><a href="https://chainforge.ai/play/">ChainForge</a> : outil de comparaison de prompt : comparaison de modèle, comparaison de template (un texte qui inclut des variables) visualisation côte à côte des sorties.</p>
-<p>-&gt; pas à pas de l’utilisation de ChainForge : exemple de la classification binaire en “animal/pas animal”</p>
+<p>Démonstration de l’utilisation de ChainForge : exemple de la classification binaire en “animal/pas animal”</p>
 <p>Vous pouvez suivre et importer le workflow qui se trouve dans les documents de l’onglet Corpus : <code>flow-classification-animal.cforge</code></p>
 <p>Les données utilisées sont : <code>epigrammes_classification_animal.csv</code></p>
 </section>
-<section id="préparation-pour-lexercice" class="slide level2">
-<h2>Préparation pour l’exercice</h2>
-<h3 id="téléchargement-local-de-chainforge-et-ollama">Téléchargement local de Chainforge et Ollama</h3>
-<p>En ligne de commande :</p>
-<p>Activer son environnement virtuel (environnement Python dédié):</p>
-<blockquote>
-<p><code>source .venv/bin/activate</code></p>
-</blockquote>
-<p>Télécharger ChainForge</p>
-<blockquote>
-<p><code>pip install chainforge</code></p>
-</blockquote>
-<p>Télécharger Ollama</p>
-<p>Linux/Mac : <code>curl -fsSL https://ollama.com/install.sh | sh</code></p>
-<p>Windows : <code>irm https://ollama.com/install.ps1 | iex</code></p>
-<p>Télécharger des modèles avec Ollama. <a href="https://ollama.com/search">liste des modèles disponibles</a> (recommandé : llama3.2 pour commencer : pas trop lourd)</p>
-<blockquote>
-<p><code>ollama run llama3.2</code></p>
-</blockquote>
-<p>Pour terminer l’interaction avec le modèle <code>Ctrl + d</code> ou <code>Ctrl + c</code></p>
-<h3 id="lancer-chainforge-et-ollama-en-local">Lancer ChainForge et Ollama en local :</h3>
+<section id="lancer-chainforge-et-ollama-en-local" class="slide level2">
+<h2>Lancer ChainForge et Ollama en local :</h2>
 <blockquote>
 <p><code>chainforge serve</code></p>
 </blockquote>
@@ -389,10 +506,12 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <blockquote>
 <p><code>ollama serve</code></p>
 </blockquote>
+<p>Si vous avez une erreur “Error: listen tcp 127.0.0.1:11434: bind: address already in use” :</p>
+<p>Linux/MacOS : <code>sudo systemctl stop ollama</code> / Windows : <code>net stop ollama</code></p>
 <p>Le localhost (par défaut http://localhost:8000/) devrait maintenant proposer dans les Nodes de Prompt le type ‘ollama’.</p>
 
 <img data-src="img/chainforge-local-ollama.png" class="r-stretch quarto-figure-center"><p class="caption">ChainForge en local avec les modèles téléchargés sur sa machine via Ollama</p></section>
-<section id="exercice" class="slide level2 scrollable">
+<section id="exercice-1" class="slide level2 scrollable">
 <h2>Exercice</h2>
 <p>Vous pouvez vous servir de votre propre jeu de donnée.</p>
 <p>A défaut :</p>
@@ -424,7 +543,7 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <li>pour faire passer la variable du node CSV à l’évaluateur il faut utiliser la syntaxe : <code>response.meta['variable']</code></li>
 </ul>
 </section>
-<section id="questions-liées-à-lexercice" class="slide level2 smaller scrollable">
+<section id="questions-liées-à-lexercice" class="slide level2">
 <h2>Questions liées à l’exercice</h2>
 <p>Quel est le meilleur modèle ?</p>
 <p>Quel est le meilleur prompt ?</p>
@@ -432,9 +551,21 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 <p>Quelles sont les limites de cette stratégie de classification ?</p>
 <p>Quelles sont les limites de l’évaluation de la classification ?</p>
 <p>Quelles autres critères peut-on envisager pour cette classification automatique ?</p>
+</section>
+<section id="bibliographie" class="slide level2 smaller scrollable">
+<h2>Bibliographie</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-3blue1brownMaisCestQuoi2017" class="csl-entry" role="listitem">
+3Blue1Brown. 2017. <span>“Mais, c’est Quoi Un Réseau de Neurones ? <span>Chapitre</span> 1, <span>Apprentissage</span> Profond.”</span>
+</div>
+<div id="ref-benderDangersStochasticParrots2021" class="csl-entry" role="listitem">
+Bender, Emily M., Timnit Gebru, Angelina McMillan-Major, and Shmargaret Shmitchell. 2021. <span>“On the <span>Dangers</span> of <span>Stochastic Parrots</span>: <span>Can Language Models Be Too Big</span>? 🦜.”</span> In <em>Proceedings of the 2021 <span>ACM Conference</span> on <span>Fairness</span>, <span>Accountability</span>, and <span>Transparency</span></em>, 610–23. Virtual Event Canada: ACM. <a href="https://doi.org/10.1145/3442188.3445922">https://doi.org/10.1145/3442188.3445922</a>.
+</div>
+<div id="ref-brownLanguageModelsAre2020" class="csl-entry" role="listitem">
+Brown, Tom B., Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, et al. 2020. <span>“Language <span>Models</span> Are <span>Few-Shot Learners</span>.”</span> arXiv. <a href="https://doi.org/10.48550/arXiv.2005.14165">https://doi.org/10.48550/arXiv.2005.14165</a>.
+</div>
 <div id="ref-tayWhatWeActually2025" class="csl-entry" role="listitem">
 Tay, Aaron. 2025. <span>“What <span>Do We Actually Mean</span> by "<span>AI-Powered Search</span>"?”</span> Substack Newsletter. <em>Aaron Tay’s Musings about Librarianship</em>.
 </div>

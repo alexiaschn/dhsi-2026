@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.39">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Alexia Schneider">
   <meta name="author" content="Yann Audin">
@@ -52,7 +52,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -184,10 +184,28 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </section>
 <section id="programme-de-la-matinée" class="slide level2">
 <h2>Programme de la matinée</h2>
-<p>AM: - Présentation des systèmes complexes intégrants des IA agentiques et des RAG (45 min) - Temps de projet avec l’équipe (60 minutes) - PAUSE (15 minutes) - Discussion (1h) - Enjeux en SHS - Conclusion</p>
+<p>AM:</p>
+<ul>
+<li>Présentation des systèmes complexes intégrants des IA agentiques et des RAG (45 min)</li>
+<li>(60 minutes)</li>
+<li>PAUSE (15 minutes)</li>
+<li>Discussion (1h)
+<ul>
+<li>Enjeux en SHS</li>
+<li>Conclusion</li>
+</ul></li>
+</ul>
+</section>
+<section id="objectifs-de-la-matinée" class="slide level2">
+<h2>Objectifs de la matinée</h2>
+<ul>
+<li>Comprendre le processus de traitement des instructions utilisateurs par les applications à bases de LLM</li>
+<li>Faire le point sur les enjeux propres aux SHS de ces applications</li>
+<li>Résumé de la semaine et discussions</li>
+</ul>
 </section>
 <section id="les-architectures-complexes-de-systèmes-à-base-dia-générative" class="slide level2">
-<h2>Les architectures complexes de Systèmes à base d’IA générative</h2>
+<h2>Les architectures complexes de Systèmes à base d’“IA générative”</h2>
 <p>Nous avons abordé avec le prompt engineering la complexité de l’intégration d’un LLM génératif dans un programme dont on souhaiterait maîtriser les sorties de manière fiable et robuste.</p>
 </section>
 <section id="quelle-complexité" class="slide level2">
@@ -202,22 +220,26 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </ul></li>
 </ul>
 </section>
-<section id="applications-de-chat-actuelles" class="slide level2 scrollable">
-<h2>Applications de chat actuelles</h2>
-<p>ChatGPT, Le Chat de Mistral etc. sont des applications qui interagissent avec un LLM (GPT5.2, Mistral). Ce qui est envoyé comme requête est appelé un prompt. Le prompt ne contient pas que la requête de l’utilisateur.ice.</p>
+<section id="applications-de-clavardage-actuelles" class="slide level2">
+<h2>Applications de clavardage actuelles</h2>
+<p>ChatGPT d’OpenAI, Claude d’Anthropic, Le Chat de Mistral etc. sont des <strong>applications qui interagissent avec un LLM</strong> (GPT5.2, Mistral). Ce qui est envoyé comme requête est appelé un prompt. Le prompt ne contient pas que la requête de l’utilisateur.ice.</p>
 <p>Dans ce prompt, on trouve un ensemble d’instructions préliminaires (le <em>system prompt</em>) et d’informations complémentaires comme l’historique des échanges (<em>chat history</em>).</p>
-<p>Depuis décembre 2024, le Model Context Protocol (MCP) permet l’<strong>intégration modulaire de l’interface de chat à d’autres fonctionalités</strong> des applications grands publics de chat -&gt; interaction avec un agenda sur le cloud, des sites marchands etc.</p>
+<p>Depuis décembre 2024, le Model Context Protocol (MCP) permet l’<strong>intégration modulaire de l’interface de chat à d’autres fonctionalités</strong> des applications grands publics de chat -&gt; interaction avec un agenda sur le cloud, les API de sites marchands ou de sites de nouvelles, recherche sur un moteur de recherche.</p>
+</section>
+<section id="mcp" class="slide level2 scrollable">
+<h2>MCP</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <figcaption>Le MCP<sup>1</sup></figcaption>
 <p><img data-src="img/mcp.png"></p>
 </figure>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>source: https://modelcontextprotocol.io/docs/getting-started/intro –&gt;</p></li></ol></aside></section>
+<p>Le MCP est un premier pas vers la standardisation des échanges entre les applications avec une visée d’autonomie des systèmes. En partie, c’est un protocole qui repose sur la standardisation du JSON-RCP (standardisation des clés) : (JavaScript Object Notation-Remote Procedure Call).</p>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>source: https://modelcontextprotocol.io/docs/getting-started/intro</p></li></ol></aside></section>
 <section id="les-agents-ia" class="slide level2">
 <h2>Les agents IA</h2>
 <p>Renvoie à la notion d’<strong>autonomie</strong>, d’agentivité : narratif promethéen promut par les entreprises de la Big Tech.</p>
-<p>En réalité : Un agent est un enchaîntement d’appels à un LLM.</p>
+<p>En réalité : Un agent est un enchaînement d’appels à un LLM.</p>
 <p>L’agent est ce qui permet d’<strong>intégrer à un prompt des informations complémentaires de manière asynchrone</strong>. Informations que le LLM aura solicitées après analyse de la demande entrées par l’utilisateur.ice.</p>
 <p>Autrement dit, <strong>un agent est une “IA” qui se répond à elle-même.</strong></p>
 </section>
@@ -269,7 +291,7 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </tr>
 <tr class="even">
 <td>Prompt utilisateur</td>
-<td>“Qui a remporté les dernières élections présidentielles ?”</td>
+<td>“Comment télécharger ChainForge ?”</td>
 </tr>
 </tbody>
 </table>
@@ -278,7 +300,7 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 
 <p>Réponse du LLM à l’étape 1:</p>
 <blockquote>
-<p><code>&lt;pensée&gt;</code>L’utilisateur veut savoir le résultat des dernières élections. L’utilisateur est localisé en France. Je vais lancer une recherche sur internet.<code>&lt;/pensée&gt;&lt;Outil&gt;</code>recherche sur internet : “élection présidentielle France”<code>&lt;/outil&gt;</code></p>
+<p><code>&lt;pensée&gt;</code>L’utilisateur veut savoir comment télécharger ChainForge. Je vais lancer une recherche sur internet.<code>&lt;/pensée&gt;&lt;Outil&gt;</code>recherche sur internet : “ChainForge téléchargement”<code>&lt;/outil&gt;</code></p>
 </blockquote>
 </section>
 <section class="slide level2">
@@ -288,7 +310,7 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 
   return google(requete)</code></pre>
 <blockquote>
-<p>Information 1 : “1. journal1.html ‘Macron élu …’ Information 2 : journal2.html ‘Macron est réélu en ce jour de mai…’ etc.</p>
+<p>Site 1 : “chainforge.ai” , Site 2 : stackoverflow.com</p>
 </blockquote>
 </section>
 <section class="slide level2">
@@ -320,11 +342,11 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 </tr>
 <tr class="even">
 <td>Prompt utilisateur</td>
-<td>“Qui a remporté les dernières élections présidentielles ?”</td>
+<td>“Comment télécharger ChainForge?”</td>
 </tr>
 <tr class="odd">
 <td><strong>Retour de la requête</strong></td>
-<td>Information 1 : “1. journal1.html ‘Macron élu …’ Information 2 : journal2.html ‘Macron est réélu en ce jour de mai…’ etc.</td>
+<td>Site 1 : “chainforge.ai” , Site 2 : stackoverflow.com</td>
 </tr>
 </tbody>
 </table>
@@ -333,20 +355,20 @@ William Bouchard <a href="https://orcid.org/https://orcid.org/0009-0003-3683-241
 
 <p>Réponse du LLM à l’étape 2:</p>
 <blockquote>
-<p><code>&lt;pensée&gt;</code>Les sources indiquent que le vainqueur des dernières élections présidentielles est Emmanuel Macron.<code>&lt;/pensée&gt;&lt;reponse&gt;</code>Emmanuel Macron a remporté les dernières élections présidentielles.<code>&lt;/reponse&gt;</code></p>
+<p><code>&lt;pensée&gt;</code>Les sources indiquent qu’il faut installer sous forme de module Python.<code>&lt;/pensée&gt;&lt;reponse&gt;</code>Pour télécharger ChainForge il faut avoir installer Python et entrer en ligne de commande pip install chainforge.<code>&lt;/reponse&gt;</code></p>
 </blockquote>
 </section>
 <section class="slide level2">
 
 <p>Parsing de la réponse : extraction de la réponse finale dans la balise <code>&lt;reponse&gt;</code> : transmission de son contenu à l’utilisateur.ice.</p>
 <blockquote>
-<p>Emmanuel Macron a remporté les dernières élections présidentielles.</p>
+<p>our télécharger ChainForge il faut avoir installer Python et entrer en ligne de commande pip install chainforge.</p>
 </blockquote>
 </section>
 <section class="slide level2">
 
 <p>Du point de vue utilisateur.ice :</p>
-<p>“Qui a remporté les dernières élections présidentielles ?” -&gt; Emmanuel Macron a remporté les dernières élections présidentielles.</p>
+<p>“Comment télécharger ChainForge ?” -&gt; Sur .</p>
 <ul>
 <li>Masquage du traitement de la demande : enchaînement silencieux, multiplication des couches interprétatives.</li>
 <li>Repose sur des fonctions de parsing ou déchiffrage : on peut inciter un LLM à générer dans un format structuré, mais les réponses restent probabilistes et non déterministes -&gt; les balises ne sont pas respectées, le modèle ‘hallucine’ des outils qui n’existent pas, etc. On en revient à nos vieilles Regex :</li>
@@ -358,8 +380,12 @@ fucking? (broken|useless|terrible)|fuck you|screw (this|you)|
 so frustrating|this sucks|damn it)\b/</code></pre>
 </section></section>
 <section>
-<section id="rag-retrieval-augmented-generation" class="title-slide slide level1 center">
-<h1>RAG : Retrieval Augmented Generation</h1>
+<section id="rag" class="title-slide slide level1 center">
+<h1>RAG</h1>
+
+</section>
+<section id="rag-retrieval-augmented-generation" class="slide level2">
+<h2>RAG : Retrieval Augmented Generation</h2>
 <p>Limites du LLM:</p>
 <ul>
 <li>représentation figée sur les données d’entraînement (= mémoire implicite ne peut pas être mise à jour)</li>
@@ -367,6 +393,7 @@ so frustrating|this sucks|damn it)\b/</code></pre>
 </ul>
 <p>-&gt; <strong>perte de fiabilité</strong></p>
 <p>Le RAG : architecture de système d’IA qui repose sur une base de connaissance externe dans le but d’améliorer les réponses d’une IA générative sans demander d’entrainement supplémentaire (<em>fine tuning</em>).<span class="citation" data-cites="lewisRetrievalAugmentedGenerationKnowledgeIntensive2021">(<a href="#/bibliographie" role="doc-biblioref" onclick="">Lewis et al. 2021</a>)</span> (Facebook, University College London, New York University)</p>
+<p>Le but fondamental est d’obtenir une synthèse de plusieurs sources dans le cas où le nombre de document est trop grand pour pouvoir rentrer dans le prompt.</p>
 </section>
 <section class="slide level2">
 
@@ -384,21 +411,6 @@ so frustrating|this sucks|damn it)\b/</code></pre>
 <li>Dissémination de l’information quand l’information se trouve dans plusieurs chunks,</li>
 <li>Angles morts quand l’information importante est dans un chunk non extrait.</li>
 </ul>
-</section></section>
-<section id="temps-de-projet-1h" class="title-slide slide level1 center">
-<h1>Temps de projet (~1h)</h1>
-
-</section>
-
-<section id="pause" class="title-slide slide level1 center">
-<h1>Pause</h1>
-
-</section>
-
-<section>
-<section id="temps-de-discussion-1h" class="title-slide slide level1 center">
-<h1>Temps de discussion (~1h)</h1>
-
 </section>
 <section id="quels-sont-les-enjeux-de-lia-pour-les-shs" class="slide level2">
 <h2>Quels sont les enjeux de l’IA pour les SHS ?</h2>
@@ -406,6 +418,77 @@ so frustrating|this sucks|damn it)\b/</code></pre>
 <li>Avec l’ancrage de nouvelles “pratiques discrètes” <span class="citation" data-cites="mullerPoussiereLumiereBleue2021">(<a href="#/bibliographie" role="doc-biblioref" onclick="">Muller and Clavert 2021</a>)</span> de l’IA , on assiste à une nouvelle phase : exemple de la correction comme écriture mais aussi comme masquage de l’utilisation d’IA générative.</li>
 <li>Les promesses de gain de temps et de productivité cachent des enjeux économiques forts : on ne peut que rester méfiants face aux biais de ces outils tout en prennant conscience de ses propres influences.</li>
 </ul>
+</section></section>
+<section id="pause-15min" class="title-slide slide level1 center">
+<h1>Pause (15min)</h1>
+
+</section>
+
+<section>
+<section id="résumé-de-la-semaine" class="title-slide slide level1 center">
+<h1>Résumé de la semaine</h1>
+
+</section>
+<section id="jour-1" class="slide level2">
+<h2>Jour 1</h2>
+<p>Introduction théorique, histoire de l’“IA”.</p>
+<p>À retenir :</p>
+<ul>
+<li><p>L’histoire de l’IA est connectée à celle du développement des mathématiques (algorithmie) et des outils de calculs : une longue histoire dont on peut questionner la narration.</p></li>
+<li><p>Le terme d’IA est galvaudé : c’est une notion floue appliquée à des technologies très différentes au cours du temps.</p></li>
+<li><p>Danger autour des discours médiatiques et marchands “révolutionnaire”, “magique”, “autonome”, “super-intelligence”.</p></li>
+<li><p>Comprendre l’IA demande de revenir sur des définitions de termes englobant : computation, calculabilité, numérique, discret (vs.&nbsp;continu), algorithmes.</p></li>
+<li><p>Depuis les années 80 on préfère utiliser des termes spécifiques : apprentissage machine plutôt que IA.</p></li>
+<li><p>Les disciplines des Humanités ont toujours eu leur mot à dire dans le développement des IA : interprétation des textes fondateurs, étude de l’impact etc.</p></li>
+<li><p>Deux grandes façons de faire de l’IA :</p>
+<ul>
+<li>systèmes symbolistes : définition de règles, approche top-down</li>
+<li>système connexionnistes : définition d’une tâche exécutée à partir d’exemples.</li>
+</ul></li>
+</ul>
+</section>
+<section id="jour-2" class="slide level2">
+<h2>Jour 2</h2>
+<p>Traitement automatique de la langue et prétraitement de texte.</p>
+<p>À retenir:</p>
+<ul>
+<li>La base de toute forme d’automatisation est la qualité des données.</li>
+<li>Ouvrir la boîte noire demande de partir des bases : sortir du paradigme visuel de l’interface utilisateur est une façon de comprendre le fonctionnement linéaire des machines qu’on utilise.</li>
+<li><em>shit in, shit out</em></li>
+<li>Toutes les façons d’automatiser un processus ne reposent pas sur des outils lourds sur le plan computationnel : ex des expressions régulières, du Tf-iDF</li>
+</ul>
+</section>
+<section id="jour-3" class="slide level2">
+<h2>Jour 3</h2>
+<p>Apprentissage profond : outils et applications</p>
+</section>
+<section id="jour-4" class="slide level2">
+<h2>Jour 4</h2>
+<p>Modèles génératifs et prompt engineering :</p>
+<ul>
+<li>Tous les LLM ne sont pas “génératifs”.</li>
+<li>La “génération de token” est en réalité une classification sur un très grand nombre de classe (1 classe par token)</li>
+<li>Il existe 3 (voire 4) types de LLM (encodeur, décodeur, encodeur-décodeur, décodeur-décodeur)</li>
+<li>On peut télécharger un LLM localement pour l’inférence.</li>
+<li>Le prompt engineering consiste à trouver le “meilleur” prompt pour une tâche précise : enjeu de reproductibilité, de transparence etc.</li>
+<li>L’évaluation des sorties d’un LLM repose sur la connaissance de la tâche à traiter</li>
+<li>Certaines stratégies de prompt donnent de meilleures performances : Chain of Thought, few-shots, décomposition de la tâche en sous-tâches.</li>
+</ul>
+</section>
+<section id="jour-5" class="slide level2">
+<h2>Jour 5</h2>
+<p>Systèmes complexes d’IA (RAG, système agentique)</p>
+<p>À retenir :</p>
+<ul>
+<li>Les applications de clavardages reposent sur un LLM dit génératif mais traitent la demande utilisatuer, ajoute des instructions complémentaires et des informations extraites via le MCP sur d’autres sources d’information.</li>
+<li>Les “IA agentiques” sont des programmes qui effectuent des tâches à partir du déchiffrement des réponses générées par des LLM : une série de prompt envoyer en boucle.</li>
+<li>Le RAG permet d’ajouter des informations à un prompt : ces informations n’étaient pas disponibles dans les données d’entrainement du modèle. Le RAG est un moteur de recherche dont un LLM effectue la synthèse des N premières réponses.</li>
+<li>Les systèmes reposant sur des LLM sont complexes : il est très difficiles de les évaluer de manières sûres.</li>
+<li>Ces systèmes complexes opacifient les processus interprétatifs entre la demande de l’utilisateur et la réponse qu’il ou elle reçoit.</li>
+</ul>
+</section>
+<section id="vos-retours" class="slide level2">
+<h2>Vos retours</h2>
 </section>
 <section id="bibliographie" class="slide level2 smaller scrollable">
 <h2>Bibliographie</h2>

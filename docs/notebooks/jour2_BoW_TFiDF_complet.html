@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-83dbb6e7644880b4b0a6d38fd098596f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-70d4c3208de8a1051988463b6828f5b7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -170,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="cell-2" class="cell" data-execution_count="9">
+<div id="cell-2" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas numpy scikit<span class="op">-</span>learn spacy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Requirement already satisfied: pandas in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (2.2.3)
@@ -208,7 +208,7 @@ Requirement already satisfied: typing-extensions&gt;=4.12.2 in /home/schn/Docume
 Requirement already satisfied: typing-inspection&gt;=0.4.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4-&gt;spacy) (0.4.1)
 Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (3.4.4)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/lib/python3/dist-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (3.6)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/lib/python3/dist-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (2.0.7)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (1.26.6)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/lib/python3/dist-packages (from requests&lt;3.0.0,&gt;=2.13.0-&gt;spacy) (2023.11.17)
 Requirement already satisfied: blis&lt;1.4.0,&gt;=1.3.0 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from thinc&lt;8.4.0,&gt;=8.3.4-&gt;spacy) (1.3.0)
 Requirement already satisfied: confection&lt;1.0.0,&gt;=0.0.1 in /home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages (from thinc&lt;8.4.0,&gt;=8.3.4-&gt;spacy) (0.1.5)
@@ -224,11 +224,11 @@ Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.13.0 in /usr/lib/python3
 Requirement already satisfied: mdurl~=0.1 in /usr/lib/python3/dist-packages (from markdown-it-py&gt;=2.2.0-&gt;rich&gt;=10.11.0-&gt;typer&lt;1.0.0,&gt;=0.3.0-&gt;spacy) (0.1.2)
 Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/lib/python3/dist-packages (from jinja2-&gt;spacy) (2.1.5)
 
-[notice] A new release of pip is available: 25.3 -&gt; 26.1.1
+[notice] A new release of pip is available: 25.3 -&gt; 26.1.2
 [notice] To update, run: pip install --upgrade pip</code></pre>
 </div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="10">
+<div id="cell-3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python <span class="op">-</span>m spacy download fr_core_news_sm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages/torch/cuda/__init__.py:789: UserWarning: Can't initialize NVML
@@ -237,15 +237,15 @@ Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/lib/python3/dist-packa
   r = torch._C._cuda_getDeviceCount() if nvml_count &lt; 0 else nvml_count
 Collecting fr-core-news-sm==3.8.0
   Downloading https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-3.8.0/fr_core_news_sm-3.8.0-py3-none-any.whl (16.3 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.3/16.3 MB 9.8 MB/s  0:00:01m eta 0:00:01
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.3/16.3 MB 3.7 MB/s  0:00:04m0:00:0100:01
 
-[notice] A new release of pip is available: 25.3 -&gt; 26.1.1
+[notice] A new release of pip is available: 25.3 -&gt; 26.1.2
 [notice] To update, run: pip install --upgrade pip
 ✔ Download and installation successful
 You can now load the package via spacy.load('fr_core_news_sm')</code></pre>
 </div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -262,7 +262,7 @@ You can now load the package via spacy.load('fr_core_news_sm')</code></pre>
   r = torch._C._cuda_getDeviceCount() if nvml_count &lt; 0 else nvml_count</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="3">
+<div id="cell-5" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># récupération du jeu de données</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>os<span class="sc">.</span>getcwd()<span class="sc">}</span><span class="ss">/corpus/epigrammes_anthologia_graeca_fr.csv"</span>)</span>
@@ -273,7 +273,7 @@ You can now load the package via spacy.load('fr_core_news_sm')</code></pre>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>data.head()</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -342,10 +342,10 @@ You can now load the package via spacy.load('fr_core_news_sm')</code></pre>
 </div>
 </div>
 <p>Pour cet exercice on ne se sert plus que du texte</p>
-<div id="cell-7" class="cell" data-execution_count="4">
+<div id="cell-7" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>corpus <span class="op">=</span> data.text_fr</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>corpus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>0     Tu voulais, Héraclide, laisser aux hommes le b...
 1     « Tu as vécu en chien, Antisthène. - C'est que...
 2     « Diogène, allons, dis-moi quel destin t'a rav...
@@ -364,25 +364,21 @@ You can now load the package via spacy.load('fr_core_news_sm')</code></pre>
 Name: text_fr, dtype: object</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell">
+<div id="cell-8" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prétraitement = tokenisation spaCy</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>spacy_pipeline <span class="op">=</span> fr_core_news_sm.load(disable<span class="op">=</span>[<span class="st">"parser"</span>, <span class="st">"ner"</span>, <span class="st">"lemmatizer"</span>])</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>spacy_pipeline <span class="op">=</span> fr_core_news_sm.load(disable<span class="op">=</span>[<span class="st">"parser"</span>, <span class="st">"ner"</span>])</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_into_tokens_spacy(text) :</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    doc <span class="op">=</span> spacy_pipeline(text)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [w.text <span class="cf">for</span> w <span class="kw">in</span> doc]</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_into_tokens_wosw_spacy(text):</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    doc <span class="op">=</span> spacy_pipeline(text)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [t.text <span class="cf">for</span> t <span class="kw">in</span> doc <span class="cf">if</span> <span class="kw">not</span> t.is_stop]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [w.text <span class="cf">for</span> w <span class="kw">in</span> doc]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="représentation-sac-de-mots-pondérée-par-la-fréquence" class="level2">
 <h2 class="anchored" data-anchor-id="représentation-sac-de-mots-pondérée-par-la-fréquence">2. 👜 Représentation “sac de mots” pondérée par la fréquence</h2>
 <p>La transformation en vecteurs (sac de mots) est réalisée à l’aide de la bibliothèque Scikit-learn et de <code>CountVectorizer</code>. <code>CountVectorizer</code> a de nombreuses options, qui sont détaillées ici : https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html</p>
 <p><code>CountVectorizer</code> a un paramètre nommé <code>tokenizer</code> qui permet de passer une fonction qui découpe le texte en tokens et effectue éventuellement d’autres prétraitements. Si aucune fonction de tokénisation n’est fournie, par défaut les tokens sont composés de séquences de deux caractères alphanumériques ou plus, la ponctuation est ignorée et considérée comme séparateur de token.</p>
 <p>Le paramètre <code>min_df</code> permet de spécifier la proportion minimale des documents dans lesquels un token doit se trouver. Ainsi, <code>min_df=0.01</code> signifie que les tokens qui se trouvent dans moins de 1% des documents (ici, les épigrammes) ne seront pas pris en compte.</p>
-<div id="cell-10" class="cell" data-execution_count="16">
+<div id="cell-10" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bow_transformer1  <span class="op">=</span> CountVectorizer(tokenizer<span class="op">=</span>split_into_tokens_spacy,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                                    lowercase <span class="op">=</span> <span class="va">True</span>,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                                    min_df<span class="op">=</span><span class="fl">0.01</span>)</span>
@@ -392,7 +388,7 @@ Name: text_fr, dtype: object</code></pre>
 <pre><code>/home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages/sklearn/feature_extraction/text.py:517: UserWarning: The parameter 'token_pattern' will not be used since 'tokenizer' is not None'
   warnings.warn(</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
@@ -809,11 +805,11 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   background-color: var(--sklearn-color-fitted-level-3);
 }
 </style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>CountVectorizer(min_df=0.01,
-                tokenizer=&lt;function split_into_tokens_spacy at 0x7b2fc78bdee0&gt;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>CountVectorizer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html">?<span>Documentation for CountVectorizer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>CountVectorizer(min_df=0.01,
-                tokenizer=&lt;function split_into_tokens_spacy at 0x7b2fc78bdee0&gt;)</pre></div> </div></div></div></div>
+                tokenizer=&lt;function split_into_tokens_spacy at 0x736dc3200cc0&gt;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>CountVectorizer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html">?<span>Documentation for CountVectorizer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>CountVectorizer(min_df=0.01,
+                tokenizer=&lt;function split_into_tokens_spacy at 0x736dc3200cc0&gt;)</pre></div> </div></div></div></div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="17">
+<div id="cell-11" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vocabulaire</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>voc1 <span class="op">=</span> bow_transformer1.get_feature_names_out()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(voc1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -870,18 +866,18 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
  'étable' 'étais' 'étendu' 'éternel' 'étrange' 'été' 'être' 'ô']</code></pre>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="18">
+<div id="cell-12" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>corpus_bow <span class="op">=</span> bow_transformer1.transform(corpus)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>corpus_bow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>&lt;Compressed Sparse Row sparse matrix of dtype 'int64'
     with 701 stored elements and shape (15, 415)&gt;</code></pre>
 </div>
 </div>
-<div id="cell-13" class="cell" data-execution_count="20">
+<div id="cell-13" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>corpus_bow_df <span class="op">=</span> pd.DataFrame(corpus_bow.toarray(), columns<span class="op">=</span>voc1)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>corpus_bow_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
 
@@ -1282,206 +1278,62 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <p>Quel constat peut-on faire de cette représentation ? Quels sont les tokens les plus représentés ?</p>
 <p>Comment est-ce qu’on pourrait améliorer cette vectorisation ? (comment pourrait-on obtenir des vecteurs plus denses ?)</p>
-<div id="cell-15" class="cell">
+</section>
+<section id="amélioration-de-la-représentation-vectorielle" class="level2">
+<h2 class="anchored" data-anchor-id="amélioration-de-la-représentation-vectorielle">Amélioration de la représentation vectorielle</h2>
+<p>Nous allons :</p>
+<ul>
+<li>enlever les mots “vides”</li>
+<li>utiliser les lemmas plutôt que les tokens : utiliser les entrées du dictionnaire permet de mettre ensemble “chien” et “chiens” au pluriel, ou “manger” avec “mangeons”, “manges” etc.</li>
+</ul>
+<div id="cell-16" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># écrire la fonction de lemmatisation avec spaCy sur le modèle de la fonction spaCy de tokenisation</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_into_lemmas_spacy(text):</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># here</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    doc <span class="op">=</span> spacy_pipeline(text)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [w.lemma_ <span class="cf">for</span> w <span class="kw">in</span> doc]</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>exemple <span class="op">=</span> <span class="st">'Ceci est une phrase complète.'</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tokenisation:'</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(split_into_tokens_spacy(exemple))</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Lemmatisation:'</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(split_into_lemmas_spacy(exemple))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tokenisation:
+['Ceci', 'est', 'une', 'phrase', 'complète', '.']
+Lemmatisation
+['ceci', 'être', 'un', 'phras', 'complet', '.']</code></pre>
 </div>
-<div id="cell-16" class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ajouter l'antidictionnaire français de NLTK à la pipeline CountVectorizer avec l'option stopwords</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>nltk.corpus.stopwords.words(<span class="st">'french'</span>)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>bow_transformer2  <span class="op">=</span> CountVectorizer(tokenizer<span class="op">=</span>split_into_lemmas_spacy,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                                    lowercase <span class="op">=</span> <span class="va">True</span>,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                                    min_df<span class="op">=</span><span class="fl">0.01</span>,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                                    <span class="co"># ici</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                                    )</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit --&gt; "apprentissage" du vocabulaire</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>bow_transformer2.fit(corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-17" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ajouter l'antidictionnaire français de NLTK à la pipeline CountVectorizer avec l'option stopwords</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>nltk.corpus.stopwords.words(<span class="st">'french'</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>antidico <span class="op">=</span> stopwords.words(<span class="st">'french'</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(antidico)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['au', 'aux', 'avec', 'ce', 'ces', 'dans', 'de', 'des', 'du', 'elle', 'en', 'et', 'eux', 'il', 'ils', 'je', 'la', 'le', 'les', 'leur', 'lui', 'ma', 'mais', 'me', 'même', 'mes', 'moi', 'mon', 'ne', 'nos', 'notre', 'nous', 'on', 'ou', 'par', 'pas', 'pour', 'qu', 'que', 'qui', 'sa', 'se', 'ses', 'son', 'sur', 'ta', 'te', 'tes', 'toi', 'ton', 'tu', 'un', 'une', 'vos', 'votre', 'vous', 'c', 'd', 'j', 'l', 'à', 'm', 'n', 's', 't', 'y', 'été', 'étée', 'étées', 'étés', 'étant', 'étante', 'étants', 'étantes', 'suis', 'es', 'est', 'sommes', 'êtes', 'sont', 'serai', 'seras', 'sera', 'serons', 'serez', 'seront', 'serais', 'serait', 'serions', 'seriez', 'seraient', 'étais', 'était', 'étions', 'étiez', 'étaient', 'fus', 'fut', 'fûmes', 'fûtes', 'furent', 'sois', 'soit', 'soyons', 'soyez', 'soient', 'fusse', 'fusses', 'fût', 'fussions', 'fussiez', 'fussent', 'ayant', 'ayante', 'ayantes', 'ayants', 'eu', 'eue', 'eues', 'eus', 'ai', 'as', 'avons', 'avez', 'ont', 'aurai', 'auras', 'aura', 'aurons', 'aurez', 'auront', 'aurais', 'aurait', 'aurions', 'auriez', 'auraient', 'avais', 'avait', 'avions', 'aviez', 'avaient', 'eut', 'eûmes', 'eûtes', 'eurent', 'aie', 'aies', 'ait', 'ayons', 'ayez', 'aient', 'eusse', 'eusses', 'eût', 'eussions', 'eussiez', 'eussent']</code></pre>
+</div>
 <div class="cell-output cell-output-stderr">
 <pre><code>[nltk_data] Downloading package stopwords to /home/schn/nltk_data...
-[nltk_data]   Unzipping corpora/stopwords.zip.</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="23">
-<pre><code>['au',
- 'aux',
- 'avec',
- 'ce',
- 'ces',
- 'dans',
- 'de',
- 'des',
- 'du',
- 'elle',
- 'en',
- 'et',
- 'eux',
- 'il',
- 'ils',
- 'je',
- 'la',
- 'le',
- 'les',
- 'leur',
- 'lui',
- 'ma',
- 'mais',
- 'me',
- 'même',
- 'mes',
- 'moi',
- 'mon',
- 'ne',
- 'nos',
- 'notre',
- 'nous',
- 'on',
- 'ou',
- 'par',
- 'pas',
- 'pour',
- 'qu',
- 'que',
- 'qui',
- 'sa',
- 'se',
- 'ses',
- 'son',
- 'sur',
- 'ta',
- 'te',
- 'tes',
- 'toi',
- 'ton',
- 'tu',
- 'un',
- 'une',
- 'vos',
- 'votre',
- 'vous',
- 'c',
- 'd',
- 'j',
- 'l',
- 'à',
- 'm',
- 'n',
- 's',
- 't',
- 'y',
- 'été',
- 'étée',
- 'étées',
- 'étés',
- 'étant',
- 'étante',
- 'étants',
- 'étantes',
- 'suis',
- 'es',
- 'est',
- 'sommes',
- 'êtes',
- 'sont',
- 'serai',
- 'seras',
- 'sera',
- 'serons',
- 'serez',
- 'seront',
- 'serais',
- 'serait',
- 'serions',
- 'seriez',
- 'seraient',
- 'étais',
- 'était',
- 'étions',
- 'étiez',
- 'étaient',
- 'fus',
- 'fut',
- 'fûmes',
- 'fûtes',
- 'furent',
- 'sois',
- 'soit',
- 'soyons',
- 'soyez',
- 'soient',
- 'fusse',
- 'fusses',
- 'fût',
- 'fussions',
- 'fussiez',
- 'fussent',
- 'ayant',
- 'ayante',
- 'ayantes',
- 'ayants',
- 'eu',
- 'eue',
- 'eues',
- 'eus',
- 'ai',
- 'as',
- 'avons',
- 'avez',
- 'ont',
- 'aurai',
- 'auras',
- 'aura',
- 'aurons',
- 'aurez',
- 'auront',
- 'aurais',
- 'aurait',
- 'aurions',
- 'auriez',
- 'auraient',
- 'avais',
- 'avait',
- 'avions',
- 'aviez',
- 'avaient',
- 'eut',
- 'eûmes',
- 'eûtes',
- 'eurent',
- 'aie',
- 'aies',
- 'ait',
- 'ayons',
- 'ayez',
- 'aient',
- 'eusse',
- 'eusses',
- 'eût',
- 'eussions',
- 'eussiez',
- 'eussent']</code></pre>
+[nltk_data]   Package stopwords is already up-to-date!</code></pre>
 </div>
 </div>
-<div id="cell-17" class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compléter la série (extraction du vocabulaire, transformation du corpus en BoW, afficher le dataFrame du nouveau BoW)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="pondération-tf-idf" class="level2">
-<h2 class="anchored" data-anchor-id="pondération-tf-idf">Pondération TF-iDF</h2>
-<div id="cell-19" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tfidf_vectorizer <span class="op">=</span> TfidfVectorizer(tokenizer<span class="op">=</span>split_into_tokens_spacy)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>tfidf_vectorizer.fit(corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages/sklearn/feature_extraction/text.py:517: UserWarning: The parameter 'token_pattern' will not be used since 'tokenizer' is not None'
-  warnings.warn(</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="24">
-<style>#sk-container-id-2 {
+<div id="cell-18" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>bow_transformer2  <span class="op">=</span> CountVectorizer(tokenizer<span class="op">=</span>split_into_lemmas_spacy,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                                    lowercase <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                                    min_df<span class="op">=</span><span class="fl">0.01</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                                    stop_words <span class="op">=</span> antidico</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                                    )</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit --&gt; "apprentissage" du vocabulaire</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>bow_transformer2.fit(corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<style>#sk-container-id-3 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
   --sklearn-color-text-muted: #666;
@@ -1512,15 +1364,15 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   }
 }
 
-#sk-container-id-2 {
+#sk-container-id-3 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-2 pre {
+#sk-container-id-3 pre {
   padding: 0;
 }
 
-#sk-container-id-2 input.sk-hidden--visually {
+#sk-container-id-3 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -1532,7 +1384,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   width: 1px;
 }
 
-#sk-container-id-2 div.sk-dashed-wrapped {
+#sk-container-id-3 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -1540,7 +1392,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-2 div.sk-container {
+#sk-container-id-3 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -1550,7 +1402,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   position: relative;
 }
 
-#sk-container-id-2 div.sk-text-repr-fallback {
+#sk-container-id-3 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -1566,14 +1418,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-2 div.sk-parallel-item::after {
+#sk-container-id-3 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-2 div.sk-parallel {
+#sk-container-id-3 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -1581,28 +1433,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-2 div.sk-parallel-item {
+#sk-container-id-3 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-2 div.sk-parallel-item:first-child::after {
+#sk-container-id-3 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-2 div.sk-parallel-item:last-child::after {
+#sk-container-id-3 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-2 div.sk-parallel-item:only-child::after {
+#sk-container-id-3 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-2 div.sk-serial {
+#sk-container-id-3 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1620,14 +1472,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-2 div.sk-toggleable {
+#sk-container-id-3 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-2 label.sk-toggleable__label {
+#sk-container-id-3 label.sk-toggleable__label {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -1640,13 +1492,13 @@ clickable and can be expanded/collapsed.
   gap: 0.5em;
 }
 
-#sk-container-id-2 label.sk-toggleable__label .caption {
+#sk-container-id-3 label.sk-toggleable__label .caption {
   font-size: 0.6rem;
   font-weight: lighter;
   color: var(--sklearn-color-text-muted);
 }
 
-#sk-container-id-2 label.sk-toggleable__label-arrow:before {
+#sk-container-id-3 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -1654,13 +1506,13 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-2 div.sk-toggleable__content {
+#sk-container-id-3 div.sk-toggleable__content {
   max-height: 0;
   max-width: 0;
   overflow: hidden;
@@ -1669,12 +1521,12 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content.fitted {
+#sk-container-id-3 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content pre {
+#sk-container-id-3 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -1682,79 +1534,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content.fitted pre {
+#sk-container-id-3 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   max-height: 200px;
   max-width: 100%;
   overflow: auto;
 }
 
-#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-3 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-3 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-2 div.sk-label label.sk-toggleable__label,
-#sk-container-id-2 div.sk-label label {
+#sk-container-id-3 div.sk-label label.sk-toggleable__label,
+#sk-container-id-3 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-3 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-2 div.sk-label label {
+#sk-container-id-3 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-2 div.sk-label-container {
+#sk-container-id-3 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-2 div.sk-estimator {
+#sk-container-id-3 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -1764,18 +1616,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted {
+#sk-container-id-3 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-2 div.sk-estimator:hover {
+#sk-container-id-3 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted:hover {
+#sk-container-id-3 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -1863,7 +1715,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-2 a.estimator_doc_link {
+#sk-container-id-3 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -1878,34 +1730,942 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-2 a.estimator_doc_link.fitted {
+#sk-container-id-3 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-2 a.estimator_doc_link:hover {
+#sk-container-id-3 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-2 a.estimator_doc_link.fitted:hover {
+#sk-container-id-3 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>TfidfVectorizer(tokenizer=&lt;function split_into_tokens_spacy at 0x7b2fc78bdee0&gt;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked=""><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>TfidfVectorizer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">?<span>Documentation for TfidfVectorizer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>TfidfVectorizer(tokenizer=&lt;function split_into_tokens_spacy at 0x7b2fc78bdee0&gt;)</pre></div> </div></div></div></div>
+</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>CountVectorizer(min_df=0.01,
+                stop_words=['au', 'aux', 'avec', 'ce', 'ces', 'dans', 'de',
+                            'des', 'du', 'elle', 'en', 'et', 'eux', 'il', 'ils',
+                            'je', 'la', 'le', 'les', 'leur', 'lui', 'ma',
+                            'mais', 'me', 'même', 'mes', 'moi', 'mon', 'ne',
+                            'nos', ...],
+                tokenizer=&lt;function split_into_lemmas_spacy at 0x736dc1fc11c0&gt;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked=""><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>CountVectorizer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html">?<span>Documentation for CountVectorizer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>CountVectorizer(min_df=0.01,
+                stop_words=['au', 'aux', 'avec', 'ce', 'ces', 'dans', 'de',
+                            'des', 'du', 'elle', 'en', 'et', 'eux', 'il', 'ils',
+                            'je', 'la', 'le', 'les', 'leur', 'lui', 'ma',
+                            'mais', 'me', 'même', 'mes', 'moi', 'mon', 'ne',
+                            'nos', ...],
+                tokenizer=&lt;function split_into_lemmas_spacy at 0x736dc1fc11c0&gt;)</pre></div> </div></div></div></div>
 </div>
 </div>
-<div id="cell-20" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>corpus_tfidf <span class="op">=</span> tfidf_vectorizer.transform(corpus)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>tfidf_feat_names <span class="op">=</span> tfidf_vectorizer.get_feature_names_out()</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>corpus_tfid_df <span class="op">=</span> pd.DataFrame(corpus_tfidf.toarray(), columns<span class="op">=</span>tfidf_feat_names).<span class="bu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>corpus_tfid_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div id="cell-19" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compléter la série (extraction du vocabulaire, transformation du corpus en BoW, afficher le dataFrame du nouveau BoW)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>voc2 <span class="op">=</span> bow_transformer2.get_feature_names_out()</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>voc2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>array(['!', "'", ',', '-', '.', ':', ';', '?', 'abondant', 'accent',
+       'afin', 'agile', 'agreste', 'agréable', 'aile', 'aimer', 'air',
+       'alcimèner', 'alkis', 'aller', 'allon', 'amer', 'ami', 'amour',
+       'antisthène', 'apaise', 'appartenir', 'apte', 'arracher',
+       'arrêter', 'attrer', 'aussi', 'aussitôt', 'autour', 'autrefoi',
+       'avai', 'avoir', 'barque', 'besoin', 'bien', 'bistonie', 'blond',
+       'borne', 'bouillonnant', 'bras', 'bruissant', 'bruit', 'bête',
+       'bûcheron', 'caillou', 'calcul', 'car', 'celui', 'chair',
+       'changer', 'chanson', 'chant', 'chanter', 'chantera', 'charmer',
+       'chasse', 'cheville', 'chez', 'chien', 'chêne', 'ciel', 'cigal',
+       'cigale', 'clyméno', 'comme', 'comment', 'commun', 'compassion',
+       'confiance', 'convaicu', 'couvert', 'cri', 'crier', 'croc', 'cœur',
+       'danser', 'dauphin', 'demeure', 'destin', 'devant', 'di', 'diogèn',
+       'dipsa', 'dire', 'divisera', 'do', 'donner', 'dort', 'double',
+       'doute', 'déchirer', 'déchoir', 'déjà', 'eau', 'effet', 'effrayer',
+       'eh', 'empire', 'emporter', 'enfanter', 'enlever', 'entendre',
+       'etourneau', 'faire', 'fertile', 'feu', 'feuille', 'fille',
+       'fleur', 'flot', 'flûte', 'fois', 'frappant', 'frappe', 'frapper',
+       'fronde', 'féroce', 'garçon', 'genre', 'glu', 'grue', 'guide',
+       'guéret', 'gésir', 'hadè', 'hadès', 'homme', 'honoré', 'houleuse',
+       'humide', 'héler', 'hélio', 'héraclid', 'hêtre', 'hôtesse', 'ici',
+       'imitation', 'impitoyable', 'infortune', 'jadi', 'jadis',
+       'jaillir', 'jamais', 'jeter', 'jeu', 'jeune', 'jour', 'jusque',
+       'laisser', 'langue', 'larme', 'loin', 'long', 'lyre', 'lèvre',
+       'main', 'maintenant', 'mal', 'malé', 'marin', 'mer', 'montagne',
+       'morsure', 'mort', 'mot', 'mourir', 'muse', 'myro', 'mâchoire',
+       'mélien', 'mélodieux', 'naturel', 'naître', 'neige', 'ni', 'non',
+       'nourrisson', 'nuée', 'néréide', 'objet', 'océan', 'oeil',
+       'oiseau', 'ombre', 'opulent', 'pareille', 'parole', 'passant',
+       'passer', 'patte', 'peine', 'percer', 'perséphon', 'pie', 'pied',
+       'pipeau', 'piquer', 'pitié', 'piété', 'place', 'plante', 'platane',
+       'plein', 'plonger', 'plus', 'poimandro', 'poireau', 'porter',
+       'poser', 'prairie', 'prendre', 'priver', 'profondeur',
+       'promontoire', 'prononcer', 'propre', 'près', 'pâtre', 'périr',
+       'pêcheur', 'quand', 'quel', 'quelque', 'quoi', 'rameau', 'ramper',
+       'rapide', 'ravi', 'ravir', 'rayonnante', 'reconnaître', 'regarder',
+       'regret', 'renvoyer', 'reposer', 'repousser', 'revenue', 'rivage',
+       'rossignol', 'rosée', 'rythmer', 'récompense', 'répandre',
+       'répondre', 'répété', 'réveil', 'sable', 'sacrer', 'sage', 'sans',
+       'sauterell', 'sauterelle', 'savoir', 'semence', 'serpent',
+       'servir', 'sillon', 'soir', 'soleil', 'sommeil', 'sonore',
+       'sophistique', 'souci', 'soulever', 'souvent', 'strident',
+       'sûremer', 'taire', 'tendre', 'terre', 'thérimacho', 'tombe',
+       'tombeau', 'tomber', 'toujours', 'tout', 'travers', 'tromper',
+       'trompeur', 'trou', 'troupeau', 'tua', 'téthys', 'vache', 'vague',
+       'venin', 'venir', 'vers', 'verser', 'vert', 'verte', 'vipère',
+       'virginal', 'vision', 'vivre', 'voilà', 'voir', 'voix', 'vol',
+       'voleur', 'voulai', 'vue', '«', '»', 'âme', 'écarter', 'écho',
+       'écumant', 'élancer', 'élevé', 'épargner', 'étable', 'étai',
+       'étendre', 'éternel', 'étrange', 'être', 'ô'], dtype=object)</code></pre>
+</div>
+</div>
+<div id="cell-20" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>corpus_bow_lemma <span class="op">=</span> bow_transformer2.transform(corpus)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>corpus_bow_lemma</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>&lt;Compressed Sparse Row sparse matrix of dtype 'int64'
+    with 456 stored elements and shape (15, 323)&gt;</code></pre>
+</div>
+</div>
+<div id="cell-21" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>corpus_bow_df <span class="op">=</span> pd.DataFrame(corpus_bow_lemma.toarray(), columns<span class="op">=</span>voc2)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>corpus_bow_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">!</th>
+<th data-quarto-table-cell-role="th">'</th>
+<th data-quarto-table-cell-role="th">,</th>
+<th data-quarto-table-cell-role="th">-</th>
+<th data-quarto-table-cell-role="th">.</th>
+<th data-quarto-table-cell-role="th">:</th>
+<th data-quarto-table-cell-role="th">;</th>
+<th data-quarto-table-cell-role="th">?</th>
+<th data-quarto-table-cell-role="th">abondant</th>
+<th data-quarto-table-cell-role="th">accent</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">élancer</th>
+<th data-quarto-table-cell-role="th">élevé</th>
+<th data-quarto-table-cell-role="th">épargner</th>
+<th data-quarto-table-cell-role="th">étable</th>
+<th data-quarto-table-cell-role="th">étai</th>
+<th data-quarto-table-cell-role="th">étendre</th>
+<th data-quarto-table-cell-role="th">éternel</th>
+<th data-quarto-table-cell-role="th">étrange</th>
+<th data-quarto-table-cell-role="th">être</th>
+<th data-quarto-table-cell-role="th">ô</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0</td>
+<td>1</td>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>0</td>
+<td>0</td>
+<td>10</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>0</td>
+<td>0</td>
+<td>9</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>0</td>
+<td>0</td>
+<td>7</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>15 rows × 323 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="pondération-tf-idf" class="level2">
+<h2 class="anchored" data-anchor-id="pondération-tf-idf">Pondération TF-iDF</h2>
+<div id="cell-23" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tfidf_vectorizer <span class="op">=</span> TfidfVectorizer(tokenizer<span class="op">=</span>split_into_tokens_spacy)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>tfidf_vectorizer.fit(corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/schn/Documents/GitLab/phd/.venv/lib/python3.12/site-packages/sklearn/feature_extraction/text.py:517: UserWarning: The parameter 'token_pattern' will not be used since 'tokenizer' is not None'
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<style>#sk-container-id-4 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-4 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-4 pre {
+  padding: 0;
+}
+
+#sk-container-id-4 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-4 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-4 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-4 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-4 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-4 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-4 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-4 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-4 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-4 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-4 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-4 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-4 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-4 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-4 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-4 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-4 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-4 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-4 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-4 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-4 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-4 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-4 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-4 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-4 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-4 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-4 div.sk-label label.sk-toggleable__label,
+#sk-container-id-4 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-4 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-4 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-4 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-4 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-4 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-4 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-4 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-4 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-4 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-4 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-4 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-4 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-4" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>TfidfVectorizer(tokenizer=&lt;function split_into_tokens_spacy at 0x736dc1fc25c0&gt;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" checked=""><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>TfidfVectorizer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">?<span>Documentation for TfidfVectorizer</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>TfidfVectorizer(tokenizer=&lt;function split_into_tokens_spacy at 0x736dc1fc25c0&gt;)</pre></div> </div></div></div></div>
+</div>
+</div>
+<div id="cell-24" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>corpus_tfidf <span class="op">=</span> tfidf_vectorizer.transform(corpus)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>tfidf_feat_names <span class="op">=</span> tfidf_vectorizer.get_feature_names_out()</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>corpus_tfid_df <span class="op">=</span> pd.DataFrame(corpus_tfidf.toarray(), columns<span class="op">=</span>tfidf_feat_names).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>corpus_tfid_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
 <div>
 
 
@@ -2304,15 +3064,12 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 </div>
-<div id="cell-21" class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># refaire la pipeline avec la lemmatisation et les stopwords de nltk dans la pipeline TfidfVectorizer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="calculs-de-distance-proximité" class="level1">
 <h1>Calculs de distance (/proximité)</h1>
-<div id="cell-23" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cos_sim <span class="op">=</span> cosine_similarity(corpus_tfidf)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cos_sim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-26" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>cos_sim <span class="op">=</span> cosine_similarity(corpus_tfidf)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cos_sim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1.         0.18212743 0.09328803 0.09888427 0.12877372 0.20929594
   0.20010314 0.16832386 0.2004976  0.25106631 0.16429388 0.22866336
@@ -2361,36 +3118,116 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   0.14929161 0.27147764 1.        ]]</code></pre>
 </div>
 </div>
-<div id="cell-24" class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_most_similar_epigram(epigram_index):</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"L'épigramme le plus proche de '</span><span class="sc">{</span>corpus[epigram_index]<span class="sc">}</span><span class="ss">'"</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extraire la ligne contenant les scores de similarité pour cet épigramme : retourne tuple (position, score)</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">list</span>(<span class="bu">enumerate</span>(cos_sim[epigram_index]))</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># on organise la liste pour que le score le plus élevé (valeur en position 1 du tuple) soit en tête de liste</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">sorted</span>(sim_scores, key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># comme le score le plus élevé est avec lui-même, on ne prend la liste qu'à partir du 2e élément</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> sim_scores[<span class="dv">1</span>:]</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> corpus[sim_scores[<span class="dv">0</span>][<span class="dv">0</span>]]</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_most_similar_epigram(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-27" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>doc_labels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<pre><code>0     7.114
+1     7.115
+2     7.116
+3     7.120
+4     7.171
+5     7.172
+6     7.173
+7     7.189
+8     7.190
+9     7.191
+10    7.192
+11    7.195
+12    7.201
+13    7.214
+14    7.216
+Name: epigramme_id, dtype: float64</code></pre>
+</div>
+</div>
+<div id="cell-28" class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import des  modules pour la visualisation </span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualisation de la heatmap </span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>doc_labels <span class="op">=</span> corpus.index</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>sns.heatmap(cos_sim, </span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>            annot<span class="op">=</span><span class="va">True</span>,        <span class="co"># Affiche les valeurs numériques dans les cellules</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>            fmt<span class="op">=</span><span class="st">".2f"</span>,         <span class="co"># Formattage des nombres (2 décimales)</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>            cmap<span class="op">=</span><span class="st">"YlGnBu"</span>,     <span class="co"># Palette de couleurs (bleu à vert)</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>            xticklabels<span class="op">=</span>doc_labels, <span class="co"># Labels pour les colonnes</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>            yticklabels<span class="op">=</span>doc_labels, <span class="co"># Labels pour les lignes</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>            linewidths<span class="op">=</span><span class="fl">.5</span>)     <span class="co"># Lignes séparatrices</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Similarité Cosinus entre Épigrammes"</span>)</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Épigrammes"</span>)</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Épigrammes"</span>)</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="jour2_BoW_TFiDF_complet_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-29" class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_most_similar_epigram(epigram_index):</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"L'épigramme le plus proche de '</span><span class="sc">{</span>corpus[epigram_index]<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extraire la ligne contenant les scores de similarité pour cet épigramme : retourne tuple (position, score)</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">list</span>(<span class="bu">enumerate</span>(cos_sim[epigram_index]))</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># on organise la liste pour que le score le plus élevé (valeur en position 1 du tuple) soit en tête de liste</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">sorted</span>(sim_scores, key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># comme le score le plus élevé est avec lui-même, on ne prend la liste qu'à partir du 2e élément</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> sim_scores[<span class="dv">1</span>:]</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> corpus[sim_scores[<span class="dv">0</span>][<span class="dv">0</span>]]</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_most_similar_epigram(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>L'épigramme le plus proche de '« Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »'
 On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut compassion et prononça ces paroles : « Arrête et ne frappe plus, car sûrement c'est l'âme d'un ami, que j'ai reconnue en l'entendant crier. »</code></pre>
 </div>
 </div>
-<div id="cell-25" class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réécrire la fonction get_most_similar_epigram() pour qu'elle retourne les 3 épigrammes les plus proches avec leur score</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-30" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réécrire la fonction get_most_similar_epigram() pour qu'elle retourne les 3 épigrammes les plus proches avec leur score</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_similar_epigrams(epigram_index, nb_epigrammes_similaires):</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Les épigrammes les plus proches de '</span><span class="sc">{</span>corpus[epigram_index]<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extraire la ligne contenant les scores de similarité pour cet épigramme : retourne tuple (position, score)</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">list</span>(<span class="bu">enumerate</span>(cos_sim[epigram_index]))</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># on organise la liste pour que le score le plus élevé (valeur en position 1 du tuple) soit en tête de liste</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">sorted</span>(sim_scores, key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># comme le score le plus élevé est avec lui-même, on ne prend la liste qu'à partir du 2e élément</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> sim_scores[<span class="dv">1</span>:]</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> []</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> index, sim_score <span class="kw">in</span> sim_scores[:nb_epigrammes_similaires]:</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"L'épigramme à l'index </span><span class="sc">{</span>index<span class="sc">}</span><span class="ss">, a le score </span><span class="sc">{</span>sim_score<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>        res.append(corpus[index])</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> res</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Les épigrammes les plus proches sont:'</span>)</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_similar_epigrams(<span class="dv">1</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Les épigrammes les plus proches sont:
+Les épigrammes les plus proches de '« Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »'
+L'épigramme à l'index 3, a le score 0.2318902642270748
+L'épigramme à l'index 2, a le score 0.2002338670198514
+L'épigramme à l'index 0, a le score 0.182127425661375
+L'épigramme à l'index 8, a le score 0.14436508641446272
+L'épigramme à l'index 12, a le score 0.13606922141460542
+["On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut compassion et prononça ces paroles : « Arrête et ne frappe plus, car sûrement c'est l'âme d'un ami, que j'ai reconnue en l'entendant crier. »", "« Diogène, allons, dis-moi quel destin t'a ravi? - C'est la morsure féroce du Chien, qui m'a ravi chez Hadès. »", "Tu voulais, Héraclide, laisser aux hommes le bruit que tu avais été, une fois mort, changé aux yeux de tous en serpent. Mais tu fus trompé dans tes calculs sophistiques : la bête, en effet, appartenait bien au genre serpent ; toi, tu fus convaicu d'être bête, mais pas du genre sage.", "A la sauterelle, rossignol des guérets, à la cigale, hôtesse des hêtres, Myro fit une tombe commune ; elle répandit, la jeune fille, une larme virginale : c'est que l'impitoyable Hadès s'en allait en emportant le double objet de ses jeux.", "Tu ne jettes plus, posée sur les feuilles vertes, l'agréable chanson de ton cri perçant ; mais c'est quand tu chantais, stridente cigale, qu'un jeune garçon te tua de sa main tendue."]</code></pre>
+</div>
 </div>
 <p>Il existe d’autres façon de calculer la proximité entre deux vecteurs, par exemple:</p>
 <ul>
 <li>Distance L1 ou Manhattan</li>
 <li>Distance L2 ou euclidienne</li>
 </ul>
-<div id="cell-27" class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reproduire le calcul des distances avec l'une ou l'autre distance à l'aide des fonctions pré-importées de scikit-learn :  manhattan_distances() ou euclidean_distances()</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>l1_distances <span class="op">=</span> manhattan_distances(corpus_tfidf)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(l1_distances)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-32" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reproduire le calcul des distances avec l'une ou l'autre distance à l'aide des fonctions pré-importées de scikit-learn :  manhattan_distances() ou euclidean_distances()</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>l1_distances <span class="op">=</span> manhattan_distances(corpus_tfidf)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(l1_distances)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[ 0.         10.58499673 10.04300624 10.98411054 10.66291335 11.65377446
   10.23285136 10.35181515 10.13816463 10.12520071  9.95544651 11.35928714
@@ -2439,27 +3276,51 @@ On dit qu'un jour il passait devant un jeune chien qu'on frappait, il en eut com
   11.13139415 11.62857523  0.        ]]</code></pre>
 </div>
 </div>
-<div id="cell-28" class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_most_similar_epigram2(epigram_index):</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"L'épigramme le plus proche de '</span><span class="sc">{</span>corpus[epigram_index]<span class="sc">}</span><span class="ss">'"</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extraire la ligne contenant les scores de similarité pour cet épigramme : retourne tuple (position, score)</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">list</span>(<span class="bu">enumerate</span>(l1_distances[epigram_index]))</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># on organise la liste pour que le score le plus élevé (valeur en position 1 du tuple) soit en tête de liste</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">sorted</span>(sim_scores, key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># comme le score le plus élevé est avec lui-même, on ne prend la liste qu'à partir du 2e élément</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> sim_scores[<span class="dv">1</span>:]</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> corpus[sim_scores[<span class="dv">0</span>][<span class="dv">0</span>]]</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_most_similar_epigram2(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-33" class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualisation de la heatmap </span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nommage des étiquettes par l'index (l'ordre dans lequel l'épigramme apparait dans le jeu de donnée)</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>doc_labels <span class="op">=</span> corpus.index</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>sns.heatmap(l1_distances, </span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>            annot<span class="op">=</span><span class="va">True</span>,        <span class="co"># Affiche les valeurs numériques dans les cellules</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>            fmt<span class="op">=</span><span class="st">".2f"</span>,         <span class="co"># Formattage des nombres (2 décimales)</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>            cmap<span class="op">=</span><span class="st">"YlGnBu"</span>,     <span class="co"># Palette de couleurs (bleu à vert)</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>            xticklabels<span class="op">=</span>doc_labels, <span class="co"># Labels pour les colonnes</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>            yticklabels<span class="op">=</span>doc_labels, <span class="co"># Labels pour les lignes</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>            linewidths<span class="op">=</span><span class="fl">.5</span>)     <span class="co"># Lignes séparatrices</span></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Distance L1 entre Épigrammes"</span>)</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Épigrammes"</span>)</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Épigrammes"</span>)</span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="jour2_BoW_TFiDF_complet_files/figure-html/cell-26-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-34" class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_most_similar_epigram2(epigram_index):</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"L'épigramme le plus proche de '</span><span class="sc">{</span>corpus[epigram_index]<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extraire la ligne contenant les scores de similarité pour cet épigramme : retourne tuple (position, score)</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">list</span>(<span class="bu">enumerate</span>(l1_distances[epigram_index]))</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># on organise la liste pour que le score le plus élevé (valeur en position 1 du tuple) soit à la fin </span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Cette fois il s'agit d'un calcul de distance : on cherche la valeur la plus proche de 0</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> <span class="bu">sorted</span>(sim_scores, key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># comme le score le plus élevé est avec lui-même, on ne prend la liste qu'à partir du 2e élément</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    sim_scores <span class="op">=</span> sim_scores[<span class="dv">1</span>:]</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> sim_scores[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> index, corpus[index]</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_most_similar_epigram2(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>L'épigramme le plus proche de '« Tu as vécu en chien, Antisthène. - C'est que j'étais né pour déchirer le cœur avec des mots et non avec des crocs. - Mais tu es mort en chien que tu étais né, dira sans doute quelqu'un. - Eh quoi ! il fait bien qu'il y en ait pour servir de guide chez Hadès. »'
-Sauterelle, toi qui trompes mes regrets et apaises mon sommeil, sauterelle, muse agreste au vol mélodieux, imitation naturelle de la lyre, dis-moi quelque chant aimé en frappant de tes pattes tes ailes sonores, afin de m'arracher au souci de mes peines qui m'enlèvent le sommeil, cigale, toi qui sais les chants qui trompent l'amour. A ton réveil je te donnerai comme récompense du poireau toujours vert et des plantes humides de rosée, que tu diviseras de tes lèvres.</code></pre>
-</div>
-</div>
-<div id="cell-29" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>([<span class="bu">len</span>(epi.split()) <span class="cf">for</span> epi <span class="kw">in</span> corpus[:<span class="dv">3</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
-<pre><code>130</code></pre>
+(2, "« Diogène, allons, dis-moi quel destin t'a ravi? - C'est la morsure féroce du Chien, qui m'a ravi chez Hadès. »")</code></pre>
 </div>
 </div>
 
