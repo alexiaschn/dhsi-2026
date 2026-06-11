@@ -1,5 +1,5 @@
 ---
-title: "Jour 4 matin : Les modèles génératifs"
+title: "Jour 4 Matin : Les modèles génératifs"
 date: 2026-06-11
 author: 
     - name: Alexia Schneider 
@@ -25,6 +25,7 @@ format:
 ## Programme de la matinée
 
 AM: (3h)
+
 - Présentation des modèles génératifs (30min)
     - Typologie des LLMs
     - Paramétres d'un LLM génératif pour l'inférence,

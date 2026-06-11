@@ -681,168 +681,168 @@
   {
     "objectID": "diapositives/jour04AM.html#programme-de-la-matinée",
     "href": "diapositives/jour04AM.html#programme-de-la-matinée",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Programme de la matinée",
-    "text": "Programme de la matinée\nAM: (3h) - Présentation des modèles génératifs (30min) - Typologie des LLMs - Paramétres d’un LLM génératif pour l’inférence, - Exercices (1h) - Piloter un modèle avec Neuronpédia - Utiliser un LLM localement - Piloter un modèle en local - PAUSE (15 minutes) - Classification avec modèles génératifs (1h15) - Prompt engineering avec ChainForge"
+    "text": "Programme de la matinée\nAM: (3h)\n\nPrésentation des modèles génératifs (30min)\n\nTypologie des LLMs\nParamétres d’un LLM génératif pour l’inférence,\n\nExercices (1h)\n\nPiloter un modèle avec Neuronpédia\nUtiliser un LLM localement\nPiloter un modèle en local\n\nPAUSE (15 minutes)\nClassification avec modèles génératifs (1h15)\n\nPrompt engineering avec ChainForge"
   },
   {
     "objectID": "diapositives/jour04AM.html#les-llms",
     "href": "diapositives/jour04AM.html#les-llms",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Les LLMs",
     "text": "Les LLMs\nHier, nous avons vu les bases de l’apprentissage profond, aujourd’hui, on passe aux grands modèles de langue ou Large Language Model.\nIl existe en réalité 3 types de LLMs :\n\nencodeurs purs,\ndécodeurs purs\nencodeur-décodeurs\n\nCette typologie réfère à la façon dont le modèle a été entrainé, et par conséquent à la tâche pour laquelle il est spécialisé à l’inférence (= prédiction).\n\nOverviewSource : Tay (2025)"
   },
   {
     "objectID": "diapositives/jour04AM.html#décodeurs-gpt",
     "href": "diapositives/jour04AM.html#décodeurs-gpt",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Décodeurs (GPT)",
     "text": "Décodeurs (GPT)\nDans le langage courant ce sont les IA génératives : ces modèles font de la prédiction de token suivant (causal language modelling).\nCe sont des modèles auto-régressifs : on fournit en entrée au modèle un prompt qui comprend l’instruction du développeur suivi de chaque token produit jusqu’à présent par le modèle.\nExemple :\nL’utilisateur entre “Quelle est la capitale de la France?”\nLe modèle au premier tour reçoit :\n\"&lt;systemPrompt&gt;Tu es un gentil assistant.&lt;/systemPrompt&gt;\n&lt;userMessage&gt;Quelle est la capitale de la France ?&lt;/userMessage&gt;\nLe modèle prédit le premier token: “La”\nAu deuxième tour le modèle reçoit:\n\"&lt;systemPrompt&gt;Tu es un gentil assistant.&lt;/systemPrompt&gt;\n&lt;userMessage&gt;Quelle est la capitale de la France ?&lt;/userMessage&gt;\n&lt;chatMessage&gt;La&lt;/chatMessage&gt;\nLe modèle prédit le token suivant: “capitale”\nAu deuxième tour le modèle reçoit:\n\"&lt;systemPrompt&gt;Tu es un gentil assistant.&lt;/systemPrompt&gt;\n&lt;userMessage&gt;Quelle est la capitale de la France ?&lt;/userMessage&gt;\n&lt;chatMessage&gt;La capitale&lt;/chatMessage&gt;\netc.\nPour déterminer que la prédiction est finie, le modèle prédit un token spécial &lt;EOF&gt;"
   },
   {
     "objectID": "diapositives/jour04AM.html#encodeurs-bert",
     "href": "diapositives/jour04AM.html#encodeurs-bert",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Encodeurs (BERT)",
     "text": "Encodeurs (BERT)\n\nComparaison encodeur vs. décodeursSource : Tay (2025)\nBERT : Bidirectional Encoder Representation from Transformers\nL’entrainement de ces modèles repose sur le masquage de tokens : le modèle généralise à partir d’un encodage bidirectionnel. Leur utilisation est ainsi surtout pour la classification même s’ils peuvent aussi servir à faire de la génération en théorie."
   },
   {
     "objectID": "diapositives/jour04AM.html#encodeur-décodeur-bart",
     "href": "diapositives/jour04AM.html#encodeur-décodeur-bart",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Encodeur-décodeur (BART)",
     "text": "Encodeur-décodeur (BART)\nPartie encodage sert à “comprendre” l’entrée en langue naturelle, partie décodage sert à produire une sortie structurée. Typiquement utilisé pour de la traduction automatique."
   },
   {
     "objectID": "diapositives/jour04AM.html#comment-on-obtient-un-llm",
     "href": "diapositives/jour04AM.html#comment-on-obtient-un-llm",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Comment on obtient un LLM ?",
     "text": "Comment on obtient un LLM ?\nCes trois types de modèles de langue ont en commun la manière d’être entrainé.\nParce qu’il est possible d’entrainer plusieurs fois un modèle, on parle de pré-entrainement pour le premier entrainement qui mène au modèle de langue généraliste qu’on nomme un foundational model.\nLes entrainements suivants servent à aligner le LLM :\n\ndu reinforcement learning : des annotateurs évaluent les sorties du modèle, et un apprentissage par renforcement ajuste les préférences du modèle.\nde l’affinage ou fine-tuning s’il s’agit de spécialiser le modèle pour une tâche précise."
   },
   {
     "objectID": "diapositives/jour04AM.html#foundational-models-pré-entrainement",
     "href": "diapositives/jour04AM.html#foundational-models-pré-entrainement",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Foundational models : Pré-entrainement",
     "text": "Foundational models : Pré-entrainement\nConstitution d’un corpus non annoté\nApprentissage auto-supervisé : le modèle apprend à prédire le mot suivant ou remplir un blanc dans une phrase.\nEncodage itératif : chaque mot/token est encodé en vecteur (embeddings) et le réseau ajuste ses poids en fonction du contexte.\nDès cette étape on obtient un modèle généraliste capable de faire des prédictions."
   },
   {
     "objectID": "diapositives/jour04AM.html#encodage-larchitecture-transformers",
     "href": "diapositives/jour04AM.html#encodage-larchitecture-transformers",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Encodage : l’architecture Transformers",
     "text": "Encodage : l’architecture Transformers\nTous les modèles de langue ne sont pas des Transformers mais les Transformers demeurent l’architecture la plus connue et la plus répandue actuellement.\n\nSchéma du célèbre Vaswani et al. (2017)Encoder les données (à l’entrainement et à l’inférence) passe par plusieurs étapes:\n\nembedding : vectorisation selon un nombre défini de dimensions (512 pour les BERT).\nencodage des positions : les tokens sont traités simultanément alors on conserve la position de chaque token dans la phrase dans l’embedding.\n\nmécanisme d’attention : ajustement des “poids” en fonction de l’importance du token dans la phrase; Création des vecteurs Q, K, V (Query, Key, Value) : Pour chaque mot (représenté par son vecteur), le modèle génère trois nouveaux vecteurs via des matrices de poids apprises :\n\n\nQuery (Q) : Représente ce que le mot “cherche” dans la phrase.\nKey (K) : Représente ce que le mot “offre” ou contient.\nValue (V) : Contient l’information réelle du mot qui sera utilisée pour la sortie.\n\nCalcul de la pertinence de chaque mot par rapport à un mot cible : produit scalaire entre la Query du mot cible et la Key de tous les autres mots. Cela produit un score de similarité : plus le score est élevé, plus les deux mots sont liés dans ce contexte. Ces scores sont ensuite divisés par une racine carrée (pour stabiliser les gradients) et passés à travers une fonction Softmax (distribution des probabilités).\nPondération et Somme : Le modèle multiplie chaque vecteur Value (V) de tous les mots par le pourcentage d’attention calculé précédemment. Il somme ensuite ces valeurs pondérées. Le résultat est un nouveau vecteur pour le mot cible : il contient non seulement l’information du mot lui-même, mais aussi une synthèse de toutes les informations des mots qui lui sont liés (ex: pour le mot “banque” dans “je vais à la banque de la rivière”, l’attention sera forte sur “rivière” et faible sur “argent”, produisant un vecteur qui reflète le sens de “lieu” et non de “finance”).\nLe processus est répété : plusieurs têtes d’attention servent à identifier des relations de type différents.\n\nEntrainement : les couches d’attention sont passées dans le réseau de neurone et deviennent la première couche de la prochaine étape d’entrainement.\n(dans le cas des décodeurs) : à l’inférence, la sortie devient l’entrée.\n\nSource + explication paraphrasée de Euria."
   },
   {
     "objectID": "diapositives/jour04AM.html#inférence-paramètrer-un-décodeur-pur",
     "href": "diapositives/jour04AM.html#inférence-paramètrer-un-décodeur-pur",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Inférence : paramètrer un décodeur pur",
     "text": "Inférence : paramètrer un décodeur pur\nCes paramètres concernent l’inférence et non l’entraînement du modèle.\n\nLe seed (nombre que l’on peut choisir): les LLMs ont une variable aléatoire au moment de l’encodage des données et au moment du requêtage : le seed permet d’utiliser toujours le même ordre aléatoire, càd d’obtenir pour un même prompt toujours la même réponse. Enjeu de reproductibilité.\nLa température (valeur de 0 à 1): détermine le degré d’utilisation de la variable aléatoire. Une température élevée signifie que le modèle sera plus “créatif” car il donnera plus probablement un token qui a une probabilité absolue moindre dans son contexte.\ntop_k (valeur de 0 à 100): variable qui réduit la probabilité de générer des tokens absurdes. Une valeur élevée donne des réponses plus variées et une valeur basse des réponses plus conservatrices. (Défaut 40)\ntop_p (valeur de 0 à 1): Fonctionne avec le top_k. Une valeur haute donne un texte varié, une valeur basse, un texte conservateur. (Défaut: 0,9)\npénalité de fréquence (de -2.0 à 2.0): applique une pénalité proportionnelle au nombre de fois où un token est apparu dans le prompt et dans la réponse. Une pénalité de fréquence élevée signifie qu’un token n’apparaitrait pas plusieurs fois : empêche la répétition.\n\nSource : Documentation Ollama"
   },
   {
     "objectID": "diapositives/jour04AM.html#piloter-un-modèle-steering-et-system-message",
     "href": "diapositives/jour04AM.html#piloter-un-modèle-steering-et-system-message",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Piloter un modèle “Steering” et System message",
     "text": "Piloter un modèle “Steering” et System message\nPiloter un modèle consiste à lui fournir des ordres qui vont modifier son comportement pour toutes les interactions suivantes : cette instruction initiale est le “System message”.\n\nsteering vector : La plupart des méthodes de pilotage ajoutent un « vecteur de pilotage » (SV) aux activations du modèle à une couche et une position de token données lors de l’inférence. Cette approche s’appuie sur l’hypothèse selon laquelle de nombreux concepts interprétables par les humains, tels que l’honnêteté, le refus et le sentiment, sont représentés sous forme de directions dans l’espace des activations. — Source : https://joschkacbraun.github.io/assets/pdf/steering_blog_post.pdf\n\nConduire un modèle interactivement avec Neuronpedia"
   },
   {
     "objectID": "diapositives/jour04AM.html#travailler-en-local-avec-un-llm",
     "href": "diapositives/jour04AM.html#travailler-en-local-avec-un-llm",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Travailler en local avec un LLM",
     "text": "Travailler en local avec un LLM\nAvantages :\n\nLes échanges restent privés,\nPas besoin de connexion internet,\nPlus simple de bidouiller le modèle par soi-même,\nPossibilité de travailler avec des modèles très différents sans passer par des plateformes propriétaires.\n\nDésavantages :\n\nLimites = les capacités de son ordinateur,\nPas de mémoire des interactions précédentes,\nPas d’accès à d’autres modules complémentaires comme sur une application type ChatGPT ou Mistral.ai (ex: recherche sur internet, ajout de documents, connexion avec son agenda etc. )\n\nNB : Travailler en local ne signifie pas que le modèle a accès aux documents sur votre ordinateur : il s’agit d’un programme indépendant."
   },
   {
     "objectID": "diapositives/jour04AM.html#installation-dollama",
     "href": "diapositives/jour04AM.html#installation-dollama",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Installation d’Ollama",
     "text": "Installation d’Ollama\nOllama permet de télécharger des modèles de langue en local et d’intérargir avec.\n\nOuvrir son terminal :\n\n\nsur Windows : Chercher PowerShell\nsur MacOS : Command + espace ouvre Spotlight search : chercher “terminal”\n\n\nEntrer en ligne de commande :\n\n\nWindows : irm https://ollama.com/install.ps1 | iex\nMacOS/Linux : curl -fsSL https://ollama.com/install.sh | sh\n\nou Télécharger Ollama depuis leur site\n\nTélécharger et lancer un modèle:\n\nListe des LLM disponibles : https://ollama.com/search : llama3.2 pèse 2Go c’est un des plus petit.\nollama pull llama3.2:latest -&gt; télécharge le modèle.\nollama run llama3.2 -&gt; lance le modèle.\n(“” -&gt; pour des instructions longues)\n\nCouper la génération : Ctrl + c et couper le programme : Ctrl + d\n\nAutres commandes :\n/show info -&gt; information sur le modèle téléchargé\nollama list -&gt; liste des modèles téléchargés et utilisables\nollama rm llama3.2 -&gt; supprime un modèle\nTéléchargement local de Chainforge\nEn ligne de commande :\nActiver son environnement virtuel (environnement Python dédié):\n\nsource .venv/bin/activate\n\nTélécharger ChainForge:\n\nLinux/MacOS : pip install --global chainforge\nWindows : py -m pip install --global chainforge"
   },
   {
     "objectID": "diapositives/jour04AM.html#exercice",
     "href": "diapositives/jour04AM.html#exercice",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Exercice",
     "text": "Exercice\nNeuronpedia piloter un modèle commencez par partir d’une démonstration proposée :\nModifier un paramètre, et poser une question entre chaque modification :\n\ntempérature : valeur entre 0 et 1\nfreq. penalty (pénalité de fréquence) : valeur entre -2 et 2\nstrength multiple (force du pilotage) : valeur entre 0 et 10\n\nAjouter une feature (une caractéristique) (ex : dogs, dishonesty) et modifier à nouveau les paramètres à chaque tour.\nPiloter un modèle local\n\nEn ligne de commande :\n\nTélécharger le document, le mettre dans le dossier de votre choix “ModelFile” sur le site à l’onglet Corpus : Lien.\n\nModifier les paramètres et le System Prompt à souhait.\n\nSe déplacer dans le dossier où se trouve le document “ModelFile” :\n\nExemple pour le dossier des Téléchargement:\nWindows (PowerShell ou CMD) : ```cd Downloads``` (ou ```cd Téléchargements``` si le système est en français).\nLinux : ```cd ~/Téléchargements``` (ou ```cd ~/Downloads``` si le système est en anglais).\nmacOS : ```cd ~/Downloads.``` \n\nCréer un nouveau modèle piloté : le mot ‘chien’ peut être remplacé par un autre nom.\n\nollama create chien -f ModelFile\n\nLancer le modèle piloté en utilisant le nom donné.\n\nollama run chien"
   },
   {
     "objectID": "diapositives/jour04AM.html#travailler-avec-de-lia-générative",
     "href": "diapositives/jour04AM.html#travailler-avec-de-lia-générative",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Travailler avec de l’“IA générative”",
     "text": "Travailler avec de l’“IA générative”\nContrairement à certaines des approches qu’on a pu voir les jours précédents, la génération par LLM contient des éléments d’incertitude qui mettent en jeu l’interprétabilité des résultats obtenus :\n\nprobabiliste et stochastique : variable aléatoire font varier les probabilités et donc les réponses (Bender et al. 2021)\nLes modèles sont a priori pré-déterminé par leurs données d’entrainement (= préférence pour le reinforcement learning plutôt que l’annotation massive à la source).\n\nEntraînenement sur des données synthètique provoque l’effondrement du modèle (shumailovAIModelsCollapse2024?).\n\n\n\n\nEffondrement du modèle\n\n\n\n\ndifficile interprétabilité de l’output et de la trace dans les couches neuronales. ExplainableAI est une discipline à part entière. Exemple d’une analyse de trace à l’intérieur du modèle : Neuronpedia\n\n\n\nInterprétation attendue de ce qu’il se passe\n\n\n\n\n\nRéalité\n\n\n\nSource : 3Blue1Brown (2017)"
   },
   {
     "objectID": "diapositives/jour04AM.html#le-prompt-engineering",
     "href": "diapositives/jour04AM.html#le-prompt-engineering",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Le prompt engineering",
     "text": "Le prompt engineering\nUne solution : le prompt engineering.\nRendre un prompt robuste et surtout permettre l’évaluation systématique d’une stratégie de prompt. Réintégrer une forme de modélisation de son problème pour optimiser un prompt. Le prompt engineering consiste à obtenir le meilleur “template” d’instruction pour résoudre un problème avec comme objectif l’adaptabilité à des situations variées et la cohérence des réponses au fur et à mesure des itérations."
   },
   {
     "objectID": "diapositives/jour04AM.html#éléments-de-prompt-engineering",
     "href": "diapositives/jour04AM.html#éléments-de-prompt-engineering",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Éléments de prompt engineering",
     "text": "Éléments de prompt engineering\nComment passer d’une exploration opportuniste et empirique d’un prompt ou deux au déploiement d’un outil reposant sur un LLM avec un bonne certitude qu’il s’agit d’un système fiable ?\n\nconcevoir des scénarios d’utilisation\nchercher les limites\nanalyser les erreurs\nquantifier l’évaluation -&gt; définir des mesures pertinentes pour la tâche à effectuer"
   },
   {
     "objectID": "diapositives/jour04AM.html#typologie-dévaluation",
     "href": "diapositives/jour04AM.html#typologie-dévaluation",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Typologie d’évaluation",
     "text": "Typologie d’évaluation\n\n\nBasé sur une référence : comparaison des sorties à partir d’une vérité de terrain (=ground truth)\nReference-free : Sans vérité de terrain pour effectuer l’évaluation\nComparaison par paires : comparaison de deux sorties (ex : pour comparer la qualité de deux prompts)\nCode-based : évaluation plus robuste car basée sur une quantification de l’évaluation (ex: si on demande d’effectuer une synthèse d’un texte, s’assurer que le texte de sortie contient moins de mots que le texte à synthétiser est quantifiable).\nLLM-based : Demander à un LLM d’évaluer la sortie.\nÉvaluation humaine : prend du temps, mais obligatoire même à moindre échelle."
   },
   {
     "objectID": "diapositives/jour04AM.html#stratégies-de-prompt",
     "href": "diapositives/jour04AM.html#stratégies-de-prompt",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Stratégies de prompt",
     "text": "Stratégies de prompt\n\n0 shot : pas d’exemple, instruction brute.\nfew shots : ajout d’exemples. -&gt; la stratégie la plus robuste (Brown et al. 2020)\npersonas : instruction de comportement.\nChain of Thought (devenu ‘reasoning step’ inclus dans le LLM ) : ”\nFormatted outputs : demander une sortie dans un format structuré guide les LLMs (ex: JSON)"
   },
   {
     "objectID": "diapositives/jour04AM.html#bonnes-pratiques",
     "href": "diapositives/jour04AM.html#bonnes-pratiques",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Bonnes pratiques",
     "text": "Bonnes pratiques\n\nDécomposer la tâche à effectuer.\nComposer un jeu de donnée a minima : cerner ce à quoi doit ressembler la sortie.\nPartir d’un exemple minimal avant de complexifier la tâche\nPréférer les exemples aux instructions.\nDemander une sortie dans un format qui demande un schéma de validation pour éviter les erreurs."
   },
   {
     "objectID": "diapositives/jour04AM.html#chainforge",
     "href": "diapositives/jour04AM.html#chainforge",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "ChainForge",
     "text": "ChainForge\nChainForge : outil de comparaison de prompt : comparaison de modèle, comparaison de template (un texte qui inclut des variables) visualisation côte à côte des sorties.\nDémonstration de l’utilisation de ChainForge : exemple de la classification binaire en “animal/pas animal”\nVous pouvez suivre et importer le workflow qui se trouve dans les documents de l’onglet Corpus : flow-classification-animal.cforge\nLes données utilisées sont : epigrammes_classification_animal.csv"
   },
   {
     "objectID": "diapositives/jour04AM.html#lancer-chainforge-et-ollama-en-local",
     "href": "diapositives/jour04AM.html#lancer-chainforge-et-ollama-en-local",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Lancer ChainForge et Ollama en local :",
     "text": "Lancer ChainForge et Ollama en local :\n\nchainforge serve\n\nLancer Ollama :\n\nollama serve\n\nSi vous avez une erreur “Error: listen tcp 127.0.0.1:11434: bind: address already in use” :\nLinux/MacOS : sudo systemctl stop ollama / Windows : net stop ollama\nLe localhost (par défaut http://localhost:8000/) devrait maintenant proposer dans les Nodes de Prompt le type ‘ollama’.\n\nChainForge en local avec les modèles téléchargés sur sa machine via Ollama"
   },
   {
     "objectID": "diapositives/jour04AM.html#exercice-1",
     "href": "diapositives/jour04AM.html#exercice-1",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Exercice",
     "text": "Exercice\nVous pouvez vous servir de votre propre jeu de donnée.\nA défaut :\nEffectuer une classification d’épigrammes selon 2 classes : Hétérosexuel / Homosexuel\nCommencez par un New Flow.\nTélécharger dans le corpus le jeu de données erotiques_anthologia_graeca_fr.csv\n1.Ajouter les données avec l’import CSV. -&gt; Add Node &gt; tabular Data 2. Formuler 2 variants d’un prompt, pensez aux différentes stratégies de prompt existantes (persona, Chain of Thought). -&gt; Add Node &gt; Prompt Node\nTips : pour faire passer une variable d’un node de CSV à celui de prompt il faut mettre la variable (le nom de la colonne) entre curly braces {}. Exemple : “Est-ce que le texte suivant parle d’une relation homosexuelle ou hétérosexuelle ? Texte : {text_fr}”\n\nAjouter un ou deux modèles (Ollama) maximum et inspecter les prompts avant de les envoyer.\n\n\n\nAjouter 2 évaluateurs :\n\n\nle premier pour quantifier les réponses en Python ou en Javascript (déterminer avec True or False si la réponse était bien celle attendue).\nle deuxième est une évaluation ‘LLM-as-judge’ : le LLM devra déterminer si l’évaluation était correcte en comparant la réponse donnée et la réponse attendue.\n\nTips : pour faire passer la variable du node CSV à l’évaluateur il faut utiliser la syntaxe : response.meta['variable'] ex : “Donne une note de 1 à 10 sur la qualité de la classification : le modèle dont tu évalues la réponse devait déterminer si le texte suivant”{response.meta[‘text_fr’]}” était romantique ou érotique”\n\nComparer la qualité des sorties des différents prompts et la qualité des évaluations par les LLM.\n\n\npour faire passer une variable d’un node de CSV à celui de prompt il faut mettre la variable (le nom de la colonne) entre curly braces {}\npour faire passer la variable du node CSV à l’évaluateur il faut utiliser la syntaxe : response.meta['variable']"
   },
   {
     "objectID": "diapositives/jour04AM.html#questions-liées-à-lexercice",
     "href": "diapositives/jour04AM.html#questions-liées-à-lexercice",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Questions liées à l’exercice",
     "text": "Questions liées à l’exercice\nQuel est le meilleur modèle ?\nQuel est le meilleur prompt ?\nObservez les erreurs produites par les modèles, quels facteurs semblent avoir confondus les modèles ? Quels sont les biais des modèles ? Ces biais sont-ils exprimés explicitement dans les phases de réflexions du modèle ?\nQuelles sont les limites de cette stratégie de classification ?\nQuelles sont les limites de l’évaluation de la classification ?\nQuelles autres critères peut-on envisager pour cette classification automatique ?"
   },
   {
     "objectID": "diapositives/jour04AM.html#bibliographie",
     "href": "diapositives/jour04AM.html#bibliographie",
-    "title": "Jour 4 matin : Les modèles génératifs",
+    "title": "Jour 4 Matin : Les modèles génératifs",
     "section": "Bibliographie",
     "text": "Bibliographie\n\n\n\n\n3Blue1Brown. 2017. “Mais, c’est Quoi Un Réseau de Neurones ? Chapitre 1, Apprentissage Profond.”\n\n\nBender, Emily M., Timnit Gebru, Angelina McMillan-Major, and Shmargaret Shmitchell. 2021. “On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜.” In Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency, 610–23. Virtual Event Canada: ACM. https://doi.org/10.1145/3442188.3445922.\n\n\nBrown, Tom B., Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, et al. 2020. “Language Models Are Few-Shot Learners.” arXiv. https://doi.org/10.48550/arXiv.2005.14165.\n\n\nTay, Aaron. 2025. “What Do We Actually Mean by \"AI-Powered Search\"?” Substack Newsletter. Aaron Tay’s Musings about Librarianship.\n\n\nVaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, and Illia Polosukhin. 2017. “Attention Is All You Need.” arXiv. https://doi.org/10.48550/arXiv.1706.03762."
   },
@@ -879,7 +879,7 @@
     "href": "diapositives.html",
     "title": "Index des diapositives",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nJun 8, 2026\n\n\nJour 1 : Introduction à l’IA, histoire et typologie\n\n\nAlexia Schneider, Marcello Vitali-Rosati\n\n\n\n\nJun 9, 2026\n\n\nJour 2 après-midi : Automatisation du prétraitement d’un corpus textuel\n\n\nAlexia Schneider, Yann Audin\n\n\n\n\nJun 9, 2026\n\n\nJour 2 matin : Automatisation du prétraitement d’un corpus textuel\n\n\nYann Audin, William Bouchard\n\n\n\n\nJun 10, 2026\n\n\nJour 3 : Apprentissage profond\n\n\nWilliam Bouchard, Yann Audin\n\n\n\n\nJun 11, 2026\n\n\nJour 4 PM : Les modèles génératifs (suite)\n\n\nAlexia Schneider, William Bouchard\n\n\n\n\nJun 11, 2026\n\n\nJour 4 matin : Les modèles génératifs\n\n\nAlexia Schneider, William Bouchard\n\n\n\n\nJun 12, 2026\n\n\nJour 5 : Architecture des SIA complexes\n\n\nAlexia Schneider, Yann Audin, William Bouchard\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nJun 8, 2026\n\n\nJour 1 : Introduction à l’IA, histoire et typologie\n\n\nAlexia Schneider, Marcello Vitali-Rosati\n\n\n\n\nJun 9, 2026\n\n\nJour 2 après-midi : Automatisation du prétraitement d’un corpus textuel\n\n\nAlexia Schneider, Yann Audin\n\n\n\n\nJun 9, 2026\n\n\nJour 2 matin : Automatisation du prétraitement d’un corpus textuel\n\n\nYann Audin, William Bouchard\n\n\n\n\nJun 10, 2026\n\n\nJour 3 : Apprentissage profond\n\n\nWilliam Bouchard, Yann Audin\n\n\n\n\nJun 11, 2026\n\n\nJour 4 PM : Les modèles génératifs (suite)\n\n\nAlexia Schneider, William Bouchard\n\n\n\n\nJun 11, 2026\n\n\nJour 4 Matin : Les modèles génératifs\n\n\nAlexia Schneider, William Bouchard\n\n\n\n\nJun 12, 2026\n\n\nJour 5 : Architecture des SIA complexes\n\n\nAlexia Schneider, Yann Audin, William Bouchard\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "notebooks.html",
