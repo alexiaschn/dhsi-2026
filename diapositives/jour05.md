@@ -136,7 +136,7 @@ rechercheInternet(requete) :
 ``` 
 
 >Site 1 :  "chainforge.ai " ,   Site 2 : stackoverflow.com 
----
+
 
 
 Intégration des informations au prompt, étape 2: 
@@ -149,13 +149,13 @@ Prompt system: Orientation du formattage de la réponse | Tu répondras toujours
 Prompt utilisateur| "Comment télécharger ChainForge?"
 **Retour de la requête**| Site 1 :  "chainforge.ai " ,   Site 2 : stackoverflow.com  
 
----
+
 
 Réponse du LLM à l'étape 2: 
 
 >`<pensée>`Les sources indiquent qu'il faut installer sous forme de module Python.`</pensée><reponse>`Pour télécharger ChainForge il faut avoir installer Python et entrer en ligne de commande pip install chainforge.`</reponse>`
 
----
+
 
 Parsing de la réponse : extraction de la réponse finale dans la balise `<reponse>` : transmission de son contenu à l'utilisateur.ice.
 
