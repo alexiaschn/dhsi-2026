@@ -263,6 +263,11 @@ Traitement automatique de la langue et prétraitement de texte.
 
 Apprentissage profond : outils et applications
 
+- Word2Vec et plongements lexicaux
+- Principes de l'apprentissage profond
+- Réseaux de neurones
+- Modèles BERT
+
 
 ## Jour 4 
 
