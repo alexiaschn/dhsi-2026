@@ -264,6 +264,37 @@ Télécharger ChainForge:
 - Windows : `py -m pip install --global chainforge`
 
 
+
+Sur Windows : 
+
+py -m site --user-base
+
+Copier la sortie qui doit ressembler à 
+
+C:\Users\<Nom>\AppData\Roaming\Python\Python3x\
+
+Ouvrir Paramètres Windows > Système > A Propos > Paramètres systèmes avancés  > Variables utilisateurs > Path > Modifier > nouveau
+
+Coller le chemin et ajouter à la fin \Scripts pour obtenir une variable qui ressemble à C:\Users\<Nom>\AppData\Roaming\Python\Python3x\Scripts
+
+Fermer le PowerShell et en ouvrir un nouveau
+
+Pour tout le monde : 
+
+Lancer ChainForge en local : ```chainforge serve```
+
+Le message suivant s'affiche : 
+Serving Flask server on localhost on port 8000...
+ * Serving Flask app 'chainforge.flask_app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://localhost:8000
+Press CTRL+C to quit
+
+CTRL + Clic sur localhost:8000 lance le serveur Chainforge
+
+
+
 ## Exercice 
 
 [Neuronpedia piloter un modèle](https://www.neuronpedia.org/gemma-2-9b-it/steer) commencez par partir d'une démonstration proposée : 
